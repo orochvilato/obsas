@@ -1,0 +1,4 @@
+# obsas
+
+virtualenv .pyenv
+source .pyenv/bin/activate
