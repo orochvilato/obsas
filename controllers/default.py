@@ -17,9 +17,11 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-    import lxml
-    response.flash = T("Hello World")
-    return dict(message=T('Welcome to web2py!'))
+
+    posts = mdb.posts
+    #votes = db.votes
+
+    return dict(id=posts.find_one({"author":"Mike"}))
 
 
 def user():
