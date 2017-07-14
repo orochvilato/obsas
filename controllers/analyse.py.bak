@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # essayez quelque chose comme
 def index():
-    idaxe = request.vars.get('axe','groupes')
+    axe = request.vars.get('axe','groupes')
     suffrages = request.vars.get('suffrages','tous')
     scrutin = request.vars.get('scrutin','tous')
     tri = request.vars.get('tri','participation')
@@ -69,7 +69,7 @@ def vueaxe():
 
         return dict(items=items,nbscrutins=nbscrutins)
     
-    votedata = cache.ram(hash,getVoteData,time_expire=30)
+    votedata = cache.ram(hash,getVoteData,time_expire=600)
     
     contexte = dict(tri=tri,axe=idaxe,suffrages=suffrages,desc=desc)    
     

@@ -69,7 +69,7 @@ def vueaxe():
 
         return dict(items=items,nbscrutins=nbscrutins)
     
-    votedata = cache.ram(hash,getVoteData,time_expire=30)
+    votedata = cache.ram(hash,getVoteData,time_expire=1800)
     
     contexte = dict(tri=tri,axe=idaxe,suffrages=suffrages,desc=desc)    
     
