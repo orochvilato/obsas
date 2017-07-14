@@ -17,10 +17,7 @@ def index():
     if you need a simple wiki simply replace the two lines below with:
     return auth.wiki()
     """
-
-    posts = mdb.posts
-    #votes = db.votes
-
+    redirect(URL(c='analyse'))
     return dict(id=posts.find_one({"author":"Mike"}),test="ok2",l=request.args,v=request.vars)
 
 
