@@ -82,9 +82,9 @@ def parseVotePDF(url):
              for a in act:
                 avotes[normalize(a)] = votes[pos]
         if not pb:
-            for a in votes.keys():
+            for a in avotes.keys():
                 scrutin['votes'][avotes[a]].append(a)
-   
+            
             scrutin['ok'] = True
             scrs[noscrutin] = scrutin
         return scrs

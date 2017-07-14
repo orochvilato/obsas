@@ -1,7 +1,12 @@
 # -*- coding: utf-8 -*-
 # essayez quelque chose comme
-def index(): 
-    return dict()
+def index():
+    axe = request.vars.get('axe','groupes')
+    suffrages = request.vars.get('suffrages','tous')
+    scrutin = request.vars.get('scrutin','tous')
+    tri = request.vars.get('tri','participation')
+    desc = request.vars.get('desc','1')
+    return locals()
 
 def vueaxe():
     pos_icons = { 'pour':'thumbs-up', 'contre':'thumbs-down', 'abstention':'meh-o', 'nonVotant':'ban', 'absent':'plane'}
@@ -75,6 +80,7 @@ def vueaxe():
                 suffrages_choix=[('exprime','Exprimés'),('tous','Tous')],
                 tris_choix=[ (s,sortfcts[s]['libelle']) for s in sortfcts_order],
                 tri=tri,
+                scrutin=scrutin,
                 desc=desc,
                 suffrages=suffrages,
                 elements = axe['elements'],

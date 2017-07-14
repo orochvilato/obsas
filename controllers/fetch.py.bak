@@ -39,7 +39,7 @@ def index():
         
         mdb.votes.create_index([('vote_id', pymongo.ASCENDING)], unique = True)
         #mdb.votes.insert_many(scr['votes'])
-        for s in scr['votes']
+        for s in scr['votes']:
             mdb.votes.insert(s)
 
     if scr['scrutins']:

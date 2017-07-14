@@ -84,7 +84,7 @@ def parseVotePDF(url):
         if not pb:
             for a in avotes.keys():
                 scrutin['votes'][avotes[a]].append(a)
-   
+            
             scrutin['ok'] = True
             scrs[noscrutin] = scrutin
         return scrs
@@ -168,7 +168,7 @@ def getScrutins(acteurs,deja=[]):
                     votes.append(vote)
                     
         for id in list(set(acteurs.keys())-set(exprimes)):
-            vote = dict(s)
+            vote = dict(scrutin)
             vote.update(act_votedata(id,'absent'))
             vote['vote_id'] = "%d_%s" % (s['num'],id)
             votes.append(vote)

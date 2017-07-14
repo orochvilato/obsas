@@ -36,7 +36,7 @@ def index():
     scr = getScrutins(acteurs,s_ids)
     # stockage des votes et des scrutins dans la base
     if scr['votes']:
-        
+        print scr['votes']
         mdb.votes.create_index([('vote_id', pymongo.ASCENDING)], unique = True)
         #mdb.votes.insert_many(scr['votes'])
         for s in scr['votes']:

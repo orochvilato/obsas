@@ -56,7 +56,7 @@
           <div class="col s12">
               {{ pass }}
               <span class="card-title" style="font-weight:500;">{{ = item['label'] }} <span style="font-size:60%">(
-                  {{{ =item['deputes'] }} députée(s))</span></span>
+                  {{ =item['deputes'] }} députée(s))</span></span>
               <span><span style="font-weight:300;">Votes{{ if suffrages=='exprime': }} exprimés ({{ =item['votants']}}){{ pass}}</span>
               <span class='right' style="font-weight:300;">Participation</span></span>
                 <span class="card-title">
@@ -89,6 +89,7 @@
 <script>
     var current_axe = "{{ =axe }}";
     var current_desc = {{ =desc }};
+    var current_scrutin = "{{ =scrutin }}";
     
     $(".itemchart").each(function() {
         var ctx = $(this);

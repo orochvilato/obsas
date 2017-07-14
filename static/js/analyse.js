@@ -5,6 +5,7 @@ var scrutins = [];
 var filtres_axes=[];
 var current_axe = 0;
 var current_desc = 1;
+var current_scrutin = 'tous';
 var current_elements = [];
 var exprimes = true;
 
@@ -14,7 +15,9 @@ var updateView = function() {
     var axe = $('select#axe').val();
     
     var params = {};
-    
+    if (current_scrutin != undefined) {
+        params.scrutin = current_scrutin;
+    }
     if (current_desc != undefined) {
         params.desc = current_desc;
     }
@@ -28,12 +31,14 @@ var updateView = function() {
         params.tri = tri;
     }
     console.log(params);
+    $.LoadingOverlay("show");
     $.ajax({
     url: 'analyse/vueaxe',
     data: params,
     type: 'GET',
     dataType: 'html'
   }).done(function(data) {
+      $.LoadingOverlay("hide");
       $('#vue').html(data);
       $('select').material_select();
       $('.updateview').change(function() {

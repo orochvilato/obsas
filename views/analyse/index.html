@@ -117,7 +117,7 @@
   <div class="container">
     <div class="row">
       <div class="col s12">
-        <span>Date de mise à jour : 11/07/2017 17:05</span>
+        <!-- <span>Date de mise à jour : 11/07/2017 17:05</span>-->
 
       </div>
     </div>
@@ -143,6 +143,7 @@
   <script src="https://use.fontawesome.com/57f4fc708a.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay.min.js"></script>
   <script src="{{=URL('static','js/analyse.js')}}"></script>
   
 
@@ -155,6 +156,9 @@
   </script>
 
   <script>
+    var current_axe = "{{ =axe }}";
+    var current_desc = {{ =desc }};
+    var current_scrutin = "{{ =scrutin }}";
   </script>
 
 </footer>
