@@ -2,14 +2,124 @@
 # -*- coding: utf-8 -*-
 from gluon import *
 
+import pdfminer.high_level
+import pdfminer.layout
+import sys
+from io import BytesIO
+import cStringIO, codecs
+import json
+import re
+import requests
+
+from tools import normalize,flatten,strip_accents
+
+legislature = '15'
+
+votes = {'Pour':'pour',
+         'Contre':'contre',
+         'Abstention': 'abstention',
+         'Non-votant(s)': 'nonVotant'
+        }
+
+
+def parseVotePDF(url):
+    scrs = {}
+    # Create a PDF interpreter object.
+    laparams = pdfminer.layout.LAParams(word_margin=0.4, char_margin=3)
+    
+    
+    content = requests.get(url).content
+    fp = BytesIO(content)
+    # Create a PDF parser object associated with the file object.
+    txtfp = BytesIO()
+
+    pdfminer.high_level.extract_text_to_fp(fp, outfp=txtfp,codec='utf-8',laparams = laparams)
+    r = txtfp.getvalue().decode('utf8')
+
+    import re
+    scrutins = re.split(r'Analyse du scrutin[ n]+. *(\d+)',r)[1:]
+    scrutins = [scrutins[x:x+2] for x in xrange(0, len(scrutins), 2)]
+    for noscrutin,rscrutin in scrutins:
+        print url,noscrutin
+        pages = re.split(r'Page \d+ sur \d+[ \n\r\x0c]+',rscrutin)
+        synthese,pages = pages[0],strip_accents(''.join(pages[1:]))
+        pages = re.split(r'Mises au point', pages)+['']
+        pages, miseaupoint = pages[0],pages[1:]
+        pages = ''.join(re.split(r'[\w ,:]+\(\d+\) *\n',pages))
+        pages = re.split(r'([\w\-\(\)]+) : (\d+)',pages)[1:]
+        positions = [pages[x:x+3] for x in xrange(0, len(pages), 3)]
+
+        synthese = synthese.replace('\n',' ').replace('  ',' ')
+        #noscrutin = re.search(r'Analyse du scrutin[ n]+. *(\d)',synthese).groups()[0]
+        datestr = re.search(r's.ance du \w+ (\d+ [^ ]+ \d+)',synthese).groups()[0]
+
+        import locale
+        locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
+        from datetime import datetime
+        date = datetime.strptime(datestr,"%d %B %Y")
+
+        libelle = re.search(r'Scrutin public sur (.*). Demand. par :',synthese)
+        if libelle:
+            libelle = libelle.groups()[0]
+        else:
+            libelle = re.search(r'Scrutin public sur (.*). Synth',synthese).groups()[0]
+
+        scrutin = { 'num':int(noscrutin),'id':'%s_%s' % (legislature,noscrutin),'desc':libelle,'date':date.strftime('%d/%m/%Y'),'votes':{'pour':[],'contre':[],'abstention':[],'nonVotant':[]}}
+        
+        pb = False
+        avotes={}
+        for pos,nb,act in positions:
+             act = act.split('\n\n')
+             if len(act)>1 and 'au moment du scrutin' in act[-1]:
+                del act[-1]
+             act = '\n'.join(act)
+                
+             act = act.replace(' et ',',').replace(' et',',').replace('\net',',').replace('\n','').replace(' ','').replace(u'\u0153','oe')
+             act = re.sub(r'\([^\)]+\)',r'',act).split(',')
+             if int(nb) != len(act):
+                 print int(nb),len(act), "probleme"
+                 pb = True
+             for a in act:
+                avotes[normalize(a)] = votes[pos]
+        if not pb:
+            for a in votes.keys():
+                scrutin['votes'][avotes[a]].append(a)
+   
+            scrutin['ok'] = True
+            scrs[noscrutin] = scrutin
+        return scrs
+
+
+def get_scrutinsPDFs():
+    # recupération page principale assemblée
+    an = requests.get('http://www.assemblee-nationale.fr/').content
+    import lxml.html
+    root = lxml.html.fromstring(an)
+    pdfs = root.xpath('//a[contains(@href,"pdf") and contains(text(),"Voir")]/@href')
+    scrutins = {}
+    for pdf in pdfs:
+        scrutins.update(parseVotePDF(pdf))
+    return scrutins
+
+
+
+
+
+
+
+
+
+
+
 def getScrutins(acteurs,deja=[]):
     import os
     import json
-    fp = os.path.join(current.request.folder, 'private/scripts', 'scrutins.py')
     
-    #did_scrape = True if os.system(fp) else False
+    _scrutins = get_scrutinsPDFs()
+    fp = os.path.join(current.request.folder, 'private/scripts', 'scrutins.py')
+    did_scrape = True if os.system(fp) else False
 
-    _scrutins = json.loads(open('/tmp/scrutins.json','r').read())
+    _scrutins.update(json.loads(open('/tmp/scrutins.json','r').read()))
 
     votes = []
     scrutins = []
@@ -37,10 +147,10 @@ def getScrutins(acteurs,deja=[]):
                     'scrutin_id':s['id'],
                     'scrutin_desc':s['desc'],
                     'scrutin_date':s['date'],
-                    'scrutin_type':s['type'],
-                    'scrutin_typeLibelle':s['libelleType'],
-                    'scrutin_dossier':s['idDossier'],
-                    'scrutin_dossierLibelle':s['libelleDossier'],
+                    'scrutin_type':s.get('type','N/A'),
+                    'scrutin_typeLibelle':s.get('libelleType','N/A'),
+                    'scrutin_dossier':s.get('idDossier','N/A'),
+                    'scrutin_dossierLibelle':s.get('libelleDossier','N/A'),
                     'scrutin_ok':s['ok']
                    }
         

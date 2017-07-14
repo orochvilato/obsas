@@ -9,13 +9,14 @@ def vueaxe():
     print request.env.path_info
     idaxe = request.vars.get('axe','groupes')
     suffrages = request.vars.get('suffrages','tous')
+    scrutin = request.vars.get('scrutin','tous')
     tri = request.vars.get('tri','participation')
     desc = request.vars.get('desc','1')
-    
-    
-        
-    filters = {'scrutin_id':'15_2'}
+
     filters = {}
+    if scrutin != 'tous':
+        filters = {'scrutin_id':'15_'+scrutin}
+    
     # Gestion du cache
     import hashlib
     import pickle

@@ -6,16 +6,17 @@ def index():
 def vueaxe():
     pos_icons = { 'pour':'thumbs-up', 'contre':'thumbs-down', 'abstention':'meh-o', 'nonVotant':'ban', 'absent':'plane'}
     pos_libelles = { 'pour':'votes pour', 'contre':'votes contre', 'abstention':'abstention', 'nonVotant':'non votants (justifiés)', 'absent':'absents'}
-    print request.env.path_info
+    
     idaxe = request.vars.get('axe','groupes')
     suffrages = request.vars.get('suffrages','tous')
+    scrutin = request.vars.get('scrutin','tous')
     tri = request.vars.get('tri','participation')
     desc = request.vars.get('desc','1')
-    
-    
-        
-    filters = {'scrutin_id':'15_2'}
+
     filters = {}
+    if scrutin != 'tous':
+        filters = {'scrutin_id':'15_'+scrutin}
+    
     # Gestion du cache
     import hashlib
     import pickle

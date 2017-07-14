@@ -35,10 +35,22 @@ class ScrutinsSpider(scrapy.Spider):
 
         for url in urls:
             request = scrapy.Request(url=url, callback=self.parse_main)
+            request.meta['page'] = '1'
+            request.meta['type'] = 'TOUS'
+            request.meta['idDossier'] = 'TOUS'
             yield request
 
 
+
     def parse_main(self, response):
+
+        request = scrapy.Request(url=response.url, callback=self.parse_page, dont_filter=True)
+        request.meta['page'] = '1'
+        request.meta['type'] = 'TOUS'
+        request.meta['idDossier'] = 'TOUS'
+        yield request
+        
+
         for _idDossier in response.xpath('//select[@name="idDossier"]/option'):
             ridDossier = _idDossier.xpath('@value').extract()[0]
             rpage = 1
@@ -68,6 +80,7 @@ class ScrutinsSpider(scrapy.Spider):
 
 
     def parse_page(self, response):
+        
         scrs = response.xpath('//table[@id="listeScrutins"]/tbody/tr')
         for scr in scrs:
             _num = int(scr.xpath('td[contains(@class,"denom")]/text()').extract()[0].replace('*',''))
@@ -76,6 +89,7 @@ class ScrutinsSpider(scrapy.Spider):
             _abs = int(scr.xpath('td[contains(@class,"abs")]/text()').extract()[0])
             _desc = scr.xpath('td[contains(@class,"desc")]/text()').extract()[0].replace('  [','')
             _date = scr.xpath('td/text()').extract()[1]
+     
             if _num not in scrutins.keys():
                 scrutins[_num] = {}
             scrutins[_num].update({'num':_num,
@@ -91,7 +105,8 @@ class ScrutinsSpider(scrapy.Spider):
             if response.meta['type'] != 'TOUS':
                 scrutins[_num]['type'] = response.meta['type']
                 scrutins[_num]['libelleType'] = types[response.meta['type']]
-            if 'idDossier' in scrutins[_num].keys() and 'type' in scrutins[_num].keys():
+            #if 'idDossier' in scrutins[_num].keys() and 'type' in scrutins[_num].keys():
+            if not 'votes' in scrutins[_num].keys():
                 scrutins[_num]['votes'] = {}
                 request = scrapy.Request(url=self.detail_url+'(num)/%d' % _num, callback=self.parse_scrutin)
                 request.meta['num'] = _num
