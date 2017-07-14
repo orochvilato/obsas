@@ -1,0 +1,128 @@
+.coulFI {
+  background-color: rgba(12,195,214,1);
+}
+
+.coulFI-text {
+  color: rgba(12,195,214,1);
+}
+
+.coulFIbg {
+  background-color: rgba(12,195,214,0.33);
+}
+
+.coulFIbg-text {
+  color: rgba(12,195,214,0.33);
+}
+
+.coulNI {
+  background-color: rgba(191,191,191,1);
+}
+
+.coulNI-text {
+  color: rgba(191,191,191,1);
+}
+
+.coulNIbg {
+  background-color: rgba(191,191,191,0.33);
+}
+
+.coulNIbg-text {
+  color: rgba(191,191,191,0.33);
+}
+
+.coulNG {
+  background-color: rgba(234,52,208,1);
+}
+
+.coulNG-text {
+  color: rgba(234,52,208,1);
+}
+
+.coulNGbg {
+  background-color: rgba(234,52,208,0.33);
+}
+
+.coulNGbg-text {
+  color: rgba(234,52,208,0.33);
+}
+
+.coulREM {
+  background-color: rgba(255,192,0,1);
+}
+
+.coulREM-text {
+  color: rgba(255,192,0,1);
+}
+
+.coulREMbg {
+  background-color: rgba(255,192,0,0.33);
+}
+
+.coulREMbg-text {
+  color: rgba(255,192,0,0.33);
+}
+
+.coulMODEM {
+  background-color: rgba(237,125,49,1);
+}
+
+.coulMODEM-text {
+  color: rgba(237,125,49,1);
+}
+
+.coulMODEMbg {
+  background-color: rgba(237,125,49,0.33);
+}
+
+.coulMODEMbg-text {
+  color: rgba(237,125,49,0.33);
+}
+
+.coulLR {
+  background-color: rgba(47,85,151,1);
+}
+
+.coulLR-text {
+  color: rgba(47,85,151,1);
+}
+
+.coulLRbg {
+  background-color: rgba(47,85,151,0.33);
+}
+
+.coulLRbg-text {
+  color: rgba(47,85,151,0.33);
+}
+
+.coulLC {
+  background-color: rgba(112,48,160,1);
+}
+
+.coulLC-text {
+  color: rgba(112,48,160,1);
+}
+
+.coulLCbg {
+  background-color: rgba(112,48,160,0.33);
+}
+
+.coulLCbg-text {
+  color: rgba(112,48,160,0.33);
+}
+
+.coulGDR {
+  background-color: rgba(192,0,0,1);
+}
+
+.coulGDR-text {
+  color: rgba(192,0,0,1);
+}
+
+.coulGDRbg {
+  background-color: rgba(192,0,0,0.33);
+}
+
+.coulGDRbg-text {
+  color: rgba(192,0,0,0.33);
+}
+

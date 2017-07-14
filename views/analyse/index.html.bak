@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <title>ObsAs</title>
+
+
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link rel="stylesheet" href="{{=URL('static','css/colors.css')}}"> 
+<style>
+    tfoot, th {
+      text-align: center;
+    }
+    .parti {
+      color: grey;
+      font-weight:300;
+    }
+    .sortvote {
+      font-weight: 500;
+    }
+    .vcircle {
+      display:inline-block;
+      height: 0.7em;
+      width: 0.7em;
+      border-radius: 50%;
+      margin:2px;
+    }
+    .pour {
+      background: green;
+    }
+    .contre {
+      background: red;
+    }
+    .abstention {
+      background: dodgerblue;
+    }
+    .nonVotant {
+      border-color:green;
+      border-style:solid;
+      border-width:1px;
+    }
+    .absent {
+      border-color:red;
+      border-style:dotted;
+      border-width:1px;
+    }
+    .pour-text {
+      color: green;
+    }
+    .contre-text {
+      color: red;
+    }
+    .abstention-text {
+      color: dodgerblue;
+    }
+    .nonVotant-text {
+      color: grey;
+    }
+   .absent-text {
+     color: grey;
+    }
+
+    .pctBig {
+      font-size: 30px;
+      font-weight: 500;
+      margin-right:10px;
+      cursor:help;
+    }
+    .pct {
+      font-size: 24px;
+      font-weight: 500;
+      margin-right:10px;
+      cursor:help;
+    }
+    .axe {
+      margin:2px;
+    }
+    .chip {
+      color: white;
+      font-size:14px;
+    }
+    span.badge {
+      font-weight: 300;
+      font-size: 0.8rem;
+      border-radius: 2px;
+    }
+    .tri,#suffrages {
+      cursor: pointer;
+    }
+    .tri i.desc,i.asc {
+      display:none;
+    }
+    .tri.new.desc i.desc {
+      display:inline;
+    }
+    .tri.new.asc i.asc {
+      display:inline;
+    }
+
+
+
+</style>
+
+
+
+</head>
+<body>
+  <nav class="blue-grey darken-1">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">ObsAs</a>
+     
+    </div>
+  </nav>
+  <div class="container">
+    <div class="row">
+      <div class="col s12">
+        <span>Date de mise à jour : 11/07/2017 17:05</span>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="input-field col s12">
+          <select id="scrutin">
+            <option value="tous">Tous les scrutins</option>
+            <option value="1">Scrutin n°1</option><option value="2">Scrutin n°2</option><option value="3">Scrutin n°3</option><option value="4">Scrutin n°4</option><option value="5">Scrutin n°5</option><option value="6">Scrutin n°6</option><option value="7">Scrutin n°7</option><option value="8">Scrutin n°8</option><option value="9">Scrutin n°9</option><option value="10">Scrutin n°10</option><option value="11">Scrutin n°11</option><option value="12">Scrutin n°12</option><option value="13">Scrutin n°13</option><option value="14">Scrutin n°14</option><option value="15">Scrutin n°15</option><option value="16">Scrutin n°16</option><option value="17">Scrutin n°17</option>
+          </select>
+          <label>Choix du Scrutin</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+            <div id="axes"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <span id="filtres"></span>
+        </div>
+    </div>
+      <div id="vue"></div>
+    </div>
+  </div>
+</body>
+<footer>
+  <!--  Scripts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://use.fontawesome.com/57f4fc708a.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
+  <script src="{{=URL('static','js/analyse.js')}}"></script>
+  
+
+  <script>
+  $(document).ready(function() {
+    $(".button-collapse").sideNav();
+    $('select').material_select();
+
+  })
+  </script>
+
+  <script>
+  </script>
+
+</footer>
+
+</html>

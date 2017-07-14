@@ -1,0 +1,149 @@
+<div class="row">
+   <div class="col s12">
+     <h5>{{ =nbscrutins }} scrutin(s)</h5>
+   </div>
+</div>
+<div class="row">
+  <div class="col s12">
+        <select id="axe" class="updateview">
+         {{ for a in axes_choix: }}
+            <option value="{{ =a[0] }}" {{ if axe==a[0]: }}selected{{ pass }}>{{ =a[1] }}</option>
+         {{ pass }}
+         </select>
+         <label>Votes par</label>
+   </div>
+ </div>
+</div>
+<div class="row">
+  <div class="input-field col s4 m3">
+     <select id="suffrages" class="updateview">
+         {{ for suf in suffrages_choix: }}
+            <option value="{{ =suf[0] }}" {{ if suffrages==suf[0]: }}selected{{ pass }}>{{ =suf[1] }}</option>
+         {{ pass }}
+     </select>
+     <label>Suffrages</label>
+  </div>
+  <div class="input-field col s4 m3">
+     <select id="tri" class="updateview">
+         {{ for t in tris_choix: }}
+            <option value="{{ =t[0] }}" {{ if tri==t[0]: }}selected{{ pass }}>{{ =t[1] }}</option>
+         {{ pass }}
+     </select>
+     <label>Trier par</label>
+  </div>
+  <div class="col s4 m6">
+      <i id="sens" class="small material-icons right" style="cursor: pointer;">swap_vert</i>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    {{ import json }}
+    {{ for i,item in enumerate(items): }}
+    <div class="card" style="background:#F0F0F0">
+    <div class="card-content">
+       <div class="row">
+              {{ if ('G' in elements) and (len(items)<30): }}
+          <div class="col s8 m6 offset-s2 offset-m3 l3">
+             <canvas vals="{{ = json.dumps([ item['stats'][suffrages].get(pos,{'n':0})['n'] for pos in ['pour','contre','abstention','nonVotant','absent']]) }}" class="itemchart"></canvas>
+          </div>
+          <div class="col s12 m12 l9">
+              {{ elif ('P' in elements): }}
+          <div class="col s8 m6 offset-s2 offset-m3 l3">
+             <img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =item['key'][2:] }}.jpg" />
+          </div>
+          <div class="col s12 m12 l9">
+              {{ else: }}
+          <div class="col s12">
+              {{ pass }}
+              <span class="card-title" style="font-weight:500;">{{ = item['label'] }} <span style="font-size:60%">(
+                  {{{ =item['deputes'] }} députée(s))</span></span>
+              <span><span style="font-weight:300;">Votes{{ if suffrages=='exprime': }} exprimés ({{ =item['votants']}}){{ pass}}</span>
+              <span class='right' style="font-weight:300;">Participation</span></span>
+                <span class="card-title">
+                {{ for pos in ['pour','contre','abstention','nonVotant','absent']: }}
+                {{ stat = item['stats'][suffrages].get(pos,None) }}
+                {{ if stat and stat['pct']>0: }}
+                   <span title="{{ =stat['libelle']}}" class="{{ =stat['class'] }} {{ =pos }}-text">
+                       <i class="fa fa-{{ =stat['icon'] }}"></i> {{ = stat['pct'] }}%{{ if nbscrutins: }} <span style="font-size:60%">({{ = stat['n'] }})</span>{{ pass }}
+                   </span>
+                {{ pass }}
+                {{ pass }}
+                   <span title="Participation" class="pctBig right"> {{ = item['participation'] }}%</span>
+               </span>
+               <div>
+               {{ if nbscrutins==1: }}
+                 {{ for cercle in item['cercles']: }}
+                   <a class="vcircle {{ =cercle['position'] }}" title="{{ =cercle['nom']}}" href="acteurs/{{ = cercle['uid'] }}.html" ></a>
+                 {{ pass }}
+               {{ pass }}
+               </div>
+            </div>
+        </div>
+      
+      </div>
+    </div
+  </div>
+  {{ pass }}
+</div>
+</div>
+<script>
+    var current_axe = "{{ =axe }}";
+    var current_desc = {{ =desc }};
+    
+    $(".itemchart").each(function() {
+        var ctx = $(this);
+        var vals = ctx.attr('vals');
+        var randomScalingFactor = function() {
+         return Math.round(Math.random() * 100);
+        };
+        var data = JSON.parse(vals);
+        
+        var myChart = new Chart(ctx, {
+         type: 'doughnut',
+         data: {
+             datasets: [{
+                 data: data,
+                 backgroundColor: [
+                     "green",
+                     "red",
+                     "dodgerblue",
+                     "grey",
+                     "grey",
+                 ],
+                 label: 'Dataset 1'
+             }],
+             labels:['Pour','Contre','Abstention','Non votant','Absent']
+
+         },
+         options: {
+             responsive: true,
+             legend: {
+                 display: false
+             },
+             title: {
+                 display: true,
+                 text: 'Répartition par position de vote'
+             },
+             animation: {
+                 animateScale: false,
+                 animateRotate: false,
+             },
+             tooltips: {
+                  callbacks: {
+                    label: function(tooltipItem, data) {
+                      var allData = data.datasets[tooltipItem.datasetIndex].data;
+                      var tooltipLabel = data.labels[tooltipItem.index];
+                      var tooltipData = allData[tooltipItem.index];
+                      var total = 0;
+                      for (var i in allData) {
+                        total += allData[i];
+                      }
+                      var tooltipPercentage = Math.round((tooltipData / total) * 100);
+                      return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
+                    }
+                  }
+              }
+         }
+       });
+    });
+</script>

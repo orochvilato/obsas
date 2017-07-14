@@ -57,14 +57,14 @@ def flatten(elt):
                 elt[k] = v.values()[0]
                 continue
             for _k,_v in v.iteritems():
-                elt[ k + '.' + _k ] = _v
+                elt[ k + '_' + _k ] = _v
             del elt[k]
         if '@xsi:type' in elt.keys():
             elt['type'] = elt['@xsi:type']
             del elt['@xsi:type']
-        if 'uid.#text' in elt.keys():
-            elt['uid'] = elt['uid.#text']
-            del elt['uid.#text']
+        if 'uid_#text' in elt.keys():
+            elt['uid'] = elt['uid_#text']
+            del elt['uid_#text']
     elif isinstance(elt,list):
         for e in elt:
             flatten(e)

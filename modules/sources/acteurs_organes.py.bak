@@ -10,21 +10,16 @@ def getActeursOrganes():
     from datetime import datetime
     from ..tools import normalize, loadXMLZip,format_date, flatten
 
-    data = {}
 
-    data['commissions_uid'] = commissions = {}
-    data['acteurs_uid'] = acteurs = {}
-    data['organes_uid'] = organes = {}
-    data['groupes_uid'] = groupes = {}
-    data['gplabels'] = gplabels = []
-    #data['svgcolors'] = svgcolors = {}
-
+    acteurs = {}
+    organes = {}
+    
     from collections import OrderedDict
 
     from hatvp import declarations
     from deputywatch import deputywatch
 
-    data['statsCSP'] = statsCSP = OrderedDict((
+    statsCSP = OrderedDict((
     (u"Agriculteurs exploitants", 1.1),
     (u"Artisans, commerçants et chefs d'entreprise",3.6),
     (u"Cadres et professions intellectuelles supérieures",9.4),
@@ -52,11 +47,8 @@ def getActeursOrganes():
     for organe in organes.keys():
         org = organes[organe]
         org.update({'membres':{},'votes':{},'qualites':{},'stats':{}})
-        if not org['viMoDe.dateFin']:
-            if org['codeType'] == 'GP':
-                gplabels.append(org['libelleAbrev'])
-                groupes[org['uid']] = org
-                #org.update({'csscolor':'coul'+org['libelleAbrev'],'svgcolor':svgcolors.get(org['libelleAbrev'],'NI')})
+        if not org['viMoDe_dateFin']:
+            org['actif'] = True
 
     # MAJ acteurs
     places = {}
@@ -109,17 +101,18 @@ def getActeursOrganes():
 
     for acteur in acteurs.keys():
         act = acteurs[acteur]
-        act['sexe'] = 'Homme' if act['etatCivil.ident.civ']=='M.' else 'Femme'
+        act['sexe'] = 'Homme' if act['etatCivil_ident_civ']=='M.' else 'Femme'
         act['contacts'] = []
         act['commissions'] = []
-        act['nomcomplet'] = act['etatCivil.ident.civ'] + ' ' + act['etatCivil.ident.prenom'] + ' ' + act['etatCivil.ident.nom']
+        act['nomcomplet'] = act['etatCivil_ident_civ'] + ' ' + act['etatCivil_ident_prenom'] + ' ' + act['etatCivil_ident_nom']
+        act['nomprenom'] = act['etatCivil_ident_nom'] + act['etatCivil_ident_prenom'] + ' '
         act['id'] = normalize(act['nomcomplet'])
-        act['age'] = int((datetime.now() - datetime.strptime(act['etatCivil.infoNaissance.dateNais'],'%Y-%m-%d')).days / 365.25)
+        act['age'] = int((datetime.now() - datetime.strptime(act['etatCivil_infoNaissance_dateNais'],'%Y-%m-%d')).days / 365.25)
         act['classeage'] = '%d-%d ans' % ((act['age']/10)*10,(1+(act['age']/10))*10)
-        if not act['profession.socProcINSEE.famSocPro'] in statsCSP.keys():
-            act['profession.socProcINSEE.famSocPro'] = u"Autres (y compris inconnu et sans profession déclarée)"
+        if not act['profession_socProcINSEE_famSocPro'] in statsCSP.keys():
+            act['profession_socProcINSEE_famSocPro'] = u"Autres (y compris inconnu et sans profession déclarée)"
 
-        act['csp'] = act['profession.socProcINSEE.famSocPro']
+        act['csp'] = act['profession_socProcINSEE_famSocPro']
         for adr in act['adresses']:
             if 'valElec' in adr.keys():
                 act['contacts'].append((adr['typeLibelle'],adr['valElec']))
@@ -129,25 +122,25 @@ def getActeursOrganes():
         act_commissions = {}
 
         for man in act['mandats']:
-            organeRef = man['organes.organeRef']
+            organeRef = man['organes_organeRef']
             if man['typeOrgane']=='ASSEMBLEE':
-                placeH = man['mandature.placeHemicycle']
+                placeH = man['mandature_placeHemicycle']
                 if not 'region' in act.keys():
-                    act['region'] = man['election.lieu.region']
-                    act['typeregion'] = man['election.lieu.regionType']
-                    act['departement'] = man['election.lieu.departement']
-                    act['circo'] = man['election.lieu.numCirco']
+                    act['region'] = man['election_lieu_region']
+                    act['typeregion'] = man['election_lieu_regionType']
+                    act['departement'] = man['election_lieu_departement']
+                    act['circo'] = man['election_lieu_numCirco']
 
             if man['typeOrgane']=='GP':
                 act['groupe'] = organeRef
             if man['typeOrgane'] in ['CONFPT','COMPER']:
                 act_commissions[organeRef] = 1
-            qua = man['infosQualite.codeQualite']
+            qua = man['infosQualite_codeQualite']
             fonctions[organeRef] = dict(qualite=qua,debut=format_date(man['dateDebut']),organe=organeRef)
             qua_norm = normalize(qua)
 
-            organes[man['organes.organeRef']]['qualites'][qua_norm] = organes[man['organes.organeRef']]['qualites'].get(qua_norm,[]) + [act['uid']]
-            organes[man['organes.organeRef']]['membres'][act['uid']] = (act['uid'],qua,rangs.get(qua,3 if qua.lower()!='membre' else 8))
+            organes[man['organes_organeRef']]['qualites'][qua_norm] = organes[man['organes_organeRef']]['qualites'].get(qua_norm,[]) + [act['uid']]
+            organes[man['organes_organeRef']]['membres'][act['uid']] = (act['uid'],qua,rangs.get(qua,3 if qua.lower()!='membre' else 8))
 
         act['fonctions'] = fonctions.values()
         act['commissions'] = act_commissions.keys()
@@ -176,18 +169,9 @@ def getActeursOrganes():
     for organe in organes:
         org = organes[organe]
         org['nbmembres'] = len(org['membres'].keys())
-        org['membres_sort'] = sorted(org['membres'].values(),key=lambda x:(x[2],acteurs[x[0]]['etatCivil.ident.nom'],acteurs[x[0]]['etatCivil.ident.prenom']))
-        if org['nbmembres']>0 and org['codeType'] in ['CONFPT','COMPER']:
-            commissions[org['uid']] = org
+        #org['membres_sort'] = sorted(org['membres'].values(),key=lambda x:(x[2],acteurs[x[0]]['etatCivil.ident.nom'],acteurs[x[0]]['etatCivil.ident.prenom']))
+        #if org['nbmembres']>0 and org['codeType'] in ['CONFPT','COMPER']:
+        #   commissions[org['uid']] = org
 
-    data['acteurs_ids'] = dict((normalize(act['nomcomplet']),act) for act in acteurs.values())
-    data['groupes'] = groupes.values()
-    data['acteurs'] = acteurs.values()
-    data['organes'] = organes.values()
-    data['commissions'] = commissions.values()
-    data['organes_abrev'] = dict((org['libelleAbrev'],org) for org in organes.values())
-    data['assemblee'] = [ data['organes_abrev']['AN'] ]
-
-    return data
-
-an_data = current.cache.disk('andata',getActeursOrganes, time_expire=2*24*3600)
+    
+    return {'acteurs':acteurs,'organes':organes }

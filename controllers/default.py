@@ -21,7 +21,7 @@ def index():
     posts = mdb.posts
     #votes = db.votes
 
-    return dict(id=posts.find_one({"author":"Mike"}),test="ok2")
+    return dict(id=posts.find_one({"author":"Mike"}),test="ok2",l=request.args,v=request.vars)
 
 
 def user():
