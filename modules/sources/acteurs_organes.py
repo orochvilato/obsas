@@ -105,7 +105,9 @@ def getActeursOrganes():
         act['contacts'] = []
         act['commissions'] = []
         act['nomcomplet'] = act['etatCivil_ident_civ'] + ' ' + act['etatCivil_ident_prenom'] + ' ' + act['etatCivil_ident_nom']
-        act['nomprenom'] = act['etatCivil_ident_nom'] + ' ' +act['etatCivil_ident_prenom']
+        act['nomprenom'] = act['etatCivil_ident_nom'].upper() + ' ' +act['etatCivil_ident_prenom']
+        act['prenomnom'] = act['etatCivil_ident_prenom'] + ' ' +act['etatCivil_ident_nom'].upper()
+        
         act['id'] = normalize(act['nomcomplet'])
         act['age'] = int((datetime.now() - datetime.strptime(act['etatCivil_infoNaissance_dateNais'],'%Y-%m-%d')).days / 365.25)
         act['classeage'] = '%d-%d ans' % ((act['age']/10)*10,(1+(act['age']/10))*10)

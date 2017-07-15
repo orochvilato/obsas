@@ -29,14 +29,21 @@ def fetch_acteurs_organes():
     
 def index():
     from sources.scrutins import getScrutins    
-    #fetch_acteurs_organes()
+    fetch_acteurs_organes()
     # Scrutins et votes
-    s_ids = [ s['scrutin_id'] for s in mdb.scrutins.find()]
+    # Supprimer les scrutins incomplets !!!!
+    
+    
+    scrutinscomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$and':[{'scrutin_dossier':{'$ne':'N/A'}},{'scrutin_type':{'$ne':'N/A'}}]}))]
     acteurs = dict((a['id'],a) for a in mdb.acteurs.find())
-    scr = getScrutins(acteurs,s_ids)
+    scr = getScrutins(acteurs,scrutinscomplets)
+    scrutinsincomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$or':[{'scrutin_dossier':'N/A'},{'scrutin_type':'N/A'}]}))]
+    print "remove",scrutinsincomplets
+    mdb.votes.remove({'scrutin_id':{'$in':scrutinsincomplets}})
+    mdb.scrutins.remove({'scrutin_id':{'$in':scrutinsincomplets}})
+    
     # stockage des votes et des scrutins dans la base
     if scr['votes']:
-        
         mdb.votes.create_index([('vote_id', pymongo.ASCENDING)], unique = True)
         #mdb.votes.insert_many(scr['votes'])
         for s in scr['votes']:

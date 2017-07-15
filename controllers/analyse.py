@@ -33,9 +33,17 @@ def vueaxe():
        
         items = [ {'key':item[0],'label':item[1]} for item in list(set([(item[source['key']],item[source['label']]) for item in mdb[source['nom']].find(source['filtre'])]))]
         
-        nbscrutins= len(mdb.votes.distinct('scrutin_id',filters))
+        if idaxe == 'depute':
+            groupes = cache.ram('groupes',lambda:dict((g['uid'],g) for g in mdb.organes.find({'codeType':'GP','actif':True})),time_expire=24*3600)
+            acteurs = cache.ram('acteurs',lambda:dict((a['uid'],a) for a in mdb.acteurs.find()),time_expire=24*3600)
+                                
+        nbscrutins = len(mdb.votes.distinct('scrutin_id',filters))
         
         for item in items:
+            if idaxe == 'depute':
+                item['groupe_libelle'] = groupes[acteurs[item['key']]['groupe']]['libelle']
+                item['groupe_abrev'] = groupes[acteurs[item['key']]['groupe']]['libelleAbrev']
+                                                 
             itemreq = {axe['votes']['field']:item['key']}
             req = {'$and': [ itemreq, filters ]}
             votes = {}
@@ -53,12 +61,12 @@ def vueaxe():
             item['participation'] = round(100*float(total_exprime) / (total_exprime + nb['absent']),1) if total_exprime+nb['absent']>0 else '-'
             item['stats'] = {'exprime':{},'tous': {}}
             for pos in ['pour','contre','abstention']:
-                item['stats']['exprime'][pos]={'n':round(float(nb[pos])/nbscrutins,1),
+                item['stats']['exprime'][pos]={'n':round(float(nb[pos])/nbscrutins,1),'ntot':nb[pos],
                                                'libelle':pos_libelles[pos],
                                                'pct':round(100*float(nb[pos])/total_exprime,1) if total_exprime>0 else '-',
                                                'class':'pct','icon':pos_icons[pos]}
             for pos in ['pour','contre','abstention','absent','nonVotant']:
-                item['stats']['tous'][pos]= {'n':round(float(nb[pos])/nbscrutins,1), 'libelle':pos_libelles[pos],'pct':round(100*float(nb[pos])/total,1),'class':'pct','icon':pos_icons[pos]}
+                item['stats']['tous'][pos]= {'n':round(float(nb[pos])/nbscrutins,1),'ntot':nb[pos], 'libelle':pos_libelles[pos],'pct':round(100*float(nb[pos])/total,1),'class':'pct','icon':pos_icons[pos]}
             
             # chercher le max
             #item['stats
@@ -69,7 +77,7 @@ def vueaxe():
 
         return dict(items=items,nbscrutins=nbscrutins)
     
-    votedata = cache.ram(hash,getVoteData,time_expire=1800)
+    votedata = cache.ram(hash,getVoteData,time_expire=3600)
     
     contexte = dict(tri=tri,axe=idaxe,suffrages=suffrages,desc=desc)    
     

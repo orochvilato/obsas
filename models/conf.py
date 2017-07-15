@@ -41,6 +41,11 @@ axes = {'groupes':{'libelle':'Groupes',
                    'titre':'Votes par Régions',
                    'source':{'nom':'acteurs','filtre':{},'key':'region','label':'region'},
                    'votes':{'field':'region'}},
+        'typeregion':{'libelle':'Type Régions',
+                   'elements':'G',
+                   'titre':'Votes par Type de régions',
+                   'source':{'nom':'acteurs','filtre':{},'key':'typeregion','label':'typeregion'},
+                   'votes':{'field':'typeregion'}},
         'departements':{'libelle':'Départements',
                    'elements':'G',
                    'titre':'Votes par Départements',
@@ -61,14 +66,14 @@ axes = {'groupes':{'libelle':'Groupes',
                    'titre':'Votes par sexe',
                    'source':{'nom':'acteurs','filtre':{},'key':'sexe','label':'sexe'},
                    'votes':{'field':'sexe'}},
-        'depute':{'libelle':"Députes",
+        'depute':{'libelle':"Députés",
                    'elements':'P',
                    'titre':'Votes par député',
-                   'source':{'nom':'acteurs','filtre':{},'key':'uid','label':'nomprenom'},
+                   'source':{'nom':'acteurs','filtre':{},'key':'uid','label':'prenomnom'},
                    'votes':{'field':'uid'}},
         
        }
-axes_order = ['assemblee','groupes','commissions','regions','departements','ages','csp','sexe','depute']
+axes_order = ['assemblee','groupes','commissions','typeregion','regions','departements','ages','csp','sexe','depute']
 def vide(ctx,v):
     if (v=='-'):
         return float(-1) if ctx['desc']=='1' else float(10000000)
@@ -76,12 +81,13 @@ def vide(ctx,v):
         return v
 
 sortfcts = {
-        'participation': {'libelle':'participation','fct':lambda ctx,x:vide(ctx,x['participation'])},
-        'pctpour': {'libelle':'% votes pour', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['pour']['pct'])},
-        'pctcontre': {'libelle':'% votes contre', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['contre']['pct'])},
-        'pctabs': {'libelle':'% votes abstention', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['abstention']['pct'])},
+        'participation': {'libelle':'Participation','fct':lambda ctx,x:vide(ctx,x['participation'])},
+        'pctpour': {'libelle':'% Votes pour', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['pour']['pct'])},
+        'pctcontre': {'libelle':'% Votes contre', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['contre']['pct'])},
+        'pctabs': {'libelle':'% Votes abstention', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['abstention']['pct'])},
+        'alpha': {'libelle':'Ordre Alphabétique', 'fct': lambda ctx,x:x['label']}
         }
-sortfcts_order = ['participation','pctpour','pctcontre','pctabs']
+sortfcts_order = ['participation','pctpour','pctcontre','pctabs','alpha']
 
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')

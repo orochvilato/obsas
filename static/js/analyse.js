@@ -10,6 +10,9 @@ var current_elements = [];
 var exprimes = true;
 
 var updateView = function() {
+    console.log('updateview');
+    $('.updateview').unbind('change');
+    $('#sens').unbind('click');
     var suffrages = $('select#suffrages').val();
     var tri = $('select#tri').val();
     var axe = $('select#axe').val();
@@ -39,12 +42,15 @@ var updateView = function() {
     dataType: 'html'
   }).done(function(data) {
       $.LoadingOverlay("hide");
+      
       $('#vue').html(data);
       $('select').material_select();
       $('.updateview').change(function() {
-        updateView();
+        console.log('select');
+          updateView();
       });
       $('#sens').click(function() {
+          console.log('desc');
           current_desc = 1-current_desc;
           updateView();
       });
@@ -52,5 +58,6 @@ var updateView = function() {
 };
 
 $(document).ready( function() {
+    console.log('docready');
     updateView();
 });

@@ -8,8 +8,11 @@ var current_desc = 1;
 var current_scrutin = 'tous';
 var current_elements = [];
 var exprimes = true;
+var update = false;
 
 var updateView = function() {
+    console.log('updateview');
+    update = true;
     var suffrages = $('select#suffrages').val();
     var tri = $('select#tri').val();
     var axe = $('select#axe').val();
@@ -38,13 +41,17 @@ var updateView = function() {
     type: 'GET',
     dataType: 'html'
   }).done(function(data) {
-      $.LoadingOverlay("show");
+      $.LoadingOverlay("hide");
+      
+      
       $('#vue').html(data);
       $('select').material_select();
       $('.updateview').change(function() {
+        console.log('select');
         updateView();
       });
       $('#sens').click(function() {
+          console.log('desc');
           current_desc = 1-current_desc;
           updateView();
       });
@@ -52,5 +59,6 @@ var updateView = function() {
 };
 
 $(document).ready( function() {
+    console.log('docready');
     updateView();
 });

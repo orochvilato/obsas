@@ -35,12 +35,11 @@
       <i id="sens" class="small material-icons right" style="cursor: pointer;">swap_vert</i>
   </div>
 </div>
-<div id="{{ =axe }}" class="row">
-  <input class="search" placeholder="Recherche">
-  <ul  class="col s12 list">
+<div class="row">
+  <div id="{{axe}}"class="col s12" >
+    <input class="search" placeholder="Recherche">
     {{ import json }}
     {{ for i,item in enumerate(items): }}
-    <li>
     <div class="card" style="background:#F0F0F0">
     <div class="card-content">
        <div class="row">
@@ -58,7 +57,7 @@
               {{ else: }}
           <div class="col s12">
               {{ pass }}
-              <span class="card-title" style="font-weight:500;"><span class="slibelle">{{ = item['label'] }}</span> {{ if axe=='depute': }}<span class="coul{{ =item['groupe_abrev'] }}-text" style="font-size:60%">({{ =item['groupe_libelle'] }})</span><span class="ranking right">{{ =i+1 }}</span>
+              <span class="card-title" style="font-weight:500;">{{ = item['label'] }} {{ if axe=='depute': }}<span class="coul{{ =item['groupe_abrev'] }}-text" style="font-size:60%">({{ =item['groupe_libelle'] }})</span><span class="ranking right">{{ =i+1 }}</span>
               {{ else: }}<span style="font-size:60%">{{ =item['deputes'] }} députée(s))</span>{{ pass }}</span>
               <span><span style="font-weight:300;">Votes{{ if suffrages=='exprime': }} exprimés ({{ =item['votants']}}){{ pass}}</span>
               <span class='right' style="font-weight:300;">Participation</span></span>
@@ -67,7 +66,7 @@
                 {{ stat = item['stats'][suffrages].get(pos,None) }}
                 {{ if stat and stat['pct']>0: }}
                    <span title="{{ =stat['libelle']}}" class="{{ =stat['class'] }} {{ =pos }}-text">
-                       <i class="fa fa-{{ =stat['icon'] }}"></i> {{ = stat['pct'] }}%{{ if nbscrutins: }} <span style="font-size:60%">({{ = stat['n' if axe!='depute' else 'ntot'] }})</span>{{ pass }}
+                       <i class="fa fa-{{ =stat['icon'] }}"></i> {{ = stat['pct'] }}%{{ if nbscrutins: }} <span style="font-size:60%">({{ = stat[('n' if axe!='depute else 'ntot')] }})</span>{{ pass }}
                    </span>
                 {{ pass }}
                 {{ pass }}
@@ -86,12 +85,11 @@
       </div>
     </div
   </div>
-  </li>
   {{ pass }}
-</ul>
+</div>
 </div>
 <script>
-    //var sList = new List('{{ =axe }}',{ valueNames: ['slibelle']});
+   
     
     $(".itemchart").each(function() {
         var ctx = $(this);
