@@ -135,6 +135,8 @@ def getActeursOrganes():
 
             if man['typeOrgane']=='GP':
                 act['groupe'] = organeRef
+                act['groupe_abrev'] = organes[organeRef]['libelleAbrev']
+                act['groupe_nom'] = organes[organeRef]['libelle']
             if man['typeOrgane'] in ['CONFPT','COMPER']:
                 act_commissions[organeRef] = 1
             qua = man['infosQualite_codeQualite']

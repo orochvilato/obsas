@@ -58,8 +58,9 @@
               {{ else: }}
           <div class="col s12">
               {{ pass }}
-              <span class="card-title" style="font-weight:500;"><span class="slibelle">{{ = item['label'] }}</span> {{ if axe=='depute': }}<span class="coul{{ =item['groupe_abrev'] }}-text" style="font-size:60%">({{ =item['groupe_libelle'] }})</span><span class="ranking right">{{ =i+1 }}</span>
-              {{ else: }}<span style="font-size:60%">{{ =item['deputes'] }} députée(s))</span>{{ pass }}</span>
+              <span class="card-title" style="font-weight:500;"><span class="slibelle">{{ if axe=='scrutin':}}<span class="left new resultvote {{ =item['resultpos'] }}">{{ ={'pour':'Adopté','contre':'Rejeté','abstention':'Abstention?'}[item['resultpos']] }}</span>  {{ pass }}{{ = item['label'] }}</span>
+              {{ if axe=='depute': }}<span class="coul{{ =item['groupe_abrev'] }}-text" style="font-size:60%">({{ =item['groupe_libelle'] }})</span><span class="ranking right">{{ =i+1 }}</span>
+              {{ elif axe!='scrutin': }}<span style="font-size:60%">{{ =item['deputes'] }} députée(s))</span>{{ pass }}</span>
               <span><span style="font-weight:300;">Votes{{ if suffrages=='exprime': }} exprimés ({{ =item['votants']}}){{ pass}}</span>
               <span class='right' style="font-weight:300;">Participation</span></span>
                 <span class="card-title">
@@ -67,7 +68,7 @@
                 {{ stat = item['stats'][suffrages].get(pos,None) }}
                 {{ if stat and stat['pct']>0: }}
                    <span title="{{ =stat['libelle']}}" class="{{ =stat['class'] }} {{ =pos }}-text">
-                       <i class="fa fa-{{ =stat['icon'] }}"></i> {{ = stat['pct'] }}%{{ if nbscrutins: }} <span style="font-size:60%">({{ = stat['n' if axe!='depute' else 'ntot'] }})</span>{{ pass }}
+                       <i class="fa fa-{{ =stat['icon'] }}"></i> {{ = stat['pct'] }}%{{ if nbscrutins: }} <span style="font-size:60%">({{ = stat['n' if (axe!='depute' and axe!='scrutin') else 'ntot'] }})</span>{{ pass }}
                    </span>
                 {{ pass }}
                 {{ pass }}
@@ -92,6 +93,11 @@
 </div>
 <script>
     var sList = new List('{{ =axe }}',{ valueNames: ['slibelle']});
+    var current_suffrages = "{{ =suffrages }}";
+    var current_tri = "{{ =tri }}";
+    var current_axe = "{{ =axe }}";
+    var current_desc = {{ =desc }};
+    var current_filtres = JSON.parse('{{ =XML(filtres) }}');
     
     $(".itemchart").each(function() {
         var ctx = $(this);

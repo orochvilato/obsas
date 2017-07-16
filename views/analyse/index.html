@@ -9,7 +9,7 @@
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
-  <link rel="stylesheet" href="{{=URL('static','css/colors.css')}}"> 
+  <link rel="stylesheet" href="{{=URL('static','css/colors.css')}}">
 <style>
     tfoot, th {
       text-align: center;
@@ -82,23 +82,21 @@
       color: white;
       font-size:14px;
     }
-    span.badge {
-      font-weight: 300;
-      font-size: 0.8rem;
-      border-radius: 2px;
+    span.resultvote {
+        font-weight: 300;
+        font-size: 0.8rem;
+        margin-top: 3px;
+        margin-right: 8px;
+        margin-left: 0px;
+        color: #fff;
+        border-radius: 2px;
+        line-height: 1.4rem;
+        padding-left: 6px;
+        padding-right: 6px;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
-    .tri,#suffrages {
-      cursor: pointer;
-    }
-    .tri i.desc,i.asc {
-      display:none;
-    }
-    .tri.new.desc i.desc {
-      display:inline;
-    }
-    .tri.new.asc i.asc {
-      display:inline;
-    }
+
     .ranking {
         font-size:26px;
         font-weight:600;
@@ -115,7 +113,7 @@
   <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">ObsAs</a>
-     
+
     </div>
   </nav>
   <div class="container">
@@ -149,7 +147,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay.min.js"></script>
   <script src="{{=URL('static','js/analyse.js')}}"></script>
-  
+
 
   <script>
   $(document).ready(function() {
@@ -160,9 +158,12 @@
   </script>
 
   <script>
+    var current_suffrages = "{{ =suffrages }}";
+    var current_tri = "{{ =tri }}";
     var current_axe = "{{ =axe }}";
     var current_desc = {{ =desc }};
     var current_scrutin = "{{ =scrutin }}";
+    var current_filtres = JSON.parse('{{ =XML(filtres) }}');
   </script>
 
 </footer>

@@ -1,0 +1,99 @@
+# -*- coding: utf-8 -*-
+
+axes = [(u'Assemblée',{'titre':u"Votes de l'Assemblée",'source':'assemblee','label':'libelle','key':'libelleAbrev',
+        'item_field':'organes','item_compare':'$contains'}),
+        ('Groupes',{'titre':u"Votes par Groupe parlementaire",'source':'organes','label':'libelle','key':'uid',
+                        'item_field':'groupe','item_compare':'$eq'}),
+        ('Commissions',{'titre':u"Votes par Commission parlementaire",'source':'commissions','label':'libelle','key':'uid',
+                        'item_field':'commissions','item_compare':'$contains'}),
+        ('Région',{'titre':u"Votes par région",'source':'acteurs','label':'region','key':'region',
+                        'item_field':'region','item_compare':'$eq'}),
+        ('Type Région',{'titre':u"Votes par type de région",'source':'acteurs','label':'typeregion','key':'typeregion',
+                'item_field':'typeregion','item_compare':'$eq'}),
+        (u'Département',{'titre':u"Votes par département",'source':'acteurs','label':'departement','key':'departement',
+                        'item_field':'departement','item_compare':'$eq','hidechart':True}),
+        ('Ages',{'titre':u"Votes par age",'source':'acteurs','label':'classeage','key':'classeage',
+                'item_field':'classeage','item_compare':'$eq'}),
+        ('CSP',{'titre':u"Votes par Catégorie Socio-Professionelle",'source':'acteurs','label':'csp','key':'csp',
+        'item_field':'csp','item_compare':'$eq'}),
+        ('Sexe',{'titre':u"Votes par sexe",'source':'acteurs','label':'sexe','key':'sexe',
+        'item_field':'sexe','item_compare':'$eq'}),
+       ]
+axes = {'groupes':{'libelle':'Groupes',
+                   'elements':'G',
+                   'hidechart':False,
+                   'titre':'Votes par Groupe parlementaire',
+                   'source':{'nom':'organes','filtre':{'codeType':'GP','actif':True},'key':'uid','label':'libelle'},
+                   'votes':{'field':'groupe'}},
+        'assemblee':{'libelle':'Assemblée',
+                   'elements':'G',
+                   'hidechart':False,
+                   'titre':"Votes de l'Assemblée",
+                   'source':{'nom':'organes','filtre':{'codeType':'ASSEMBLEE','actif':True},'key':'libelleAbrev','label':'libelle'},
+                   'votes':{'field':'organes'}},
+        'commissions':{'libelle':'Commissions',
+                   'elements':'G',
+                   'titre':'Votes par Commissions',
+                   'source':{'nom':'organes','filtre':{'$and':[{'$or':[{'codeType':'COMPER'},{'codeType':'CONFPT'}]},{'actif':True}]},'key':'uid','label':'libelle'},
+                   'votes':{'field':'commissions'}},
+        'regions':{'libelle':'Régions',
+                   'elements':'G',
+                   'titre':'Votes par Régions',
+                   'source':{'nom':'acteurs','filtre':{},'key':'region','label':'region'},
+                   'votes':{'field':'region'}},
+        'typeregion':{'libelle':'Type Régions',
+                   'elements':'G',
+                   'titre':'Votes par Type de régions',
+                   'source':{'nom':'acteurs','filtre':{},'key':'typeregion','label':'typeregion'},
+                   'votes':{'field':'typeregion'}},
+        'departements':{'libelle':'Départements',
+                   'elements':'G',
+                   'titre':'Votes par Départements',
+                   'source':{'nom':'acteurs','filtre':{},'key':'departement','label':'departement'},
+                   'votes':{'field':'departement'}},
+        'ages':{'libelle':"Classes d'age",
+                   'elements':'G',
+                   'titre':"Votes par classe d'age",
+                   'source':{'nom':'acteurs','filtre':{},'key':'classeage','label':'classeage'},
+                   'votes':{'field':'classeage'}},
+        'csp':{'libelle':"Catégorie Socio-professionnelle",
+                   'elements':'G',
+                   'titre':'Votes par Catégorie Socio-professionnelle',
+                   'source':{'nom':'acteurs','filtre':{},'key':'csp','label':'csp'},
+                   'votes':{'field':'csp'}},
+        'sexe':{'libelle':"Sexe",
+                   'elements':'G',
+                   'titre':'Votes par sexe',
+                   'source':{'nom':'acteurs','filtre':{},'key':'sexe','label':'sexe'},
+                   'votes':{'field':'sexe'}},
+        'depute':{'libelle':"Députés",
+                   'elements':'P',
+                   'titre':'Votes par député',
+                   'source':{'nom':'acteurs','filtre':{},'key':'uid','label':'prenomnom'},
+                   'votes':{'field':'uid'}},
+
+        'scrutin':{'libelle':"Scrutins",
+                   'elements':'P',
+                   'titre':'Votes par scrutin',
+                   'source':{'nom':'scrutins','filtre':{},'key':'srutin_id','label':'fulldesc'},
+                   'votes':{'field':'scrutin_id'}},
+
+       }
+axes_order = ['assemblee','groupes','commissions','typeregion','regions','departements','ages','csp','sexe','depute','scrutin']
+def vide(ctx,v):
+    if (v=='-'):
+        return float(-1) if ctx['desc']=='1' else float(10000000)
+    else:
+        return v
+
+sortfcts = {
+        'participation': {'libelle':'Participation','fct':lambda ctx,x:vide(ctx,x['participation'])},
+        'pctpour': {'libelle':'% Votes pour', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['pour']['pct'])},
+        'pctcontre': {'libelle':'% Votes contre', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['contre']['pct'])},
+        'pctabs': {'libelle':'% Votes abstention', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['abstention']['pct'])},
+        'alpha': {'libelle':'Ordre Alphabétique', 'fct': lambda ctx,x:x['label']}
+        }
+sortfcts_order = ['participation','pctpour','pctcontre','pctabs','alpha']
+
+import locale
+locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')

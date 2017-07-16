@@ -3,6 +3,21 @@
 import tools
 import pymongo
 
+def update_axes():
+ 
+    for axe in axes:
+        source = axes[axe]['source']
+        items = [ {'key':item[0],'label':item[1]} for item in list(set([(item[source['key']],item[source['label']]) for item in mdb[source['nom']].find(source['filtre'])]))]
+        items = list(mdb[source['nom']].find(source['filtre']))
+        uniqueitems = list(set([(item[source['key']],item[source['label']]) for item in items]))
+        if len(uniqueitems) == len(items):
+            for item in items:
+                item.update({'key':item[0],'label':item[1]})
+        else:
+            items =  [{'key':item[0],'label':item[1]} for item in items]
+
+        mdb['axe_'+axe].remove()
+        mdb['axe_'+axe].insert_many(items)
 
 def fetch_acteurs_organes():
     from sources.hatvp import declarations
@@ -25,17 +40,13 @@ def fetch_acteurs_organes():
     for org in actorg['organes'].values():
         bulk.find({'uid':org['uid']}).upsert().replace_one(org)
     result = bulk.execute()
-   
-    
-def index():
-    from sources.scrutins import getScrutins    
-    fetch_acteurs_organes()
+
+def fetch_scrutins():
     # Scrutins et votes
-    # Supprimer les scrutins incomplets !!!!
-    
-    
+    from sources.scrutins import getScrutins    
     scrutinscomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$and':[{'scrutin_dossier':{'$ne':'N/A'}},{'scrutin_type':{'$ne':'N/A'}}]}))]
     acteurs = dict((a['id'],a) for a in mdb.acteurs.find())
+    
     scr = getScrutins(acteurs,scrutinscomplets)
     scrutinsincomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$or':[{'scrutin_dossier':'N/A'},{'scrutin_type':'N/A'}]}))]
     print "remove",scrutinsincomplets
@@ -53,6 +64,12 @@ def index():
         mdb.scrutins.create_index([('scrutin_id', pymongo.ASCENDING)], unique = True)
         mdb.scrutins.insert_many(scr['scrutins'])
 
-    
 
-    return dict(s_ids=s_ids)
+    
+def index():
+    
+    fetch_acteurs_organes()
+    fetch_scrutins()
+    update_axes()
+
+    return dict()

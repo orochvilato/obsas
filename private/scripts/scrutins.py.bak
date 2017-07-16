@@ -44,12 +44,12 @@ class ScrutinsSpider(scrapy.Spider):
 
     def parse_main(self, response):
 
-        request = scrapy.Request(url=response.url, callback=self.parse_page)
+        request = scrapy.Request(url=response.url, callback=self.parse_page, dont_filter=True)
         request.meta['page'] = '1'
         request.meta['type'] = 'TOUS'
         request.meta['idDossier'] = 'TOUS'
         yield request
-        return
+        
 
         for _idDossier in response.xpath('//select[@name="idDossier"]/option'):
             ridDossier = _idDossier.xpath('@value').extract()[0]
@@ -80,7 +80,7 @@ class ScrutinsSpider(scrapy.Spider):
 
 
     def parse_page(self, response):
-        print response.url
+        
         scrs = response.xpath('//table[@id="listeScrutins"]/tbody/tr')
         for scr in scrs:
             _num = int(scr.xpath('td[contains(@class,"denom")]/text()').extract()[0].replace('*',''))
@@ -93,6 +93,7 @@ class ScrutinsSpider(scrapy.Spider):
             if _num not in scrutins.keys():
                 scrutins[_num] = {}
             scrutins[_num].update({'num':_num,
+                                   'nums':"%s" % _num,
                                    'id':'%s_%d' % (leg,_num),
                                   'pour':_pour,
                                   'contre':_contre,

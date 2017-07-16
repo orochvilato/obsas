@@ -41,7 +41,7 @@ axes = {'groupes':{'libelle':'Groupes',
                    'titre':'Votes par Régions',
                    'source':{'nom':'acteurs','filtre':{},'key':'region','label':'region'},
                    'votes':{'field':'region'}},
-        'typeregions':{'libelle':'Type Régions',
+        'typeregion':{'libelle':'Type Régions',
                    'elements':'G',
                    'titre':'Votes par Type de régions',
                    'source':{'nom':'acteurs','filtre':{},'key':'typeregion','label':'typeregion'},
@@ -71,21 +71,30 @@ axes = {'groupes':{'libelle':'Groupes',
                    'titre':'Votes par député',
                    'source':{'nom':'acteurs','filtre':{},'key':'uid','label':'prenomnom'},
                    'votes':{'field':'uid'}},
-        
+
+        'scrutin':{'libelle':"Scrutins",
+                   'elements':'G',
+                   'tris':['datescrutin'],
+                   'titre':'Votes par scrutin',
+                   'source':{'nom':'scrutins','filtre':{},'key':'scrutin_id','label':'scrutin_fulldesc'},
+                   'votes':{'field':'scrutin_id'}},
+
        }
-axes_order = ['assemblee','groupes','commissions','regions','departements','ages','csp','sexe','depute']
+axes_order = ['assemblee','groupes','commissions','typeregion','regions','departements','ages','csp','sexe','depute','scrutin']
 def vide(ctx,v):
     if (v=='-'):
         return float(-1) if ctx['desc']=='1' else float(10000000)
     else:
         return v
 
+import datetime
 sortfcts = {
         'participation': {'libelle':'Participation','fct':lambda ctx,x:vide(ctx,x['participation'])},
         'pctpour': {'libelle':'% Votes pour', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['pour']['pct'])},
         'pctcontre': {'libelle':'% Votes contre', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['contre']['pct'])},
         'pctabs': {'libelle':'% Votes abstention', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['abstention']['pct'])},
-        'alpha': {'libelle':'Ordre Alphabétique', 'fct': lambda ctx,x:x['label']}
+        'alpha': {'libelle':'Ordre Alphabétique', 'fct': lambda ctx,x:x['label']},
+        'datescrutin': {'libelle':'par N° de scrutin', 'fct': lambda ctx,x:x['scrutin_num']}
         }
 sortfcts_order = ['participation','pctpour','pctcontre','pctabs','alpha']
 

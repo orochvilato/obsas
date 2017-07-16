@@ -131,6 +131,8 @@ def getScrutins(acteurs,deja=[]):
                 'commissions': act['commissions'],
                 'organes': act['organes'],
                 'groupe': act['groupe'],
+                'groupeabrev': act['groupe_abrev'],
+                'age':act['age'],
                 'classeage':act['classeage'],
                 'region':act['region'],
                 'typeregion':act['typeregion'],
@@ -142,13 +144,16 @@ def getScrutins(acteurs,deja=[]):
     for s in _scrutins.values():
         if s['id'] in deja:
             continue
-            
+        desc = s['desc'].replace('. [','.')
+        types = s.get('libelleType','N/A')
+        fulldesc = u"Scrutin n° %d du %s : %s" % (s[u'num'],s[u'date'],s[u'desc'])
         scrutin = { 'scrutin_num':s['num'],
                     'scrutin_id':s['id'],
-                    'scrutin_desc':s['desc'],
+                    'scrutin_desc':desc,
+                    'scrutin_fulldesc':fulldesc,
                     'scrutin_date':s['date'],
                     'scrutin_type':s.get('type','N/A'),
-                    'scrutin_typeLibelle':s.get('libelleType','N/A'),
+                    'scrutin_typeLibelle':types,
                     'scrutin_dossier':s.get('idDossier','N/A'),
                     'scrutin_dossierLibelle':s.get('libelleDossier','N/A'),
                     'scrutin_ok':s['ok']

@@ -1,13 +1,15 @@
-var compare_axe = undefined;
-var compare_item = undefined;
-var axes;
-var scrutins = [];
-var filtres_axes=[];
-var current_axe = 0;
-var current_desc = 1;
-var current_scrutin = 'tous';
-var current_elements = [];
-var exprimes = true;
+var pushURL = function() {
+    var params = {};
+    
+    params.desc = current_desc;
+    params.axe = current_axe;
+    params.suffrages = current_suffrages;
+    params.filtres = current_filtres;
+    params.tri = current_tri;
+    var str = jQuery.param( params );
+    window.history.pushState("string", "obsas", "analyse?"+str);
+    console.log(str);
+}
 
 var updateView = function() {
     console.log('updateview');
@@ -16,24 +18,38 @@ var updateView = function() {
     var suffrages = $('select#suffrages').val();
     var tri = $('select#tri').val();
     var axe = $('select#axe').val();
-    
+    var filtres;
+
     var params = {};
-    if (current_scrutin != undefined) {
-        params.scrutin = current_scrutin;
-    }
+    
     if (current_desc != undefined) {
         params.desc = current_desc;
     }
     if (axe != undefined) {
         params.axe = axe;
+        current_axe = axe;
+    } else {
+        params.axe = current_axe;
+    }
+    if (filtres!= undefined) {
+        params.filtres = filtres;
+        current_filtres = filtres;
+    } else {
+        params.filtres = JSON.stringify(current_filtres);
     }
     if (suffrages != undefined) {
         params.suffrages = suffrages;
+        current_suffrages = suffrages;
+    } else {
+        params.suffrages = current_suffrages;
     }
     if (tri != undefined) {
         params.tri = tri;
+        current_tri = tri;
+    } else {
+        params.tri = current_tri;
     }
-    console.log(params);
+    
     $.LoadingOverlay("show");
     $.ajax({
     url: 'analyse/vueaxe',
@@ -42,7 +58,6 @@ var updateView = function() {
     dataType: 'html'
   }).done(function(data) {
       $.LoadingOverlay("hide");
-      
       $('#vue').html(data);
       $('select').material_select();
       $('.updateview').change(function() {
@@ -54,6 +69,8 @@ var updateView = function() {
           current_desc = 1-current_desc;
           updateView();
       });
+      pushURL();
+      
   });
 };
 
