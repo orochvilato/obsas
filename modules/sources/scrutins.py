@@ -144,9 +144,9 @@ def getScrutins(acteurs,deja=[]):
     for s in _scrutins.values():
         if s['id'] in deja:
             continue
-        desc = s['desc'].replace('. [','.')
+        desc = s['desc'].replace('.[','.')
         types = s.get('libelleType','N/A')
-        fulldesc = u"Scrutin n° %d du %s : %s" % (s[u'num'],s[u'date'],s[u'desc'])
+        fulldesc = u"Scrutin n° %d du %s : %s" % (s[u'num'],s[u'date'],desc)
         scrutin = { 'scrutin_num':s['num'],
                     'scrutin_id':s['id'],
                     'scrutin_desc':desc,

@@ -12,8 +12,9 @@ def index():
     return locals()
 
 def vueaxe():
-    pos_icons = { 'pour':'thumbs-up', 'contre':'thumbs-down', 'abstention':'meh-o', 'nonVotant':'ban', 'absent':'plane'}
-    pos_libelles = { 'pour':'votes pour', 'contre':'votes contre', 'abstention':'abstention', 'nonVotant':'non votants (justifiés)', 'absent':'absents'}
+    pos_icons = { 'pour':'thumbs-up', 'contre':'thumbs-down', 'abstention':'meh-o', 'nonVotant':'ban', 'absent':'plane','voteem':'','votefi':''}
+    pos_libelles = { 'pour':'votes pour', 'contre':'votes contre', 'abstention':'abstention', 'nonVotant':'non votants (justifiés)', 'absent':'absents',
+                     'voteem':'EM-Compatibilité','votefi':'FI-Compatibilité'}
 
     idaxe = request.vars.get('axe','groupes')
     filtres = json.loads(request.vars.get('filtres','{}'))
@@ -51,11 +52,12 @@ def vueaxe():
         items = list(mdb['axe_'+idaxe].find(axefilter))
         print axefilter,len(items)
         if idaxe == 'depute':
-            groupes = cache.ram('groupes',lambda:dict((g['uid'],g) for g in mdb.organes.find({'codeType':'GP','actif':True})),time_expire=24*3600)
-            acteurs = cache.ram('acteurs',lambda:dict((a['uid'],a) for a in mdb.acteurs.find()),time_expire=24*3600)
+            groupes = cache.disk('groupes',lambda:dict((g['uid'],g) for g in mdb.organes.find({'codeType':'GP','actif':True})),time_expire=24*3600)
+            acteurs = cache.disk('acteurs',lambda:dict((a['uid'],a) for a in mdb.acteurs.find()),time_expire=24*3600)
 
         nbscrutins = len(mdb.votes.distinct('scrutin_id', filters['scrutin']))
-
+        
+        scrutins = cache.disk('scrutins',lambda:dict((s['scrutin_id'],s) for s in mdb.scrutins.find()), time_expire=24*3600)
 
         for item in items:
             if idaxe == 'depute':
@@ -67,10 +69,15 @@ def vueaxe():
             votes = {}
             nb = {'absent':0,'nonVotant':0,'pour':0,'contre':0,'abstention':0}
             print req
+            sim = {'voteem':0,'votefi':0}
             for vote in mdb.votes.find(req):
                 votes[vote['position']] = votes.get(vote['position'],[]) + [ vote['uid'] ]
                 nb[vote['position']] +=  1
-            print votes
+                for _sim in sim.keys():
+                    if (vote['position'] == scrutins[vote['scrutin_id']][_sim]):
+                        sim[_sim] += 1
+
+
             if nbscrutins==1:
                 item['votes'] = votes
             item['nb'] = nb
@@ -79,7 +86,14 @@ def vueaxe():
             total = total_exprime + nb['absent'] + nb['nonVotant']
             item['votants'] = round(float(total_exprime)/nbscrutins,1)
             item['participation'] = round(100*float(total_exprime) / (total_exprime + nb['absent']),1) if total_exprime+nb['absent']>0 else '-'
-            item['stats'] = {'exprime':{},'tous': {}}
+            item['stats'] = {'exprime':{},'tous': {},'fiemcpt':{}}
+            for pos in ['voteem','votefi']:
+                item['stats']['fiemcpt'][pos]={'n':round(float(sim[pos])/nbscrutins,1),'ntot':sim[pos],
+                                               'position':pos,
+                                               'libelle':pos_libelles[pos],
+                                               'pct':round(100*float(sim[pos])/total_exprime,1) if total_exprime>0 else '-',
+                                               'class':'pct','icon':pos_icons[pos]}
+
             for pos in ['pour','contre','abstention']:
                 item['stats']['exprime'][pos]={'n':round(float(nb[pos])/nbscrutins,1),'ntot':nb[pos],
                                                'position':pos,
@@ -93,7 +107,8 @@ def vueaxe():
             result = max(item['stats']['exprime'].values(),key=lambda x:x['ntot'])
             result['class'] += 'Big'
             item['resultpos'] = result['position']
-            max(item['stats']['tous'].values(),key=lambda x:x['ntot'])['class'] += 'Big'
+            for k in item['stats'].keys():
+                max(item['stats'][k].values(),key=lambda x:x['ntot'])['class'] += 'Big'
             #item['stats
 
 
@@ -112,7 +127,7 @@ def vueaxe():
 
     return dict(axes_choix=[ (a,axes[a]['libelle']) for a in axes_order],
                 axe=idaxe,
-                suffrages_choix=[('exprime','Exprimés'),('tous','Tous')],
+                suffrages_choix=[('exprime','Exprimés'),('tous','Tous'),('fiemcpt','FI/EM comptabilité')],
                 tris_choix=[ (s,sortfcts[s]['libelle']) for s in sortfcts_order+axes[a].get('tris',[])],
                 tri=tri,
                 filtres = json.dumps(filtres),

@@ -3,6 +3,24 @@
 import tools
 import pymongo
 
+
+def update_emfi_compat():
+    scrutins = mdb.scrutins.find({'votefi':None})
+    
+    for s in scrutins:
+        votes = mdb.votes.find({"$and":[{'scrutin_id':s['scrutin_id']},{'groupeabrev':{'$in':['REM','FI']}}]})
+        positions={'FI':{'pour':0,'contre':0,'abstention':0},
+                   'REM':{'pour':0,'contre':0,'abstention':0}}
+        for v in votes:
+            if v['position'] in ['pour','contre','abstention']:
+                positions[v['groupeabrev']][v['position']] += 1
+            
+        s['scrutin_desc'] = s['scrutin_desc'].replace('. [','.')
+        s['scrutin_fulldesc'] = s['scrutin_fulldesc'].replace('. [','.')
+        s['votefi'] = max(positions['FI'].items(),key=lambda x:x[1])[0]
+        s['voteem'] = max(positions['REM'].items(),key=lambda x:x[1])[0]
+        mdb.scrutins.update({'scrutin_id':s['scrutin_id']},{'$set':s})
+        
 def update_axes():
  
     for axe in axes:
@@ -71,5 +89,5 @@ def index():
     fetch_acteurs_organes()
     fetch_scrutins()
     update_axes()
-
+    update_emfi_compat()
     return dict()

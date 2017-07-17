@@ -95,9 +95,11 @@ sortfcts = {
         'pctcontre': {'libelle':'% Votes contre', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['contre']['pct'])},
         'pctabs': {'libelle':'% Votes abstention', 'fct': lambda ctx,x:vide(ctx,x['stats'][ctx['suffrages']]['abstention']['pct'])},
         'alpha': {'libelle':'Ordre Alphabétique', 'fct': lambda ctx,x:x['label']},
+        'ficompat': {'libelle':'FI-Compatibilité', 'fct': lambda ctx,x:vide(ctx,x['stats']['fiemcpt']['votefi']['pct'])},
+        'emcompat': {'libelle':'EM-Compatibilité', 'fct': lambda ctx,x:vide(ctx,x['stats']['fiemcpt']['voteem']['pct'])},
         'datescrutin': {'libelle':'par N° de scrutin', 'fct': lambda ctx,x:x['scrutin_num']}
         }
-sortfcts_order = ['participation','pctpour','pctcontre','pctabs','alpha']
+sortfcts_order = ['participation','pctpour','pctcontre','pctabs','alpha','ficompat','emcompat']
 
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')

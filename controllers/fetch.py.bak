@@ -3,6 +3,24 @@
 import tools
 import pymongo
 
+
+def update_emfi_compat():
+    scrutins = mdb.scrutins.find()
+    
+    for s in scrutins:
+        votes = mdb.votes.find({"$and":[{'scrutin_id':s['scrutin_id']},{'groupeabrev':{'$in':['REM','FI']}}]})
+        positions={'FI':{'pour':0,'contre':0,'abstention':0},
+                   'REM':{'pour':0,'contre':0,'abstention':0}}
+        for v in votes:
+            if v['position'] in ['pour','contre','abstention']:
+                positions[v['groupeabrev']][v['position']] += 1
+            
+        s['scrutin_desc'] = s['scrutin_desc'].replace('. [','.')
+        s['scrutin_fulldesc'] = s['scrutin_fulldesc'].replace('. [','.')
+        s['votefi'] = max(positions['FI'].items(),key=lambda x:x[1])[0]
+        s['voteem'] = max(positions['REM'].items(),key=lambda x:x[1])[0]
+        mdb.scrutins.update({'scrutin_id':s['scrutin_id']},{'$set':s})
+        
 def update_axes():
  
     for axe in axes:
@@ -12,9 +30,9 @@ def update_axes():
         uniqueitems = list(set([(item[source['key']],item[source['label']]) for item in items]))
         if len(uniqueitems) == len(items):
             for item in items:
-                item.update({'key':item[0],'label':item[1]})
+                item.update({'key':item[source['key']],'label':item[source['label']]})
         else:
-            items =  [{'key':item[0],'label':item[1]} for item in items]
+            items =  [{'key':item[0],'label':item[1]} for item in uniqueitems]
 
         mdb['axe_'+axe].remove()
         mdb['axe_'+axe].insert_many(items)
@@ -71,5 +89,5 @@ def index():
     fetch_acteurs_organes()
     fetch_scrutins()
     update_axes()
-
+    update_emfi_compat()
     return dict()
