@@ -32,8 +32,7 @@ def getVoteData_fct(idaxe,filtres):
             groupes = appcache.getcached('groupes')
             acteurs = appcache.getcached('acteurs')
 
-
-
+            
         scrutins = appcache.getcached('scrutins')
         if any(filters.values()):
             req = {'$and': [ f for f in filters.values() if f!={}]}
@@ -41,24 +40,26 @@ def getVoteData_fct(idaxe,filtres):
             req = {}
         nbscrutins = len(mdb.votes.distinct('scrutin_id', req))
 
-        item_votes = {}
-        for v in mdb.votes.find(req):
-            item_votes[v[axe['votes']['field']]] = item_votes.get(v[axe['votes']['field']],[]) + [v]
+             
+       
         items = []
-
+    
         for item in _items:
             if idaxe == 'depute':
                 item['groupe_libelle'] = groupes[acteurs[item['key']]['groupe']]['libelle']
                 item['groupe_abrev'] = groupes[acteurs[item['key']]['groupe']]['libelleAbrev']
 
             #itemreq = {axe['votes']['field']:item['key']}
+            itemreq = {axe['votes']['field']:item['key']}		
+            req = {'$and': [ itemreq ] + [ f for f in filters.values() if f!={}]}		
 
             votes = {}
             nb = {'absent':0,'nonVotant':0,'pour':0,'contre':0,'abstention':0}
             sim = {'voteem':0,'votefi':0}
-            if item_votes.get(item['key'],[]) == []:
+            result = mdb.votes.find(req)
+            if result.count == 0:
                 continue
-            for vote in item_votes[item['key']]:
+            for vote in result:
                 votes[vote['position']] = votes.get(vote['position'],[]) + [ vote['uid'] ]
                 nb[vote['position']] +=  1
                 for _sim in sim.keys():
