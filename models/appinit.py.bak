@@ -40,13 +40,8 @@ def getVoteData_fct(idaxe,filtres):
             req = {}
         nbscrutins = len(mdb.votes.distinct('scrutin_id', req))
 
-        item_votes = {}
-        
-        for v in mdb.votes.find(req):
-            val = v[axe['votes']['field']]
-            val = list(val) if not isinstance(val,list) else val
-            for x in val:
-                item_votes[x] = item_votes.get(x,[]) + [v]
+             
+       
         items = []
     
         for item in _items:
@@ -57,20 +52,19 @@ def getVoteData_fct(idaxe,filtres):
             #itemreq = {axe['votes']['field']:item['key']}
             itemreq = {axe['votes']['field']:item['key']}		
             req = {'$and': [ itemreq ] + [ f for f in filters.values() if f!={}]}		
-
             votes = {}
             nb = {'absent':0,'nonVotant':0,'pour':0,'contre':0,'abstention':0}
             sim = {'voteem':0,'votefi':0}
             result = mdb.votes.find(req)
-            if result.count == 0:
+            if result.count()1 == 0:
                 continue
+            
             for vote in result:
                 votes[vote['position']] = votes.get(vote['position'],[]) + [ vote['uid'] ]
                 nb[vote['position']] +=  1
                 for _sim in sim.keys():
                     if (vote['position'] == scrutins[vote['scrutin_id']][_sim]):
                         sim[_sim] += 1
-
 
             if nbscrutins==1:
                 item['votes'] = votes
