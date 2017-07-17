@@ -10,7 +10,10 @@
   font-weight: 1000;
   color: rgba(12,195,214,1);
 }
-
+.autres-text {
+  font-weight:400;
+  color:grey;
+}
 
 .coulFIbg {
   background-color: rgba(12,195,214,0.33);

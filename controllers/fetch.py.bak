@@ -3,9 +3,26 @@
 import tools
 import pymongo
 
+def clear_cache():
+    appcache.clear()
+    rebuild_cache()
+    
+def rebuild_cache():
+    def getGroupesDict():
+        return dict((g['uid'],g) for g in mdb.organes.find({'codeType':'GP','actif':True}))
+    def getActeursDict():
+        return dict((a['uid'],a) for a in mdb.acteurs.find())
+    def getScrutinsDict():
+        return dict((s['scrutin_id'],s) for s in mdb.scrutins.find())
+
+
+    appcache.set('groupes',lambda:getGroupesDict,params={})
+    appcache.set('acteurs',lambda:getActeursDict,params={})
+    appcache.set('scrutins',lambda:getScrutinsDict,params={})
+
 
 def update_emfi_compat():
-    scrutins = mdb.scrutins.find()
+    scrutins = mdb.scrutins.find({'votefi':None})
     
     for s in scrutins:
         votes = mdb.votes.find({"$and":[{'scrutin_id':s['scrutin_id']},{'groupeabrev':{'$in':['REM','FI']}}]})
@@ -22,20 +39,29 @@ def update_emfi_compat():
         mdb.scrutins.update({'scrutin_id':s['scrutin_id']},{'$set':s})
         
 def update_axes():
- 
+    axe_all = {}
     for axe in axes:
         source = axes[axe]['source']
         items = [ {'key':item[0],'label':item[1]} for item in list(set([(item[source['key']],item[source['label']]) for item in mdb[source['nom']].find(source['filtre'])]))]
         items = list(mdb[source['nom']].find(source['filtre']))
         uniqueitems = list(set([(item[source['key']],item[source['label']]) for item in items]))
         if len(uniqueitems) == len(items):
+            axe_all[axe] = []
             for item in items:
-                item.update({'key':item[source['key']],'label':item[source['label']]})
+                it = {'key':item[source['key']],'label':item[source['label']]}
+                item.update(it)
+           
         else:
             items =  [{'key':item[0],'label':item[1]} for item in uniqueitems]
-
+           
+        items.sort(key=lambda x:sortfcts[axes[axe]['tri_defaut'][0]]['fct']({},x),reverse=axes[axe]['tri_defaut'][1])
+        axe_all[axe] = [{'key':it['key'],'label':it['label']} for it in items]
         mdb['axe_'+axe].remove()
         mdb['axe_'+axe].insert_many(items)
+        
+    
+    mdb['axes'].remove()
+    mdb['axes'].insert(axe_all)
 
 def fetch_acteurs_organes():
     from sources.hatvp import declarations
@@ -90,4 +116,5 @@ def index():
     fetch_scrutins()
     update_axes()
     update_emfi_compat()
+    rebuild_cache()
     return dict()

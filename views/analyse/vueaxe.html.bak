@@ -4,35 +4,69 @@
    </div>
 </div>
 <div class="row">
-  <div class="col s12">
-        <select id="axe" class="updateview">
-         {{ for a in axes_choix: }}
-            <option value="{{ =a[0] }}" {{ if axe==a[0]: }}selected{{ pass }}>{{ =a[1] }}</option>
-         {{ pass }}
-         </select>
-         <label>Votes par</label>
-   </div>
- </div>
+     <div id="filtres" class="card blue-grey lighten-5">
+            <div class="card-content" style="margin-top:12px;margin-bottom:5px;">
+              <div class="row" style="margin-bottom:0px;">
+                  <div class="input-field col s10">
+                    <select id="filtresaxe" multiple>
+                         <option value="" disabled {{ if filtres=={}: }}selected{{ pass }}>Définir</option>
+                         {{ for a in axes_choix: }}
+                            <option value="{{ =a[0] }}" {{ if a[0] in filtres.keys(): }}selected{{ pass }}>{{ =a[1] }}</option>
+                         {{ pass }}
+                   </select>
+                   <label>Filtres actifs</label>
+                 </div><div class="col s2"><button id="filtrer">Filtrer</button></div>
+              </div>
+              <div class="row">
+                
+                {{ for a in axes_choix: }}
+                    <div id="filtre_{{ =a[0] }}" class="col s12 l6 input-field filter" {{ if not a[0] in filtres.keys():}} style="display:none;" {{ pass}}>
+                        <select axe="{{ =a[0] }}" class="filtreaxe" multiple>
+                            <option value="" disabled {{ if filtres.get(a[0],None): }}selected{{ pass }}>Définir</option>
+                            {{ for item in axes_values[a[0]]: }}
+                               <option value="{{ =item['key'] }}" {{ if a[0] in filtres.keys() and item['key'] in filtres[a[0]]: }}selected{{ pass }}>{{ =item['label'] }}</option>
+                            {{ pass }}
+                        </select>
+                        <label>{{ = a[1] }}</label>
+                    </div>
+                {{ pass }}
+                </div>
+           </div>
+        </div>
+
 </div>
 <div class="row">
-  <div class="input-field col s4 m3">
-     <select id="suffrages" class="updateview">
-         {{ for suf in suffrages_choix: }}
-            <option value="{{ =suf[0] }}" {{ if suffrages==suf[0]: }}selected{{ pass }}>{{ =suf[1] }}</option>
-         {{ pass }}
-     </select>
-     <label>Suffrages</label>
-  </div>
-  <div class="input-field col s4 m3">
-     <select id="tri" class="updateview">
-         {{ for t in tris_choix: }}
-            <option value="{{ =t[0] }}" {{ if tri==t[0]: }}selected{{ pass }}>{{ =t[1] }}</option>
-         {{ pass }}
-     </select>
-     <label>Trier par</label>
-  </div>
-  <div class="col s4 m6">
-      <i id="sens" class="small material-icons right" style="cursor: pointer;">swap_vert</i>
+  <div class="card-panel blue-grey lighten-5">
+      <div class="row">
+      <div class="input-field col s12">
+              <select id="axe" class="updateview">
+                 {{ for a in axes_choix: }}
+                    <option value="{{ =a[0] }}" {{ if axe==a[0]: }}selected{{ pass }}>{{ =a[1] }}</option>
+                 {{ pass }}
+                 </select>
+                 <label>Votes par</label>
+      </div>
+      <div class="input-field col s4 m3">
+           <select id="suffrages" class="updateview">
+                 {{ for suf in suffrages_choix: }}
+                    <option value="{{ =suf[0] }}" {{ if suffrages==suf[0]: }}selected{{ pass }}>{{ =suf[1] }}</option>
+                 {{ pass }}
+             </select>
+             <label>Suffrages</label>
+      </div>
+      <div class="input-field col s4 m3">
+             <select id="tri" class="updateview">
+                 {{ for t in tris_choix: }}
+                    <option value="{{ =t[0] }}" {{ if tri==t[0]: }}selected{{ pass }}>{{ =t[1] }}</option>
+                 {{ pass }}
+             </select>
+             <label>Trier par</label>
+      </div>
+      <div class="col s4 m6">
+              <i id="sens" class="small material-icons right" style="cursor: pointer;">swap_vert</i>
+          </div>
+      </div>
+    </div>
   </div>
 </div>
 <div id="{{ =axe }}" class="row">
@@ -46,7 +80,7 @@
        <div class="row">
               {{ if ('G' in elements) and (len(items)<30): }}
           <div class="col s8 m6 offset-s2 offset-m3 l3">
-             <canvas vals="{{ = json.dumps([ item['stats'][suffrages].get(pos,{'n':0})['n'] for pos in ['pour','contre','abstention','nonVotant','absent','voteem','votefi']]) }}" class="itemchart"></canvas>
+             <canvas vals="{{ = json.dumps([ item['stats'][suffrages].get(pos,{'n':0})['n'] for pos in ['pour','contre','abstention','nonVotant','absent','voteem','votefi','autres']]) }}" class="itemchart"></canvas>
           </div>
           <div class="col s12 m12 l9">
               {{ elif ('P' in elements): }}
@@ -58,19 +92,19 @@
               {{ else: }}
           <div class="col s12">
               {{ pass }}
-              <span class="card-title" style="font-weight:500;margin-bottom:5px;"><span class="slibelle">{{ if axe=='scrutin':}}<span class="left new resultvote {{ =item['resultpos'] }}">{{ ={'pour':'Adopté','contre':'Rejeté','abstention':'Abstention?'}[item['resultpos']] }}</span>  {{ pass }}{{ = item['label'] }}</span>
+              <span class="card-title" style="font-weight:500;margin-bottom:5px;"><span class="slibelle">{{ if axe=='scrutin':}}<span class="left new resultvote {{ =item['resultpos'] }}">{{ ={'pour':'Pour','contre':'Contre','abstention':'Abstention'}[item['resultpos']] }}</span>  {{ pass }}{{ = item['label'] }}</span>
               {{ if axe=='depute': }}<span class="coul{{ =item['groupe_abrev'] }}-text" style="font-size:60%">({{ =item['groupe_libelle'] }})</span><span class="ranking right">{{ =i+1 }}</span>
-              {{ elif axe=='dossierleg' or axe=='typescrutin': }}<span style="font-size:60%">({{ =item['nbscrutins'] }} scrutin(s))</span>
+              {{ elif axe=='dossierleg' or axe=='typescrutin': }}<span style="font-size:60%">({{ =sum(item['nb'].values()) / 577 }} scrutin(s))</span>
               {{ elif axe!='scrutin': }}<span style="font-size:60%">({{ =item['deputes'] }} députée(s))</span>{{ pass }}</span>
               {{ if axe=='depute':}}
                   <p style="margin-top:-5px;margin-bottom:5px;">{{ = "%s / %s / %s " % (item['region'],item['departement'],item['circo']) }} <br/>
-                      <span>{{ = item['profession_libelleCourant'] }}</span><span>{{ "%d ans" % (item['age']) }}</span></p>
+                      <span>{{ = item['profession_libelleCourant'] }}</span><span style="margin-left:20px;">{{ ="%d ans" % (item['age']) }}</span></p>
               {{ pass }}
               <span><span style="font-weight:300;">Votes{{ if suffrages=='exprime' or suffrages=='fiemcpt': }} exprimés{{pass}}{{ if suffrages=='exprime': }} ({{ =item['votants']}}){{ pass}}</span>
               <span class='right' style="font-weight:300;">Participation</span></span>
               
                 <span class="card-title">
-                {{ for pos in ['pour','contre','abstention','nonVotant','absent','voteem','votefi']: }}
+                {{ for pos in ['pour','contre','abstention','nonVotant','absent','voteem','votefi','autres']: }}
                 {{ stat = item['stats'][suffrages].get(pos,None) }}
                 {{ if stat and (stat['pct']>0 or suffrages=='fiemcpt'): }}
                    <span title="{{ =stat['libelle']}}" class="{{ =stat['class'] }} {{ =pos }}-text">
@@ -98,12 +132,16 @@
 </ul>
 </div>
 <script>
+    var axes = JSON.parse('{{ =XML(json.dumps(axes.keys())) }}');
     var sList = new List('{{ =axe }}',{ valueNames: ['slibelle']});
     var current_suffrages = "{{ =suffrages }}";
     var current_tri = "{{ =tri }}";
     var current_axe = "{{ =axe }}";
     var current_desc = {{ =desc }};
-    var current_filtres = JSON.parse('{{ =XML(filtres) }}');
+    {{ import json }}
+    var current_filtres = JSON.parse('{{ =XML(json.dumps(filtres)) }}');
+    //var axes_values = JSON.parse('{{ =XML(axes_values) }}');
+    
     
     $(".itemchart").each(function() {
         var ctx = $(this);
@@ -126,10 +164,11 @@
                      "grey",
                      "rgba(255,192,0,1)",
                      "rgba(12,195,214,1)",
+                     "grey",
                  ],
                  label: 'Dataset 1'
              }],
-             labels:['Pour','Contre','Abstention','Non votant','Absent','EM-Compatibilité','FI-Compatibilité']
+             labels:['Pour','Contre','Abstention','Non votant','Absent','EM-Compatibilité','FI-Compatibilité','Autres']
 
          },
          options: {
