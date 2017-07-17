@@ -58,17 +58,23 @@
               {{ else: }}
           <div class="col s12">
               {{ pass }}
-              <span class="card-title" style="font-weight:500;"><span class="slibelle">{{ if axe=='scrutin':}}<span class="left new resultvote {{ =item['resultpos'] }}">{{ ={'pour':'Adopté','contre':'Rejeté','abstention':'Abstention?'}[item['resultpos']] }}</span>  {{ pass }}{{ = item['label'] }}</span>
+              <span class="card-title" style="font-weight:500;margin-bottom:5px;"><span class="slibelle">{{ if axe=='scrutin':}}<span class="left new resultvote {{ =item['resultpos'] }}">{{ ={'pour':'Adopté','contre':'Rejeté','abstention':'Abstention?'}[item['resultpos']] }}</span>  {{ pass }}{{ = item['label'] }}</span>
               {{ if axe=='depute': }}<span class="coul{{ =item['groupe_abrev'] }}-text" style="font-size:60%">({{ =item['groupe_libelle'] }})</span><span class="ranking right">{{ =i+1 }}</span>
-              {{ elif axe!='scrutin': }}<span style="font-size:60%">{{ =item['deputes'] }} députée(s))</span>{{ pass }}</span>
+              {{ elif axe=='dossierleg' or axe=='typescrutin': }}<span style="font-size:60%">({{ =sum(item['nb'].values()) / 577 }} scrutin(s))</span>
+              {{ elif axe!='scrutin': }}<span style="font-size:60%">({{ =item['deputes'] }} députée(s))</span>{{ pass }}</span>
+              {{ if axe=='depute':}}
+                  <p style="margin-top:-5px;margin-bottom:5px;">{{ = "%s / %s / %s " % (item['region'],item['departement'],item['circo']) }} <br/>
+                      <span>{{ = item['profession_libelleCourant'] }}</span><span>{{ "%d ans" % (item['age']) }}</span></p>
+              {{ pass }}
               <span><span style="font-weight:300;">Votes{{ if suffrages=='exprime' or suffrages=='fiemcpt': }} exprimés{{pass}}{{ if suffrages=='exprime': }} ({{ =item['votants']}}){{ pass}}</span>
               <span class='right' style="font-weight:300;">Participation</span></span>
+              
                 <span class="card-title">
                 {{ for pos in ['pour','contre','abstention','nonVotant','absent','voteem','votefi']: }}
                 {{ stat = item['stats'][suffrages].get(pos,None) }}
                 {{ if stat and (stat['pct']>0 or suffrages=='fiemcpt'): }}
                    <span title="{{ =stat['libelle']}}" class="{{ =stat['class'] }} {{ =pos }}-text">
-                       <i class="fa fa-{{ =stat['icon'] }}"></i> {{ = stat['pct'] }}%{{ if nbscrutins: }} <span style="font-size:60%">({{ = stat['n' if (axe!='depute' and axe!='scrutin') else 'ntot'] }})</span>{{ pass }}
+                       <i class="fa fa-{{ =stat['icon'] }}"></i> {{ = stat['pct'] }}%{{ if nbscrutins: }} <span style="font-size:60%">({{ = stat['n' if (not axe in ['depute','scrutin','typescrutin','dossierleg'] ) else 'ntot'] }})</span>{{ pass }}
                    </span>
                 {{ pass }}
                 {{ pass }}

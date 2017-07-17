@@ -110,7 +110,7 @@ def vueaxe():
             for k in item['stats'].keys():
                 max(item['stats'][k].values(),key=lambda x:x['ntot'])['class'] += 'Big'
             #item['stats
-
+            
 
             # cercles
             item['cercles'] = []
@@ -119,7 +119,7 @@ def vueaxe():
 
         return dict(items=items,nbscrutins=nbscrutins)
 
-    votedata = cache.ram(hash,getVoteData,time_expire=3600)
+    votedata = cache.ram(hash,getVoteData,time_expire=0)
 
     contexte = dict(tri=tri,axe=idaxe,suffrages=suffrages,desc=desc)
 

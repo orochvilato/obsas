@@ -79,9 +79,24 @@ axes = {'groupes':{'libelle':'Groupes',
                    'titre':'Votes par scrutin',
                    'source':{'nom':'scrutins','filtre':{},'key':'scrutin_id','label':'scrutin_fulldesc'},
                    'votes':{'field':'scrutin_id'}},
+        'typescrutin':{'libelle':"Type scrutins",
+                   'elements':'G',
+                   'tris':['datescrutin'],
+                   'tri_defaut':'datescrutin',
+                   'titre':'Votes par type de scrutin',
+                   'source':{'nom':'scrutins','filtre':{},'key':'scrutin_type','label':'scrutin_typeLibelle'},
+                   'votes':{'field':'scrutin_type'}},
+
+        'dossierleg':{'libelle':"Dossier législatif",
+                   'elements':'G',
+                   'tris':['datescrutin'],
+                   'tri_defaut':'datescrutin',
+                   'titre':'Votes par dossier législatif',
+                   'source':{'nom':'scrutins','filtre':{},'key':'scrutin_dossier','label':'scrutin_dossierLibelle'},
+                   'votes':{'field':'scrutin_dossier'}},
 
        }
-axes_order = ['assemblee','groupes','commissions','typeregion','regions','departements','ages','csp','sexe','depute','scrutin']
+axes_order = ['assemblee','groupes','commissions','typeregion','regions','departements','ages','csp','sexe','depute','scrutin','typescrutin','dossierleg']
 def vide(ctx,v):
     if (v=='-'):
         return float(-1) if ctx['desc']=='1' else float(10000000)
