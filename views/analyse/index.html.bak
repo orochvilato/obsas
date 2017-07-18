@@ -10,7 +10,20 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
   <link rel="stylesheet" href="{{=URL('static','css/colors.css')}}">
+  <link rel="stylesheet" href="{{=URL('static','css/nouislider.min.css')}}">
 <style>
+    .range-field {
+        margin-top:6px;
+        margin-bottom:6px;
+    }
+    i.filter {
+        font-size:80%;
+        margin-right:5px;
+        color:grey;
+    }
+    i.filter.filtered {
+        color:lightgrey;
+    }
     tfoot, th {
       text-align: center;
     }
@@ -83,14 +96,18 @@
       font-size:14px;
     }
     span.resultvote {
-      font-weight: 300;
-      font-size: 0.8rem;
-      border-radius: 2px;
-      margin-top: 5px;
-      margin-right: 5px;
-      margin-left: 0px;
-      color: #fff;
-      border-radius: 2px;
+        font-weight: 300;
+        font-size: 0.8rem;
+        margin-top: 3px;
+        margin-right: 8px;
+        margin-left: 0px;
+        color: #fff;
+        border-radius: 2px;
+        line-height: 1.4rem;
+        padding-left: 6px;
+        padding-right: 6px;
+        padding-top: 3px;
+        padding-bottom: 3px;
     }
 
     .ranking {
@@ -142,6 +159,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay.min.js"></script>
+  <script src="{{=URL('static','js/nouislider.min.js')}}"></script>
   <script src="{{=URL('static','js/analyse.js')}}"></script>
 
 
@@ -154,12 +172,14 @@
   </script>
 
   <script>
+    {{ import json }}
+    var axes = JSON.parse('{{ =XML(json.dumps(axes.keys()).replace("'",u"\\'")) }}');
     var current_suffrages = "{{ =suffrages }}";
     var current_tri = "{{ =tri }}";
     var current_axe = "{{ =axe }}";
     var current_desc = {{ =desc }};
-    var current_scrutin = "{{ =scrutin }}";
-    var current_filtres = JSON.parse('{{ =XML(filtres) }}');
+    var current_filtresaxes = JSON.parse('{{ =XML(json.dumps(filtresaxes).replace("'",u"\\'")) }}');
+    var current_filtresitems = JSON.parse('{{ =XML(json.dumps(filtresitems).replace("'",u"\\'")) }}');
   </script>
 
 </footer>

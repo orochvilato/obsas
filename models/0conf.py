@@ -86,6 +86,7 @@ axes = {'groupes':{'libelle':'Groupes',
                    'votes':{'field':'scrutin_dossier'}},
 
        }
+
 axes_order = ['assemblee','groupes','commissions','typeregion','regions','departements','ages','csp','sexe','depute','scrutin','typescrutin','dossierleg']
 def vide(ctx,v):
     if (v=='-'):
@@ -106,3 +107,11 @@ sortfcts = {
         'datescrutin': {'libelle':'par N° de scrutin', 'fct': lambda ctx,x:x['scrutin_num']}
         }
 sortfcts_order = ['participation','pctpour','pctcontre','pctabs','alpha','ficompat','emcompat']
+
+filtresitm = {
+        'participation': { 'libelle':'Taux de participation','max':100,'min':0,'fct':lambda x:x['participation']},
+        'ficompat': { 'libelle':'Taux de FI-compatibilité','max':100,'min':0,'fct':lambda x:x['stats']['fiemcpt']['votefi']['pct']},
+        'emcompat': { 'libelle':'Taux de EM-compatibilité','max':100,'min':0,'fct':lambda x:x['stats']['fiemcpt']['voteem']['pct']},
+    
+    }
+filtresitm_order = ['participation','ficompat','emcompat']

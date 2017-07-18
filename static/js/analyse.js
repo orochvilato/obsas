@@ -4,8 +4,10 @@ var pushURL = function() {
     params.desc = current_desc;
     params.axe = current_axe;
     params.suffrages = current_suffrages;
-    params.filtres = JSON.stringify(current_filtres);
+    params.filtresaxes = JSON.stringify(current_filtresaxes);
+    params.filtresitems = JSON.stringify(current_filtresitems);
     params.tri = current_tri;
+    params.filterson = 1;
     var str = jQuery.param( params );
     window.history.pushState("string", "obsas", "analyse?"+str);
     console.log(str);
@@ -18,8 +20,7 @@ var updateView = function() {
     var suffrages = $('select#suffrages').val();
     var tri = $('select#tri').val();
     var axe = $('select#axe').val();
-    var filtres;
-
+    
     var params = {};
     
     if (current_desc != undefined) {
@@ -31,12 +32,10 @@ var updateView = function() {
     } else {
         params.axe = current_axe;
     }
-    if (filtres!= undefined) {
-        params.filtres = filtres;
-        current_filtres = filtres;
-    } else {
-        params.filtres = JSON.stringify(current_filtres);
-    }
+    params.filtresaxes = JSON.stringify(current_filtresaxes);
+    params.filtresitems = JSON.stringify(current_filtresitems);
+    params.filterson = filterson;
+    
     if (suffrages != undefined) {
         params.suffrages = suffrages;
         current_suffrages = suffrages;
@@ -49,7 +48,7 @@ var updateView = function() {
     } else {
         params.tri = current_tri;
     }
-    
+    console.log(params);
     $.LoadingOverlay("show");
     $.ajax({
     url: 'analyse/vueaxe',
@@ -67,39 +66,117 @@ var updateView = function() {
           current_desc = 1-current_desc;
           updateView();
       });
+      $('#showanalyse').click(function() {
+          filterson = 1-filterson;
+          $('.analyse').toggle();
+      });
       $('#filtresaxe').change(function() {
-          console.log('change');
           var show = $(this).val();
           $.each(axes,function(i,axe) {
               console.log('show',show,axe,show);
               if (show.indexOf(axe)>=0) {
                   console.log($('select.filtreaxe[axe="+axe+"]'));
                   $('#filtre_'+axe).show();
-                  if (!(axe in current_filtres)) {
-                      current_filtres[axe] = [];
+                  if (!(axe in current_filtresaxes)) {
+                      current_filtresaxes[axe] = [];
                   }
               } else {
                   $('#filtre_'+axe).hide();
-                  current_filtres[axe] = [];
+                  current_filtresaxes[axe] = [];
                   $('#filtresel_'+axe+' option').prop('selected',false);
               }
           });
       });
+      $('#filtresitem').change(function() {
+          
+          var show = $(this).val();
+          
+          $.each(filtresitm,function(i,fitem) {
+              console.log(fitem);
+              var min = parseInt($('#f'+fitem).val('min'));
+              var max = parseInt($('#f'+fitem).val('max'));
+              if (show.indexOf(fitem)>=0) {
+                  
+                  $('#filtreit_'+fitem).show();
+                  if (!(fitem in current_filtresitems)) {
+                      current_filtresitems[fitem] = [min,max];
+                      $('#f'+fitem).get(0).noUiSlider.set([min,max]);
+                  }
+              } else {
+                  $('#filtreit_'+fitem).hide();
+                  $('#f'+fitem).get(0).noUiSlider.set([min,max]);
+                  delete current_filtresitems[fitem];
+              }
+          });
+      });
+
       $('#filtrer').click(function() {
-          var newfilter = {}
+          var newfilteraxe = {};
+          var newfilteritem = {};
           $('.filtreaxe').each(function() {
               var a = $(this).attr('axe');
               var v = $(this).val();
               if (a && v.length>0) {
-                  newfilter[a] = v;
+                  newfilteraxe[a] = v;
               }
           });
-          console.log(newfilter);
-          current_filtres = newfilter;
+          $('.pctslider').each(function() {
+              var f = $(this).attr('f');
+              if (f in current_filtresitems) {
+                  v = $(this).get(0).noUiSlider.get();
+                  newfilteritem[f] = [parseInt(v[0]),parseInt(v[1])];
+              }
+          });
+          
+          current_filtresaxes = newfilteraxe;
+          current_filtresitems = newfilteritem;
+          console.log(current_filtresitems);
           updateView();
       });
-      pushURL();
-      
+      $('.pctslider').each(function() {
+          console.log('slider');
+          var id = $(this).attr('id');
+        
+         
+          //var slider = document.getElementById('fparticipation');
+          var _max = $(this).attr('max');
+          var _min = $(this).attr('min');
+          var _vmax = $(this).attr('vmax');
+          var _vmin = $(this).attr('vmin');
+         
+          if (_vmax == undefined) {
+              _vmax = _max;
+          }
+          if (_vmin == undefined) {
+              _vmin = _min;
+          }
+          var min = parseInt(_min);
+          var vmin = parseInt(_vmin);
+          var max = parseInt(_max);
+          var vmax = parseInt(_vmax);
+          console.log(min,max,vmin,vmax);
+          noUiSlider.create(this, {
+              start: [vmin, vmax],
+              connect: true,
+              step: 5,
+              range: {
+             'min': min,
+             'max': max
+           },
+         });
+        
+        
+        var handles = [ document.getElementById(id+'-min'), document.getElementById(id+'-max') ]
+        this.noUiSlider.on('update', function( values, handle ) {
+            var val = Math.round(values[handle])
+            
+            
+            handles[handle].innerHTML = val;
+        });
+      });
+      if (filterson==1) {
+          pushURL();
+      }
   });
 };
 

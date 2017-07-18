@@ -39,6 +39,7 @@ def getVoteData_fct(idaxe,filtres):
         else:
             req = {}
         nbscrutins = len(mdb.votes.distinct('scrutin_id', req))
+        nbdeputes = len(mdb.votes.distinct('uid',req))
 
         axefiltered = mdb.votes.distinct(axe['votes']['field'],req)
         
@@ -108,12 +109,43 @@ def getVoteData_fct(idaxe,filtres):
             #<a class="vcircle {{position}}" title="{{nom}}" href="acteurs/{{uid}}.html" ></a>
             items.append(item)
 
-        return dict(items=items,nbscrutins=nbscrutins)
+        return dict(items=items,nbscrutins=nbscrutins,nbdeputes=nbdeputes)
     return getVoteData
 
 
 
+
 import datetime
+import hashlib
+import pickle
+import short_url
+
+class TinyURL:
+    def __init__(self,db):
+        self.db = db
+        self.tiny = db.tinyurl
+        self.tiny.profiles.create_index([('hash',pymongo.ASCENDING)],unique=True)
+        self.tiny.profiles.create_index([('_uid',pymongo.ASCENDING)],unique=True)
+        if self.db.tiny_counter.count()==0:
+            db.tiny_counter.insert({'_id': "tinyid", 'seq': 0})
+    def getNextSequence(self,collection,name):
+        return collection.find_and_modify(query= { '_id': name },update= { '$inc': {'seq': 1}}, new=True ).get('seq');
+    def get(self,sid):
+        _uid = short_url.decode_url(sid)
+        r = self.tiny.find_one({'_uid':_uid})
+        return r['params'] if r else None
+        
+    def set(self,params):
+        hash = hashlib.md5(pickle.dumps(params)).hexdigest()
+        r = self.tiny.find_one({'hash':hash})
+        if r:
+            _uid = r['_uid']
+        else:
+            _uid = self.getNextSequence(self.db.tiny_counter,"tinyid")
+            self.tiny.insert({'_uid': _uid, 'params': params,'hash':hash})
+        sid = short_url.encode_url(_uid)
+        return sid
+
 class AppCache:
     def __init__(self,db,name):
         self.db = db
@@ -134,5 +166,6 @@ class AppCache:
         return record['data']
     def clear(self):
         self.cachedb.remove()
-
+    
 appcache = AppCache(mdb,'cache_obsas')#+request.application)
+tinyurl = TinyURL(mdb)

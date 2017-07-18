@@ -1,30 +1,56 @@
 <div class="row">
    <div class="col s12">
-     <h5>{{ =nbscrutins }} scrutin(s)</h5>
+       
+     <h4 class="center">{{ = axes[axe]['titre'] }}</h4>
+       <h5 class="center" style="font-size:1.3rem;">{{ for a in axes_choix: }}{{ if a[0] in filtresaxes.keys(): }}<p>{{ =a[1] }} : <b>{{ =', '.join([ axes_dicts[a[0]][af] for af in filtresaxes[a[0]] ]) }}</b></p>{{ pass }}{{ pass }}</h5>
+       <h5 class="center" style="font-size:1.3rem;">{{ for f in filtresitems_choix: }}{{ if f[0] in filtresitems.keys(): }}<p>{{ =f[1] }} : <b>de {{ =filtresitems[f[0]][0] }} % à {{ =filtresitems[f[0]][1] }} %</b></p>{{ pass }}{{ pass }}</h5>
+         <h5 class="center">{{ =nbscrutins }} scrutin(s), {{ =nbdeputes }} député(s)</h5>
    </div>
 </div>
 <div class="row">
+    <a class="waves-effect waves-teal btn-flat" id="showanalyse"><i class="fa fa-line-chart"></i></a>
+    <a class="right" href="{{ = 'analyse?t='+tinyid }}"><i class="fa fa-link"></i></a>
+    
+</div>
+<div class="row analyse" {{ if filterson=='0': }}style="display:none;"{{ pass }}>
+     
      <div id="filtres" class="card blue-grey lighten-5">
             <div class="card-content" style="margin-top:12px;margin-bottom:5px;">
               <div class="row" style="margin-bottom:0px;">
-                  <div class="input-field col s10">
+                  <div class="input-field col s5">
                     <select id="filtresaxe" multiple>
-                         <option value="" disabled {{ if filtres=={}: }}selected{{ pass }}>Définir</option>
+                         <option value="" disabled {{ if filtresaxes=={}: }}selected{{ pass }}>Définir</option>
                          {{ for a in axes_choix: }}
-                            <option value="{{ =a[0] }}" {{ if a[0] in filtres.keys(): }}selected{{ pass }}>{{ =a[1] }}</option>
+                            <option value="{{ =a[0] }}" {{ if a[0] in filtresaxes.keys(): }}selected{{ pass }}>{{ =a[1] }}</option>
                          {{ pass }}
                    </select>
-                   <label>Filtres actifs</label>
+                   <label>Filtres axes actifs</label>
+                 </div><div class="input-field col s5">
+                    <select id="filtresitem" multiple>
+                         <option value="" disabled {{ if filtresitems=={}: }}selected{{ pass }}>Définir</option>
+                         {{ for f in filtresitems_choix: }}
+                            <option value="{{ =f[0] }}" {{ if f[0] in filtresitems.keys(): }}selected{{ pass }}>{{ =f[1] }}</option>
+                         {{ pass }}
+                   </select>
+                   <label>Filtres éléments actifs</label>
                  </div><div class="col s2"><button id="filtrer">Filtrer</button></div>
               </div>
               <div class="row">
-                
+                {{ for f in filtresitems_choix: }}
+                <div class="col s12 l6" id="filtreit_{{ =f[0] }}" style="padding-bottom:10px;{{ if not f[0] in filtresitems.keys():}}display:none;{{ pass}}">
+                    
+                        <label>{{ =f[1] }} <span id="f{{ =f[0] }}-min"></span>% à <span id="f{{ =f[0] }}-max"></span>%</label>
+                        <p class="range-field" style="margin-top:10px;margin-bottom:10px;">
+                        <div style="margin-left:10px;margin-right:10px;" class="pctslider" id="f{{ =f[0] }}" f="{{ =f[0] }}" {{ if f[0] in filtresitems.keys(): }} vmin={{ =filtresitems[f[0]][0] }} vmax={{ =filtresitems[f[0]][1] }} {{ pass }} min={{ =filtresitm[f[0]]['min'] }} max={{ =filtresitm[f[0]]['max'] }}> </div>
+                    </p>
+                </div>
+                {{ pass }}
                 {{ for a in axes_choix: }}
-                    <div id="filtre_{{ =a[0] }}" class="col s12 l6 input-field filter" {{ if not a[0] in filtres.keys():}} style="display:none;" {{ pass}}>
+                    <div id="filtre_{{ =a[0] }}" class="col s12 l6 input-field filter" {{ if not a[0] in filtresaxes.keys():}} style="display:none;" {{ pass}}>
                         <select id="filtresel_{{ =a[0] }}" axe="{{ =a[0] }}" class="filtreaxe" multiple>
-                            <option value="" disabled {{ if filtres.get(a[0],None): }}selected{{ pass }}>Définir</option>
+                            <option value="" disabled {{ if filtresaxes.get(a[0],None): }}selected{{ pass }}>Définir</option>
                             {{ for item in axes_values[a[0]]: }}
-                               <option value="{{ =item['key'] }}" {{ if a[0] in filtres.keys() and item['key'] in filtres[a[0]]: }}selected{{ pass }}>{{ =item['label'] }}</option>
+                               <option value="{{ =item['key'] }}" {{ if a[0] in filtresaxes.keys() and item['key'] in filtresaxes[a[0]]: }}selected{{ pass }}>{{ =item['label'] }}</option>
                             {{ pass }}
                         </select>
                         <label>{{ = a[1] }}</label>
@@ -35,7 +61,7 @@
         </div>
 
 </div>
-<div class="row">
+<div class="row analyse"  {{ if filterson=='0': }}style="display:none;"{{ pass }}>
   <div class="card-panel blue-grey lighten-5">
       <div class="row">
       <div class="input-field col s12">
@@ -92,7 +118,7 @@
               {{ else: }}
           <div class="col s12">
               {{ pass }}
-              <span class="card-title" style="font-weight:500;margin-bottom:5px;"><span class="slibelle">{{ if axe=='scrutin':}}<span class="left new resultvote {{ =item['resultpos'] }}">{{ ={'pour':'Pour','contre':'Contre','abstention':'Abstention'}[item['resultpos']] }}</span>  {{ pass }}{{ = item['label'] }}</span>
+              <span class="card-title" style="font-weight:500;margin-bottom:5px;"><i class="fa fa-filter filter filtered"></i><span class="slibelle">{{ if axe=='scrutin':}}<span class="left new resultvote {{ =item['resultpos'] }}">{{ ={'pour':'Pour','contre':'Contre','abstention':'Abstention'}[item['resultpos']] }}</span>  {{ pass }}{{ = item['label'] }}</span>
               {{ if axe=='depute': }}<span class="coul{{ =item['groupe_abrev'] }}-text" style="font-size:60%">({{ =item['groupe_libelle'] }})</span><span class="ranking right">{{ =i+1 }}</span>
               {{ elif axe=='dossierleg' or axe=='typescrutin': }}<span style="font-size:60%">({{ =sum(item['nb'].values()) / 577 }} scrutin(s))</span>
               {{ elif axe!='scrutin': }}<span style="font-size:60%">({{ =item['deputes'] }} députée(s))</span>{{ pass }}</span>
@@ -133,14 +159,17 @@
 </div>
 <script>
     var axes = JSON.parse('{{ =XML(json.dumps(axes.keys()).replace("'",u"\\'")) }}');
+    var filtresitm = JSON.parse('{{ =XML(json.dumps(filtresitm.keys()).replace("'",u"\\'")) }}');
     var sList = new List('{{ =axe }}',{ valueNames: ['slibelle']});
     var current_suffrages = "{{ =suffrages }}";
     var current_tri = "{{ =tri }}";
     var current_axe = "{{ =axe }}";
     var current_desc = {{ =desc }};
+    var filterson= {{ =filterson }};
     {{ import json }}
-    // {{ =XML(json.dumps(filtres).replace("'",u" ")) }}
-    var current_filtres = JSON.parse('{{ =XML(json.dumps(filtres).replace("'",u"\\'")) }}');
+
+    var current_filtresaxes = JSON.parse('{{ =XML(json.dumps(filtresaxes).replace("'",u"\\'")) }}');
+    var current_filtresitems = JSON.parse('{{ =XML(json.dumps(filtresitems).replace("'",u"\\'")) }}');
     //var axes_values = JSON.parse('{{ =XML(axes_values) }}');
     
     
