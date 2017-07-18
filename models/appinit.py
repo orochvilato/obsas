@@ -16,9 +16,10 @@ def getVoteData_fct(idaxe,filtres):
     filters = {}
     for a in axes:
         axedef = axes[a]['source']
-        filters[a] = {'$or':[ { axes[a]['votes']['field']:f} for f in filtres[a] ]} if a in filtres.keys() else {}
+        filters[a] = {'$or':[ { axes[a]['votes']['field']:f} for f in filtres[a] ]} if (a in filtres.keys() and filtres[a]!=[]) else {}
 
-    axefilter = {'$or':[ { 'key':f} for f in filtres[idaxe] ]} if idaxe in filtres.keys() else {}
+    axefilter = {'$or':[ { 'key':f} for f in filtres[idaxe] ]} if (idaxe in filtres.keys() and filtres[idaxe]!=[]) else {}
+    print axefilter
     axe = axes[idaxe]
     source = axe['source']
 

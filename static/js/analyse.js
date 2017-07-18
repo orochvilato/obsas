@@ -14,7 +14,7 @@ var pushURL = function() {
 }
 
 var updateView = function() {
-    console.log('updateview');
+    
     $('.updateview').unbind('change');
     $('#sens').unbind('click');
     var suffrages = $('select#suffrages').val();
@@ -61,6 +61,27 @@ var updateView = function() {
       $('select').material_select();
       $('.updateview').change(function() {
          updateView();
+      });
+      $('.itemfilter').click(function() {
+          var a=$(this).attr('axe');
+          var it=$(this).attr('item');
+          console.log(current_filtresaxes);
+          if (current_filtresaxes[a]==undefined) {
+                current_filtresaxes[a]==[];
+          }
+          var idx=current_filtresaxes[a].indexOf(it);
+          if (idx<0) {
+              current_filtresaxes[a].push(it);
+              $(this).addClass('filtered');
+          } else {
+              current_filtresaxes[a].splice(idx, 1);
+              $(this).removeClass('filtered');
+              if (current_filtresaxes[a].length==0) {
+                  delete current_filtresaxes[a]
+              }
+              
+          }
+          updateView();
       });
       $('#sens').click(function() {
           current_desc = 1-current_desc;

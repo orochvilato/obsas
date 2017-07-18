@@ -16,13 +16,13 @@
         margin-top:6px;
         margin-bottom:6px;
     }
-    i.filter {
+    i.itemfilter {
         font-size:80%;
         margin-right:5px;
-        color:grey;
-    }
-    i.filter.filtered {
         color:lightgrey;
+    }
+    i.itemfilter.filtered {
+        color:grey;
     }
     tfoot, th {
       text-align: center;
@@ -180,6 +180,7 @@
     var current_desc = {{ =desc }};
     var current_filtresaxes = JSON.parse('{{ =XML(json.dumps(filtresaxes).replace("'",u"\\'")) }}');
     var current_filtresitems = JSON.parse('{{ =XML(json.dumps(filtresitems).replace("'",u"\\'")) }}');
+    var filterson = {{ = filterson }};
   </script>
 
 </footer>
