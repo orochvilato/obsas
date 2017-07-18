@@ -65,11 +65,11 @@ var updateView = function() {
       $('.itemfilter').click(function() {
           var a=$(this).attr('axe');
           var it=$(this).attr('item');
-          console.log(current_filtresaxes);
+          //console.log(a,current_filtresaxes);
           if (current_filtresaxes[a]==undefined) {
-                current_filtresaxes[a]==[];
+                current_filtresaxes[a]=[];
           }
-          var idx=current_filtresaxes[a].indexOf(it);
+          var idx=current_filtresaxes[a].indexOf(it)
           if (idx<0) {
               current_filtresaxes[a].push(it);
               $(this).addClass('filtered');
