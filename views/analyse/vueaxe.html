@@ -132,14 +132,15 @@
 </ul>
 </div>
 <script>
-    var axes = JSON.parse('{{ =XML(json.dumps(axes.keys())) }}');
+    var axes = JSON.parse('{{ =XML(json.dumps(axes.keys()).replace("'",u"\\'")) }}');
     var sList = new List('{{ =axe }}',{ valueNames: ['slibelle']});
     var current_suffrages = "{{ =suffrages }}";
     var current_tri = "{{ =tri }}";
     var current_axe = "{{ =axe }}";
     var current_desc = {{ =desc }};
     {{ import json }}
-    var current_filtres = JSON.parse('{{ =XML(json.dumps(filtres)) }}');
+    // {{ =XML(json.dumps(filtres).replace("'",u" ")) }}
+    var current_filtres = JSON.parse('{{ =XML(json.dumps(filtres).replace("'",u"\\'")) }}');
     //var axes_values = JSON.parse('{{ =XML(axes_values) }}');
     
     

@@ -21,7 +21,7 @@
                 
                 {{ for a in axes_choix: }}
                     <div id="filtre_{{ =a[0] }}" class="col s12 l6 input-field filter" {{ if not a[0] in filtres.keys():}} style="display:none;" {{ pass}}>
-                        <select axe="{{ =a[0] }}" class="filtreaxe" multiple>
+                        <select id="filtresel_{{ =a[0] }}" axe="{{ =a[0] }}" class="filtreaxe" multiple>
                             <option value="" disabled {{ if filtres.get(a[0],None): }}selected{{ pass }}>Définir</option>
                             {{ for item in axes_values[a[0]]: }}
                                <option value="{{ =item['key'] }}" {{ if a[0] in filtres.keys() and item['key'] in filtres[a[0]]: }}selected{{ pass }}>{{ =item['label'] }}</option>
@@ -132,14 +132,15 @@
 </ul>
 </div>
 <script>
-    var axes = JSON.parse('{{ =XML(json.dumps(axes.keys())) }}');
+    var axes = JSON.parse('{{ =XML(json.dumps(axes.keys()).replace("'",u"\\'")) }}');
     var sList = new List('{{ =axe }}',{ valueNames: ['slibelle']});
     var current_suffrages = "{{ =suffrages }}";
     var current_tri = "{{ =tri }}";
     var current_axe = "{{ =axe }}";
     var current_desc = {{ =desc }};
     {{ import json }}
-    var current_filtres = JSON.parse('{{ =XML(json.dumps(filtres)) }}');
+    // {{ =XML(json.dumps(filtres).replace("'",u" ")) }}
+    var current_filtres = JSON.parse('{{ =XML(json.dumps(filtres).replace("'",u"\\'")) }}');
     //var axes_values = JSON.parse('{{ =XML(axes_values) }}');
     
     

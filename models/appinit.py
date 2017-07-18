@@ -24,7 +24,7 @@ def getVoteData_fct(idaxe,filtres):
 
     def getVoteData():
 
-        _items = list(mdb['axe_'+idaxe].find(axefilter))
+        
 
         if idaxe == 'depute':
             #groupes = cache.disk('groupes',lambda:dict((g['uid'],g) for g in mdb.organes.find({'codeType':'GP','actif':True})),time_expire=24*3600)
@@ -40,7 +40,9 @@ def getVoteData_fct(idaxe,filtres):
             req = {}
         nbscrutins = len(mdb.votes.distinct('scrutin_id', req))
 
-             
+        axefiltered = mdb.votes.distinct(axe['votes']['field'],req)
+        
+        _items = [ it for it in mdb['axe_'+idaxe].find(axefilter) if it[source['key']] in axefiltered ]
        
         items = []
     
