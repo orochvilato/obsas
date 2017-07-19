@@ -44,7 +44,7 @@ def getVoteData_fct(idaxe,filtres):
 
         axefiltered = mdb.votes.distinct(axe['votes']['field'],req)
         
-        _items = [ it for it in mdb['axe_'+idaxe].find(axefilter) if it[source['key']] in axefiltered ]
+        _items = [ it for it in mdb['axe_'+idaxe].find(axefilter) if it['key'] in axefiltered ]
        
         items = []
     

@@ -16,7 +16,7 @@ def getVoteData_fct(idaxe,filtres):
     filters = {}
     for a in axes:
         axedef = axes[a]['source']
-        filters[a] = {'$or':[ { axes[a]['votes']['field']:f} for f in filtres[a] ]} if (a in filtres.keys() and filtres[a]!=[] else {}
+        filters[a] = {'$or':[ { axes[a]['votes']['field']:f} for f in filtres[a] ]} if (a in filtres.keys() and filtres[a]!=[]) else {}
 
     axefilter = {'$or':[ { 'key':f} for f in filtres[idaxe] ]} if (idaxe in filtres.keys() and filtres[idaxe]!=[]) else {}
     print axefilter
@@ -44,7 +44,7 @@ def getVoteData_fct(idaxe,filtres):
 
         axefiltered = mdb.votes.distinct(axe['votes']['field'],req)
         
-        _items = [ it for it in mdb['axe_'+idaxe].find(axefilter) if it[source['key']] in axefiltered ]
+        _items = [ it for it in mdb['axe_'+idaxe].find(axefilter) if it'key'] in axefiltered ]
        
         items = []
     

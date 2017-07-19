@@ -3,11 +3,22 @@
 import tools
 import pymongo
 
+def test():
+    savecache=[dict(id=c['id'],params=c['params']) for c in appcache.cachedb.find()]
+    appcache.clear()
+    for r in savecache:
+        print r
+        appcache.get(r['id'],getVoteData_fct,params=r['params'])
+    return dict(t=t)
+
 def clear_cache():
     appcache.clear()
     rebuild_cache()
     
 def rebuild_cache():
+    savecache=[dict(id=c['id'],params=c['params']) for c in appcache.cachedb.find()]
+    appcache.clear()
+    
     def getGroupesDict():
         return dict((g['uid'],g) for g in mdb.organes.find({'codeType':'GP','actif':True}))
     def getActeursDict():
@@ -19,8 +30,10 @@ def rebuild_cache():
     appcache.set('groupes',lambda:getGroupesDict,params={})
     appcache.set('acteurs',lambda:getActeursDict,params={})
     appcache.set('scrutins',lambda:getScrutinsDict,params={})
-
-
+    for r in savecache:
+        print r
+        appcache.get(r['id'],getVoteData_fct,params=r['params'])
+    
 def update_emfi_compat():
     scrutins = mdb.scrutins.find({'votefi':None})
     

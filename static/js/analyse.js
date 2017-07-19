@@ -12,11 +12,32 @@ var pushURL = function() {
     window.history.pushState("string", "obsas", "analyse?"+str);
     console.log(str);
 }
+var updateVars = function() {
+      var newfilteraxe = {};
+      var newfilteritem = {};
+      $('.filtreaxe').each(function() {
+          var a = $(this).attr('axe');
+          var v = $(this).val();
+          if (a && v.length>0) {
+              newfilteraxe[a] = v;
+          }
+      });
+      $('.pctslider').each(function() {
+          var f = $(this).attr('f');
+          if (f in current_filtresitems) {
+              v = $(this).get(0).noUiSlider.get();
+              newfilteritem[f] = [parseInt(v[0]),parseInt(v[1])];
+          }
+      });
 
+      current_filtresaxes = newfilteraxe;
+      current_filtresitems = newfilteritem;
+}
 var updateView = function() {
     
     $('.updateview').unbind('change');
     $('#sens').unbind('click');
+    updateVars();
     var suffrages = $('select#suffrages').val();
     var tri = $('select#tri').val();
     var axe = $('select#axe').val();
@@ -94,7 +115,7 @@ var updateView = function() {
       $('#filtresaxe').change(function() {
           var show = $(this).val();
           $.each(axes,function(i,axe) {
-              console.log('show',show,axe,show);
+             
               if (show.indexOf(axe)>=0) {
                   console.log($('select.filtreaxe[axe="+axe+"]'));
                   $('#filtre_'+axe).show();
@@ -103,7 +124,7 @@ var updateView = function() {
                   }
               } else {
                   $('#filtre_'+axe).hide();
-                  current_filtresaxes[axe] = [];
+                  delete current_filtresaxes[axe];
                   $('#filtresel_'+axe+' option').prop('selected',false);
               }
           });
@@ -132,26 +153,6 @@ var updateView = function() {
       });
 
       $('#filtrer').click(function() {
-          var newfilteraxe = {};
-          var newfilteritem = {};
-          $('.filtreaxe').each(function() {
-              var a = $(this).attr('axe');
-              var v = $(this).val();
-              if (a && v.length>0) {
-                  newfilteraxe[a] = v;
-              }
-          });
-          $('.pctslider').each(function() {
-              var f = $(this).attr('f');
-              if (f in current_filtresitems) {
-                  v = $(this).get(0).noUiSlider.get();
-                  newfilteritem[f] = [parseInt(v[0]),parseInt(v[1])];
-              }
-          });
-          
-          current_filtresaxes = newfilteraxe;
-          current_filtresitems = newfilteritem;
-          console.log(current_filtresitems);
           updateView();
       });
       $('.pctslider').each(function() {

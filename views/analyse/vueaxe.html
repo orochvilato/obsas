@@ -12,7 +12,7 @@
                     <select id="filtresaxe" multiple>
                          <option value="" disabled {{ if filtresaxes=={}: }}selected{{ pass }}>Définir</option>
                          {{ for a in axes_choix: }}
-                            <option value="{{ =a[0] }}" {{ if a[0] in filtresaxes.keys(): }}selected{{ pass }}>{{ =a[1] }}</option>
+                            <option value="{{ =a[0] }}" {{ if a[0] in filtresaxes.keys() and filtresaxes[a[0]]: }}selected{{ pass }}>{{ =a[1] }}</option>
                          {{ pass }}
                    </select>
                    <label>Filtres axes actifs</label>
@@ -20,7 +20,7 @@
                     <select id="filtresitem" multiple>
                          <option value="" disabled {{ if filtresitems=={}: }}selected{{ pass }}>Définir</option>
                          {{ for f in filtresitems_choix: }}
-                            <option value="{{ =f[0] }}" {{ if f[0] in filtresitems.keys(): }}selected{{ pass }}>{{ =f[1] }}</option>
+                            <option value="{{ =f[0] }}" {{ if f[0] in filtresitems.keys() and filtresitems[f[0]]: }}selected{{ pass }}>{{ =f[1] }}</option>
                          {{ pass }}
                    </select>
                    <label>Filtres éléments actifs</label>
@@ -90,8 +90,8 @@
    <div class="col s12">
        
      <h4 class="center">{{ = axes[axe]['titre'] }}</h4>
-       <h5 class="center" style="font-size:1.3rem;">{{ for a in axes_choix: }}{{ if a[0] in filtresaxes.keys(): }}<p>{{ =a[1] }} : <b>{{ =', '.join([ axes_dicts[a[0]][af] for af in filtresaxes[a[0]] ]) }}</b></p>{{ pass }}{{ pass }}</h5>
-       <h5 class="center" style="font-size:1.3rem;">{{ for f in filtresitems_choix: }}{{ if f[0] in filtresitems.keys(): }}<p>{{ =f[1] }} : <b>de {{ =filtresitems[f[0]][0] }} % à {{ =filtresitems[f[0]][1] }} %</b></p>{{ pass }}{{ pass }}</h5>
+       <h5 class="center" style="font-size:1.3rem;">{{ for a in axes_choix: }}{{ if a[0] in filtresaxes.keys() and filtresaxes[a[0]]: }}<p>{{ =a[1] }} : <b>{{ =', '.join([ axes_dicts[a[0]][af] for af in filtresaxes[a[0]] ]) }}</b></p>{{ pass }}{{ pass }}</h5>
+       <h5 class="center" style="font-size:1.3rem;">{{ for f in filtresitems_choix: }}{{ if f[0] in filtresitems.keys() and filtresitems[f[0]]: }}<p>{{ =f[1] }} : <b>de {{ =filtresitems[f[0]][0] }} % à {{ =filtresitems[f[0]][1] }} %</b></p>{{ pass }}{{ pass }}</h5>
          <h5 class="center">{{ =nbscrutins }} scrutin(s), {{ =nbdeputes }} député(s)</h5>
    </div>
 </div>

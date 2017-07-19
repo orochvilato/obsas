@@ -69,13 +69,12 @@ var updateView = function() {
           if (current_filtresaxes[a]==undefined) {
                 current_filtresaxes[a]=[];
           }
-          if ((current_filtresaxes[a].length==0)||(current_filtresaxes[a].indexOf(it)<0)) {
+          var idx=current_filtresaxes[a].indexOf(it)
+          if (idx<0) {
               current_filtresaxes[a].push(it);
               $(this).addClass('filtered');
           } else {
-              if (current_filtresaxes[a].indexOf(it)>=0) {
-                  current_filtresaxes[a].splice(idx, 1);
-              }
+              current_filtresaxes[a].splice(idx, 1);
               $(this).removeClass('filtered');
               if (current_filtresaxes[a].length==0) {
                   delete current_filtresaxes[a]
@@ -95,7 +94,7 @@ var updateView = function() {
       $('#filtresaxe').change(function() {
           var show = $(this).val();
           $.each(axes,function(i,axe) {
-              console.log('show',show,axe,show);
+             
               if (show.indexOf(axe)>=0) {
                   console.log($('select.filtreaxe[axe="+axe+"]'));
                   $('#filtre_'+axe).show();
@@ -104,7 +103,7 @@ var updateView = function() {
                   }
               } else {
                   $('#filtre_'+axe).hide();
-                  current_filtresaxes[axe] = [];
+                  delete current_filtresaxes[axe];
                   $('#filtresel_'+axe+' option').prop('selected',false);
               }
           });
