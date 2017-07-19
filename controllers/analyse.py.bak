@@ -31,7 +31,8 @@ def vueaxe():
     tri = request.vars.get('tri','participation')
     desc = request.vars.get('desc','1')
     filterson = request.vars.get('filterson','0')
-    
+    print filtresaxes
+    print filtresitems
     
   
     tinyid = tinyurl.set({'axe':idaxe,'filtresaxes':filtresaxes,'filtresitems':filtresitems,'suffrages':suffrages,'tri':tri,'desc':desc})
@@ -66,7 +67,7 @@ def vueaxe():
         
     # A corriger
     from bson import ObjectId
-    if idaxe = 'depute':
+    if idaxe == 'depute':
         votedata['nbdeputes'] = len(votedata['items'])
     axes_values = mdb.axes.find_one()
     axes_dicts = dict((a,dict((it['key'],it['label']) for it in axes_values[a])) for a in axes_order)

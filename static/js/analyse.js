@@ -37,7 +37,7 @@ var updateView = function() {
     
     $('.updateview').unbind('change');
     $('#sens').unbind('click');
-    updateVars();
+    
     var suffrages = $('select#suffrages').val();
     var tri = $('select#tri').val();
     var axe = $('select#axe').val();
@@ -81,6 +81,7 @@ var updateView = function() {
       $('#vue').html(data);
       $('select').material_select();
       $('.updateview').change(function() {
+         updateVars();
          updateView();
       });
       $('.itemfilter').click(function() {
@@ -153,6 +154,7 @@ var updateView = function() {
       });
 
       $('#filtrer').click(function() {
+          updateVars();
           updateView();
       });
       $('.pctslider').each(function() {
@@ -180,7 +182,7 @@ var updateView = function() {
           noUiSlider.create(this, {
               start: [vmin, vmax],
               connect: true,
-              step: 5,
+              step: 1,
               range: {
              'min': min,
              'max': max

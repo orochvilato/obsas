@@ -31,7 +31,8 @@ def vueaxe():
     tri = request.vars.get('tri','participation')
     desc = request.vars.get('desc','1')
     filterson = request.vars.get('filterson','0')
-    
+    print "filtresaxes",filtresaxes
+    print "filtresitems",filtresitems
     
   
     tinyid = tinyurl.set({'axe':idaxe,'filtresaxes':filtresaxes,'filtresitems':filtresitems,'suffrages':suffrages,'tri':tri,'desc':desc})
