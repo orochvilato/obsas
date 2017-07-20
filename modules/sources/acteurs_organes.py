@@ -140,7 +140,7 @@ def getActeursOrganes():
             if man['typeOrgane'] in ['CONFPT','COMPER']:
                 act_commissions[organeRef] = 1
             qua = man['infosQualite_codeQualite']
-            fonctions[organeRef] = dict(qualite=qua,debut=format_date(man['dateDebut']),organe=organeRef)
+            fonctions[organeRef] = dict(qualite=qua,debut=format_date(man['dateDebut']),organe=organeRef,organe_libelle=organes[organeRef]['libelleEdition'])
             qua_norm = normalize(qua)
 
             organes[man['organes_organeRef']]['qualites'][qua_norm] = organes[man['organes_organeRef']]['qualites'].get(qua_norm,[]) + [act['uid']]
@@ -149,6 +149,7 @@ def getActeursOrganes():
         act['fonctions'] = fonctions.values()
         act['commissions'] = act_commissions.keys()
         act['organes'] = [ organes[o]['libelleAbrev'] for o in fonctions.keys()]
+        
 
         if not placeH:
             placeH = correctionPlaces[act['uid']]

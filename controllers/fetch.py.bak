@@ -33,23 +33,36 @@ def rebuild_cache():
     for r in savecache:
         print r
         appcache.get(r['id'],getVoteData_fct,params=r['params'])
-    return dict(t=savecache)
-
+    
 def update_emfi_compat():
-    scrutins = mdb.scrutins.find({'votefi':None})
+    scrutins = mdb.scrutins.find({})
+    groupes = [g['libelleAbrev'] for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})]
     
     for s in scrutins:
-        votes = mdb.votes.find({"$and":[{'scrutin_id':s['scrutin_id']},{'groupeabrev':{'$in':['REM','FI']}}]})
-        positions={'FI':{'pour':0,'contre':0,'abstention':0},
-                   'REM':{'pour':0,'contre':0,'abstention':0}}
+        votes = mdb.votes.find({'scrutin_id':s['scrutin_id']})
+        
+        exprime=dict((g,{'pour':0,'contre':0,'abstention':0}) for g in groupes+['assemblee'])
+        nonexprime=dict((g,{'nonVotant':0,'absent':0}) for g in groupes+['assemblee'])
         for v in votes:
             if v['position'] in ['pour','contre','abstention']:
-                positions[v['groupeabrev']][v['position']] += 1
-            
+                exprime[v['groupeabrev']][v['position']] += 1
+                exprime['assemblee'][v['position']] += 1
+            else:
+                nonexprime[v['groupeabrev']][v['position']] += 1
+                nonexprime['assemblee'][v['position']] += 1
+                
         s['scrutin_desc'] = s['scrutin_desc'].replace('. [','.')
         s['scrutin_fulldesc'] = s['scrutin_fulldesc'].replace('. [','.')
-        s['votefi'] = max(positions['FI'].items(),key=lambda x:x[1])[0]
-        s['voteem'] = max(positions['REM'].items(),key=lambda x:x[1])[0]
+        for g in groupes+['assemblee']:
+            exprime[g]['sort'] = max(exprime[g].items(),key=lambda x:x[1])[0]
+            exprime[g]['participation'] = round(100*float(exprime[g]['pour']+exprime[g]['contre']+exprime[g]['abstention'])/(exprime[g]['pour']+exprime[g]['contre']+exprime[g]['abstention']+nonexprime[g]['nonVotant']+nonexprime[g]['absent']))
+            exprime[g].update(nonexprime[g])
+        
+         
+        
+        s['votefi'] = exprime['FI']['sort']
+        s['voteem'] = exprime['REM']['sort']
+        s['vote'] = exprime
         mdb.scrutins.update({'scrutin_id':s['scrutin_id']},{'$set':s})
         
 def update_axes():

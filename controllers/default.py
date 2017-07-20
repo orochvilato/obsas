@@ -8,6 +8,8 @@
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
 
+def notfound():
+    return "notfound"
 
 def index():
     """

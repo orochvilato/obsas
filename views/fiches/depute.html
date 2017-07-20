@@ -1,0 +1,187 @@
+{{ extend "base.html" }}
+
+{{ block style }}
+<style>
+    .parti {
+      color: grey;
+      font-weight:300;
+    }
+    .titredossier {
+        font-size:18px;
+        text-transform: uppercase;
+        border-top: 1px solid grey;
+        border-bottom: 1px solid grey;
+        background: lightgrey;
+        padding-left:10px;
+    }
+    .pastille {
+        height:1.5em;
+        width:1.5em;
+        margin-top:5px;
+        
+        border-radius:50%;
+    }
+    .pastille.palert {
+        height:1.8em;
+        width:1.8em;
+        border:4px solid red;
+    }
+    .badgevote {
+        padding: 3px;
+        color:white;
+        border-radius:3px;
+        font-weight:400;
+        font-size:12px;
+        display:inline-block;
+        width:60px;
+        margin: 0 auto;
+        text-align:center;
+        text-transform: uppercase;
+    }
+    .vote {
+        padding-top:20px;
+        border-bottom:1px solid lightgrey;
+        
+    }
+    .sortvote {
+      font-weight: 500;
+    }
+</style>
+{{ end }}
+{{ block content }}
+<div class="row">
+  <div class="col s12">
+    <div class="card horizontal coul{{ =groupe_abrev }}bg">
+      <div class="card-image">
+        <img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =uid[2:] }}.jpg" style="top:10px;left:10px;"/>
+      </div>
+      <div class="card-stacked">
+        <div class="card-content">
+                 <div class="c100 p12 small coulFI">
+                     <span><i class="demo-icon icon-logo-fi" style="font-size:32px"></i></span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+                 <div class="c100 p12 small coulFI">
+                     <span><i class="demo-icon icon-logo-lrem" style="font-size:18px"></i></span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+
+            <h4>{{ =nomcomplet }}</h4>
+          <h5>{{ for (k,v) in contacts: }}
+            {{ if (k==u'M\xe8l'): }}
+              <a href="mailto:{{ =v }}"><i class="fa fa-envelope-o"></i></a>
+            {{ elif (k=='Twitter'): }}
+              <a href="https://twitter.com/{{ =v[1:] }}"><i class="fa fa-twitter"></i></a>
+            {{ elif (k=='Facebook'): }}
+              <a href="https://fr-fr.facebook.com/{{ =v }}"><i class="fa fa-facebook-square"></i></a>
+            {{ elif (k=='Site internet'): }}
+              <a href="http://{{ =v }}"><i class="fa fa-globe"></i></a>
+
+            {{ pass }}
+          {{ pass }}</h5>
+          <h5><i class="fa fa-group coul{{ =groupe_abrev }}-text"></i> <a href="../groupes/{{ =groupe }}.html" class="coul{{ =groupe_abrev }}-text">{{ =groupe_nom }} ( {{ =groupe_abrev }})</a></h5>
+          <span>{{ =profession_libelleCourant }}, né(e) le {{ =etatCivil_infoNaissance_dateNais }} à {{ =etatCivil_infoNaissance_villeNais }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <ul class="collapsible" data-collapsible="expandable">
+      <li>
+        <div class="collapsible-header"><i class="fa fa-legal coul{{ =groupe_abrev }}-text"></i> Fonctions / Mandats</div>
+        <div class="collapsible-body"><ul class="collection">
+          {{ for fct in fonctions: }}<li class="collection-item">
+             <i class="fa fa-play coul{{ =groupe }}-text"></i> {{ =fct['qualite'] }} <a href="{{ =fct['organe'] }}.html" style="color:black; font-weight:500;">{{ = fct['organe_libelle'] }}</a> (depuis le {{ =fct['debut'] }})
+          </li>{{ pass }}
+        </ul></div>
+      </li>
+      <li>
+        <div class="collapsible-header"><i class="fa fa-university coul{{ =groupe_abrev }}-text"></i> Hémicycle</div>
+        <div class="collapsible-body">
+          <object id="hemicycle" data="../hemicycle.svg" width='100%' type="image/svg+xml"></object>
+        </div>
+      </li>
+      {{ if deputywatch: }}
+      <li>
+        <div class="collapsible-header"><i class="fa fa-search coul{{ =groupe_abrev }}-text"></i> Deputy Watch</div>
+        <div class="collapsible-body">
+          <ul class="collection">
+            <li class="collection-item avatar">
+              <a href="{{ =acteur['deputywatch']['url'] }}" target="_blank" style="color:black;"><img src='../img/deputywatch.png' alt="" class="circle">
+              <span class="title" style="font-weight:450">Faits notables ou infraction</span><p>(voir sur le site deputywatch.org)</p></a>
+           </li>
+          </ul>
+        </div>
+      </li>
+      {{ pass }}
+      <li>
+        <div class="collapsible-header"><i class="fa fa-file-text-o coul{{ =groupe_abrev }}-text"></i> HATVP</div>
+        <div class="collapsible-body">
+          <ul class="collection">{{ for dec in hatvp: }}
+            <li class="collection-item avatar">
+              <a href="{{ =dec['docurl'] }}" target="_blank" style="color:black;"><i class="fa fa-file-text-o circle coul{{ =groupe_abrev }}"></i>
+              <span class="title" style="font-weight:450">{{ =dec['typedoc'] }}</span>
+              <p>{{ =dec['qualite'] }}</p></a>
+           </li>
+          {{ pass }}</ul>
+
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header active"><i class="fa fa-hand-paper-o coul{{ =groupe_abrev }}-text"></i> Votes</div>
+        <div class="collapsible-body">
+          <div id="votes">
+            <input class="search" placeholder="Recherche">
+            <ul> {{ for dos,libdos in scrutins: }}
+                <div class="titredossier">{{ =libdos }} 
+                    {{ if dossiers[dos]['voteem']>0: }}<span class="coulREM right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['voteem'])/dossiers[dos]['n']) }} %</span>{{ pass }}
+                    {{ if dossiers[dos]['votefi']>0: }}<span class="coulFI right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['votefi'])/dossiers[dos]['n']) }} %</span>{{ pass }}
+                </div>
+                {{ for s in scrutins[(dos,libdos)]: }}
+                <li class="collection-item vote">
+                  <div class="row">
+                      <div class="col s1">{{ if s['votefi']=='pour':}}<div class="pastille {{ if s['flag']: }}palert{{ pass }} coulFI right"></div>{{ pass }}
+                  {{ if s['voteem']=='pour':}}<div class="pastille {{ if s['flag']: }}palert{{ pass }} coulREM right"></div>{{ pass }}</div>
+                      <div class="col s9"><div style="font-size:20px; font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span style="font-size:16px"> ({{ =s['sort'] }})</span></div>
+                          <a style="color:black;" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
+                      </div>
+                      <div class="col s2">
+                          <span class="{{ =positions[s['scrutin_id']] }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>
+                      </div>
+                    </div>
+                </li>
+                {{ pass }}
+                {{ pass }}
+               </ul>
+            
+          </div>
+        </div>
+      </li>
+      {{ = stats }}
+        {{ = dossiers }}
+     
+    </ul>
+  </div>
+</div>
+{{ end }}
+{{ block javascript }}
+  <script>
+    var svg = document.getElementById('hemicycle');
+    svg.addEventListener('load', function () {
+      //var svg = document.getElementById('hemicycle');
+      var svgDoc = svg.contentDocument;
+      var styleElement = svgDoc.createElementNS("http://www.w3.org/2000/svg", "style");
+      styleElement.textContent = "#p{{ acteur['place'] }} { fill: {{ groupe['svgcolor']}}; }"; // add whatever you need here
+      svgDoc.getElementById('defs').appendChild(styleElement);
+
+    });
+  </script>
+{{ end }}
