@@ -33,10 +33,13 @@
         font-weight:400;
         font-size:12px;
         display:inline-block;
-        width:60px;
+        width:80px;
         margin: 0 auto;
         text-align:center;
         text-transform: uppercase;
+    }
+    .voteabst {
+        background: #606060;
     }
     .vote {
         padding-top:20px;
@@ -176,7 +179,8 @@
                           <a style="color:black;" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
                       </div>
                       <div class="col s2">
-                          <span class="{{ =positions[s['scrutin_id']] }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>
+                          <!--<span class="{{ =positions[s['scrutin_id']] }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>-->
+                          <span class="{{ if (s['votefi']==positions[s['scrutin_id']] and s['voteem']!=positions[s['scrutin_id']]): }}coulFI{{ elif (s['votefi']!=positions[s['scrutin_id']] and s['voteem']==positions[s['scrutin_id']]): }}coulREM{{ else: }}voteabst{{ pass }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>
                       </div>
                     </div>
                 </li>
@@ -187,8 +191,8 @@
           </div>
         </div>
       </li>
-      {{ = stats }}
-        {{ = dossiers }}
+     <!-- {{ = stats }}
+        {{ = dossiers }}-->
      
     </ul>
   </div>
