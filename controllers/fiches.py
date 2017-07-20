@@ -13,16 +13,21 @@ def depute():
     votes = mdb.votes.find({'uid':a_id})
     positions = {}
     dossiers= {'tous':{'n':0,'votefi':0,'voteem':0}}
-    stats = {'n':votes.count(),'pour':0,'contre':0,'abstention':0,'nonVotant':0,'absent':0}
+    stats = {'n':votes.count(),'pour':0,'contre':0,'abstention':0,'nonVotant':0,'absent':0,'votefi':0,'voteem':0,'diss':0,'exprime':0}
     for v in votes:
         if v['position'] in ['pour','contre','abstention']:
             positions[v['scrutin_id']] = v['position']
+            stats['exprime'] += 1
         stats[v['position']] += 1
-   
+    
+    stats['exprimepct'] = int(100*float(stats['exprime'])/stats['n'])
     scrutins = sorted(list(mdb.scrutins.find({'scrutin_id':{'$in':positions.keys()}})),key=lambda x:x['scrutin_num'],reverse=True)
     from collections import OrderedDict
     scrutins_dossiers = OrderedDict()
     for s in scrutins:
+        diss = ( positions[s['scrutin_id']] != s['vote'][dep['groupe_abrev']]['sort'])
+        if diss:
+            stats['diss'] += 1
         dosid = (s['scrutin_dossier'],s['scrutin_dossierLibelle'])
         if not dosid in scrutins_dossiers.keys():
             scrutins_dossiers[dosid] = []
@@ -37,8 +42,12 @@ def depute():
             if positions[s['scrutin_id']] == s[p]:
                 dossiers[s['scrutin_dossier']][p] += 1
                 dossiers['tous'][p] += 1
+                stats[p] += 1
         
-        s['flag'] = ( positions[s['scrutin_id']] != s['vote'][dep['groupe_abrev']]['sort'])
+        s['flag'] = diss
         scrutins_dossiers[dosid].append(s)
-        
+        stats['disspct'] =  int(100*float(stats['diss'])/stats['exprime'])
+        stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime'])
+        stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime'])
+    
     return dict(stats=stats,scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)

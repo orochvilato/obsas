@@ -1078,7 +1078,7 @@
 }
 .c100.dissidence .bar,
 .c100.dissidence .fill {
-  border-color: #b71c1c !important;
+  border-color: #dd9d22 !important;
 }
 .c100.participation .bar,
 .c100.participation .fill {
