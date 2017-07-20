@@ -22,9 +22,10 @@
         border-radius:50%;
     }
     .pastille.palert {
-        height:1.8em;
-        width:1.8em;
-        border:4px solid red;
+        height:1em;
+        width:1em;
+        background:red;
+        /*border:4px solid red;*/
     }
     .badgevote {
         padding: 3px;
@@ -46,8 +47,17 @@
         border-bottom:1px solid lightgrey;
         
     }
-    .sortvote {
+    .sortvote, {
       font-weight: 500;
+    }
+    .loi, span.loi {
+        font-size:26px;
+    }
+    .motion, span.motion, .amendement, span.amendement, .autre, span.autre {
+        font-size:18px;
+    }
+    .article, span.article, .declaration, span.declaration {
+        font-size:22px;
     }
 </style>
 {{ end }}
@@ -166,16 +176,20 @@
           <div id="votes">
             <input class="search" placeholder="Recherche">
             <ul> {{ for dos,libdos in scrutins: }}
+               
                 <div class="titredossier">{{ =libdos }} 
                     {{ if dossiers[dos]['voteem']>0: }}<span class="coulREM right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['voteem'])/dossiers[dos]['n']) }} %</span>{{ pass }}
                     {{ if dossiers[dos]['votefi']>0: }}<span class="coulFI right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['votefi'])/dossiers[dos]['n']) }} %</span>{{ pass }}
                 </div>
                 {{ for s in scrutins[(dos,libdos)]: }}
+                 {{ sicon = {'loi':'book','amendement':'pencil-square-o','article':'file-o','motion':'undo','autre':'', 'declaration':'microphone'}[s['typedetail']] }}
                 <li class="collection-item vote">
                   <div class="row">
-                      <div class="col s1">{{ if s['votefi']=='pour':}}<div class="pastille {{ if s['flag']: }}palert{{ pass }} coulFI right"></div>{{ pass }}
-                  {{ if s['voteem']=='pour':}}<div class="pastille {{ if s['flag']: }}palert{{ pass }} coulREM right"></div>{{ pass }}</div>
-                      <div class="col s9"><div style="font-size:20px; font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span style="font-size:16px"> ({{ =s['sort'] }})</span></div>
+                      <div class="col s1"><span class="{{=s['typedetail']}} fa-stack fa-lg right">
+  <i class="fa fa-circle fa-stack-2x {{ if s['votefi']=='pour':}}coulFI-text{{ elif s['voteem']=='pour':}}coulREM-text{{pass}}"></i>
+  <i class="fa fa-{{ =sicon }} fa-stack-1x"></i>
+                          </span>{{ if s['flag']: }}<div title="à voté contre son groupe" class="pastille palert right"></div>{{ pass }}</div>
+                      <div class="col s9"><div class="{{ = s['typedetail'] }}" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span style="font-size:16px"> ({{ =s['sort'] }})</span></div>
                           <a style="color:black;" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
                       </div>
                       <div class="col s2">

@@ -49,5 +49,17 @@ def depute():
         stats['disspct'] =  int(100*float(stats['diss'])/stats['exprime'])
         stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime'])
         stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime'])
-    
+        if s['scrutin_desc'][:12]=="l'amendement":
+            s['typedetail'] = 'amendement'
+        elif s['scrutin_desc'][:9] =="la motion":
+            s['typedetail'] = 'motion'
+        elif s['scrutin_desc'][:27] =="l'ensemble du projet de loi":
+            s['typedetail'] = 'loi'
+        elif s['scrutin_desc'][:9] =="l'article":
+            s['typedetail'] = 'article'
+        elif s['scrutin_desc'][:14] ==u'la déclaration':
+            s['typedetail'] = 'declaration'
+        else:
+            s['typedetail'] = 'autre'
+                        
     return dict(stats=stats,scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)
