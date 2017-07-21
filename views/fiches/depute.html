@@ -18,7 +18,7 @@
         height:1.5em;
         width:1.5em;
         margin-top:5px;
-        
+
         border-radius:50%;
     }
     .pastille.palert {
@@ -45,7 +45,7 @@
     .vote {
         padding-top:20px;
         border-bottom:1px solid lightgrey;
-        
+
     }
     .sortvote, {
       font-weight: 500;
@@ -59,6 +59,19 @@
     .article, span.article, .declaration, span.declaration {
         font-size:22px;
     }
+    li.vote a {
+        color: black;
+    }
+    li.vote.absent a, li.vote.absent i.symbole {
+        color: #808080;
+    }
+    li.absent .coulFI-text {
+        color:rgba(12,195,214,0.7);
+    }
+    li.absent .coulREM-text {
+        color: rgba(255,192,0,0.7);
+    }
+    
 </style>
 {{ end }}
 {{ block content }}
@@ -70,7 +83,7 @@
       </div>
       <div class="card-stacked">
         <div class="card-content">
-                
+
 
             <h4>{{ =nomcomplet }}</h4>
           <h5>{{ for (k,v) in contacts: }}
@@ -106,7 +119,7 @@
       <li>
         <div class="collapsible-header"><i class="fa fa-university coul{{ =groupe_abrev }}-text"></i> Hémicycle</div>
         <div class="collapsible-body">
-          <object id="hemicycle" data="../hemicycle.svg" width='100%' type="image/svg+xml"></object>
+          <object id="hemicycle" data="{{ =URL('static','images/hemicycle.svg') }}" width='100%' type="image/svg+xml"></object>
         </div>
       </li>
       {{ if deputywatch: }}
@@ -138,7 +151,7 @@
       <li>
         <div class="collapsible-header active"><i class="fa fa-hand-paper-o coul{{ =groupe_abrev }}-text"></i> Votes</div>
         <div class="collapsible-body">
-          
+
             <!-- PARTICIPATION -->
             <div class="c100 p{{ =stats['exprimepct'] }} medium participation" title="Participation">
                 <span><i class="demo-icon icon-vote" style="font-size:32px;color:#606060;"></i><span style="font-weight:500;color:#606060;">{{ =stats['exprimepct'] }}%</span></span>
@@ -171,26 +184,48 @@
                     <div class="fill"></div>
                 </div>
             </div>
-            
-            
+          {{ from collections import OrderedDict }}
+          {{ typescr = OrderedDict([('loi',{'libelle':'Loi','icon':'book','defaut':True}),('article',{'libelle':'Article','icon':'file-o','defaut':True}),('amendement',{'libelle':'Amendement','icon':'pencil-square-o','defaut':True}),('motion',{'libelle':'Motion','icon':'undo','defaut':True}),('declaration',{'libelle':'Déclaration','icon':'microphone','defaut':True}),('autre',{'libelle':'Autre','icon':'','defaut':True})]) }}
+              {{ posscr = OrderedDict([('votefi',{'libelle':'Comme le groupe FI','defaut':True}),('voteem',{'libelle':'Comme le groupe EM','defaut':True}),('dissidence',{'libelle':'Dissident à son groupe','defaut':True}),('abstention',{'libelle':'Abstention','defaut':True}),('absentnv',{'libelle':'Absent ou non votant','defaut':False})]) }}
           <div id="votes">
             <input class="search" placeholder="Recherche">
-            <ul> {{ for dos,libdos in scrutins: }}
-               
-                <div class="titredossier">{{ =libdos }} 
+            <div class="row">
+                <div class="col s6 input-field">
+                    <select id="s_typefilter" multiple>
+                      {{ for it in typescr: }}
+                          <option value="{{ =it }}" {{ if typescr[it]['defaut']: }}selected{{ pass }}>{{ =typescr[it]['libelle'] }}</option>
+                      {{ pass }}
+                    </select>
+                    <label>Types de scrutins</label>
+                </div>
+                <div class="col s6 input-field">
+                    <select id="s_posfilter" multiple>
+                      {{ for p in posscr: }}
+                          <option value="{{ =p }}" {{ if posscr[p]['defaut']: }}selected{{ pass }}>{{ =posscr[p]['libelle'] }}</option>
+                      {{ pass }}
+                    </select>
+                    <label>Position de vote</label>
+                </div>
+            
+
+            <ul class="list"> {{ for dos,libdos in scrutins: }}
+                
+                <div class="titredossier">{{ =libdos }}
                     {{ if dossiers[dos]['voteem']>0: }}<span class="coulREM right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['voteem'])/dossiers[dos]['n']) }} %</span>{{ pass }}
                     {{ if dossiers[dos]['votefi']>0: }}<span class="coulFI right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['votefi'])/dossiers[dos]['n']) }} %</span>{{ pass }}
                 </div>
                 {{ for s in scrutins[(dos,libdos)]: }}
-                 {{ sicon = {'loi':'book','amendement':'pencil-square-o','article':'file-o','motion':'undo','autre':'', 'declaration':'microphone'}[s['typedetail']] }}
-                <li class="collection-item vote">
-                  <div class="row">
+                  {{ sicon = typescr[s['typedetail']]['icon'] }}       
+                <li class="collection-item vote {{ if s['absent']:}}absent{{ pass }}">
+                    <div class="s_pos" style="display:none;">{{ =s['posscr'] }}</div>
+                    <div class="s_type" style="display:none;">{{ =s['typedetail'] }}</div>
+                    <div class="row">
                       <div class="col s1"><span class="{{=s['typedetail']}} fa-stack fa-lg right">
   <i class="fa fa-circle fa-stack-2x {{ if s['votefi']=='pour':}}coulFI-text{{ elif s['voteem']=='pour':}}coulREM-text{{pass}}"></i>
-  <i class="fa fa-{{ =sicon }} fa-stack-1x"></i>
+  <i class="fa fa-{{ =sicon }} fa-stack-1x symbole"></i>
                           </span>{{ if s['flag']: }}<div title="à voté contre son groupe" class="pastille palert right"></div>{{ pass }}</div>
-                      <div class="col s9"><div class="{{ = s['typedetail'] }}" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span style="font-size:16px"> ({{ =s['sort'] }})</span></div>
-                          <a style="color:black;" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
+                      <div class="col s9"><a href="" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
+                          <a class="s_desc" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
                       </div>
                       <div class="col s2">
                           <!--<span class="{{ =positions[s['scrutin_id']] }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>-->
@@ -201,27 +236,71 @@
                 {{ pass }}
                 {{ pass }}
                </ul>
-            
+
           </div>
         </div>
       </li>
      <!-- {{ = stats }}
         {{ = dossiers }}-->
-     
+
     </ul>
   </div>
 </div>
 {{ end }}
-{{ block javascript }}
+{{ block script }}
   <script>
+    var votesList;
+    var typefilter;
+    var posfilter;
+    $('#s_typefilter').change(function(){
+        typefilter = $('#s_typefilter').val()
+        votesList.filter(fscrutintype);
+    });
+    $('#s_posfilter').change(function(){
+        posfilter = $('#s_posfilter').val()
+        votesList.filter(fscrutinpos);
+    });
+    function fscrutintype(item) {
+        var keep = false;
+        for (i=0;i<typefilter.length;i++) {
+            if (item.values().s_type==typefilter[i]) {
+                keep = true;
+            }
+        }
+        return keep;
+    }
+    function fscrutinpos(item) {
+        var keep = false;
+        for (i=0;i<typefilter.length;i++) {
+            if (item.values().s_pos.indexOf(posfilter[i])>=0) {
+                keep = true;
+            }
+        }
+        return keep;
+    }
+    $(document).ready(function() {
+        var options = {
+            valueNames: [ 's_titre','s_sort', 's_desc','s_type','s_pos' ]
+        };
+
+        votesList = new List('votes', options);
+        typefilter = $('#s_typefilter').val()
+        posfilter = $('#s_posfilter').val()
+        votesList.filter(fscrutintype);
+        votesList.filter(fscrutinpos);
+        console.log(typefilter,posfilter);
+    });
+    
+   
     var svg = document.getElementById('hemicycle');
     svg.addEventListener('load', function () {
       //var svg = document.getElementById('hemicycle');
       var svgDoc = svg.contentDocument;
       var styleElement = svgDoc.createElementNS("http://www.w3.org/2000/svg", "style");
-      styleElement.textContent = "#p{{ acteur['place'] }} { fill: {{ groupe['svgcolor']}}; }"; // add whatever you need here
+      styleElement.textContent = "#p{{ =place }} { fill:  black; stroke-width:3px; stroke: black;}"; // add whatever you need here
       svgDoc.getElementById('defs').appendChild(styleElement);
 
     });
+    
   </script>
 {{ end }}

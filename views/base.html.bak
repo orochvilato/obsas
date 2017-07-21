@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
   <link rel="stylesheet" href="{{=URL('static','css/colors.css')}}">
   <link rel="stylesheet" href="{{=URL('static','css/fontello.css')}}">
+  <link rel="stylesheet" href="{{=URL('static','css/circles.css')}}">
   <link rel="stylesheet" href="{{=URL('static','css/nouislider.min.css')}}">
 <style>
     

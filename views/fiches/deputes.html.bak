@@ -1,0 +1,3 @@
+{{extend 'layout.html'}}
+<h1>Ceci est le modèle fiches/deputes.html </h1>
+{{=BEAUTIFY(response._vars)}}
