@@ -58,7 +58,9 @@
       //var svg = document.getElementById('hemicycle');
       var svgDoc = svg.contentDocument;
       $.each(svgDoc.getElementsByTagName('a'), function() {
+          
           $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
+          console.log($(this).attr('href'));
       });
       
 

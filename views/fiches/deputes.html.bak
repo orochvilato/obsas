@@ -13,7 +13,7 @@
 <div class="col s12">
   <h4>Députés</h4>
     
-     <object id="hemicycle" data="{{ =URL('static','images/hemicyclelight.svg') }}" width='100%' type="image/svg+xml"></object>
+     <object id="hemicycle" data="{{ =URL('static','images/hemicycle.svg') }}" width='100%' type="image/svg+xml"></object>
     <div id="deputes">
         <input class="search" placeholder="Recherche">
         <table class="striped highlight centered">
