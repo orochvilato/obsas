@@ -52,16 +52,17 @@
 {{ block script }}
   <script>
     var deputeList = new List('deputes',{ valueNames: ['nom','groupe','circo','participation','dissidence','ficompat','emcompat']});
-      
-     var svg = document.getElementById('hemicycle');
-    svg.addEventListener('load', function () {
-      //var svg = document.getElementById('hemicycle');
-      var svgDoc = svg.contentDocument;
-      $.each(svgDoc.getElementsByTagName('a'), function() {
-          $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
-      });
-      
+    
+    $(document).ready(function() {
+         var svg = document.getElementById('hemicycle');
+         svg.addEventListener('load', function () {
+          var svgDoc = svg.contentDocument;
+          $.each(svgDoc.getElementsByTagName('a'), function() {
 
+              $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
+              console.log($(this).attr('href'));
+          });
+        });
     });
   </script>
 
