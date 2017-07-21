@@ -120,7 +120,7 @@
       <li>
         <div class="collapsible-header"><i class="fa fa-university coul{{ =groupe_abrev }}-text"></i> Hémicycle</div>
         <div class="collapsible-body">
-          <object id="hemicycle" data="{{ =URL('static','images/hemicycle.svg') }}" width='100%' type="image/svg+xml"></object>
+          <object id="hemicycle" data="{{ =URL('static','images/hemicyclelight.svg') }}" width='100%' type="image/svg+xml"></object>
         </div>
       </li>
       {{ if deputywatch: }}
@@ -291,6 +291,9 @@
     svg.addEventListener('load', function () {
       //var svg = document.getElementById('hemicycle');
       var svgDoc = svg.contentDocument;
+      $.each(svgDoc.getElementsByTagName('a'), function() {
+          $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
+      });
       var styleElement = svgDoc.createElementNS("http://www.w3.org/2000/svg", "style");
       styleElement.textContent = "#p{{ =place }} { fill:  black; stroke-width:3px; stroke: black;}"; // add whatever you need here
       svgDoc.getElementById('defs').appendChild(styleElement);

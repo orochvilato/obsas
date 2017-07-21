@@ -12,11 +12,13 @@
 
 <div class="col s12">
   <h4>Députés</h4>
+    
+     <object id="hemicycle" data="{{ =URL('static','images/hemicyclelight.svg') }}" width='100%' type="image/svg+xml"></object>
     <div id="deputes">
         <input class="search" placeholder="Recherche">
         <table class="striped highlight centered">
           <thead>
-            <tr><th>Photo</th><th class="sort" data-sort="nom">Nom</th><th>Groupe</th><th>Contact</th><th>Circo.</th><th class="sort" data-sort="participation">Participation</th><th>Dissidence</th><th>FI Compatibilité</th><th>EM Compatibilité</th></tr>
+            <tr><th>Photo</th><th class="sort" data-sort="nom">Nom</th><th>Groupe</th><th>Contact</th><th>Circo.</th><th class="sort" data-sort="participation">Participation</th><th class="sort" data-sort="dissidence">Dissidence</th><th class="sort" data-sort="ficompat">FI Compatibilité</th><th class="sort" data-sort="emcompat">EM Compatibilité</th></tr>
           </thead>
           <tbody class="list">
             {{ for d in deputes: }}<tr>
@@ -50,6 +52,17 @@
 {{ block script }}
   <script>
     var deputeList = new List('deputes',{ valueNames: ['nom','groupe','circo','participation','dissidence','ficompat','emcompat']});
+      
+     var svg = document.getElementById('hemicycle');
+    svg.addEventListener('load', function () {
+      //var svg = document.getElementById('hemicycle');
+      var svgDoc = svg.contentDocument;
+      $.each(svgDoc.getElementsByTagName('a'), function() {
+          $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
+      });
+      
+
+    });
   </script>
 
 
