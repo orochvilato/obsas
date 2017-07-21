@@ -3,6 +3,11 @@
 def index():
     return dict(message="hello from fiches.py")
 import json
+def deputes():
+    deps = list(mdb.acteurs.find())
+    
+    return dict(deputes=deps)
+        
 def depute():
     a_id = request.vars.get('uid','welou')
     dep = mdb.acteurs.find_one({'uid':a_id})
@@ -76,4 +81,4 @@ def depute():
             posscr += 'absentnv'
         s['posscr'] = posscr
         s['absent'] =  (positions[s['scrutin_id']] in ['absent','nonVotant'])
-    return dict(stats=stats,scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)
+    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)

@@ -76,4 +76,4 @@ def depute():
             posscr += 'absentnv'
         s['posscr'] = posscr
         s['absent'] =  (positions[s['scrutin_id']] in ['absent','nonVotant'])
-    return dict(stats=stats,scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)
+    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)

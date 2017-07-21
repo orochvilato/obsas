@@ -1,3 +1,43 @@
-{{extend 'layout.html'}}
-<h1>Ceci est le modèle fiches/deputes.html </h1>
-{{=BEAUTIFY(response._vars)}}
+{{ extend "base.html" }}
+{{ block content }}
+<div class="col s12">
+  <h4>Députés</h4>
+    <div id="deputes">
+        <input class="search" placeholder="Recherche">
+        <table class="striped highlight centered">
+          <thead>
+            <tr><th>Photo</th><th>Nom</th><th>Groupe</th><th>Contact</th><th>Circo.</th><th>Profession</th><th>Age</th></tr>
+          </thead>
+          <tbody class="list">
+            {{ for d in deputes: }}<tr>
+              <td><a href="{{ =URL('depute',vars={'uid':d['uid']}) }}"><img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =d['uid'][2:] }}.jpg" /></a></td>
+              <td class="nom"><a href="{{ =URL('depute',vars={'uid':d['uid']}) }}">{{ =d['nomcomplet'] }}</a></td>
+              <td><a href="" class="coul{{ =d['groupe_abrev'] }}-text" style="font-weight:500;"><i class="fa fa-group"></i> {{ =d['groupe_abrev'] }}</a></td>
+              <td>{{ for (k,v) in d['contacts']: }}
+                {{ if (k==u'M\xe8l'): }}
+              <a href="mailto:{{ =v }}"><i class="fa fa-envelope-o"></i></a>
+            {{ elif (k=='Twitter'): }}
+              <a href="https://twitter.com/{{ =v[1:] }}"><i class="fa fa-twitter"></i></a>
+            {{ elif (k=='Facebook'): }}
+              <a href="https://fr-fr.facebook.com/{{ =v }}"><i class="fa fa-facebook-square"></i></a>
+            {{ elif (k=='Site internet'): }}
+              <a href="http://{{ =v }}"><i class="fa fa-globe"></i></a>
+            {{ pass }}
+            {{ pass }}</td>
+              <td>{{ =d['mandats'][0]['election_lieu_region'] }} / {{ =d['mandats'][0]['election_lieu_departement'] }} / {{ =d['mandats'][0]['election_lieu_numCirco'] }}</td>
+              <td>{{ =d['profession_libelleCourant'] or "" }}</td>
+              <td>{{ =d['age'] }} ans</td>
+              </tr>
+            {{ pass }}
+          </tbody>
+        </table>
+      </div>
+</div>
+{{ end }}
+{{ block script }}
+  <script>
+    var deputeList = new List('deputes',{ valueNames: ['nom']});
+  </script>
+
+
+{{ end }}

@@ -168,7 +168,7 @@ def update_acteurs_stats():
             stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
     
         mdb.acteurs.update({'uid':dep['uid']},{'$set':{'statsvote':stats}})
-        print dep['nomcomplet']
+        print dep['nomcomplet'].encode('utf8')
     
     
 def index():

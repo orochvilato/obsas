@@ -7,12 +7,13 @@
       font-weight:300;
     }
     .titredossier {
-        font-size:18px;
+        font-size:13px;
+        font-weight:300px;
         text-transform: uppercase;
-        border-top: 1px solid grey;
+       /* border-top: 1px solid grey;*/
         border-bottom: 1px solid grey;
-        background: lightgrey;
-        padding-left:10px;
+        /*background: lightgrey;*/
+        padding-left:0px;
     }
     .pastille {
         height:1.5em;
@@ -132,8 +133,7 @@
               <span class="title" style="font-weight:450">Faits notables ou infraction</span><p>(voir sur le site deputywatch.org)</p></a>
            </li>
           </ul>
-        </div>
-      </li>
+        </div>     </li>
       {{ pass }}
       <li>
         <div class="collapsible-header"><i class="fa fa-file-text-o coul{{ =groupe_abrev }}-text"></i> HATVP</div>
@@ -185,7 +185,7 @@
                 </div>
             </div>
           {{ from collections import OrderedDict }}
-          {{ typescr = OrderedDict([('loi',{'libelle':'Loi','icon':'book','defaut':True}),('article',{'libelle':'Article','icon':'file-o','defaut':True}),('amendement',{'libelle':'Amendement','icon':'pencil-square-o','defaut':True}),('motion',{'libelle':'Motion','icon':'undo','defaut':True}),('declaration',{'libelle':'Déclaration','icon':'microphone','defaut':True}),('autre',{'libelle':'Autre','icon':'','defaut':True})]) }}
+          {{ typescr = OrderedDict([('loi',{'libelle':'Loi','icon':'book','defaut':True}),('article',{'libelle':'Article','icon':'file-o','defaut':True}),('amendement',{'libelle':'Amendement','icon':'pencil-square-o','defaut':True}),('motion',{'libelle':'Motion','icon':'undo','defaut':False}),('declaration',{'libelle':'Déclaration','icon':'microphone','defaut':False}),('autre',{'libelle':'Autre','icon':'','defaut':False})]) }}
               {{ posscr = OrderedDict([('votefi',{'libelle':'Comme le groupe FI','defaut':True}),('voteem',{'libelle':'Comme le groupe EM','defaut':True}),('dissidence',{'libelle':'Dissident à son groupe','defaut':True}),('abstention',{'libelle':'Abstention','defaut':True}),('absentnv',{'libelle':'Absent ou non votant','defaut':False})]) }}
           <div id="votes">
             <input class="search" placeholder="Recherche">
@@ -206,25 +206,22 @@
                     </select>
                     <label>Position de vote</label>
                 </div>
-            
+            </div>
 
             <ul class="list"> {{ for dos,libdos in scrutins: }}
                 
-                <div class="titredossier">{{ =libdos }}
-                    {{ if dossiers[dos]['voteem']>0: }}<span class="coulREM right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['voteem'])/dossiers[dos]['n']) }} %</span>{{ pass }}
-                    {{ if dossiers[dos]['votefi']>0: }}<span class="coulFI right" style="font-weight:600;padding-left:5px;padding-right:5px;">{{ = int(100*float(dossiers[dos]['votefi'])/dossiers[dos]['n']) }} %</span>{{ pass }}
-                </div>
+             
                 {{ for s in scrutins[(dos,libdos)]: }}
                   {{ sicon = typescr[s['typedetail']]['icon'] }}       
                 <li class="collection-item vote {{ if s['absent']:}}absent{{ pass }}">
                     <div class="s_pos" style="display:none;">{{ =s['posscr'] }}</div>
                     <div class="s_type" style="display:none;">{{ =s['typedetail'] }}</div>
                     <div class="row">
-                      <div class="col s1"><span class="{{=s['typedetail']}} fa-stack fa-lg right">
+                      <div class="col s1"><span title="{{ =typescr[s['typedetail']]['libelle'] }}" class="{{=s['typedetail']}} fa-stack fa-lg right">
   <i class="fa fa-circle fa-stack-2x {{ if s['votefi']=='pour':}}coulFI-text{{ elif s['voteem']=='pour':}}coulREM-text{{pass}}"></i>
   <i class="fa fa-{{ =sicon }} fa-stack-1x symbole"></i>
                           </span>{{ if s['flag']: }}<div title="à voté contre son groupe" class="pastille palert right"></div>{{ pass }}</div>
-                      <div class="col s9"><a href="" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
+                        <div class="col s9"><div class="titredossier">{{ =libdos }} - {{ =typescr[s['typedetail']]['libelle'] }}</div><a href="" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
                           <a class="s_desc" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
                       </div>
                       <div class="col s2">
@@ -286,7 +283,7 @@
         votesList = new List('votes', options);
         typefilter = $('#s_typefilter').val()
         posfilter = $('#s_posfilter').val()
-        votesList.filter(fscrutin);
+        //votesList.filter(fscrutin);
     });
     
    
