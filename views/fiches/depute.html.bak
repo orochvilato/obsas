@@ -186,7 +186,7 @@
             </div>
           {{ from collections import OrderedDict }}
           {{ typescr = OrderedDict([('loi',{'libelle':'Loi','icon':'book','defaut':True}),('article',{'libelle':'Article','icon':'file-o','defaut':True}),('amendement',{'libelle':'Amendement','icon':'pencil-square-o','defaut':True}),('motion',{'libelle':'Motion','icon':'undo','defaut':True}),('declaration',{'libelle':'Déclaration','icon':'microphone','defaut':True}),('autre',{'libelle':'Autre','icon':'','defaut':True})]) }}
-          {{ posscr = OrderedDict([('votefi',{'libelle':'Comme le groupe FI','defaut':True}),('voteem',{'libelle':'Comme le groupe EM','defaut':True}),('dissidence',{'libelle':'Dissident à son groupe','defaut':True}),('abstention',{'libelle':'Abstention','defaut':True}),('absentnv',{'libelle':'Absent ou non votant','defaut':True})]) }}
+              {{ posscr = OrderedDict([('votefi',{'libelle':'Comme le groupe FI','defaut':True}),('voteem',{'libelle':'Comme le groupe EM','defaut':True}),('dissidence',{'libelle':'Dissident à son groupe','defaut':True}),('abstention',{'libelle':'Abstention','defaut':True}),('absentnv',{'libelle':'Absent ou non votant','defaut':False})]) }}
           <div id="votes">
             <input class="search" placeholder="Recherche">
             <div class="row">
