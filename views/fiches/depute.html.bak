@@ -271,7 +271,7 @@
             return false;
         }
         var fkeep = false;
-        for (i=0;i<typefilter.length;i++) {
+        for (i=0;i<posfilter.length;i++) {
             if (item.values().s_pos.indexOf(posfilter[i])>=0) {
                 fkeep = true;
             }
