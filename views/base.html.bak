@@ -128,7 +128,15 @@
   <nav class="blue-grey darken-1">
     <div class="nav-wrapper">
       <a href="#" class="brand-logo center">ObsAs</a>
-
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="{{ =URL(c='fiches',f='deputes') }}">Députés</a></li>
+        <li><a href="{{ =URL('analyse') }}">Analyse</a></li>
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+        <li><a href="{{ =URL(c='fiches',f='deputes') }}">Députés</a></li>
+        <li><a href="{{ =URL('analyse') }}">Analyse</a></li>
+      </ul>
     </div>
   </nav>
   <div class="container">
@@ -138,13 +146,12 @@
 </body>
 <footer>
   <!--  Scripts-->
-  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="https://use.fontawesome.com/57f4fc708a.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/jquery.loadingoverlay/latest/loadingoverlay.min.js"></script>
-  <script src="{{=URL('static','js/list.js')}}"></script>
   <script src="{{=URL('static','js/nouislider.min.js')}}"></script>
 
 

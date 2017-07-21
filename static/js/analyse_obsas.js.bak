@@ -71,7 +71,7 @@ var updateView = function() {
     }
     console.log(params);
     $.LoadingOverlay("show");
-    $.ajax(ajaxparams(params)).done(function(data) {
+    $.ajax(ajaxparams).done(function(data) {
       $.LoadingOverlay("hide");
       $('#vue').html(data);
       $('select').material_select();

@@ -20,7 +20,7 @@
                     <select id="filtresitem" multiple>
                          <option value="" disabled {{ if filtresitems=={}: }}selected{{ pass }}>Définir</option>
                          {{ for f in filtresitems_choix: }}
-                            <option value="{{ =f[0] }}" {{ if f[0] in filtresitems.keys() and filtresitems[f[0]: }}selected{{ pass }}>{{ =f[1] }}</option>
+                            <option value="{{ =f[0] }}" {{ if f[0] in filtresitems.keys() and filtresitems[f[0]]: }}selected{{ pass }}>{{ =f[1] }}</option>
                          {{ pass }}
                    </select>
                    <label>Filtres éléments actifs</label>
@@ -171,8 +171,7 @@
     var current_filtresaxes = JSON.parse('{{ =XML(json.dumps(filtresaxes).replace("'",u"\\'")) }}');
     var current_filtresitems = JSON.parse('{{ =XML(json.dumps(filtresitems).replace("'",u"\\'")) }}');
     //var axes_values = JSON.parse('{{ =XML(axes_values) }}');
-    
-    
+    var ajaxparams = { url: '{{=URL("vueaxe") }}', data: params, type: 'GET', dataType: 'html' }    
     $(".itemchart").each(function() {
         var ctx = $(this);
         var vals = ctx.attr('vals');

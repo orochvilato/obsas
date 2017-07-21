@@ -1,18 +1,28 @@
 {{ extend "base.html" }}
 {{ block content }}
+<style>
+    th {
+        cursor: pointer;
+    }
+    .pct {
+        font-weight:500;
+        font-size:20px;
+    }
+</style>
+
 <div class="col s12">
   <h4>Députés</h4>
     <div id="deputes">
         <input class="search" placeholder="Recherche">
         <table class="striped highlight centered">
           <thead>
-            <tr><th>Photo</th><th>Nom</th><th>Groupe</th><th>Contact</th><th>Circo.</th><th>Profession</th><th>Age</th></tr>
+            <tr><th>Photo</th><th class="sort" data-sort="nom">Nom</th><th>Groupe</th><th>Contact</th><th>Circo.</th><th class="sort" data-sort="participation">Participation</th><th>Dissidence</th><th>FI Compatibilité</th><th>EM Compatibilité</th></tr>
           </thead>
           <tbody class="list">
             {{ for d in deputes: }}<tr>
               <td><a href="{{ =URL('depute',vars={'uid':d['uid']}) }}"><img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =d['uid'][2:] }}.jpg" /></a></td>
-              <td class="nom"><a href="{{ =URL('depute',vars={'uid':d['uid']}) }}">{{ =d['nomcomplet'] }}</a></td>
-              <td><a href="" class="coul{{ =d['groupe_abrev'] }}-text" style="font-weight:500;"><i class="fa fa-group"></i> {{ =d['groupe_abrev'] }}</a></td>
+              <td><div class="nom" style="display:none;">{{ =d['nomprenom'] }}</div><a href="{{ =URL('depute',vars={'uid':d['uid']}) }}">{{ =d['nomcomplet'] }}</a></td>
+              <td class="groupe"><a href="" class="coul{{ =d['groupe_abrev'] }}-text" style="font-weight:500;"><i class="fa fa-group"></i> {{ =d['groupe_abrev'] }}</a></td>
               <td>{{ for (k,v) in d['contacts']: }}
                 {{ if (k==u'M\xe8l'): }}
               <a href="mailto:{{ =v }}"><i class="fa fa-envelope-o"></i></a>
@@ -24,9 +34,12 @@
               <a href="http://{{ =v }}"><i class="fa fa-globe"></i></a>
             {{ pass }}
             {{ pass }}</td>
-              <td>{{ =d['mandats'][0]['election_lieu_region'] }} / {{ =d['mandats'][0]['election_lieu_departement'] }} / {{ =d['mandats'][0]['election_lieu_numCirco'] }}</td>
-              <td>{{ =d['profession_libelleCourant'] or "" }}</td>
-              <td>{{ =d['age'] }} ans</td>
+              <td class="circo">{{ =d['mandats'][0]['election_lieu_region'] }} / {{ =d['mandats'][0]['election_lieu_departement'] }} / {{ =d['mandats'][0]['election_lieu_numCirco'] }}<br/>
+              {{ =d['profession_libelleCourant'] or "" }}<br/>{{ =d['age'] }} ans</td>
+              <td class="pct"><span class="participation">{{ =d['statsvote']['exprimepct'] }}</span> %</td>
+              <td class="pct"><span class="dissidence">{{ =d['statsvote']['disspct'] }}</span> %</td>
+              <td class="pct"><span class="ficompat">{{ =d['statsvote']['votefipct'] }}</span> %</td>
+              <td class="pct"><span class="emcompat">{{ =d['statsvote']['voteempct'] }}</span> %</td>
               </tr>
             {{ pass }}
           </tbody>
@@ -36,7 +49,7 @@
 {{ end }}
 {{ block script }}
   <script>
-    var deputeList = new List('deputes',{ valueNames: ['nom']});
+    var deputeList = new List('deputes',{ valueNames: ['nom','groupe','circo','participation','dissidence','ficompat','emcompat']});
   </script>
 
 

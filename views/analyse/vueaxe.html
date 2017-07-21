@@ -171,8 +171,7 @@
     var current_filtresaxes = JSON.parse('{{ =XML(json.dumps(filtresaxes).replace("'",u"\\'")) }}');
     var current_filtresitems = JSON.parse('{{ =XML(json.dumps(filtresitems).replace("'",u"\\'")) }}');
     //var axes_values = JSON.parse('{{ =XML(axes_values) }}');
-    
-    
+   
     $(".itemchart").each(function() {
         var ctx = $(this);
         var vals = ctx.attr('vals');

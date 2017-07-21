@@ -3,8 +3,10 @@
   <div id="vue"></div>
 {{ end }}
 {{ block script }}
-  <script src="{{=URL('static','js/analyse.js')}}"></script>
+  <script src="{{=URL('static','js/analyse_obsas.js')}}"></script>
   <script>
+    
+    var ajaxparams = function(params) { return { url: '{{=URL(c="analyse",f="vueaxe",host=True) }}', data: params, type: 'GET', dataType: 'html' } }
     {{ import json }}
     var axes = JSON.parse('{{ =XML(json.dumps(axes.keys()).replace("'",u"\\'")) }}');
     var current_suffrages = "{{ =suffrages }}";
