@@ -254,29 +254,29 @@
     var posfilter;
     $('#s_typefilter').change(function(){
         typefilter = $('#s_typefilter').val()
-        votesList.filter(fscrutintype);
+        votesList.filter(fscrutin);
     });
     $('#s_posfilter').change(function(){
         posfilter = $('#s_posfilter').val()
-        votesList.filter(fscrutinpos);
+        votesList.filter(fscrutin);
     });
-    function fscrutintype(item) {
-        var keep = false;
+    function fscrutin(item) {
+        var tkeep = false;
         for (i=0;i<typefilter.length;i++) {
             if (item.values().s_type==typefilter[i]) {
-                keep = true;
+                tkeep = true;
             }
         }
-        return keep;
-    }
-    function fscrutinpos(item) {
-        var keep = false;
-        for (i=0;i<typefilter.length;i++) {
+        if (tkeep==false) {
+            return false;
+        }
+        var fkeep = false;
+        for (i=0;i<posfilter.length;i++) {
             if (item.values().s_pos.indexOf(posfilter[i])>=0) {
-                keep = true;
+                fkeep = true;
             }
         }
-        return keep;
+        return fkeep;
     }
     $(document).ready(function() {
         var options = {
@@ -286,9 +286,7 @@
         votesList = new List('votes', options);
         typefilter = $('#s_typefilter').val()
         posfilter = $('#s_posfilter').val()
-        votesList.filter(fscrutintype);
-        votesList.filter(fscrutinpos);
-        console.log(typefilter,posfilter);
+        votesList.filter(fscrutin);
     });
     
    

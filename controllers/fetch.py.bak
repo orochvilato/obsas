@@ -35,7 +35,7 @@ def rebuild_cache():
         appcache.get(r['id'],getVoteData_fct,params=r['params'])
     
 def update_emfi_compat():
-    scrutins = mdb.scrutins.find({})
+    scrutins = mdb.scrutins.find({'vote':None})
     groupes = [g['libelleAbrev'] for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})]
     
     for s in scrutins:
@@ -135,7 +135,41 @@ def fetch_scrutins():
         mdb.scrutins.create_index([('scrutin_id', pymongo.ASCENDING)], unique = True)
         mdb.scrutins.insert_many(scr['scrutins'])
 
+def update_acteurs_stats():
+    
+    deputes = mdb.acteurs.find()
+    for dep in deputes:
+        votes = mdb.votes.find({'uid':dep['uid']})
+        positions = {}
+        dossiers= {'tous':{'n':0,'votefi':0,'voteem':0}}
+        stats = {'n':votes.count(),'pour':0,'contre':0,'abstention':0,'nonVotant':0,'absent':0,'votefi':0,'voteem':0,'diss':0,'exprime':0,'voteempct':0,'votefipct':0,'disspct':0}
+        for v in votes:
+            if v['position'] in ['pour','contre','abstention']:
+                stats['exprime'] += 1
+            positions[v['scrutin_id']] = v['position']
+            stats[v['position']] += 1
+        stats['exprimepct'] = int(100*float(stats['exprime'])/stats['n'])
+        scrutins = sorted(list(mdb.scrutins.find({'scrutin_id':{'$in':positions.keys()}})),key=lambda x:x['scrutin_num'],reverse=True)
+        
+        from collections import OrderedDict
+        scrutins_dossiers = OrderedDict()
+        for s in scrutins:
+            diss = ( positions[s['scrutin_id']] != s['vote'][dep['groupe_abrev']]['sort']) and (not positions[s['scrutin_id']] in ['absent','nonVotant'])
+            if diss:
+                stats['diss'] += 1
+    
+            for p in ['votefi','voteem']:
+                if positions[s['scrutin_id']] == s[p]:
+                    stats[p] += 1
 
+            s['flag'] = diss
+            stats['disspct'] =  int(100*float(stats['diss'])/stats['exprime']) if stats['exprime']>0 else '-'
+            stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime']) if stats['exprime']>0 else '-'
+            stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
+    
+        mdb.acteurs.update({'uid':dep['uid']},{'$set':{'statsvote':stats}})
+        print dep['nomcomplet']
+    
     
 def index():
     
