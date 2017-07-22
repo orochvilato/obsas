@@ -1,0 +1,56 @@
+{{ extend "base.html" }}
+{{ block style }}
+<style>
+    .circo { fill:white;}}   
+ {{ for dep in deputes: }} 
+    [id='{{ =dep['idcirco'] }}'].participation {
+        {{ if dep['statsvote']['exprimepct'] != '-': }}fill:hsl({{ =int(120*float(dep['statsvote']['exprimepct'])/100) }},100%,50%);{{ else: }}fill:#C0C0C0;{{ pass }}
+     }
+    [id='{{ =dep['idcirco'] }}'].dissidence {
+        {{ if dep['statsvote']['disspct'] != '-': }}fill:hsl({{ =int(120*float(100-int(dep['statsvote']['disspct']))/100) }},100%,50%);{{ pass }}
+    }
+        
+    [id='{{ =dep['idcirco'] }}'].ficompat {
+        {{ if dep['statsvote']['votefipct'] != '-': }}fill:hsl({{ =int(120*float(dep['statsvote']['votefipct'])/100) }},100%,50%);{{ pass }}
+     }
+    [id='{{ =dep['idcirco'] }}'].emcompat {
+        {{ if dep['statsvote']['voteempct'] != '-': }} fill:hsl({{ =int(120*float(dep['statsvote']['voteempct'])/100) }},100%,50%);{{ pass }}
+     }
+     {{ pass }}
+</style>
+{{ end }}
+{{ block content }}
+    <div class="row">
+       <div class="input-field col s6">
+        <select id="fselect">
+          <option value="participation" selected>Participation</option>
+          <option value="dissidence">Dissidence</option>
+          <option value="ficompat">Compatibilité FI</option>
+          <option value="emcompat">Compatibilité EM</option>
+        </select>
+        <label>Les circonscriptions Françaises par</label>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col s12 l12">
+        {{ include "svg/circonscriptions2.svg" }}
+        </div>
+    </div>
+{{ end }}
+{{ block script }}
+<script>
+    var oldfsel = "participation";
+    function fillfrance() {
+        var fsel = $('#fselect').val();
+        $('.circo').removeClass(oldfsel);
+        $('.circo').addClass(fsel);
+        oldfsel = fsel;
+    }
+    $('#fselect').change(function() {
+        fillfrance();
+    });
+    $(document).ready(function() {
+        fillfrance();
+    });
+</script>
+{{ end }}

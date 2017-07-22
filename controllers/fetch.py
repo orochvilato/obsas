@@ -139,6 +139,8 @@ def update_acteurs_stats():
     
     deputes = mdb.acteurs.find()
     for dep in deputes:
+        dep['iddepartement'] = departements[dep['departement']]
+        dep['idcirco'] = dep['iddepartement']+'-'+('00'+dep['circo'])[-2:]
         votes = mdb.votes.find({'uid':dep['uid']})
         positions = {}
         dossiers= {'tous':{'n':0,'votefi':0,'voteem':0}}
@@ -166,9 +168,9 @@ def update_acteurs_stats():
             stats['disspct'] =  int(100*float(stats['diss'])/stats['exprime']) if stats['exprime']>0 else '-'
             stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime']) if stats['exprime']>0 else '-'
             stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
-    
-        mdb.acteurs.update({'uid':dep['uid']},{'$set':{'statsvote':stats}})
-        print dep['nomcomplet'].encode('utf8')
+        dep['statsvote'] = stats
+        mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})
+        #print dep['nomcomplet'].encode('utf8')
     
     
 def index():

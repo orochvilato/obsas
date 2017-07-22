@@ -7,7 +7,12 @@ def deputes():
     deps = list(mdb.acteurs.find())
     
     return dict(deputes=deps)
-        
+
+
+def circo():
+    deps = list(mdb.acteurs.find())
+    return dict(deputes=deps)
+
 def depute():
     a_id = request.vars.get('uid','welou')
     dep = mdb.acteurs.find_one({'uid':a_id})

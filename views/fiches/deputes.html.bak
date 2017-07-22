@@ -16,8 +16,7 @@
         {{ if dep['statsvote']['disspct'] != '-': }}fill:hsl({{ =int(120*float(100-int(dep['statsvote']['disspct']))/100) }},100%,50%);{{ pass }}
     }
         
-     }
-     #p{{ =int(dep['place']) }}.ficompat {
+    #p{{ =int(dep['place']) }}.ficompat {
         {{ if dep['statsvote']['votefipct'] != '-': }}fill:hsl({{ =int(120*float(dep['statsvote']['votefipct'])/100) }},100%,50%);{{ pass }}
      }
      #p{{ =int(dep['place']) }}.emcompat {
@@ -70,10 +69,10 @@
             {{ pass }}</td>
               <td class="circo">{{ =d['mandats'][0]['election_lieu_region'] }} / {{ =d['mandats'][0]['election_lieu_departement'] }} / {{ =d['mandats'][0]['election_lieu_numCirco'] }}<br/>
               {{ =d['profession_libelleCourant'] or "" }}<br/>{{ =d['age'] }} ans</td>
-              <td class="pct"><span class="participation">{{ =d['statsvote']['exprimepct'] }}</span> %</td>
-              <td class="pct"><span class="dissidence">{{ =d['statsvote']['disspct'] }}</span> %</td>
-              <td class="pct"><span class="ficompat">{{ =d['statsvote']['votefipct'] }}</span> %</td>
-              <td class="pct"><span class="emcompat">{{ =d['statsvote']['voteempct'] }}</span> %</td>
+              <td class="pct"><span class="participation">{{ =d['statsvote']['exprimepct'] }}</span> %<br/><span style="font-size:0.6em;">({{ ="%d/%d"% (d['statsvote']['exprime'],d['statsvote']['n']) }})</span></td>
+              <td class="pct"><span class="dissidence">{{ =d['statsvote']['disspct'] }}</span> %<br/><span style="font-size:0.6em;">({{ ="%d/%d"% (d['statsvote']['diss'],d['statsvote']['exprime']) }})</span></td>
+              <td class="pct"><span class="ficompat">{{ =d['statsvote']['votefipct'] }}</span> %<br/><span style="font-size:0.6em;">({{ ="%d/%d"% (d['statsvote']['votefi'],d['statsvote']['exprime']) }})</span></td>
+              <td class="pct"><span class="emcompat">{{ =d['statsvote']['voteempct'] }}</span> %<br/><span style="font-size:0.6em;">({{ ="%d/%d"% (d['statsvote']['voteem'],d['statsvote']['exprime']) }})</span></td>
               </tr>
             {{ pass }}
           </tbody>
@@ -92,11 +91,11 @@
         oldhsel = hsel;
     }
     $('#hselect').change(function() {
-        fillhemicycle();
+        fillfrance();
     });
     $(document).ready(function() {
          var svg = document.getElementById('hemicycle');
-         fillhemicycle();
+         fillfrance();
          
          $.each(svg.getElementsByTagName('a'), function() {
             $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
