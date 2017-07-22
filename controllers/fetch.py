@@ -148,7 +148,7 @@ def update_acteurs_stats():
                 stats['exprime'] += 1
             positions[v['scrutin_id']] = v['position']
             stats[v['position']] += 1
-        stats['exprimepct'] = int(100*float(stats['exprime'])/stats['n'])
+        stats['exprimepct'] = int(100*float(stats['exprime'])/stats['n']) if stats['nonVotant']!=stats['n'] else '-'
         scrutins = sorted(list(mdb.scrutins.find({'scrutin_id':{'$in':positions.keys()}})),key=lambda x:x['scrutin_num'],reverse=True)
         
         from collections import OrderedDict

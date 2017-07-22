@@ -177,5 +177,6 @@ def index():
     fetch_scrutins()
     update_axes()
     update_emfi_compat()
+    update_acteurs_stats()
     rebuild_cache()
     return dict()
