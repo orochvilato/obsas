@@ -1,19 +1,20 @@
 {{ extend "base.html" }}
 {{ block style }}
 <style>
+   
     .circo { fill:white;}}   
  {{ for dep in deputes: }} 
     [id='{{ =dep['idcirco'] }}'].participation {
         {{ if dep['statsvote']['exprimepct'] != '-': }}fill:hsl({{ =int(120*float(dep['statsvote']['exprimepct'])/100) }},100%,50%);{{ else: }}fill:#C0C0C0;{{ pass }}
      }
-    #{{ =dep['idcirco'] }}.dissidence {
+    [id='{{ =dep['idcirco'] }}'].dissidence {
         {{ if dep['statsvote']['disspct'] != '-': }}fill:hsl({{ =int(120*float(100-int(dep['statsvote']['disspct']))/100) }},100%,50%);{{ pass }}
     }
         
-    #{{ =dep['idcirco'] }}.ficompat {
+    [id='{{ =dep['idcirco'] }}'].ficompat {
         {{ if dep['statsvote']['votefipct'] != '-': }}fill:hsl({{ =int(120*float(dep['statsvote']['votefipct'])/100) }},100%,50%);{{ pass }}
      }
-    #{{ =dep['idcirco'] }}.emcompat {
+    [id='{{ =dep['idcirco'] }}'].emcompat {
         {{ if dep['statsvote']['voteempct'] != '-': }} fill:hsl({{ =int(120*float(dep['statsvote']['voteempct'])/100) }},100%,50%);{{ pass }}
      }
      {{ pass }}
@@ -51,6 +52,43 @@
     });
     $(document).ready(function() {
         fillfrance();
+        $('.circo').click(function() {
+            // the main SVG object and its current viewBox
+            var svg = document.querySelector('#svgcirco');
+            var bbox = element.getBBox();
+            var viewBox = svg.getAttribute('viewBox');
+            vbox = viewBox.split(' ');
+            vbox[0] = parseFloat(vbox[0]);
+            vbox[1] = parseFloat(vbox[1]);
+            vbox[2] = parseFloat(vbox[2]);
+            vbox[3] = parseFloat(vbox[3]);
+
+            // the current center of the viewBox
+            var cx=vbox[0]+vbox[2]/2;
+            var cy=vbox[1]+vbox[3]/2;
+
+            // element is the element I want to zoom to
+            var element = svg.querySelector('[id='013-01']');
+
+            var matrix = element.getTransformToElement(svg);
+            // the new center
+            var newx = (bbox.x + bbox.width/2)*matrix.a + matrix.e;
+            var newy = (bbox.y + bbox.height/2)*matrix.d + matrix.f;
+
+            // the corresponding top left corner in the current scale
+            var absolute_offset_x = vbox[0] + newx - cx;
+            var absolute_offset_y = vbox[1] + newy - cy;
+
+            // the new scale
+            var scale = bbox.width*matrix.a/vbox[2] * 1.2;
+
+            var scaled_offset_x = absolute_offset_x + vbox[2]*(1-scale)/2;
+            var scaled_offset_y = absolute_offset_y + vbox[3]*(1-scale)/2;
+            var scaled_width = vbox[2]*scale;
+            var scaled_height = vbox[3]*scale;
+
+            svg.setAttribute("viewBox", ""+scaled_offset_x+" "+scaled_offset_y+" "+scaled_width+" "+scaled_height);
+        });
     });
 </script>
 {{ end }}

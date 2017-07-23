@@ -22,6 +22,7 @@ def depute():
     del dep['_id']
     votes = mdb.votes.find({'uid':a_id})
     positions = {}
+    positions_ori = {}
     dossiers= {'tous':{'n':0,'votefi':0,'voteem':0}}
     stats = {'n':votes.count(),'pour':0,'contre':0,'abstention':0,'nonVotant':0,'absent':0,'votefi':0,'voteem':0,'diss':0,'exprime':0,'voteempct':0,'votefipct':0,'disspct':0}
     for v in votes:
@@ -29,6 +30,7 @@ def depute():
             #positions[v['scrutin_id']] = v['position']
             stats['exprime'] += 1
         positions[v['scrutin_id']] = v['position']
+        positions_ori[v['scrutin_id']] = v['position_ori']
         stats[v['position']] += 1
     
     stats['exprimepct'] = int(100*float(stats['exprime'])/stats['n'])
@@ -86,4 +88,4 @@ def depute():
             posscr += 'absentnv'
         s['posscr'] = posscr
         s['absent'] =  (positions[s['scrutin_id']] in ['absent','nonVotant'])
-    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)
+    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers,**dep)

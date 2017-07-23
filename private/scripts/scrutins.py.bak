@@ -1,4 +1,5 @@
 #!/home/www-data/web2py/applications/obsas/.pyenv/bin/python
+# -*- coding: utf-8 -*-
 
 import scrapy
 import requests
@@ -6,6 +7,7 @@ import json
 import re
 
 from scrapy.crawler import CrawlerProcess
+
 
 
 leg = 15
@@ -49,7 +51,7 @@ class ScrutinsSpider(scrapy.Spider):
         request.meta['type'] = 'TOUS'
         request.meta['idDossier'] = 'TOUS'
         yield request
-        
+
 
         for _idDossier in response.xpath('//select[@name="idDossier"]/option'):
             ridDossier = _idDossier.xpath('@value').extract()[0]
@@ -80,7 +82,7 @@ class ScrutinsSpider(scrapy.Spider):
 
 
     def parse_page(self, response):
-        
+
         scrs = response.xpath('//table[@id="listeScrutins"]/tbody/tr')
         for scr in scrs:
             _num = int(scr.xpath('td[contains(@class,"denom")]/text()').extract()[0].replace('*',''))
@@ -89,11 +91,10 @@ class ScrutinsSpider(scrapy.Spider):
             _abs = int(scr.xpath('td[contains(@class,"abs")]/text()').extract()[0])
             _desc = scr.xpath('td[contains(@class,"desc")]/text()').extract()[0].replace('  [','')
             _date = scr.xpath('td/text()').extract()[1]
-     
+
             if _num not in scrutins.keys():
                 scrutins[_num] = {}
             scrutins[_num].update({'num':_num,
-                                   'nums':"%s" % _num,
                                    'id':'%s_%d' % (leg,_num),
                                   'pour':_pour,
                                   'contre':_contre,
@@ -138,13 +139,32 @@ class ScrutinsSpider(scrapy.Spider):
         contre = int(response.xpath('//p[@id="contre"]/b/text()').extract()[0])
         abstention = votants - pour - contre
         ctrl= {'Pour':pour, 'Contre':contre, 'Abstention':abstention}
-
+        
+        # corrections
+        corrections = {}
+        for corr in response.xpath('//aside/div/div/div/div[contains(@class,"titre-contenu")]/span[contains(.,"Mises au point")]/../following-sibling::div[contains(@class,"corps-contenu")]/p[contains(@class,"itemmap")]').extract():
+            cv = re.split(r'qui .tai',corr)
+            if len(cv)<2:
+                continue
+            newpos = None
+            if u'voter pour' in cv[1]:
+                newpos = 'pour'
+            elif u'voter contre' in cv[1]:
+                newpos = 'contre'
+            elif u'abstention' in cv[1] or u'abstenir' in cv[1]:
+                newpos = 'abstention'
+            noms = re.sub(r'\xa0|\n|\t|</b>|<b>|<p[^>]+>|</p>|\([^\)]+\)',r'',cv[0]).replace(' et ',',').replace(' ','').split(',')
+            for nom in noms:
+                corrections[normalize(nom)] = newpos
+                
         for pos in positions:
             p = response.xpath('//div[@class="%s"]/ul[@class="deputes"]/li' % positions[pos])
             for dep in p:
                 prenom = dep.xpath('text()').extract()[0][:-1]
                 nom = dep.xpath('b/text()').extract()[0]
-                scrutins[num]['votes'][pos] = scrutins[num]['votes'].get(pos,[])+[normalize(prenom+nom)]
+                nid = normalize(prenom+nom)
+                newpos = correction.get(nid,pos)
+                scrutins[num]['votes'][newpos] = scrutins[num]['votes'].get(newpos,[])+[nid]
 
             if pos in ctrl.keys() and len(p)<>ctrl[pos]:
                 print "PB COHERENCE"
@@ -153,7 +173,8 @@ class ScrutinsSpider(scrapy.Spider):
         for nv in response.xpath('//div[@class="Non-votant" or @class="Non-votants"]/ul[@class="deputes"]').extract():
             noms = re.sub(r'\xa0|\n|\t|</b>|<b>|<ul[^>]+>|</ul>|\([^\)]+\)',r'',nv).replace(' et ',',').replace(' ','')[:-1].split(',')
             scrutins[num]['votes']['nonVotant'] = scrutins[num]['votes'].get('nonVotant',[]) + [ normalize(n) for n in noms ]
-
+        
+        scrutins[num]['corrections'] = corrections
         if not 'ok' in scrutins[num].keys():
             scrutins[num]['ok']=True;
 

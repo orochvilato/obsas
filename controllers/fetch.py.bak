@@ -115,11 +115,14 @@ def fetch_acteurs_organes():
 def fetch_scrutins():
     # Scrutins et votes
     from sources.scrutins import getScrutins    
+    mdb.votes.remove()
+    mdb.scrutins.remove()
     scrutinscomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$and':[{'scrutin_dossier':{'$ne':'N/A'}},{'scrutin_type':{'$ne':'N/A'}}]}))]
     acteurs = dict((a['id'],a) for a in mdb.acteurs.find())
     
     scr = getScrutins(acteurs,scrutinscomplets)
     scrutinsincomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$or':[{'scrutin_dossier':'N/A'},{'scrutin_type':'N/A'}]}))]
+    
     print "remove",scrutinsincomplets
     mdb.votes.remove({'scrutin_id':{'$in':scrutinsincomplets}})
     mdb.scrutins.remove({'scrutin_id':{'$in':scrutinsincomplets}})
@@ -140,7 +143,7 @@ def update_acteurs_stats():
     deputes = mdb.acteurs.find()
     for dep in deputes:
         dep['iddepartement'] = departements[dep['departement']]
-        dep['idcirco'] = dep['iddepartement']+'-'+('0'+dep['circo'])[:2]
+        dep['idcirco'] = dep['iddepartement']+'-'+('00'+dep['circo'])[-2:]
         votes = mdb.votes.find({'uid':dep['uid']})
         positions = {}
         dossiers= {'tous':{'n':0,'votefi':0,'voteem':0}}

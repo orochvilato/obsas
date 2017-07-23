@@ -115,11 +115,14 @@ def fetch_acteurs_organes():
 def fetch_scrutins():
     # Scrutins et votes
     from sources.scrutins import getScrutins    
+    #mdb.votes.remove()
+    #mdb.scrutins.remove()
     scrutinscomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$and':[{'scrutin_dossier':{'$ne':'N/A'}},{'scrutin_type':{'$ne':'N/A'}}]}))]
     acteurs = dict((a['id'],a) for a in mdb.acteurs.find())
     
     scr = getScrutins(acteurs,scrutinscomplets)
     scrutinsincomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$or':[{'scrutin_dossier':'N/A'},{'scrutin_type':'N/A'}]}))]
+    
     print "remove",scrutinsincomplets
     mdb.votes.remove({'scrutin_id':{'$in':scrutinsincomplets}})
     mdb.scrutins.remove({'scrutin_id':{'$in':scrutinsincomplets}})

@@ -226,7 +226,7 @@
                       </div>
                       <div class="col s2">
                           <!--<span class="{{ =positions[s['scrutin_id']] }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>-->
-                          <span class="{{ if (s['votefi']==positions[s['scrutin_id']] and s['voteem']!=positions[s['scrutin_id']]): }}coulFI{{ elif (s['votefi']!=positions[s['scrutin_id']] and s['voteem']==positions[s['scrutin_id']]): }}coulREM{{ else: }}voteabst{{ pass }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>
+                          <span class="{{ if (s['votefi']==positions[s['scrutin_id']] and s['voteem']!=positions[s['scrutin_id']]): }}coulFI{{ elif (s['votefi']!=positions[s['scrutin_id']] and s['voteem']==positions[s['scrutin_id']]): }}coulREM{{ else: }}voteabst{{ pass }} badgevote valign-wrapper">{{ if positions_ori[s['scrutin_id']]!=positions[s['scrutin_id']]: }}<i class="fa fa-exclamation-circle" title="Vote corrigé (initialement: {{ =positions_ori[s['scrutin_id']] }})"></i> {{ pass }}{{ =positions[s['scrutin_id']] }}</span>
                       </div>
                     </div>
                 </li>
@@ -292,7 +292,7 @@
       //var svg = document.getElementById('hemicycle');
       var svgDoc = svg.contentDocument;
       $.each(svgDoc.getElementsByTagName('a'), function() {
-          $(this).attr('href',"{{ = URL('fiches','deputes?uid=') }}"+$(this).attr('href'));
+          $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
       });
       var styleElement = svgDoc.createElementNS("http://www.w3.org/2000/svg", "style");
       styleElement.textContent = "#p{{ =place }} { fill:  black; stroke-width:3px; stroke: black;}"; // add whatever you need here

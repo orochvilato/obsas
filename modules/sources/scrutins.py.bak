@@ -124,7 +124,7 @@ def getScrutins(acteurs,deja=[]):
     votes = []
     scrutins = []
     
-    def act_votedata(id,position):
+    def act_votedata(id,position,posori=None):
         act = acteurs[id]
         return {'uid':act['uid'],
                 'nom':act['nomcomplet'],
@@ -139,14 +139,15 @@ def getScrutins(acteurs,deja=[]):
                 'departement':act['departement'],
                 'csp':act['csp'],
                 'sexe':act['sexe'],
-                'position':position}
+                'position':position,
+                'position_ori':posori }
     
     for s in _scrutins.values():
         if s['id'] in deja:
             continue
-        desc = s['desc'].replace('. [','.')
+        desc = s['desc'].replace('.[','.')
         types = s.get('libelleType','N/A')
-        fulldesc = u"Scrutin n° %d du %s : %s" % (s[u'num'],s[u'date'],s[u'desc'])
+        fulldesc = u"Scrutin n° %d du %s : %s" % (s[u'num'],s[u'date'],desc)
         scrutin = { 'scrutin_num':s['num'],
                     'scrutin_id':s['id'],
                     'scrutin_desc':desc,
@@ -168,7 +169,14 @@ def getScrutins(acteurs,deja=[]):
                     print v.encode('utf8')
                 else:
                     exprimes.append(acteur['id'])
-                    vote.update(act_votedata(acteur['id'],p))
+                        
+                    if s['corrections'].get('m.'+v,s['corrections'].get('mme'+v,False)):
+                        position = s['corrections'][v]
+                        posori = p
+                    else:
+                        position = p
+                        posori = p
+                    vote.update(act_votedata(acteur['id'],position,posori))
                     vote['vote_id'] = "%d_%s" % (s['num'],acteur['id'])
                     votes.append(vote)
                     

@@ -8,13 +8,7 @@ def deputes():
     
     return dict(deputes=deps)
 
-def listdep():
-    deps = list(mdb.acteurs.find())
-    txt = []
-    for dep in deps:
-        if not dep['departement'] in departements:
-            txt.append(dep['departement'])
-    return ', '.join(txt)
+
 def circo():
     deps = list(mdb.acteurs.find())
     return dict(deputes=deps)
@@ -35,6 +29,7 @@ def depute():
             #positions[v['scrutin_id']] = v['position']
             stats['exprime'] += 1
         positions[v['scrutin_id']] = v['position']
+        positions_ori[v['scrutin_id']] = v['position_ori']
         stats[v['position']] += 1
     
     stats['exprimepct'] = int(100*float(stats['exprime'])/stats['n'])
@@ -92,4 +87,4 @@ def depute():
             posscr += 'absentnv'
         s['posscr'] = posscr
         s['absent'] =  (positions[s['scrutin_id']] in ['absent','nonVotant'])
-    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,dossiers=dossiers,**dep)
+    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers,**dep)

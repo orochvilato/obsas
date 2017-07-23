@@ -124,7 +124,7 @@ def getScrutins(acteurs,deja=[]):
     votes = []
     scrutins = []
     
-    def act_votedata(id,position):
+    def act_votedata(id,position,posori=None):
         act = acteurs[id]
         return {'uid':act['uid'],
                 'nom':act['nomcomplet'],
@@ -139,7 +139,8 @@ def getScrutins(acteurs,deja=[]):
                 'departement':act['departement'],
                 'csp':act['csp'],
                 'sexe':act['sexe'],
-                'position':position}
+                'position':position,
+                'position_ori':posori }
     
     for s in _scrutins.values():
         if s['id'] in deja:
@@ -168,7 +169,14 @@ def getScrutins(acteurs,deja=[]):
                     print v.encode('utf8')
                 else:
                     exprimes.append(acteur['id'])
-                    vote.update(act_votedata(acteur['id'],p))
+                    corr = s['corrections'].get('m.'+v,s['corrections'].get('mme'+v,False))
+                    if corr:
+                        position = corr
+                        posori = p
+                    else:
+                        position = p
+                        posori = p
+                    vote.update(act_votedata(acteur['id'],position,posori))
                     vote['vote_id'] = "%d_%s" % (s['num'],acteur['id'])
                     votes.append(vote)
                     
