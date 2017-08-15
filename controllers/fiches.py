@@ -4,6 +4,21 @@ def index():
     return dict(message="hello from fiches.py")
 import json
 
+def suivifi():
+    groupes = [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})]
+    suivi = {}
+    scrutins = sorted(mdb.scrutins.find(),key=lambda x:x['scrutin_num'])
+    nuls = [ i for i,s in enumerate(scrutins) if s['votefi']==s['voteem']]
+    for g,lib,nbm in groupes:
+        suivi[g] = {}
+        suivi[g]['votefi'] = []
+        suivi[g]['voteem'] = []
+        for i,s in enumerate(scrutins):
+             suivi[g]['votefi'].append(s['vote'][g][s['votefi']] if s['votefi']!=s['voteem'] else 0)
+             
+              
+    return dict(groupes=groupes,suivi=suivi,scrutins=scrutins,nuls=nuls,legende="Nombre de votants exprimés FI-compatibles - par scrutins")
+
 def suivi():
     groupes = [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})] + [('assemblee','Assemblée',577)]
     suivi = {}

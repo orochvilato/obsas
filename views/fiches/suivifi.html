@@ -1,0 +1,109 @@
+{{extend 'base.html'}}
+{{ block content }}
+<div>
+  <h4>Votes FI-compatibles par groupes</h4>
+  <span>Les scrutins : {{ =', '.join(["%d" % s for s in nuls]) }} n'ont pas été comptabilisé car le groupe EM à voté comme le groupe FI</span>
+  <h5>Assemblée</h5>
+  <canvas id="canvas"></canvas>
+  {{ for g,glib,nbm in groupes: }}
+    <h5>{{ = glib }} ( {{ =nbm }} membres )</h5>
+    <canvas id="canvas{{ =g }}"></canvas>
+  {{ pass }}
+</div>
+{{ end }}
+{{ block script }}
+<script>
+    
+    {{ import json }}
+    {{ colors = { 'FI':'rgba(12,195,214,1)',
+          'NI':'rgba(191,191,191,1)',
+          'NG':'rgba(234,52,208,1)',
+          'REM':'rgba(255,192,0,1)',
+          'MODEM':'rgba(237,125,49,1)',
+          'LR':'rgba(47,85,151,1)',
+          'LC':'rgba(112,48,160,1)',
+          'GDR':'rgba(192,0,0,1)'
+        }
+     }}
+    var colors = JSON.parse('{{ =XML(json.dumps(colors)) }}');
+    var labels = JSON.parse("{{ =json.dumps([s['scrutin_num'] for s in scrutins]) }}");
+    
+    {{ datasets = [ { 'label': glib, 'backgroundColor': colors[g],'data': suivi[g]['votefi']} for g,glib,nbm in groupes ] }}
+    var datasets = JSON.parse('{{ =XML(json.dumps(datasets)) }}');
+    window.onload = function() {
+     var ctx = document.getElementById("canvas").getContext("2d");
+     var myBar = new Chart(ctx, {
+         type: 'bar',
+         data: {
+             labels: labels,
+             datasets: datasets,
+         },
+         options: {
+                    legend: { display:false },
+                    title:{
+                        display:true,
+                        text:"{{ =legende }}"
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+         
+             
+     {{ for g,glib,nbm in groupes: }}
+        var votesFI = JSON.parse("{{ =json.dumps(suivi[g]['votefi']) }}");
+        var votesEM = JSON.parse("{{ =json.dumps(suivi[g]['voteem']) }}");
+
+        var barChartData = {
+            labels: labels,
+            datasets: [{
+                label: 'Vote FI',
+                backgroundColor: "{{ =colors[g] }}",
+                stack: 'Stack 0',
+                data: votesFI
+            }
+            ]
+        };
+
+        var ctx = document.getElementById("canvas{{ =g }}").getContext("2d");
+        window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    legend: { display:false },
+                    title:{
+                        display:true,
+                        text:"{{ =legende }}"
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+       
+        {{ pass }}
+        };
+
+</script>
+{{ end }}
