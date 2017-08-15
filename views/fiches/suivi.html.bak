@@ -1,8 +1,8 @@
 {{extend 'base.html'}}
 {{ block content }}
 <div>
-  {{ for g,glib in groupes: }}
-    <h5>{{ = glib }}</h5>
+  {{ for g,glib,nbm in groupes: }}
+    <h5>{{ = glib }} ( {{ =nbm }} membres )</h5>
     <canvas id="canvas{{ =g }}"></canvas>
   {{ pass }}
 </div>
@@ -19,7 +19,7 @@
                     }
                 });
     window.onload = function() {
-     {{ for g,glib in groupes: }}
+     {{ for g,glib,nbm in groupes: }}
         var votesFI = JSON.parse("{{ =json.dumps(suivi[g]['votefi']) }}");
         var votesEM = JSON.parse("{{ =json.dumps(suivi[g]['voteem']) }}");
 
@@ -41,7 +41,7 @@
                 options: {
                     title:{
                         display:true,
-                        text:"Chart.js Bar Chart - Stacked"
+                        text:"Nombre de votants FI-compatibles - par scrutins"
                     },
                     tooltips: {
                         mode: 'index',

@@ -5,11 +5,11 @@ def index():
 import json
 
 def suivi():
-    groupes = [(g['libelleAbrev'],g['libelle']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})] + [('assemblee','Assemblée')]
+    groupes = [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})] + [('assemblee','Assemblée',577)]
     suivi = {}
     scrutins = sorted(mdb.scrutins.find(),key=lambda x:x['scrutin_num'])
     nuls = [ 1 if s['votefi']==s['voteem'] else 0 for i,s in enumerate(scrutins) ]
-    for g,lib in groupes:
+    for g,lib,nbm in groupes:
         suivi[g] = {}
         suivi[g]['votefi'] = []
         suivi[g]['voteem'] = []
@@ -17,7 +17,23 @@ def suivi():
              suivi[g]['votefi'].append(s['vote'][g][s['votefi']])
              
               
-    return dict(groupes=groupes,suivi=suivi,scrutins=scrutins,nuls=nuls)
+    return dict(groupes=groupes,suivi=suivi,scrutins=scrutins,nuls=nuls,legende="Nombre de votants exprimés FI-compatibles - par scrutins")
+
+def suivipct():
+    groupes = [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})] + [('assemblee','Assemblée',577)]
+    suivi = {}
+    scrutins = sorted(mdb.scrutins.find(),key=lambda x:x['scrutin_num'])
+    nuls = [ 1 if s['votefi']==s['voteem'] else 0 for i,s in enumerate(scrutins) ]
+    for g,lib,nbm in groupes:
+        suivi[g] = {}
+        suivi[g]['votefi'] = []
+        suivi[g]['voteem'] = []
+        for i,s in enumerate(scrutins):
+             suivi[g]['votefi'].append(100*float(s['vote'][g][s['votefi']])/nbm)
+             
+              
+    return dict(groupes=groupes,suivi=suivi,scrutins=scrutins,nuls=nuls,legende="% de votants exprimés FI-compatibles - par scrutins")
+
         
 def deputes():
     deps = list(mdb.acteurs.find())
