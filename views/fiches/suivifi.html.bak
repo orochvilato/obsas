@@ -2,7 +2,7 @@
 {{ block content }}
 <div>
   <h4>Votes FI-compatibles par groupes</h4>
-  <span>Les scrutins : {{ =', '.join(nuls) }} n'ont pas été comptabilisé car le groupe EM à voté comme le groupe FI</span>
+  <span>Les scrutins : {{ =', '.join(["%d" % s for s in nuls]) }} n'ont pas été comptabilisé car le groupe EM à voté comme le groupe FI</span>
   <h5>Assemblée</h5>
   <canvas id="canvas"></canvas>
   {{ for g,glib,nbm in groupes: }}
@@ -60,7 +60,18 @@
                 }
             });
          
-             
+      document.getElementById("canvas").onclick = function(evt){
+         var activePoints = myBar.getElementsAtEvent(evt);
+         if (activePoints[0]) {
+            var chartData = activePoints[0]['_chart'].config.data;
+            var idx = activePoints[0]['_index'];
+
+            var label = chartData.labels[idx];
+            var url = "http://www2.assemblee-nationale.fr/scrutins/detail/(legislature)/15/(num)/" + label
+            window.open(url, '_blank');
+          }
+        };
+
      {{ for g,glib,nbm in groupes: }}
         var votesFI = JSON.parse("{{ =json.dumps(suivi[g]['votefi']) }}");
         var votesEM = JSON.parse("{{ =json.dumps(suivi[g]['voteem']) }}");
@@ -77,7 +88,7 @@
         };
 
         var ctx = document.getElementById("canvas{{ =g }}").getContext("2d");
-        window.myBar = new Chart(ctx, {
+        var myBar{{ =g }} = new Chart(ctx, {
                 type: 'bar',
                 data: barChartData,
                 options: {
@@ -101,7 +112,18 @@
                     }
                 }
             });
-       
+         document.getElementById("canvas{{ =g }}").onclick = function(evt){
+         var activePoints = myBar{{ =g }}.getElementsAtEvent(evt);
+         if (activePoints[0]) {
+            var chartData = activePoints[0]['_chart'].config.data;
+            var idx = activePoints[0]['_index'];
+
+            var label = chartData.labels[idx];
+            console.log(idx,label);
+            var url = "http://www2.assemblee-nationale.fr/scrutins/detail/(legislature)/15/(num)/" + label
+            window.open(url, '_blank');
+          }
+        };
         {{ pass }}
         };
 
