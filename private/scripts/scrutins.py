@@ -158,12 +158,12 @@ class ScrutinsSpider(scrapy.Spider):
                 corrections[normalize(nom)] = newpos
                 
         for pos in positions:
-            p = response.xpath('//div[@class="%s"]/ul[@class="deputes"]/li' % positions[pos])
+            p = response.xpath('//div[contains(@class,"%s")]/ul[contains(@class,"deputes")]/li' % positions[pos])
             for dep in p:
                 prenom = dep.xpath('text()').extract()[0][:-1]
                 nom = dep.xpath('b/text()').extract()[0]
                 nid = normalize(prenom+nom)
-                
+               
                 scrutins[num]['votes'][pos] = scrutins[num]['votes'].get(pos,[])+[nid]
 
             if pos in ctrl.keys() and len(p)<>ctrl[pos]:

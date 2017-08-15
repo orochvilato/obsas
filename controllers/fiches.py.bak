@@ -3,6 +3,22 @@
 def index():
     return dict(message="hello from fiches.py")
 import json
+
+def suivi():
+    groupes = [(g['libelleAbrev'],g['libelle']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})] + [('assemblee','Assemblée')]
+    suivi = {}
+    scrutins = sorted(mdb.scrutins.find(),key=lambda x:x['scrutin_num'])
+    nuls = [ i for i,s in enumerate(scrutins) if s['votefi']==s['voteem']]
+    for g,lib in groupes:
+        suivi[g] = {}
+        suivi[g]['votefi'] = []
+        suivi[g]['voteem'] = []
+        for i,s in enumerate(scrutins):
+             suivi[g]['votefi'].append(s['vote'][g][s['votefi']])
+             
+              
+    return dict(groupes=groupes,suivi=suivi,scrutins=scrutins,nuls=nuls)
+        
 def deputes():
     deps = list(mdb.acteurs.find())
     
@@ -22,6 +38,7 @@ def depute():
     del dep['_id']
     votes = mdb.votes.find({'uid':a_id})
     positions = {}
+    positions_ori = {}
     dossiers= {'tous':{'n':0,'votefi':0,'voteem':0}}
     stats = {'n':votes.count(),'pour':0,'contre':0,'abstention':0,'nonVotant':0,'absent':0,'votefi':0,'voteem':0,'diss':0,'exprime':0,'voteempct':0,'votefipct':0,'disspct':0}
     for v in votes:

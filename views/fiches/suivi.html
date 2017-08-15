@@ -1,0 +1,66 @@
+{{extend 'base.html'}}
+{{ block content }}
+<div>
+  {{ for g,glib in groupes: }}
+    <h5>{{ = glib }}</h5>
+    <canvas id="canvas{{ =g }}"></canvas>
+  {{ pass }}
+</div>
+{{ end }}
+{{ block script }}
+<script>
+    {{ import json }}
+    var labels = JSON.parse("{{ =json.dumps([s['scrutin_num'] for s in scrutins]) }}");
+    var nuls = JSON.parse("{{ = json.dumps(nuls) }}").map(function (v) {
+                    if (v==1) {
+                        return 'rgba(12,195,214,0.5)';
+                    } else{
+                        return 'rgba(12,195,214,1)';
+                    }
+                });
+    window.onload = function() {
+     {{ for g,glib in groupes: }}
+        var votesFI = JSON.parse("{{ =json.dumps(suivi[g]['votefi']) }}");
+        var votesEM = JSON.parse("{{ =json.dumps(suivi[g]['voteem']) }}");
+
+        var barChartData = {
+            labels: labels,
+            datasets: [{
+                label: 'Vote FI',
+                backgroundColor: nuls,
+                stack: 'Stack 0',
+                data: votesFI
+            }
+            ]
+        };
+
+        var ctx = document.getElementById("canvas{{ =g }}").getContext("2d");
+        window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    title:{
+                        display:true,
+                        text:"Nombre de votants FI-compatibles - par scrutins"
+                    },
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false
+                    },
+                    responsive: true,
+                    scales: {
+                        xAxes: [{
+                            stacked: true,
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+       
+        {{ pass }}
+        };
+
+</script>
+{{ end }}

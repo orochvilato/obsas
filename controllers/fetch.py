@@ -55,6 +55,8 @@ def update_emfi_compat():
         s['scrutin_fulldesc'] = s['scrutin_fulldesc'].replace('. [','.')
         for g in groupes+['assemblee']:
             exprime[g]['sort'] = max(exprime[g].items(),key=lambda x:x[1])[0]
+            exprime[g]['total'] = exprime[g]['pour']+exprime[g]['contre']+exprime[g]['abstention']+nonexprime[g]['nonVotant']+nonexprime[g]['absent']
+            exprime[g]['total_votants'] = exprime[g]['pour']+exprime[g]['contre']+exprime[g]['abstention']
             exprime[g]['participation'] = round(100*float(exprime[g]['pour']+exprime[g]['contre']+exprime[g]['abstention'])/(exprime[g]['pour']+exprime[g]['contre']+exprime[g]['abstention']+nonexprime[g]['nonVotant']+nonexprime[g]['absent']))
             exprime[g].update(nonexprime[g])
         
@@ -115,8 +117,9 @@ def fetch_acteurs_organes():
 def fetch_scrutins():
     # Scrutins et votes
     from sources.scrutins import getScrutins    
-    #mdb.votes.remove()
-    #mdb.scrutins.remove()
+    
+    mdb.votes.remove()
+    mdb.scrutins.remove()
     scrutinscomplets = [ s['scrutin_id'] for s in list(mdb.scrutins.find({'$and':[{'scrutin_dossier':{'$ne':'N/A'}},{'scrutin_type':{'$ne':'N/A'}}]}))]
     acteurs = dict((a['id'],a) for a in mdb.acteurs.find())
     

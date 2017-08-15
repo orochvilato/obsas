@@ -7,6 +7,8 @@ import pymongo
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 mdb = client.obsas
 
+
+
 def getVoteData_fct(idaxe,filtres):
     pos_icons = { 'pour':'thumbs-up', 'contre':'thumbs-down', 'abstention':'meh-o', 'nonVotant':'ban', 'absent':'plane','voteem':'','votefi':'','autres':''}
     pos_libelles = { 'pour':'votes pour', 'contre':'votes contre', 'abstention':'abstention', 'nonVotant':'non votants (justifiés)', 'absent':'absents',
