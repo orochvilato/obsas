@@ -221,7 +221,7 @@
   <i class="fa fa-circle fa-stack-2x {{ if s['votefi']=='pour':}}coulFI-text{{ elif s['voteem']=='pour':}}coulREM-text{{pass}}"></i>
   <i class="fa fa-{{ =sicon }} fa-stack-1x symbole"></i>
                           </span>{{ if s['flag']: }}<div title="à voté contre son groupe" class="pastille palert right"></div>{{ pass }}</div>
-                        <div class="col s9"><div class="titredossier">{{ =libdos }} - {{ =typescr[s['typedetail']]['libelle'] }}</div><a href="" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
+                        <div class="col s9"><div class="titredossier">{{ =libdos }} - {{ =typescr[s['typedetail']]['libelle'] }}</div><a href="http://www2.assemblee-nationale.fr/scrutins/detail/(legislature)/15/(num)/{{ =s['scrutin_num']}}" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
                           <a class="s_desc" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
                       </div>
                       <div class="col s2">
