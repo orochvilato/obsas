@@ -67,7 +67,7 @@
             var idx = activePoints[0]['_index'];
 
             var label = chartData.labels[idx];
-            var url = "{{ =URL('fiches','scrutin',vars={'id':'15_'}) }} + label
+            var url = "{{ =URL('fiches','scrutin',vars={'id':'15_'}) }}" + label
             window.open(url, '_blank');
           }
         };
