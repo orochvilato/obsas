@@ -1,0 +1,198 @@
+{{ extend "base.html" }}
+
+{{ block style }}
+<style>
+        .parti {
+      color: grey;
+      font-weight:300;
+    }
+    .titredossier {
+        font-size:13px;
+        font-weight:300px;
+        text-transform: uppercase;
+       /* border-top: 1px solid grey;*/
+        border-bottom: 1px solid grey;
+        /*background: lightgrey;*/
+        padding-left:0px;
+    }
+    .pastille {
+        height:1.5em;
+        width:1.5em;
+        margin-top:5px;
+
+        border-radius:50%;
+    }
+    .pastille.palert {
+        height:1em;
+        width:1em;
+        background:red;
+        /*border:4px solid red;*/
+    }
+    .badgevote {
+        padding: 3px;
+        color:black;
+        border-radius:3px;
+        font-weight:400;
+        font-size:12px;
+        display:inline-block;
+        width:80px;
+        margin: 0 auto;
+        text-align:center;
+        text-transform: uppercase;
+    }
+    .voteabst {
+        background: #808080;
+    }
+    .vote {
+        padding-top:20px;
+        border-bottom:1px solid lightgrey;
+
+    }
+    .sortvote, {
+      font-weight: 500;
+    }
+    .loi, span.loi {
+        font-size:26px;
+    }
+    .motion, span.motion, .amendement, span.amendement, .autre, span.autre {
+        font-size:18px;
+    }
+    .article, span.article, .declaration, span.declaration {
+        font-size:22px;
+    }
+    li.vote a {
+        color: black;
+    }
+    li.vote.absent a, li.vote.absent i.symbole {
+        color: #808080;
+    }
+    li.absent .coulFI-text {
+        color:rgba(12,195,214,0.7);
+    }
+    li.absent .coulREM-text {
+        color: rgba(255,192,0,0.7);
+    }
+    .img-circle {
+     border-radius: 50%;
+     width:80px;
+     border: solid 8px;
+    }
+    .img-circle.votefi {
+        border-color:rgba(12,195,214,1);
+    }
+    .img-circle.voteem {
+        border-color:rgba(255,192,0,1);
+    }
+    .img-circle.autre {
+        border-color:rgba(190,190,190,1);
+    }
+    
+</style>
+{{ end }}
+{{ block content }}
+{{ from collections import OrderedDict }}
+{{ typescr = OrderedDict([('loi',{'libelle':'Loi','icon':'book','defaut':True}),('article',{'libelle':'Article','icon':'file-o','defaut':True}),('amendement',{'libelle':'Amendement','icon':'pencil-square-o','defaut':True}),('motion',{'libelle':'Motion','icon':'undo','defaut':False}),('declaration',{'libelle':'Déclaration','icon':'microphone','defaut':False}),('autre',{'libelle':'Autre','icon':'','defaut':False})]) }}
+{{ posscr = OrderedDict([('votefi',{'libelle':'Comme le groupe FI','defaut':True}),('voteem',{'libelle':'Comme le groupe EM','defaut':True}),('dissidence',{'libelle':'Dissident à son groupe','defaut':True}),('abstention',{'libelle':'Abstention','defaut':True}),('absentnv',{'libelle':'Absent ou non votant','defaut':False})]) }}
+<div class="row">
+  <div class="col s12">
+    <div class="card">
+        <div class="card-content">
+            <div class="titredossier">{{ =scrutin['scrutin_dossierLibelle'] }} - {{ =typescr[scrutin['typedetail']]['libelle'] }}</div><a href="http://www2.assemblee-nationale.fr/scrutins/detail/(legislature)/15/(num)/{{ =scrutin['scrutin_num']}}" class="{{ = scrutin['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =scrutin['scrutin_num']}} du {{ =scrutin['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =scrutin['sort'] }})</span></a>
+                          <a class="s_desc" href="{{ '../scrutins/%s.html' % scrutin['scrutin_id'] }}">{{ =scrutin['scrutin_desc'] }}</a>
+        
+        </div>
+      </div>
+    <div class="card">
+        <div class="row">
+        <div class="card-content">
+        
+        <!-- PARTICIPATION -->
+        <div class="c100 p{{ =scrutin['vote']['assemblee']['stats']['exprimepct'][2] }} medium participation" title="Participation ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['exprimepct'][0], scrutin['vote']['assemblee']['stats']['exprimepct'][1]) }})">
+            <span><i class="demo-icon icon-vote" style="font-size:32px;color:#606060;"></i><span style="font-weight:500;color:#606060;">{{ =scrutin['vote']['assemblee']['stats']['exprimepct'][2] }}%</span></span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>
+        
+        <!-- VOTE FI -->
+        <div class="c100 p{{ =scrutin['vote']['assemblee']['stats']['votefipct'][2] }} medium fi" title="FI Compatibilité ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['votefipct'][0], scrutin['vote']['assemblee']['stats']['votefipct'][1]) }})">
+            <span><i class="demo-icon icon-logo-fi coulFI-text" style="font-size:32px"></i><span class="coulFI-text" style="font-weight:500;">{{ =scrutin['vote']['assemblee']['stats']['votefipct'][2] }}%</span></span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>
+        <!-- VOTE EM -->
+        <div class="c100 p{{ =scrutin['vote']['assemblee']['stats']['voteempct'][2] }} medium rem" title="EM Compatibilité ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['voteempct'][0], scrutin['vote']['assemblee']['stats']['voteempct'][1]) }})">
+            <span><i class="demo-icon icon-logo-lrem coulREM-text" style="font-size:26px"></i><span class="coulREM-text" style="font-weight:500;">{{ =scrutin['vote']['assemblee']['stats']['voteempct'][2] }}%</span></span>
+            <div class="slice">
+                <div class="bar"></div>
+                <div class="fill"></div>
+            </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12">
+    <ul class="collapsible" data-collapsible="expandable">
+      <li>
+        <div class="collapsible-header active">Votes des groupes</div>
+        <div class="collapsible-body">
+            {{ for g,glib,nbm in groupes: }}
+            <div class="card">
+                
+                <div class="card-content">
+                    <div style="padding-bottom:10px"><span class="{{ if (scrutin['votefi']==scrutin['vote'][g]['sort']) and (scrutin['voteem']!=scrutin['vote'][g]['sort']): }}coulFI{{ elif scrutin['voteem']==scrutin['vote'][g]['sort']: }}coulREM{{ else: }}voteabst{{ pass }} badgevote valign-wrapper">{{ =scrutin['vote'][g]['sort'] }}</span><span style="font-size:26px; font-weight:500;"> {{ =glib }} ({{ =g }}) </span></div>
+                    <div class="row">
+                    <!-- PARTICIPATION -->
+                    <div class="c100 p{{ =scrutin['vote'][g]['stats']['exprimepct'][2] }} small participation" title="Participation ({{ ='%d/%d' % (scrutin['vote'][g]['stats']['exprimepct'][0], scrutin['vote'][g]['stats']['exprimepct'][1]) }})">
+                        <span><i class="demo-icon icon-vote" style="font-size:18px;color:#606060;"></i><span style="font-weight:500;color:#606060;">{{ =scrutin['vote'][g]['stats']['exprimepct'][2] }}%</span></span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                    <!-- DISSIDENCE -->
+                    <div class="c100 p{{ =scrutin['vote'][g]['stats']['disspct'][2] }} small dissidence" title="Dissidence ({{ ='%d/%d' % (scrutin['vote'][g]['stats']['disspct'][0], scrutin['vote'][g]['stats']['disspct'][1]) }})">
+                        <span><i class="demo-icon icon-fist" style="font-size:18px;color:#b71c1c;"></i><span style="font-weight:500;color:#b71c1c">{{ =scrutin['vote'][g]['stats']['disspct'][2] }}%</span></span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                    <!-- VOTE FI -->
+                    <div class="c100 p{{ =scrutin['vote'][g]['stats']['votefipct'][2] }} small fi" title="FI Compatibilité ({{ ='%d/%d' % (scrutin['vote'][g]['stats']['votefipct'][0], scrutin['vote'][g]['stats']['votefipct'][1]) }})">
+                        <span><i class="demo-icon icon-logo-fi coulFI-text" style="font-size:18px"></i><span class="coulFI-text" style="font-weight:500;">{{ =scrutin['vote'][g]['stats']['votefipct'][2] }}%</span></span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                    <!-- VOTE EM -->
+                    <div class="c100 p{{ =scrutin['vote'][g]['stats']['voteempct'][2] }} small rem" title="EM Compatibilité ({{ ='%d/%d' % (scrutin['vote'][g]['stats']['voteempct'][0], scrutin['vote'][g]['stats']['voteempct'][1]) }})">
+                        <span><i class="demo-icon icon-logo-lrem coulREM-text" style="font-size:19px"></i><span class="coulREM-text" style="font-weight:500;">{{ =scrutin['vote'][g]['stats']['voteempct'][2] }}%</span></span>
+                        <div class="slice">
+                            <div class="bar"></div>
+                            <div class="fill"></div>
+                        </div>
+                    </div>
+                    </div>
+                    {{ if len(scrutin['vote'][g]['votes'])>0: }}
+                    <p>Dissidence</p>
+                       {{ for dep in sorted(scrutin['vote'][g]['votes'],key=lambda x:x[2],reverse=True): }}
+                    <a href="{{ =URL('fiches','depute',vars={'uid':dep[0]}) }}" title="{{ = dep[1] }}"><img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ = dep[0][2:] }}.jpg" class="img-circle {{ =dep[2] }}" /></a>
+                       {{ pass }}
+                    {{ pass }}
+                </div>
+            </div>
+            {{ pass }}
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+{{ end }}

@@ -1,8 +1,65 @@
 # -*- coding: utf-8 -*-
 # essayez quelque chose comme
+# TODO : page député les scrutins avec votes identiques FI/EM doivent apparaitre de la couleur du groupe du député si EM/FI
+
 def index():
     return dict(message="hello from fiches.py")
 import json
+
+def scrutin():
+    vpositions = ['pour','contre','abstention']
+    id = request.vars.get('id','welou')
+    scrutin = mdb.scrutins.find_one({'scrutin_id':id})
+
+    if not scrutin:
+        redirect(URL(c='default',f='notfound'))
+    
+    posorder = [ scrutin['votefi'] ]
+    groupes = [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})]
+    if (scrutin['votefi']!=scrutin['voteem']):
+        posorder.append(scrutin['voteem'])
+    for p in vpositions:
+        if not p in posorder:
+            posorder.append(p)
+            
+    for v in mdb.votes.find({'scrutin_id':id}):
+        gp = v['groupeabrev']
+        if not 'votes' in scrutin['vote'][gp]:
+            scrutin['vote'][gp]['votes'] = []
+        if v['position'] in vpositions and v['position']!=scrutin['vote'][gp]['sort']:
+            if v['position']==scrutin['votefi']:
+                cat = "votefi"
+            elif v['position']==scrutin['voteem']:
+                cat = "voteem"
+            else:
+                cat = "autre"
+            scrutin['vote'][gp]['votes'].append((v['uid'],v['nom'],cat,v['position']))
+            
+                
+    if scrutin['scrutin_desc'][:12]=="l'amendement":
+        scrutin['typedetail'] = 'amendement'
+    elif scrutin['scrutin_desc'][:9] =="la motion":
+        scrutin['typedetail'] = 'motion'
+    elif scrutin['scrutin_desc'][:27] =="l'ensemble du projet de loi":
+        scrutin['typedetail'] = 'loi'
+    elif scrutin['scrutin_desc'][:9] =="l'article":
+        scrutin['typedetail'] = 'article'
+    elif scrutin['scrutin_desc'][:14] ==u'la déclaration':
+        scrutin['typedetail'] = 'declaration'
+    else:
+        scrutin['typedetail'] = 'autre'
+    scrutin['sort'] = 'adopté' if scrutin['vote']['assemblee']['sort']=='pour' else 'rejeté'
+    for g in scrutin['vote'].keys():
+        
+        scrutin['vote'][g]['stats'] = {
+            'exprimepct': (scrutin['vote'][g]['total_votants'],scrutin['vote'][g]['total'],int(100*float(scrutin['vote'][g]['total_votants'])/scrutin['vote'][g]['total'])),
+            'votefipct': (scrutin['vote'][g][scrutin['votefi']],scrutin['vote'][g]['total_votants'],int(100*float(scrutin['vote'][g][scrutin['votefi']])/scrutin['vote'][g]['total_votants'])),
+            'voteempct': (scrutin['vote'][g][scrutin['voteem']],scrutin['vote'][g]['total_votants'],int(100*float(scrutin['vote'][g][scrutin['voteem']])/scrutin['vote'][g]['total_votants'])),
+            'disspct': (scrutin['vote'][g]['total_votants']-scrutin['vote'][g][scrutin['vote'][g]['sort']],scrutin['vote'][g]['total_votants'],int(100*float(scrutin['vote'][g]['total_votants']-scrutin['vote'][g][scrutin['vote'][g]['sort']])/scrutin['vote'][g]['total_votants']))
+        }
+    return dict(scrutin=scrutin, groupes=groupes)
+
+
 
 def suivifi():
     groupes = [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})]
