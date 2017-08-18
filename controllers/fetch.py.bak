@@ -35,7 +35,7 @@ def rebuild_cache():
         appcache.get(r['id'],getVoteData_fct,params=r['params'])
     
 def update_emfi_compat():
-    scrutins = mdb.scrutins.find()
+    scrutins = mdb.scrutins.find({'vote':None})
     groupes = [g['libelleAbrev'] for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})]
     
     for s in scrutins:
@@ -181,7 +181,7 @@ def update_acteurs_stats():
     
 def index():
     
-    fetch_acteurs_organes()
+    #fetch_acteurs_organes()
     fetch_scrutins()
     update_axes()
     update_emfi_compat()

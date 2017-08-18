@@ -181,10 +181,10 @@ def update_acteurs_stats():
     
 def index():
     
-    fetch_acteurs_organes()
+    #fetch_acteurs_organes()
     fetch_scrutins()
     update_axes()
     update_emfi_compat()
     update_acteurs_stats()
-    rebuild_cache()
+    #rebuild_cache()
     return dict()

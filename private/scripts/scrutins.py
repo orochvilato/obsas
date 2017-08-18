@@ -5,7 +5,7 @@ import scrapy
 import requests
 import json
 import re
-
+from fuzzywuzzy import fuzz
 from scrapy.crawler import CrawlerProcess
 
 
@@ -14,6 +14,10 @@ leg = 15
 scrutins = {}
 dossiers = {}
 types = {}
+dossiers_vu = []
+scrutins_txts = {}
+amends_txts = {}
+amds = {}
 
 import unicodedata
 def strip_accents(s):
@@ -81,6 +85,44 @@ class ScrutinsSpider(scrapy.Spider):
 
 
 
+    def parse_dossier(self,response):
+        votesloi = [ a.extract() for a in response.xpath('//a[contains(@href,"/ta/") or contains(@href,"/scrutins/jo")]/@href')]
+        amendements = [ a.extract() for a in response.xpath('//a[contains(@href,"/ta/") or contains(@href,"/scrutins/jo") or (contains(@href,"/amendements/") and contains(@href,"ORGANE=&"))]/@href')]
+
+        if len(votesloi)==1 and '/ta/' in votesloi[0]:
+            scrutins_txts[response.meta['snum']] = votesloi[0][-8:-4]
+        else:
+            i = 0
+            while i<len(votesloi)-1:
+                if '/scrutins/' in votesloi[i] and '/ta/' in votesloi[i+1]:
+                    snum = int(votesloi[i][-8:-4])
+                    sl = votesloi[i+1][-8:-4]
+                    scrutins_txts[snum] = sl
+                    i += 2
+                else:
+                    i += 1
+        i = 0
+
+        import requests
+        while i<len(amendements):
+            if '/amendements/' in amendements[i]:
+                r = requests.get('http://www.assemblee-nationale.fr'+amendements[i])
+                iddl = re.match(r'.*&idDossierLegislatif=([0-9]+)&.*',r.url)
+                if iddl:
+                    iddl = iddl.groups()[0]
+                    loadamds = json.loads(requests.get('http://www2.assemblee-nationale.fr/recherche/query_amendements?typeDocument=amendement&leg=15&idDossierLegislatif='+iddl+'&premierSignataire=true&rows=100000&format=json&tri=ordreTexteasc&start=1&typeRes=liste').content)
+                    fields = loadamds['infoGenerales']['description_schema'].split('|')+['autre','autre1','autre2']
+
+
+                    _amds = [ dict((fields[i],v) for i,v in enumerate(elt.split('|'))) for elt in loadamds['data_table'] ]
+                    _amdsdict = dict((_a['numAmend'].split(' ')[0],_a) for _a in _amds)
+
+                amds[response.meta['sdossier']].append(_amdsdict)
+
+            i += 1
+        # http://www2.assemblee-nationale.fr/recherche/query_amendements?typeDocument=amendement&leg=15&idDossierLegislatif=35825&premierSignataire=true&rows=100000&format=json&tri=ordreTexteasc&start=1&typeRes=liste
+        # http://www2.assemblee-nationale.fr/recherche/query_amendements?id=S-AMANR5L15PO717460B106N80&leg=15&typeRes=doc
+
     def parse_page(self, response):
 
         scrs = response.xpath('//table[@id="listeScrutins"]/tbody/tr')
@@ -88,19 +130,36 @@ class ScrutinsSpider(scrapy.Spider):
             _num = int(scr.xpath('td[contains(@class,"denom")]/text()').extract()[0].replace('*',''))
             _pour = int(scr.xpath('td[contains(@class,"pour")]/text()').extract()[0])
             _contre = int(scr.xpath('td[contains(@class,"contre")]/text()').extract()[0])
+            _scrutinlien = scr.xpath('td[contains(@class,"desc")]/a[contains(@href,"scrutins")]/@href')[0].extract()
+            _dossierlien = scr.xpath('td[contains(@class,"desc")]/a[contains(@href,"dossiers")]/@href')
+            if _dossierlien:
+                _dossierlien = _dossierlien[0].extract()
+            else:
+                _dossierlien = None
+
             _abs = int(scr.xpath('td[contains(@class,"abs")]/text()').extract()[0])
             _desc = scr.xpath('td[contains(@class,"desc")]/text()').extract()[0].replace('  [','')
             _date = scr.xpath('td/text()').extract()[1]
 
+            if _dossierlien and not _dossierlien in amds.keys():
+                amds[_dossierlien] = []
+                request = scrapy.Request(url=_dossierlien, callback=self.parse_dossier)
+                request.meta['snum']=_num
+                request.meta['sdossier']=_dossierlien
+                yield request
+
             if _num not in scrutins.keys():
                 scrutins[_num] = {}
+
             scrutins[_num].update({'num':_num,
                                    'id':'%s_%d' % (leg,_num),
                                   'pour':_pour,
                                   'contre':_contre,
                                   'abs': _abs,
                                   'desc': _desc,
-                                  'date': _date})
+                                  'date': _date,
+                                  'dossierlien':_dossierlien,
+                                  'scrutinlien':_scrutinlien})
             if response.meta['idDossier'] != 'TOUS':
                 scrutins[_num]['idDossier'] = response.meta['idDossier']
                 scrutins[_num]['libelleDossier'] = dossiers[response.meta['idDossier']]
@@ -139,7 +198,7 @@ class ScrutinsSpider(scrapy.Spider):
         contre = int(response.xpath('//p[@id="contre"]/b/text()').extract()[0])
         abstention = votants - pour - contre
         ctrl= {'Pour':pour, 'Contre':contre, 'Abstention':abstention}
-        
+
         # corrections
         corrections = {}
         for corr in response.xpath('//aside/div/div/div/div[contains(@class,"titre-contenu")]/span[contains(.,"Mises au point")]/../following-sibling::div[contains(@class,"corps-contenu")]/p[contains(@class,"itemmap")]').extract():
@@ -156,14 +215,14 @@ class ScrutinsSpider(scrapy.Spider):
             noms = re.sub(r'\xa0|\n|\t|</b>|<b>|<p[^>]+>|</p>|\([^\)]+\)',r'',cv[0]).replace(' et ',',').replace(' ','').split(',')
             for nom in noms:
                 corrections[normalize(nom)] = newpos
-                
+
         for pos in positions:
             p = response.xpath('//div[contains(@class,"%s")]/ul[contains(@class,"deputes")]/li' % positions[pos])
             for dep in p:
                 prenom = dep.xpath('text()').extract()[0][:-1]
                 nom = dep.xpath('b/text()').extract()[0]
                 nid = normalize(prenom+nom)
-               
+
                 scrutins[num]['votes'][pos] = scrutins[num]['votes'].get(pos,[])+[nid]
 
             if pos in ctrl.keys() and len(p)<>ctrl[pos]:
@@ -173,7 +232,7 @@ class ScrutinsSpider(scrapy.Spider):
         for nv in response.xpath('//div[@class="Non-votant" or @class="Non-votants"]/ul[@class="deputes"]').extract():
             noms = re.sub(r'\xa0|\n|\t|</b>|<b>|<ul[^>]+>|</ul>|\([^\)]+\)',r'',nv).replace(' et ',',').replace(' ','')[:-1].split(',')
             scrutins[num]['votes']['nonVotant'] = scrutins[num]['votes'].get('nonVotant',[]) + [ normalize(n) for n in noms ]
-        
+
         scrutins[num]['corrections'] = corrections
         if not 'ok' in scrutins[num].keys():
             scrutins[num]['ok']=True;
@@ -187,6 +246,29 @@ process = CrawlerProcess({
 process.crawl(ScrutinsSpider)
 process.start() # the script will block here until the crawling is finished
 
+
+from fuzzywuzzy import fuzz
+import re
+for s in scrutins.values():
+    estamd = re.match(r'.*l\'amendement n\xb0 ([0-9]+) de (.*)',s['desc'])
+    if estamd:
+        namd = estamd.groups()[0]
+        sig = estamd.groups()[1]
+        dos = amds[s['dossierlien']]
+        
+        candidats = []
+        for _amds in dos:
+            if namd in _amds.keys():
+                candidats.append((fuzz.token_set_ratio(sig,_amds[namd]['signataires'].split(',')[0]),_amds[namd]))
+
+        _amds = sorted(candidats,key=lambda x:x[0], reverse=True)[0][1]
+        amd_detail = json.loads(requests.get('http://www2.assemblee-nationale.fr/recherche/query_amendements?id='+_amds['id']+'&leg=15&typeRes=doc').content)
+        fields = amd_detail['infoGenerales']['description_schema'].split('|')+['autre','autre1','autre2']
+        _amdscompl = [ dict((fields[i],v) for i,v in enumerate(elt.split('|'))) for elt in amd_detail['data_table'] ][0]
+        _amdscompl.update(_amds)
+        s['reference'] = _amdscompl
+    elif s['num'] in scrutins_txts.keys():
+        s['reference'] = scrutins_txts[s['num']]
 
 import json
 with open('/tmp/scrutins.json','w') as f:

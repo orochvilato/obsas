@@ -99,9 +99,31 @@
         <div class="card-content">
             <div class="titredossier">{{ =scrutin['scrutin_dossierLibelle'] }} - {{ =typescr[scrutin['typedetail']]['libelle'] }}</div><a href="http://www2.assemblee-nationale.fr/scrutins/detail/(legislature)/15/(num)/{{ =scrutin['scrutin_num']}}" class="{{ = scrutin['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =scrutin['scrutin_num']}} du {{ =scrutin['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =scrutin['sort'] }})</span></a>
                           <a class="s_desc" href="{{ '../scrutins/%s.html' % scrutin['scrutin_id'] }}">{{ =scrutin['scrutin_desc'] }}</a>
-        
+       
         </div>
       </div>
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">Références</span>
+            <ul class="collection">
+              {{ if 'scrutin_ref' in scrutin.keys(): }}
+              {{ if scrutin['typedetail']=='amendement': }}
+              <li class="collection-item"><a target="_blank" href="{{ = 'http://www.assemblee-nationale.fr/15/amendements/%04d/AN/%s.asp' % (int(scrutin['scrutin_ref']['numInit']),scrutin['scrutin_ref']['numAmend']) }}">Texte de l'amendement</a></li>
+              <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlTexteRef'] }}">Texte de réference</a></li>
+              <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlCompteRenduRef'] }}">Compte rendu de séance</a></li>
+              {{ elif scrutin['typedetail']=='loi': }}
+              <li class="collection-item"><a target="_blank" href="{{ = 'http://www2.assemblee-nationale.fr/documents/notice/15/ta/ta%s/(index)/ta' % scrutin['scrutin_ref'] }}">Texte adopté</a></li>
+              {{ pass }}
+              {{ pass }}
+              {{ if scrutin['scrutin_liendossier']: }}
+              <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_liendossier'] }}">Dossier législatif</a></li>
+              {{ pass }}
+            </ul>
+            
+            
+        </div>
+    </div>
+    
     <div class="card">
         <div class="row">
         <div class="card-content">

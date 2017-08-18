@@ -114,7 +114,7 @@ def get_scrutinsPDFs():
 def getScrutins(acteurs,deja=[]):
     import os
     import json
-    
+    _scrutins = {}
     _scrutins = get_scrutinsPDFs()
     fp = os.path.join(current.request.folder, 'private/scripts', 'scrutins.py')
     did_scrape = True if os.system(fp) else False
@@ -185,6 +185,9 @@ def getScrutins(acteurs,deja=[]):
             vote.update(act_votedata(id,'absent'))
             vote['vote_id'] = "%d_%s" % (s['num'],id)
             votes.append(vote)
-        
+        if 'reference' in s.keys():
+            scrutin.update({'scrutin_ref':s['reference']})
+        scrutin.update({  'scrutin_lienscrutin':s['scrutinlien'],
+                            'scrutin_liendossier':s['dossierlien'] })
         scrutins.append(scrutin)
     return {'votes':votes,'scrutins':scrutins}
