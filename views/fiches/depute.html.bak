@@ -167,7 +167,7 @@
         </div>
       </li>
       <li>
-        <div class="collapsible-header active"><i class="fa fa-file-text-o coul{{ =groupe_abrev }}-text"></i> Interventions</div>
+        <div class="collapsible-header active"><i class="fa fa-comment-o coul{{ =groupe_abrev }}-text"></i> Interventions</div>
         <div class="collapsible-body">
           {{ if mots: }}
             <div id="sourrounding_div" style="width:100%;height:500px">

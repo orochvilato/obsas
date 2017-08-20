@@ -1,0 +1,7 @@
+{{extend 'layout.html'}}
+<table>
+    {{ for nm in nmots: }}
+    <tr><td>{{ =nm[0] }}</td><td>{{ =nm[1] }}</td></tr>
+    {{ pass }}
+</table>
+{{=BEAUTIFY(response._vars)}}

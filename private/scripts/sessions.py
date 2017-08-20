@@ -7,9 +7,15 @@ import json
 import re
 from fuzzywuzzy import fuzz
 from scrapy.crawler import CrawlerProcess
+import locale
+locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 
-with open('/home/www-data/web2py/applications/obsas_dev/private/lexique2.json','r') as f:
-    lexique = json.loads(f.read())
+try:
+    with open('/home/www-data/web2py/applications/obsas_dev/private/lexique2.json','r') as f:
+        lexique = json.loads(f.read())
+except:
+    with open('lexique2.json','r') as f:
+        lexique = json.loads(f.read())
 
 class WordCount:
     def __init__(self,lexique):
@@ -94,10 +100,14 @@ class SessionsSpider(scrapy.Spider):
         sommaire = response.xpath('//h1[@class="seance"]|//p[@class="somtitre"]|//p[@class="sompetcap"]|//p[@class="somtpetcap"]|//p[@class="sommaigre"]')
         path = ['','','','','']
         contexte = {}
+        idx = 0
+        import datetime
         for elt in sommaire:
             if 'seance' in elt.extract():
                 path = ['','','','','']
                 path[0] = elt.xpath('text()').extract()[0]
+                sdate = datetime.datetime.strptime(' '.join(path[0].split(' ')[-3:]).encode('utf8'),'%d %B %Y').strftime('%Y-%m-%d')
+
             if 'somtitre' in elt.extract():
                 path[1:] = ['','','','']
                 path[1] = elt.xpath('.//a/text()').extract()[0]
@@ -136,7 +146,7 @@ class SessionsSpider(scrapy.Spider):
                     ctx = contexte[ancre]
                     ctx_idx = 0
                     break
-            i = 0
+
             for p in itv.xpath('p'):
                 acteur = p.xpath('b/a/@href')
 
@@ -151,7 +161,11 @@ class SessionsSpider(scrapy.Spider):
                     if acteur[0:2]!='PA':
                         print url, response.url, ctx
                     wc.addWords(acteur,' '.join(p.xpath('text()').extract()))
+                    idx += 1
+                    ctx_idx += 1
                     interventions.append({
+                        'n':idx,
+                        'date':sdate,
                         'url':response.url+'#'+ancre,
                         'nom':nomnorm,
                         'contexte':ctx,

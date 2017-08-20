@@ -40,7 +40,6 @@ def update_emfi_compat():
     
     for s in scrutins:
         votes = mdb.votes.find({'scrutin_id':s['scrutin_id']})
-        
         exprime=dict((g,{'pour':0,'contre':0,'abstention':0}) for g in groupes+['assemblee'])
         nonexprime=dict((g,{'nonVotant':0,'absent':0}) for g in groupes+['assemblee'])
         for v in votes:
@@ -144,7 +143,17 @@ def fetch_scrutins():
 def update_acteurs_stats():
     
     deputes = mdb.acteurs.find()
+    
+    interventions = mdb.interventions.find()
+    compteitv = {}
+    for itv in interventions:
+        if not itv['acteur'] in compteitv.keys():
+            compteitv[itv['acteur']] = 1
+        else:
+            compteitv[itv['acteur']] += 1
+            
     for dep in deputes:
+        
         dep['iddepartement'] = departements[dep['departement']]
         dep['idcirco'] = dep['iddepartement']+'-'+('00'+dep['circo'])[-2:]
         votes = mdb.votes.find({'uid':dep['uid']})
@@ -175,6 +184,7 @@ def update_acteurs_stats():
             stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime']) if stats['exprime']>0 else '-'
             stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
         dep['statsvote'] = stats
+        dep['interventions'] = compteitv[dep['uid']]
         mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})
         #print dep['nomcomplet'].encode('utf8')
 
@@ -198,7 +208,12 @@ def update_sessions():
     
     # TODO : trouver une facon itérative de charger le fichier
     mdb.interventions.remove()
+    acteurs = dict((a['id'],a['uid']) for a in mdb.acteurs.find())
     interventions = json.loads(open('/tmp/interventions.json','r').read())
+    for itv in interventions:
+        nid = acteurs.get(itv['nom'],None)
+        if nid and nid != itv['acteur']:
+            itv['acteur'] = nid
     mdb.interventions.insert_many(interventions)
     
     mdb.mots.remove()

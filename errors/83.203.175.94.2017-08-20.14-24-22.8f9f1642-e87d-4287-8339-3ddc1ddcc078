@@ -1,0 +1,422 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.KeyError'> u'PA719372'"
+p3
+sS'layer'
+p4
+S'/home/www-data/web2py/applications/obsas_dev/controllers/fetch.py'
+p5
+sS'code'
+p6
+S'<code object <module> at 0x7f82dd195bb0, file "/home/www-data/web2py/applications/obsas_dev/controllers/fetch.py", line 3>'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of exceptions.KeyError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of exceptions.KeyError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of exceptions.KeyError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'message'
+p20
+S"u'PA719372'"
+p21
+sS'__sizeof__'
+p22
+S'<built-in method __sizeof__ of exceptions.KeyError object>'
+p23
+sS'__init__'
+p24
+S"<method-wrapper '__init__' of exceptions.KeyError object>"
+p25
+sS'__setattr__'
+p26
+S"<method-wrapper '__setattr__' of exceptions.KeyError object>"
+p27
+sS'__reduce_ex__'
+p28
+S'<built-in method __reduce_ex__ of exceptions.KeyError object>'
+p29
+sS'__new__'
+p30
+S'<built-in method __new__ of type object>'
+p31
+sS'__format__'
+p32
+S'<built-in method __format__ of exceptions.KeyError object>'
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.KeyError'>"
+p35
+sS'__doc__'
+p36
+S"'Mapping key not found.'"
+p37
+sS'__getitem__'
+p38
+S"<method-wrapper '__getitem__' of exceptions.KeyError object>"
+p39
+sS'__setstate__'
+p40
+S'<built-in method __setstate__ of exceptions.KeyError object>'
+p41
+sS'__getattribute__'
+p42
+S"<method-wrapper '__getattribute__' of exceptions.KeyError object>"
+p43
+sS'args'
+p44
+S"(u'PA719372',)"
+p45
+sS'__subclasshook__'
+p46
+S'<built-in method __subclasshook__ of type object>'
+p47
+sS'__unicode__'
+p48
+S'<built-in method __unicode__ of exceptions.KeyError object>'
+p49
+sS'__delattr__'
+p50
+S"<method-wrapper '__delattr__' of exceptions.KeyError object>"
+p51
+sS'__repr__'
+p52
+S"<method-wrapper '__repr__' of exceptions.KeyError object>"
+p53
+sS'__hash__'
+p54
+S"<method-wrapper '__hash__' of exceptions.KeyError object>"
+p55
+ssS'evalue'
+p56
+S"u'PA719372'"
+p57
+sS'request'
+p58
+cgluon.html
+XML_unpickle
+p59
+(S's\x89r\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>fetch</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94-e284528d-4c6b-4897-bc69-620d4a72eed9<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_obsas_dev</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94-df4f706b-0931-4bf8-967a-c6b356580fc7<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">CONTEXT_DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">CONTEXT_PREFIX</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">GATEWAY_INTERFACE</td><td style="vertical-align:top;">:</td><td><div>CGI/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CACHE_CONTROL</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=83.203.175.94-e284528d-4c6b-4897-bc69-620d4a72eed9; session_id_obsas_dev=83.203.175.94-df4f706b-0931-4bf8-967a-c6b356580fc7</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ORIGIN</td><td style="vertical-align:top;">:</td><td><div>http://evil.com/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>https://admin.obsas.orvdev.fr/admin/edit/obsas_dev/private/scripts/sessions.py?id=private</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_TRANSLATED</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>51366</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_SCHEME</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_URI</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_FILENAME</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_ADDR</td><td style="vertical-align:top;">:</td><td><div>151.80.57.169</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_ADMIN</td><td style="vertical-align:top;">:</td><td><div>[no address given]</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SIGNATURE</td><td style="vertical-align:top;">:</td><td><div>&lt;address&gt;Apache/2.4.18 (Ubuntu) Server at admin.obsas.orvdev.fr Port 443&lt;/address&gt;\n</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Apache/2.4.18 (Ubuntu)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SSL_TLS_SNI</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">apache.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>2</div></td></tr><tr><td><div>4</div></td></tr><tr><td><div>18</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">apache_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>2</div></td></tr><tr><td><div>4</div></td></tr><tr><td><div>18</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/www-data/web2py/applications/obsas_dev/&#x27;, &#x27;/home/www-data/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">context_document_root</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">context_prefix</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">document_root</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gateway_interface</td><td style="vertical-align:top;">:</td><td><div>CGI/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cache_control</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=83.203.175.94-e284528d-4c6b-4897-bc69-620d4a72eed9; session_id_obsas_dev=83.203.175.94-df4f706b-0931-4bf8-967a-c6b356580fc7</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_origin</td><td style="vertical-align:top;">:</td><td><div>http://evil.com/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>https://admin.obsas.orvdev.fr/admin/edit/obsas_dev/private/scripts/sessions.py?id=private</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_py2</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>vps433020</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>151.80.57.169</div></td></tr><tr><td><div>vps433020.ovh.net</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.application_group</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.callable_object</td><td style="vertical-align:top;">:</td><td><div>application</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_connects</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_restarts</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_start</td><td style="vertical-align:top;">:</td><td><div>1503231862568595</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.enable_sendfile</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.handler_script</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.input_chunked</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.listener_host</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.listener_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.process_group</td><td style="vertical-align:top;">:</td><td><div>obsasadm</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.queue_start</td><td style="vertical-align:top;">:</td><td><div>1503231862568379</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.request_handler</td><td style="vertical-align:top;">:</td><td><div>wsgi-script</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.request_start</td><td style="vertical-align:top;">:</td><td><div>1503231862567773</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.script_reloading</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.script_start</td><td style="vertical-align:top;">:</td><td><div>1503231862568643</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>4</div></td></tr><tr><td><div>3</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_application_group</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_callable_object</td><td style="vertical-align:top;">:</td><td><div>application</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_connects</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_restarts</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_start</td><td style="vertical-align:top;">:</td><td><div>1503231862568595</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_enable_sendfile</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_handler_script</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_input_chunked</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_listener_host</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_listener_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_process_group</td><td style="vertical-align:top;">:</td><td><div>obsasadm</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_queue_start</td><td style="vertical-align:top;">:</td><td><div>1503231862568379</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_request_handler</td><td style="vertical-align:top;">:</td><td><div>wsgi-script</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_request_start</td><td style="vertical-align:top;">:</td><td><div>1503231862567773</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_script_reloading</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_script_start</td><td style="vertical-align:top;">:</td><td><div>1503231862568643</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>4</div></td></tr><tr><td><div>3</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">nokeepalive</td><td style="vertical-align:top;">:</td><td><div>ssl-unclean-shutdown</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_translated</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>51366</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_filename</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_addr</td><td style="vertical-align:top;">:</td><td><div>151.80.57.169</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_admin</td><td style="vertical-align:top;">:</td><td><div>[no address given]</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_signature</td><td style="vertical-align:top;">:</td><td><div>&lt;address&gt;Apache/2.4.18 (Ubuntu) Server at admin.obsas.orvdev.fr Port 443&lt;/address&gt;\n</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Apache/2.4.18 (Ubuntu)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">ssl_tls_sni</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_original_uri</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.15.1-stable+timestamp.2017.07.10.21.25.06</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Log object at 0x7f82dd8a2ed0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;type &#x27;mod_wsgi.FileWrapper&#x27;&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Input object at 0x7f82dd726970&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Log object at 0x7f82dd8a2ed0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;type &#x27;mod_wsgi.FileWrapper&#x27;&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Input object at 0x7f82dd726970&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/applications/obsas_dev/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/www-data/web2py/applications/obsas_dev/&#x27;, &#x27;/home/www-data/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_py2</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>vps433020</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>151.80.57.169</div></td></tr><tr><td><div>vps433020.ovh.net</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.15.1-stable+timestamp.2017.07.10.21.25.06</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2017, 8, 20, 14, 24, 22, 568963)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/fetch/update_acteurs_stats</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2017, 8, 20, 12, 24, 22, 569003)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7f82deefaa50&gt;</div></td></tr></table></div>'
+tRp60
+sS'frames'
+p61
+(lp62
+(dp63
+S'file'
+p64
+S'/home/www-data/web2py/gluon/restricted.py'
+p65
+sS'dump'
+p66
+(dp67
+S'environment'
+p68
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppCache': <class __restricted__.AppCache>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, ...}"
+p69
+sS'ccode'
+p70
+S'<code object <module> at 0x7f82dd195bb0, file "/...ications/obsas_dev/controllers/fetch.py", line 3>'
+p71
+ssS'lnum'
+p72
+I219
+sS'lines'
+p73
+(dp74
+I214
+S'    if environment is None:'
+p75
+sI215
+S'        environment = {}'
+p76
+sI216
+S"    environment['__file__'] = layer"
+p77
+sI217
+S"    environment['__name__'] = '__restricted__'"
+p78
+sI218
+S'    try:'
+p79
+sI219
+S'        exec(ccode, environment)'
+p80
+sI220
+S'    except HTTP:'
+p81
+sI221
+S'        raise'
+p82
+sI222
+S'    except RestrictedError:'
+p83
+sI223
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p84
+ssS'call'
+p85
+S'(ccode=<code object <module> at 0x7f82dd195bb0, file "/...ications/obsas_dev/controllers/fetch.py", line 3>, environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'AppCache\': <class __restricted__.AppCache>, \'AppConfig\': <function AppConfig>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, ...}, layer=\'/home/www-data/web2py/applications/obsas_dev/controllers/fetch.py\')'
+p86
+sS'func'
+p87
+S'restricted'
+p88
+sa(dp89
+g64
+S'/home/www-data/web2py/applications/obsas_dev/controllers/fetch.py'
+p90
+sg66
+(dp91
+sg72
+I235
+sg73
+(dp92
+I224
+S''
+sI225
+S'def index():'
+p93
+sI226
+S''
+sI227
+S'    #fetch_acteurs_organes()'
+p94
+sI228
+S'    fetch_scrutins()'
+p95
+sI229
+S'    update_axes()'
+p96
+sI230
+S'    update_emfi_compat()'
+p97
+sI231
+S'    update_acteurs_stats()'
+p98
+sI232
+S'    #rebuild_cache()'
+p99
+sI233
+S'    return dict()'
+p100
+ssg85
+S'()'
+p101
+sg87
+S'<module>'
+p102
+sa(dp103
+g64
+S'/home/www-data/web2py/gluon/globals.py'
+p104
+sg66
+(dp105
+S'self'
+p106
+S'undefined'
+p107
+sS'f'
+S'<function update_acteurs_stats>'
+p108
+ssg72
+I409
+sg73
+(dp109
+I404
+S"        self.flash = ''            # used by the default view layout"
+p110
+sI405
+S'        self.meta = Storage()      # used by web2py_ajax.html'
+p111
+sI406
+S'        self.menu = []             # used by the default view layout'
+p112
+sI407
+S'        self.files = []            # used by web2py_ajax.html'
+p113
+sI408
+S'        self._vars = None'
+p114
+sI409
+S'        self._caller = lambda f: f()'
+p115
+sI410
+S'        self._view_environment = None'
+p116
+sI411
+S'        self._custom_commit = None'
+p117
+sI412
+S'        self._custom_rollback = None'
+p118
+sI413
+S"        self.generic_patterns = ['*']"
+p119
+ssg85
+S'(f=<function update_acteurs_stats>)'
+p120
+sg87
+S'<lambda>'
+p121
+sa(dp122
+g64
+S'/home/www-data/web2py/applications/obsas_dev/controllers/fetch.py'
+p123
+sg66
+(dp124
+S'dep'
+p125
+S'{u\'_id\': ObjectId(\'5967a8da8e5c9b32c1a172db\'), u\'adresses\': [{u\'adresseDeRattachement\': None, u\'codePostal\': u\'75355\', u\'complementAdresse\': None, u\'intitule\': u\'Assembl\\xe9e nationale,\', u\'nomRue\': u"Rue de l\'Universit\\xe9,", u\'numeroRue\': u\'126\', u\'poids\': u\'01\', u\'type\': u\'AdressePostale_Type\', u\'typeLibelle\': u\'Adresse officielle\', u\'uid\': u\'AD719374\', ...}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseMail_Type\', u\'typeLibelle\': u\'M\\xe8l\', u\'uid\': u\'AD728033\', u\'valElec\': u\'guillaume.kasbarian@assemblee-nationale.fr\'}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseSiteWeb_Type\', u\'typeLibelle\': u\'Facebook\', u\'uid\': u\'AD728600\', u\'valElec\': u\'kasbarian2017\'}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseMail_Type\', u\'typeLibelle\': u\'M\\xe8l\', u\'uid\': u\'AD728756\', u\'valElec\': u\'guillaume.kasbarian@en-marche.fr\'}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseSiteWeb_Type\', u\'typeLibelle\': u\'Twitter\', u\'uid\': u\'AD729000\', u\'valElec\': u\'@guillaumekasba\'}, {u\'adresseDeRattachement\': None, u\'codePostal\': u\'28000\', u\'complementAdresse\': None, u\'intitule\': u\'Place Marceau\', u\'nomRue\': u\'Rue de la pie\', u\'numeroRue\': u\'29\', u\'poids\': u\'22\', u\'type\': u\'AdressePostale_Type\', u\'typeLibelle\': u\'Adresse publi\\xe9e de circonscription\', u\'uid\': u\'AD729148\', ...}], u\'age\': 30, u\'circo\': u\'1\', u\'classeage\': u\'30-40 ans\', u\'commissions\': [u\'PO419610\'], u\'contacts\': [[u\'M\\xe8l\', u\'guillaume.kasbarian@assemblee-nationale.fr\'], [u\'Facebook\', u\'kasbarian2017\'], [u\'M\\xe8l\', u\'guillaume.kasbarian@en-marche.fr\'], [u\'Twitter\', u\'@guillaumekasba\']], u\'csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', u\'departement\': u\'Eure-et-Loir\', u\'deputywatch\': None, ...}'
+p126
+sS'compteitv'
+p127
+S"{u'PA1008': 3, u'PA1012': 17, u'PA1029': 9, u'PA1198': 32, u'PA1206': 38, u'PA1276': 1, u'PA1327': 2, u'PA1498': 108, u'PA1592': 52, u'PA1630': 4, ...}"
+p128
+ssg72
+I187
+sg73
+(dp129
+I182
+S"            s['flag'] = diss"
+p130
+sI183
+S"            stats['disspct'] =  int(100*float(stats['diss'])/stats['exprime']) if stats['exprime']>0 else '-'"
+p131
+sI184
+S"            stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime']) if stats['exprime']>0 else '-'"
+p132
+sI185
+S"            stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'"
+p133
+sI186
+S"        dep['statsvote'] = stats"
+p134
+sI187
+S"        dep['interventions'] = compteitv[dep['uid']]"
+p135
+sI188
+S"        mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})"
+p136
+sI189
+S"        #print dep['nomcomplet'].encode('utf8')"
+p137
+sI190
+S''
+sI191
+S'def update_sessions():'
+p138
+ssg85
+S'()'
+p139
+sg87
+S'update_acteurs_stats'
+p140
+sasS'pyver'
+p141
+S'Python 2.7.12: /home/www-data/web2py/applications/obsas_dev/.pyenv/bin/python (prefix: /home/www-data/web2py/applications/obsas_dev/.pyenv)'
+p142
+sS'session'
+p143
+g59
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp144
+sS'etype'
+p145
+S"<type 'exceptions.KeyError'>"
+p146
+sS'date'
+p147
+S'Sun Aug 20 14:24:24 2017'
+p148
+sS'response'
+p149
+g59
+(S'sc>\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7f82dc08e3e8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_obsas_dev</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94-1a0b5028-4388-4363-b58e-b62a4327a61b<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>bootstrap3_inline</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="navbar-brand" href="http://www.web2py.com/" id="web2py-logo"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Accueil</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/obsas_dev</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mes sites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Cette Appli</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Design</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/design/obsas_dev</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Contr\xc3\xb4leur</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/controllers/fetch.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/views/fetch/update_acteurs_stats.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mod\xc3\xa8le BD</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Menu mod\xc3\xa8le</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Config.ini</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/private/appconfig.ini</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mise en page</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Feuille de style</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/static/css/web2py-bootstrap3.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>base de donn\xc3\xa9es</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/obsas_dev/appadmin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Erreurs</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/errors/obsas_dev</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>\xc3\x80 propos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/about/obsas_dev</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>T\xc3\xa9l\xc3\xa9chargement</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/download</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Soutien</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/support</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>D\xc3\xa9mo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/demo_admin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Exemples Rapides</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/examples/default/examples</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>FAQ</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/AlterEgo</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Vid\xc3\xa9os</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/videos/</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Applications gratuites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/appliances</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Plugiciels</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/plugins</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2pyslices.com/</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Documentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Online book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9face</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/00</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/01</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Python</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/02</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/03</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Le noyau</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/04</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Les Vues</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/05</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>base de donn\xc3\xa9es</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/06</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Formulaires et Validateurs</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/07</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Courriel et texto</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/08</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Contr\xc3\xb4le d\'acc\xc3\xa8s</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/09</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Services</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/10</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes Ajax</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/11</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Composants et Plugiciels</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/12</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes de d\xc3\xa9ploiement</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/13</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Autres recettes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/14</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Aider web2py</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/15</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Buy web2py\'s book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://stores.lulu.com/web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Communaut\xc3\xa9</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Groupes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/usergroups</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Twitter</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://twitter.com/web2py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Clavardage en direct</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://webchat.freenode.net/?channels=web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">description</td><td style="vertical-align:top;">:</td><td><div>a cool new app</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>web2py</div></td></tr><tr><td><div>python</div></td></tr><tr><td><div>framework</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^fetch/\\w+\\.py$</div></td></tr><tr><td><div>^fetch/update_acteurs_stats/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/applications/obsas_dev/sessions/83.203.175.94-1a0b5028-4388-4363-b58e-b62a4327a61b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>c0762cbf4baf7f9af97c051e7fcb8083</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>83.203.175.94-1a0b5028-4388-4363-b58e-b62a4327a61b</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Obsas Dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>fetch/update_acteurs_stats.html</div></td></tr></table></div>'
+tRp150
+sS'locals'
+p151
+(dp152
+S'votes'
+p153
+S'<pymongo.cursor.Cursor object>'
+p154
+sS'diss'
+p155
+S'False'
+p156
+sS'OrderedDict'
+p157
+S"<class 'collections.OrderedDict'>"
+p158
+sS'scrutins'
+p159
+S'[{u\'_id\': ObjectId(\'5997665a8e5c9b080e78a00c\'), \'flag\': False, u\'scrutin_date\': u\'09/08/2017\', u\'scrutin_desc\': u"l\'ensemble du projet de loi organique pour la ...e dans la vie politique (lecture d\\xe9finitive).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 119 du 09/08/2017 : l\'ensemble d...e dans la vie politique (lecture d\\xe9finitive).", u\'scrutin_id\': u\'15_119\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/119\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a00d\'), \'flag\': False, u\'scrutin_date\': u\'09/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 1 de M. Saddier et les amen...e dans la vie politique (lecture d\\xe9finitive).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 118 du 09/08/2017 : l\'amendement...e dans la vie politique (lecture d\\xe9finitive).", u\'scrutin_id\': u\'15_118\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/118\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a010\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'ensemble du projet de loi organique pour la confiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 117 du 03/08/2017 : l\'ensemble d...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_117\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/117\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e789ffd\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 59 de Mme Batho \\xe0 l\'arti...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 116 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_116\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/116\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a000\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 57 de Mme Untermaier \\xe0 l...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 115 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_115\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/115\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a001\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 56 de M. Potier \\xe0 l\'arti...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 114 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_114\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/114\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a006\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 55 de M. Potier \\xe0 l\'arti...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 113 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_113\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/113\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a007\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 63 de Mme Batho et les amen...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 112 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_112\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/112\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a004\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 32 de Mme Batho \\xe0 l\'arti...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 111 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_111\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/111\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a005\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 25 de M. Bernalicis \\xe0 l\'...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 110 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_110\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/110\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a023\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 69 de M. Le Fur \\xe0 l\'arti...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 109 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_109\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/109\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a022\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 24 de Mme Obono \\xe0 l\'arti...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 108 du 03/08/2017 : l\'amendement...fiance dans la vie politique (nouvelle lecture).", u\'scrutin_id\': u\'15_108\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/108\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a02d\'), \'flag\': False, u\'scrutin_date\': u\'03/08/2017\', u\'scrutin_desc\': u"l\'ensemble du projet de loi pour la confiance ...itique (texte de la commission mixte paritaire).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 107 du 03/08/2017 : l\'ensemble d...itique (texte de la commission mixte paritaire).", u\'scrutin_id\': u\'15_107\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/107\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a02c\'), \'flag\': False, u\'scrutin_date\': u\'01/08/2017\', u\'scrutin_desc\': u"l\'ensemble du projet de loi d\'habilitation \\xe...social (texte de la commission mixte paritaire).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 106 du 01/08/2017 : l\'ensemble d...social (texte de la commission mixte paritaire).", u\'scrutin_id\': u\'15_106\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/106\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a02f\'), \'flag\': False, u\'scrutin_date\': u\'01/08/2017\', u\'scrutin_desc\': u"la motion de rejet pr\\xe9alable, d\\xe9pos\\xe9e...social (texte de la commission mixte paritaire).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 105 du 01/08/2017 : la motion de...social (texte de la commission mixte paritaire).", u\'scrutin_id\': u\'15_105\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/105\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a02e\'), \'flag\': False, u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'ensemble du projet de loi organique pour la ...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 104 du 28/07/2017 : l\'ensemble d...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_id\': u\'15_104\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/104\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a029\'), \'flag\': False, u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'ensemble du projet de loi pour la confiance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 103 du 28/07/2017 : l\'ensemble d...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_id\': u\'15_103\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/103\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a028\'), \'flag\': False, u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 377 de M. Vigier apr\\xe8s l...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 102 du 28/07/2017 : l\'amendement...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_id\': u\'15_102\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/102\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a02b\'), \'flag\': False, u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 259 de Mme Untermaier et le...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 101 du 28/07/2017 : l\'amendement...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_id\': u\'15_101\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/101\', ...}, {u\'_id\': ObjectId(\'5997665a8e5c9b080e78a02a\'), \'flag\': True, u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 223 de M. Aviragnet \\xe0 l\'...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 100 du 28/07/2017 : l\'amendement...ance dans la vie publique (premi\\xe8re lecture).", u\'scrutin_id\': u\'15_100\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/100\', ...}, ...]'
+p160
+sS'scrutins_dossiers'
+p161
+S'OrderedDict()'
+p162
+sS'dep'
+p163
+S'{u\'_id\': ObjectId(\'5967a8da8e5c9b32c1a172db\'), u\'adresses\': [{u\'adresseDeRattachement\': None, u\'codePostal\': u\'75355\', u\'complementAdresse\': None, u\'intitule\': u\'Assembl\\xe9e nationale,\', u\'nomRue\': u"Rue de l\'Universit\\xe9,", u\'numeroRue\': u\'126\', u\'poids\': u\'01\', u\'type\': u\'AdressePostale_Type\', u\'typeLibelle\': u\'Adresse officielle\', u\'uid\': u\'AD719374\', ...}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseMail_Type\', u\'typeLibelle\': u\'M\\xe8l\', u\'uid\': u\'AD728033\', u\'valElec\': u\'guillaume.kasbarian@assemblee-nationale.fr\'}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseSiteWeb_Type\', u\'typeLibelle\': u\'Facebook\', u\'uid\': u\'AD728600\', u\'valElec\': u\'kasbarian2017\'}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseMail_Type\', u\'typeLibelle\': u\'M\\xe8l\', u\'uid\': u\'AD728756\', u\'valElec\': u\'guillaume.kasbarian@en-marche.fr\'}, {u\'adresseDeRattachement\': None, u\'poids\': None, u\'type\': u\'AdresseSiteWeb_Type\', u\'typeLibelle\': u\'Twitter\', u\'uid\': u\'AD729000\', u\'valElec\': u\'@guillaumekasba\'}, {u\'adresseDeRattachement\': None, u\'codePostal\': u\'28000\', u\'complementAdresse\': None, u\'intitule\': u\'Place Marceau\', u\'nomRue\': u\'Rue de la pie\', u\'numeroRue\': u\'29\', u\'poids\': u\'22\', u\'type\': u\'AdressePostale_Type\', u\'typeLibelle\': u\'Adresse publi\\xe9e de circonscription\', u\'uid\': u\'AD729148\', ...}], u\'age\': 30, u\'circo\': u\'1\', u\'classeage\': u\'30-40 ans\', u\'commissions\': [u\'PO419610\'], u\'contacts\': [[u\'M\\xe8l\', u\'guillaume.kasbarian@assemblee-nationale.fr\'], [u\'Facebook\', u\'kasbarian2017\'], [u\'M\\xe8l\', u\'guillaume.kasbarian@en-marche.fr\'], [u\'Twitter\', u\'@guillaumekasba\']], u\'csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', u\'departement\': u\'Eure-et-Loir\', u\'deputywatch\': None, ...}'
+p164
+sS'positions'
+p165
+S"{u'15_1': u'pour', u'15_10': u'contre', u'15_100': u'pour', u'15_101': u'contre', u'15_102': u'contre', u'15_103': u'pour', u'15_104': u'pour', u'15_105': u'absent', u'15_106': u'absent', u'15_107': u'pour', ...}"
+p166
+sS'interventions'
+p167
+S'<pymongo.cursor.Cursor object>'
+p168
+sS'p'
+S"'voteem'"
+p169
+sS's'
+S'{u\'_id\': ObjectId(\'5997665a8e5c9b080e78a01b\'), \'flag\': False, u\'scrutin_date\': u\'04/07/2017\', u\'scrutin_desc\': u"la d\\xe9claration de politique g\\xe9n\\xe9rale ...icle 49, alin\\xe9a premier, de la Constitution).", u\'scrutin_dossier\': u\'S-LEGANR5L15DLD\\xe9claration_politique_g\\xe9n\\xe9rale\', u\'scrutin_dossierLibelle\': u\'D\\xe9claration de politique g\\xe9n\\xe9rale du Gouvernement\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 1 du 04/07/2017 : la d\\xe9clarat...icle 49, alin\\xe9a premier, de la Constitution).", u\'scrutin_id\': u\'15_1\', u\'scrutin_liendossier\': None, u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/1\', ...}'
+p170
+sS'deputes'
+p171
+S'<pymongo.cursor.Cursor object>'
+p172
+sS'compteitv'
+p173
+S"{u'PA1008': 3, u'PA1012': 17, u'PA1029': 9, u'PA1198': 32, u'PA1206': 38, u'PA1276': 1, u'PA1327': 2, u'PA1498': 108, u'PA1592': 52, u'PA1630': 4, ...}"
+p174
+sS'v'
+S"{u'_id': ObjectId('5997661c8e5c9b080e77e4e1'), u'age': 30, u'classeage': u'30-40 ans', u'commissions': [u'PO419610'], u'csp': u'Cadres et professions intellectuelles sup\\xe9rieures', u'departement': u'Eure-et-Loir', u'groupe': u'PO730964', u'groupeabrev': u'REM', u'nom': u'M. Guillaume Kasbarian', u'organes': [u'AN', u'CION-ECO', u'REM'], ...}"
+p175
+sS'itv'
+p176
+S"{u'_id': ObjectId('59997b738e5c9b61b6efb969'), u'acteur': u'PA702191', u'contenu': u'<p>Je tiens simplement \\xe0 remercier particul...sur les bancs des groupes REM et MODEM.)</i></p>', u'contexte': [u'S\\xe9ance du mercredi 09 ao\\xfbt 2017', u'3. Confiance dans la vie politique', u'Vote sur l\\u2019ensemble', u'Suspension et reprise de la s\\xe9ance'], u'ctx_idx': 2, u'date': u'2017-08-09', u'n': 654, u'nom': u'mmenicolebelloubet', u'url': u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171033.asp#P1020251'}"
+p177
+sS'stats'
+p178
+S"{'absent': 53, 'abstention': 0, 'contre': 49, 'diss': 1, 'disspct': 1, 'exprime': 66, 'exprimepct': 55, 'n': 119, 'nonVotant': 0, 'pour': 17, ...}"
+p179
+sS'dossiers'
+p180
+S"{'tous': {'n': 0, 'voteem': 0, 'votefi': 0}}"
+p181
+sssS'traceback'
+p182
+S'Traceback (most recent call last):\n  File "/home/www-data/web2py/gluon/restricted.py", line 219, in restricted\n    exec(ccode, environment)\n  File "/home/www-data/web2py/applications/obsas_dev/controllers/fetch.py", line 235, in <module>\n  File "/home/www-data/web2py/gluon/globals.py", line 409, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/www-data/web2py/applications/obsas_dev/controllers/fetch.py", line 187, in update_acteurs_stats\n    dep[\'interventions\'] = compteitv[dep[\'uid\']]\nKeyError: u\'PA719372\'\n'
+p183
+s.

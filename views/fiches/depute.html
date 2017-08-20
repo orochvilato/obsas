@@ -175,7 +175,7 @@
             </div>
           {{ pass }}
             <ul class="collection">
-                {{ for iv in interventions: }}
+                {{ for iv in itvs: }}
                 <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div>{{ =XML(iv['contenu']) }}</li>
                 {{ pass }}
             </ul>

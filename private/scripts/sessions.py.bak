@@ -139,8 +139,10 @@ class SessionsSpider(scrapy.Spider):
             i = 0
             for p in itv.xpath('p'):
                 acteur = p.xpath('b/a/@href')
+
                 if acteur:
                     ancre = p.xpath('a/@id').extract()[0]
+                    nomnorm = normalize(p.xpath('b/a/text()').extract()[0])
                     url = acteur.extract()[0]
                     if 'tribun' in url:
                         acteur = 'PA'+url.split('/')[-1].split('.')[0]
@@ -151,6 +153,7 @@ class SessionsSpider(scrapy.Spider):
                     wc.addWords(acteur,' '.join(p.xpath('text()').extract()))
                     interventions.append({
                         'url':response.url+'#'+ancre,
+                        'nom':nomnorm,
                         'contexte':ctx,
                         'ctx_idx':ctx_idx,
                         'acteur':acteur,

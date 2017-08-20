@@ -49,7 +49,7 @@
         <input class="search" placeholder="Recherche">
         <table class="striped highlight centered">
           <thead>
-            <tr><th>Photo</th><th class="sort" data-sort="nom">Nom</th><th>Groupe</th><th>Contact</th><th>Circo.</th><th class="sort" data-sort="participation">Participation</th><th class="sort" data-sort="dissidence">Dissidence</th><th class="sort" data-sort="ficompat">FI Compatibilité</th><th class="sort" data-sort="emcompat">EM Compatibilité</th></tr>
+            <tr><th>Photo</th><th class="sort" data-sort="nom">Nom</th><th>Groupe</th><th>Contact</th><th>Circo.</th><th class="sort" data-sort="participation">Participation</th><th class="sort" data-sort="dissidence">Dissidence</th><th class="sort" data-sort="ficompat">FI Compatibilité</th><th class="sort" data-sort="emcompat">EM Compatibilité</th><th class="sort" data-sort="itv">Interventions</th></tr>
           </thead>
           <tbody class="list">
             {{ for d in deputes: }}<tr>
@@ -73,6 +73,7 @@
               <td class="pct"><span class="dissidence">{{ =d['statsvote']['disspct'] }}</span> %<br/><span style="font-size:0.6em;">({{ ="%d/%d"% (d['statsvote']['diss'],d['statsvote']['exprime']) }})</span></td>
               <td class="pct"><span class="ficompat">{{ =d['statsvote']['votefipct'] }}</span> %<br/><span style="font-size:0.6em;">({{ ="%d/%d"% (d['statsvote']['votefi'],d['statsvote']['exprime']) }})</span></td>
               <td class="pct"><span class="emcompat">{{ =d['statsvote']['voteempct'] }}</span> %<br/><span style="font-size:0.6em;">({{ ="%d/%d"% (d['statsvote']['voteem'],d['statsvote']['exprime']) }})</span></td>
+              <td class="itv">{{ =d['interventions'] }}</td>
               </tr>
             {{ pass }}
           </tbody>
@@ -83,7 +84,7 @@
 {{ block script }}
   <script>
     var oldhsel = "participation";
-    var deputeList = new List('deputes',{ valueNames: ['nom','groupe','circo','participation','dissidence','ficompat','emcompat']});
+    var deputeList = new List('deputes',{ valueNames: ['nom','groupe','circo','participation','dissidence','ficompat','emcompat','itv']});
     function fillhemicycle() {
         var hsel = $('#hselect').val();
         $('.place').removeClass(oldhsel);
