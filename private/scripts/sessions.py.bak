@@ -140,7 +140,7 @@ class SessionsSpider(scrapy.Spider):
             for p in itv.xpath('p'):
                 acteur = p.xpath('b/a/@href')
                 if acteur:
-                    ancre = p.xpath('a/@id').extract()
+                    ancre = p.xpath('a/@id').extract()[0]
                     url = acteur.extract()[0]
                     if 'tribun' in url:
                         acteur = 'PA'+url.split('/')[-1].split('.')[0]

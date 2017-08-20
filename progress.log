@@ -2368,3 +2368,12 @@
 [2017-08-20 02:43:59] EDIT obsas_dev/views/fiches/depute.html: 1
 [2017-08-20 02:45:00] EDIT obsas_dev/views/fiches/depute.html: 3
 [2017-08-20 02:46:57] EDIT obsas_dev/views/fiches/depute.html: 0
+[2017-08-20 13:26:18] EDIT obsas_dev/private/scripts/sessions.py: 2
+[2017-08-20 13:31:23] EDIT obsas_dev/models/appinit.py: -1
+[2017-08-20 13:38:06] EDIT obsas_dev/controllers/fetch.py: 5
+[2017-08-20 13:42:02] EDIT obsas_dev/controllers/fiches.py: -2
+[2017-08-20 13:43:06] EDIT obsas_dev/controllers/fiches.py: 2
+[2017-08-20 13:43:32] EDIT obsas_dev/controllers/fiches.py: 0
+[2017-08-20 13:46:09] EDIT obsas_dev/controllers/fiches.py: 0
+[2017-08-20 13:46:14] EDIT obsas_dev/controllers/fiches.py: 0
+[2017-08-20 13:46:31] EDIT obsas_dev/controllers/fiches.py: 0

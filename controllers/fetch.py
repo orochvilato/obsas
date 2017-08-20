@@ -198,7 +198,12 @@ def update_sessions():
     
     # TODO : trouver une facon itérative de charger le fichier
     mdb.interventions.remove()
+    acteurs = dict((a['id'],a['uid']) for a in mdb.acteurs.find())
     interventions = json.loads(open('/tmp/interventions.json','r').read())
+    for itv in interventions:
+        nid = acteurs.get(itv['nom'],None)
+        if nid and nid != itv['acteur']:
+            itv['acteur'] = nid
     mdb.interventions.insert_many(interventions)
     
     mdb.mots.remove()

@@ -183,7 +183,7 @@ def update_sessions():
     import json
     fp = os.path.join(request.folder, 'private/scripts', 'sessions.py')
     
-    #did_scrape = True if os.system(fp) else False
+    did_scrape = True if os.system(fp) else False
     sessions = json.loads(open('/tmp/sessions.json','r').read())
     scrutins = list(mdb.scrutins.find())
     for s in scrutins:

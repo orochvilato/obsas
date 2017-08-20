@@ -193,14 +193,13 @@ def depute():
         s['posscr'] = posscr
         s['absent'] =  (positions[s['scrutin_id']] in ['absent','nonVotant'])
         
-        mots = mdb.mots.find_one({'acteur_id':a_id})
-        if mots: 
-            mots = [ [mot,count] for mot,count in sorted(mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
+        _mots = mdb.mots.find_one({'acteur_id':a_id})
+        if _mots and _mots['mots']:
+            mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
             mx = mots[0][1]
             mots = [ [mot,int(100*float(count)/mx)] for mot,count in mots]
         else:
             mots = []
-        
         interventions = list(mdb.interventions.find({'acteur':a_id}))
                           
     return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers,mots=mots,interventions=interventions, **dep)
