@@ -177,8 +177,36 @@ def update_acteurs_stats():
         dep['statsvote'] = stats
         mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})
         #print dep['nomcomplet'].encode('utf8')
+
+def update_sessions():
+    import os
+    import json
+    fp = os.path.join(request.folder, 'private/scripts', 'sessions.py')
     
+    #did_scrape = True if os.system(fp) else False
+    sessions = json.loads(open('/tmp/sessions.json','r').read())
+    scrutins = list(mdb.scrutins.find())
+    for s in scrutins:
+        if s['scrutin_typedetail']=='amendement' and 'scrutin_ref' in s.keys():
+            cptrd = s['scrutin_ref']['urlCompteRenduRef'].split('#')[0]
+            
+            if cptrd in sessions.keys():
+                balises = sessions[cptrd]
+                bal = balises.get(s['scrutin_ref']['numAmend'],'')
+                s['scrutin_ref']['urlCompteRenduRef'] = cptrd + '#' + bal
+                mdb.scrutins.update_one({'scrutin_id': s['scrutin_id']}, {'$set': {'scrutin_ref': s['scrutin_ref']}})
     
+    # TODO : trouver une facon itérative de charger le fichier
+    mdb.interventions.remove()
+    interventions = json.loads(open('/tmp/interventions.json','r').read())
+    mdb.interventions.insert_many(interventions)
+    
+    mdb.mots.remove()
+    mots = json.loads(open('/tmp/mots.json','r').read())
+    mdb.mots.create_index([('acteur_id', pymongo.ASCENDING)], unique = True)
+    for k,v in mots.iteritems():
+        mdb.mots.insert_one(dict(acteur_id=k,mots=v.items()))
+
 def index():
     
     #fetch_acteurs_organes()
@@ -186,5 +214,5 @@ def index():
     update_axes()
     update_emfi_compat()
     update_acteurs_stats()
-    rebuild_cache()
+    #rebuild_cache()
     return dict()

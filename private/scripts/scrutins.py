@@ -89,7 +89,7 @@ class ScrutinsSpider(scrapy.Spider):
         votesloi = [ a.extract() for a in response.xpath('//a[contains(@href,"/ta/") or contains(@href,"/scrutins/jo")]/@href')]
         amendements = [ a.extract() for a in response.xpath('//a[contains(@href,"/ta/") or contains(@href,"/scrutins/jo") or (contains(@href,"/amendements/") and contains(@href,"ORGANE=&"))]/@href')]
 
-        if len(votesloi)==1 and '/ta/' in votesloi[0]:
+        if len(votesloi)==1 and '/ta/' in votesloi[0] and response.meta['typedetail']=='loi':
             scrutins_txts[response.meta['snum']] = votesloi[0][-8:-4]
         else:
             i = 0
@@ -132,6 +132,7 @@ class ScrutinsSpider(scrapy.Spider):
             _contre = int(scr.xpath('td[contains(@class,"contre")]/text()').extract()[0])
             _scrutinlien = scr.xpath('td[contains(@class,"desc")]/a[contains(@href,"scrutins")]/@href')[0].extract()
             _dossierlien = scr.xpath('td[contains(@class,"desc")]/a[contains(@href,"dossiers")]/@href')
+
             if _dossierlien:
                 _dossierlien = _dossierlien[0].extract()
             else:
@@ -140,12 +141,26 @@ class ScrutinsSpider(scrapy.Spider):
             _abs = int(scr.xpath('td[contains(@class,"abs")]/text()').extract()[0])
             _desc = scr.xpath('td[contains(@class,"desc")]/text()').extract()[0].replace('  [','')
             _date = scr.xpath('td/text()').extract()[1]
+            if _desc[:12]=="l'amendement":
+                _typedetail = 'amendement'
+            elif _desc[:9]=="la motion":
+                _typedetail = 'motion'
+            elif _desc[:27] =="l'ensemble du projet de loi":
+                _typedetail = 'loi'
+            elif _desc[:9] =="l'article":
+                _typedetail = 'article'
+            elif _desc[:14] ==u'la déclaration':
+                _typedetail = 'declaration'
+            else:
+                _typedetail = 'autre'
+
 
             if _dossierlien and not _dossierlien in amds.keys():
                 amds[_dossierlien] = []
                 request = scrapy.Request(url=_dossierlien, callback=self.parse_dossier)
                 request.meta['snum']=_num
                 request.meta['sdossier']=_dossierlien
+                request.meta['typedetail'] = _typedetail
                 yield request
 
             if _num not in scrutins.keys():
@@ -157,6 +172,7 @@ class ScrutinsSpider(scrapy.Spider):
                                   'contre':_contre,
                                   'abs': _abs,
                                   'desc': _desc,
+                                  'typedetail': _typedetail,
                                   'date': _date,
                                   'dossierlien':_dossierlien,
                                   'scrutinlien':_scrutinlien})
@@ -250,12 +266,12 @@ process.start() # the script will block here until the crawling is finished
 from fuzzywuzzy import fuzz
 import re
 for s in scrutins.values():
-    estamd = re.match(r'.*l\'amendement n\xb0 ([0-9]+) de (.*)',s['desc'])
+    estamd = re.match(r'.*l\'amendement n. *([0-9]+) de (.*)',s['desc'])
     if estamd:
         namd = estamd.groups()[0]
         sig = estamd.groups()[1]
         dos = amds[s['dossierlien']]
-        
+
         candidats = []
         for _amds in dos:
             if namd in _amds.keys():

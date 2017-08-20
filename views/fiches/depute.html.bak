@@ -6,6 +6,9 @@
       color: grey;
       font-weight:300;
     }
+    .canvas {
+     
+    }
     .titredossier {
         font-size:13px;
         font-weight:300px;
@@ -14,6 +17,19 @@
         border-bottom: 1px solid grey;
         /*background: lightgrey;*/
         padding-left:0px;
+    }
+    .ctx_intervention {
+        color: black;
+        font-size:13px;
+        font-weight:300px;
+        text-transform: uppercase;
+       /* border-top: 1px solid grey;*/
+        border-bottom: 1px solid grey;
+        /*background: lightgrey;*/
+        padding-left:0px;
+    }
+    .ctx_intervention a {
+        color: black;
     }
     .pastille {
         height:1.5em;
@@ -76,6 +92,7 @@
 </style>
 {{ end }}
 {{ block content }}
+
 <div class="row">
   <div class="col s12">
     <div class="card horizontal coul{{ =groupe_abrev }}bg">
@@ -84,7 +101,8 @@
       </div>
       <div class="card-stacked">
         <div class="card-content">
-
+            
+            
 
             <h4>{{ =nomcomplet }}</h4>
           <h5>{{ for (k,v) in contacts: }}
@@ -145,6 +163,23 @@
               <p>{{ =dec['qualite'] }}</p></a>
            </li>
           {{ pass }}</ul>
+
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header active"><i class="fa fa-file-text-o coul{{ =groupe_abrev }}-text"></i> Interventions</div>
+        <div class="collapsible-body">
+          {{ if mots: }}
+            <div id="sourrounding_div" style="width:100%;height:500px">
+                <canvas id="wordcanvas"></canvas>
+            </div>
+          {{ pass }}
+            <ul class="collection">
+                {{ for iv in interventions: }}
+                <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div>{{ =XML(iv['contenu']) }}</li>
+                {{ pass }}
+            </ul>
+          
 
         </div>
       </li>
@@ -221,8 +256,8 @@
   <i class="fa fa-circle fa-stack-2x {{ if s['votefi']=='pour':}}coulFI-text{{ elif s['voteem']=='pour':}}coulREM-text{{pass}}"></i>
   <i class="fa fa-{{ =sicon }} fa-stack-1x symbole"></i>
                           </span>{{ if s['flag']: }}<div title="à voté contre son groupe" class="pastille palert right"></div>{{ pass }}</div>
-                        <div class="col s9"><div class="titredossier">{{ =libdos }} - {{ =typescr[s['typedetail']]['libelle'] }}</div><a href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
-                          <a class="s_desc" href="{{ '../scrutins/%s.html' % s['scrutin_id'] }}">{{ =s['scrutin_desc'] }}</a>
+                        <div class="col s9"><div class="titredossier">{{ =libdos }} - {{ =typescr[s['typedetail']]['libelle'] }}</div><a href="{{ =URL('fiches','scrutin',vars={'id':s['scrutin_id']}) }}" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
+                          <a class="s_desc" href="{{ =URL('fiches','scrutin',vars={'id':s['scrutin_id']}) }}">{{ =s['scrutin_desc'] }}</a>
                       </div>
                       <div class="col s2">
                           <!--<span class="{{ =positions[s['scrutin_id']] }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>-->
@@ -245,6 +280,7 @@
 </div>
 {{ end }}
 {{ block script }}
+  <script src="{{=URL('static','js/wordcloud2.js')}}"></script>
   <script>
     var votesList;
     var typefilter;
@@ -284,6 +320,18 @@
         typefilter = $('#s_typefilter').val()
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
+        {{ import json }}
+        var wordlist = JSON.parse('{{ =XML(json.dumps(mots)) }}');
+        var div = document.getElementById("sourrounding_div");
+        var canvas = document.getElementById("wordcanvas");
+        canvas.height = div.offsetHeight;
+        canvas.width  = div.offsetWidth;
+        WordCloud(document.getElementById('wordcanvas'), {
+         gridSize: Math.round(16 * document.getElementById('wordcanvas').offsetWidth / 1024),
+          weightFactor: function (size) {
+            return size;
+          },
+          list: wordlist } );
     });
     
    

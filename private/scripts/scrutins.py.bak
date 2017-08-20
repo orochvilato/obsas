@@ -5,7 +5,7 @@ import scrapy
 import requests
 import json
 import re
-
+from fuzzywuzzy import fuzz
 from scrapy.crawler import CrawlerProcess
 
 
@@ -102,12 +102,10 @@ class ScrutinsSpider(scrapy.Spider):
                 else:
                     i += 1
         i = 0
-        cur_scr = 9999
-        n = 0
+
         import requests
         while i<len(amendements):
             if '/amendements/' in amendements[i]:
-                n += 1
                 r = requests.get('http://www.assemblee-nationale.fr'+amendements[i])
                 iddl = re.match(r'.*&idDossierLegislatif=([0-9]+)&.*',r.url)
                 if iddl:
@@ -119,9 +117,8 @@ class ScrutinsSpider(scrapy.Spider):
                     _amds = [ dict((fields[i],v) for i,v in enumerate(elt.split('|'))) for elt in loadamds['data_table'] ]
                     _amdsdict = dict((_a['numAmend'].split(' ')[0],_a) for _a in _amds)
 
-                amds[response.meta['sdossier']].append([cur_scr,_amdsdict])
-            if '/scrutins/' in amendements[i]:
-                cur_scr = int(amendements[i][-8:-4])
+                amds[response.meta['sdossier']].append(_amdsdict)
+
             i += 1
         # http://www2.assemblee-nationale.fr/recherche/query_amendements?typeDocument=amendement&leg=15&idDossierLegislatif=35825&premierSignataire=true&rows=100000&format=json&tri=ordreTexteasc&start=1&typeRes=liste
         # http://www2.assemblee-nationale.fr/recherche/query_amendements?id=S-AMANR5L15PO717460B106N80&leg=15&typeRes=doc
@@ -249,20 +246,26 @@ process = CrawlerProcess({
 process.crawl(ScrutinsSpider)
 process.start() # the script will block here until the crawling is finished
 
-amds = dict((k,sorted(v,key=lambda x:x[0])) for k,v in amds.iteritems())
+
+from fuzzywuzzy import fuzz
 import re
 for s in scrutins.values():
-    estamd = re.match(r'.*l\'amendement n\xb0 ([0-9]+) .*',s['desc'])
+    estamd = re.match(r'.*l\'amendement n\xb0 ([0-9]+) de (.*)',s['desc'])
     if estamd:
         namd = estamd.groups()[0]
+        sig = estamd.groups()[1]
         dos = amds[s['dossierlien']]
-        for _snum,_amds in dos:
-            if s['num']<_snum:
-                break
-        amd_detail = json.loads(requests.get('http://www2.assemblee-nationale.fr/recherche/query_amendements?id='+_amds[namd]['id']+'&leg=15&typeRes=doc').content)
+        
+        candidats = []
+        for _amds in dos:
+            if namd in _amds.keys():
+                candidats.append((fuzz.token_set_ratio(sig,_amds[namd]['signataires'].split(',')[0]),_amds[namd]))
+
+        _amds = sorted(candidats,key=lambda x:x[0], reverse=True)[0][1]
+        amd_detail = json.loads(requests.get('http://www2.assemblee-nationale.fr/recherche/query_amendements?id='+_amds['id']+'&leg=15&typeRes=doc').content)
         fields = amd_detail['infoGenerales']['description_schema'].split('|')+['autre','autre1','autre2']
         _amdscompl = [ dict((fields[i],v) for i,v in enumerate(elt.split('|'))) for elt in amd_detail['data_table'] ][0]
-        _amdscompl.update(_amds[namd])
+        _amdscompl.update(_amds)
         s['reference'] = _amdscompl
     elif s['num'] in scrutins_txts.keys():
         s['reference'] = scrutins_txts[s['num']]

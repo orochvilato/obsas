@@ -157,6 +157,7 @@ def getScrutins(acteurs,deja=[]):
                     'scrutin_typeLibelle':types,
                     'scrutin_dossier':s.get('idDossier','N/A'),
                     'scrutin_dossierLibelle':s.get('libelleDossier','N/A'),
+                    'scrutin_typedetail':s['typedetail'],
                     'scrutin_ok':s['ok']
                    }
         

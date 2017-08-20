@@ -108,9 +108,11 @@
             <ul class="collection">
               {{ if 'scrutin_ref' in scrutin.keys(): }}
               {{ if scrutin['typedetail']=='amendement': }}
-              <li class="collection-item"><a target="_blank" href="{{ = 'http://www.assemblee-nationale.fr/15/amendements/%04d/AN/%s.asp' % (int(scrutin['scrutin_ref']['numInit']),scrutin['scrutin_ref']['numAmend']) }}">Texte de l'amendement</a></li>
+              {{ num = "%04d" % int(scrutin['scrutin_ref']['numInit']) if len(scrutin['scrutin_ref']['numInit'])<5 else scrutin['scrutin_ref']['numInit'] }}
+               
+              <li class="collection-item"><a target="_blank" href="{{ = 'http://www.assemblee-nationale.fr/15/amendements/%s/AN/%s.asp' % (num,scrutin['scrutin_ref']['numAmend']) }}">Texte de l'amendement</a></li>
               <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlTexteRef'] }}">Texte de réference</a></li>
-              <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlCompteRenduRef'] }}">Compte rendu de séance</a></li>
+              <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlCompteRenduRef'] }}">Compte rendu de séance {{ if scrutin['scrutin_ref']['sort']=='non soutenu': }}(Non soutenu){{ pass}}</a></li>
               {{ elif scrutin['typedetail']=='loi': }}
               <li class="collection-item"><a target="_blank" href="{{ = 'http://www2.assemblee-nationale.fr/documents/notice/15/ta/ta%s/(index)/ta' % scrutin['scrutin_ref'] }}">Texte adopté</a></li>
               {{ pass }}

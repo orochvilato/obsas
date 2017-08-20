@@ -115,9 +115,9 @@ def getScrutins(acteurs,deja=[]):
     import os
     import json
     _scrutins = {}
-    #_scrutins = get_scrutinsPDFs()
-    #fp = os.path.join(current.request.folder, 'private/scripts', 'scrutins.py')
-    #did_scrape = True if os.system(fp) else False
+    _scrutins = get_scrutinsPDFs()
+    fp = os.path.join(current.request.folder, 'private/scripts', 'scrutins.py')
+    did_scrape = True if os.system(fp) else False
 
     _scrutins.update(json.loads(open('/tmp/scrutins.json','r').read()))
 
