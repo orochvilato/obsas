@@ -185,6 +185,20 @@ def update_acteurs_stats():
             stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
         dep['statsvote'] = stats
         dep['interventions'] = compteitv.get(dep['uid'],0)
+        
+        _mots = mdb.mots.find_one({'acteur_id':dep['uid']})
+        if _mots and _mots['mots']:
+            mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
+            som = sum([m[1] for m in mots])
+            mx = mots[0][1]
+            mn = mots[-1][1]-1
+            coef = 50+2000*float(mx)/som
+            if coef>150:
+                coef=150
+            mots = [ [mot,int(coef*float(count)/mx)] for mot,count in mots if not mot in nuages_excl]
+        else:
+            mots = []
+        dep['nuage'] = mots
         mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})
         #print dep['nomcomplet'].encode('utf8')
 
@@ -223,7 +237,6 @@ def update_sessions():
         mdb.mots.insert_one(dict(acteur_id=k,mots=v.items()))
 
 def update_groupes_stats():
-   
     nmots = {'assemblee':{}}
     actgp = dict((a['uid'],a['groupe_abrev']) for a in mdb.acteurs.find())
     _mots = mdb.mots.find()
@@ -242,13 +255,17 @@ def update_groupes_stats():
                 nmots[gp][mot] = 1
             else:
                 nmots[gp][mot] += 1
+    
     for g in nmots.keys():
         mots = [ [mot,count] for mot,count in sorted(nmots[g].items(),key=lambda x:x[1],reverse=True) ][:200]
+        som = sum([m[1] for m in mots])
         mx = mots[0][1]
-        mn = mots[-1][1]
-        mots = [ [mot,int(100*float(count-mn)/(mx-mn))] for mot,count in mots if not mot in nuages_excl]
+        mn = mots[-1][1]-1
+        coef = 10000*float(mx)/som
+        mots = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
         mdb.mots.update({'acteur_id':g},{'$set':{'mots':mots}},upsert=True)
-    return "ok"
+    import json
+    return json.dumps(test)
         
 def index():
     

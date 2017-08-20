@@ -169,7 +169,7 @@
       <li>
         <div class="collapsible-header active"><i class="fa fa-comment-o coul{{ =groupe_abrev }}-text"></i> Interventions</div>
         <div class="collapsible-body">
-          {{ if mots: }}
+          {{ if nuage: }}
             <div id="sourrounding_div" style="width:100%;height:500px">
                 <canvas id="wordcanvas"></canvas>
             </div>
@@ -321,7 +321,7 @@
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
         {{ import json }}
-        var wordlist = JSON.parse('{{ =XML(json.dumps(mots)) }}');
+        var wordlist = JSON.parse('{{ =XML(json.dumps(nuage)) }}');
         var div = document.getElementById("sourrounding_div");
         var canvas = document.getElementById("wordcanvas");
         canvas.height = div.offsetHeight;

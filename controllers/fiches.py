@@ -193,18 +193,12 @@ def depute():
         s['posscr'] = posscr
         s['absent'] =  (positions[s['scrutin_id']] in ['absent','nonVotant'])
         
-        _mots = mdb.mots.find_one({'acteur_id':a_id})
+
         
-        if _mots and _mots['mots']:
-            mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
-            mx = mots[0][1]
-            mn = mots[-1][1]
-            mots = [ [mot,int(100*float(count-mn)/(mx-mn))] for mot,count in mots if not mot in nuages_excl]
-        else:
-            mots = []
+
         itvs = sorted(list(mdb.interventions.find({'acteur':a_id})),key=lambda x:(x['date'],-x['n']),reverse=True)
                           
-    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers,mots=mots,itvs=itvs, **dep)
+    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers, itvs=itvs, **dep)
 
 
 def nuages():

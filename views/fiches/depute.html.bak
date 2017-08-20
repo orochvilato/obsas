@@ -175,7 +175,7 @@
             </div>
           {{ pass }}
             <ul class="collection">
-                {{ for iv in interventions: }}
+                {{ for iv in itvs: }}
                 <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div>{{ =XML(iv['contenu']) }}</li>
                 {{ pass }}
             </ul>
@@ -321,7 +321,7 @@
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
         {{ import json }}
-        var wordlist = JSON.parse('{{ =XML(json.dumps(mots)) }}');
+        var wordlist = JSON.parse('{{ =XML(json.dumps(nuage)) }}');
         var div = document.getElementById("sourrounding_div");
         var canvas = document.getElementById("wordcanvas");
         canvas.height = div.offsetHeight;
