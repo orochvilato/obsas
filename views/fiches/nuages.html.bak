@@ -1,7 +1,38 @@
-{{extend 'layout.html'}}
-<table>
-    {{ for nm in nmots: }}
-    <tr><td>{{ =nm[0] }}</td><td>{{ =nm[1] }}</td></tr>
-    {{ pass }}
-</table>
-{{=BEAUTIFY(response._vars)}}
+{{extend 'base.html'}}
+{{ block content }}
+{{ for g in groupes: }}
+     <div style="margin-top:50px;padding-bottom:30px;font-size:30px;font-weight:600;">{{ =g['libelle'] }} ( {{ =g['nbmembres'] }} membres )</div>
+
+    <div id="sourrounding_div_{{ =g['code'] }}" style="width:100%;height:500px">
+        <canvas id="wordcanvas_{{ = g['code'] }}"></canvas>
+    </div>
+    <hr/>
+
+{{ pass }}
+{{ end }}
+
+{{ block script }}
+  <script src="{{=URL('static','js/wordcloud2.js')}}"></script>
+  <script>
+    var votesList;
+  
+    $(document).ready(function() {
+        
+        {{ import json }}
+        {{ for g in groupes: }}
+            var wordlist = JSON.parse('{{ =XML(json.dumps(g['mots'])) }}');
+            var div = document.getElementById("sourrounding_div_{{ =g['code'] }}");
+            var canvas = document.getElementById("wordcanvas_{{ =g['code'] }}");
+            canvas.height = div.offsetHeight;
+            canvas.width  = div.offsetWidth;
+            WordCloud(document.getElementById('wordcanvas_{{ =g['code'] }}'), {
+             gridSize: Math.round(16 * document.getElementById('wordcanvas_{{ =g['code'] }}').offsetWidth / 1024),
+              weightFactor: function (size) {
+                return 0.8*size;
+              },
+             list: wordlist } );
+        {{ pass }}
+     });
+
+  </script>
+{{ end }}

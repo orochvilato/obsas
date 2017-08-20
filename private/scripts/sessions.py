@@ -11,7 +11,7 @@ import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 
 try:
-    with open('/home/www-data/web2py/applications/obsas_dev/private/lexique2.json','r') as f:
+    with open('/home/www-data/web2py/applications/obsas_dev/private/lexiquenoverbs.json','r') as f:
         lexique = json.loads(f.read())
 except:
     with open('lexique2.json','r') as f:
@@ -147,6 +147,7 @@ class SessionsSpider(scrapy.Spider):
                     ctx_idx = 0
                     break
 
+
             for p in itv.xpath('p'):
                 acteur = p.xpath('b/a/@href')
 
@@ -160,19 +161,23 @@ class SessionsSpider(scrapy.Spider):
                         acteur = url.split('/')[-1].split('_')[-1]
                     if acteur[0:2]!='PA':
                         print url, response.url, ctx
-                    wc.addWords(acteur,' '.join(p.xpath('text()').extract()))
-                    idx += 1
-                    ctx_idx += 1
-                    interventions.append({
-                        'n':idx,
-                        'date':sdate,
-                        'url':response.url+'#'+ancre,
-                        'nom':nomnorm,
-                        'contexte':ctx,
-                        'ctx_idx':ctx_idx,
-                        'acteur':acteur,
-                        'contenu':re.sub(r'<a name=.*\.  ','',p.extract())
-                    })
+                    texte = ' '.join(p.xpath('text()').extract())
+                    if "La parole est" in texte or u"Quel est l’avis d" in texte:
+                        pass
+                    else:
+                        wc.addWords(acteur,texte)
+                        idx += 1
+                        ctx_idx += 1
+                        interventions.append({
+                            'n':idx,
+                            'date':sdate,
+                            'url':response.url+'#'+ancre,
+                            'nom':nomnorm,
+                            'contexte':ctx,
+                            'ctx_idx':ctx_idx,
+                            'acteur':acteur,
+                            'contenu':re.sub(r'<a name=.*\.  ','',p.extract())
+                        })
 
 process = CrawlerProcess({
     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)','DOWNLOAD_DELAY':0.25

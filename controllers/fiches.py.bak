@@ -198,20 +198,18 @@ def depute():
         if _mots and _mots['mots']:
             mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
             mx = mots[0][1]
-            mots = [ [mot,int(100*float(count)/mx)] for mot,count in mots if not mot in nuages_excl]
+            mn = mots[-1][1]
+            mots = [ [mot,int(70*float(count-mn)/(mx-mn))] for mot,count in mots if not mot in nuages_excl]
         else:
             mots = []
         itvs = sorted(list(mdb.interventions.find({'acteur':a_id})),key=lambda x:(x['date'],-x['n']),reverse=True)
                           
     return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers,mots=mots,itvs=itvs, **dep)
 
+
 def nuages():
-    nmots = {}
-    _mots = mdb.mots.find()
-    for m in _mots:
-        for mot,n in m['mots']:
-            if not mot in nmots.keys():
-                nmots[mot] = 1
-            else:
-                nmots[mot] += 1
-    return dict(nmots=sorted(nmots.items(),key=lambda x:x[1], reverse=True)[:300])
+    groupes = []
+    for abrev,lib,nbm in [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})] + [('assemblee','Assemblée',577)]:
+        mots = mdb.mots.find_one({'acteur_id':abrev})
+        groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots']}) 
+    return dict(groupes=groupes)

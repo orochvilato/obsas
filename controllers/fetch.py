@@ -222,6 +222,34 @@ def update_sessions():
     for k,v in mots.iteritems():
         mdb.mots.insert_one(dict(acteur_id=k,mots=v.items()))
 
+def update_groupes_stats():
+   
+    nmots = {'assemblee':{}}
+    actgp = dict((a['uid'],a['groupe_abrev']) for a in mdb.acteurs.find())
+    _mots = mdb.mots.find()
+    for m in _mots:
+        gp = actgp.get(m['acteur_id'],None)
+        if not gp:
+            continue
+        if not gp in nmots.keys():
+            nmots[gp] = {}
+        for mot,n in m['mots']:
+            if not mot in nmots['assemblee'].keys():
+                nmots['assemblee'][mot] = 1
+            else:
+                nmots['assemblee'][mot] += 1
+            if not mot in nmots[gp].keys():
+                nmots[gp][mot] = 1
+            else:
+                nmots[gp][mot] += 1
+    for g in nmots.keys():
+        mots = [ [mot,count] for mot,count in sorted(nmots[g].items(),key=lambda x:x[1],reverse=True) ][:200]
+        mx = mots[0][1]
+        mn = mots[-1][1]
+        mots = [ [mot,int(100*float(count-mn)/(mx-mn))] for mot,count in mots if not mot in nuages_excl]
+        mdb.mots.update({'acteur_id':g},{'$set':{'mots':mots}},upsert=True)
+    return "ok"
+        
 def index():
     
     #fetch_acteurs_organes()
@@ -229,5 +257,6 @@ def index():
     update_axes()
     update_emfi_compat()
     update_acteurs_stats()
+    update_groupes_stats()
     #rebuild_cache()
     return dict()
