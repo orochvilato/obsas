@@ -12,32 +12,43 @@ locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 
 try:
     with open('/home/www-data/web2py/applications/obsas_dev/private/lexiquenoverbs.json','r') as f:
-        lexique = json.loads(f.read())
+        lexiquenoms = json.loads(f.read())
+    with open('/home/www-data/web2py/applications/obsas_dev/private/lexiqueverbs.json','r') as f:
+        lexiqueverbs = json.loads(f.read())
 except:
-    with open('lexique2.json','r') as f:
-        lexique = json.loads(f.read())
+    with open('lexiquenoverbs.json','r') as f:
+        lexiquenoms = json.loads(f.read())
+    with open('lexiqueverbs.json','r') as f:
+        lexiqueverbs = json.loads(f.read())
 
 class WordCount:
-    def __init__(self,lexique):
+    def __init__(self):
         self.words = {}
-        self.lexique = lexique
-        self._lex = set(lexique.keys())
-    def addWords(self,item,txt):
+        self.lexiques = {}
+        self._lex = {}
+    def addLexique(self,name,lexique):
+        self.lexiques[name] = lexique
+        self._lex[name] = set(lexique.keys())
+    def addWords(self,lex,item,txt):
         txt = txt.replace('\n',' ').replace('.',' ').replace(':',' ').replace(',',' ').replace(';',' ').replace('-',' ').replace('  ',' ').lower().split(' ')
-        words = [ self.lexique[x] for x in txt if x in self._lex ]
+        words = [ self.lexiques[lex][x] for x in txt if x in self._lex[lex] ]
         if not item in self.words.keys():
             self.words[item] = {}
+        if not lex in self.words[item].keys():
+            self.words[item][lex] = {}
         for w in words:
             if not w.strip():
                 continue
-            if not w in self.words[item].keys():
-                self.words[item][w] = 1
+            if not w in self.words[item][lex].keys():
+                self.words[item][lex][w] = 1
             else:
-                self.words[item][w] += 1
-    def getWords(self,item):
-        return self.words[item]
+                self.words[item][lex][w] += 1
+    def getWords(self,lex,item):
+        return self.words[item][lex]
 
-wc = WordCount(lexique)
+wc = WordCount()
+wc.addLexique('noms',lexiquenoms)
+wc.addLexique('verbs',lexiqueverbs)
 
 
 leg = 15
@@ -165,7 +176,8 @@ class SessionsSpider(scrapy.Spider):
                     if "La parole est" in texte or u"Quel est l’avis d" in texte:
                         pass
                     else:
-                        wc.addWords(acteur,texte)
+                        wc.addWords('noms',acteur,texte)
+                        wc.addWords('verbs',acteur,texte)
                         idx += 1
                         ctx_idx += 1
                         interventions.append({

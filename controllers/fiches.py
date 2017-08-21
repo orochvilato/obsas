@@ -202,8 +202,9 @@ def depute():
 
 
 def nuages():
+    lex = 'verbs' if request.args(0) == 'verbes' else 'noms'
     groupes = []
     for abrev,lib,nbm in [(g['libelleAbrev'],g['libelle'],g['nbmembres']) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})] + [('assemblee','Assemblée',577)]:
         mots = mdb.mots.find_one({'acteur_id':abrev})
-        groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots']}) 
+        groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots'][lex]}) 
     return dict(groupes=groupes)

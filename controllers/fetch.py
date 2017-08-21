@@ -234,7 +234,7 @@ def update_sessions():
     mots = json.loads(open('/tmp/mots.json','r').read())
     mdb.mots.create_index([('acteur_id', pymongo.ASCENDING)], unique = True)
     for k,v in mots.iteritems():
-        mdb.mots.insert_one(dict(acteur_id=k,mots=v.items()))
+        mdb.mots.insert_one(dict(acteur_id=k,mots=v))
 
 def update_groupes_stats():
     nmots = {'assemblee':{}}
@@ -246,26 +246,33 @@ def update_groupes_stats():
             continue
         if not gp in nmots.keys():
             nmots[gp] = {}
-        for mot,n in m['mots']:
-            if not mot in nmots['assemblee'].keys():
-                nmots['assemblee'][mot] = 1
-            else:
-                nmots['assemblee'][mot] += 1
-            if not mot in nmots[gp].keys():
-                nmots[gp][mot] = 1
-            else:
-                nmots[gp][mot] += 1
+        for lex in m['mots'].keys():
+            if not lex in nmots['assemblee'].keys():
+                nmots['assemblee'][lex] = {}
+            if not lex in nmots[gp].keys():
+                nmots[gp][lex] = {}
+            for mot,n in m['mots'][lex].iteritems():
+                if not mot in nmots['assemblee'][lex].keys():
+                    nmots['assemblee'][lex][mot] = 1
+                else:
+                    nmots['assemblee'][lex][mot] += 1
+                if not mot in nmots[gp][lex].keys():
+                    nmots[gp][lex][mot] = 1
+                else:
+                    nmots[gp][lex][mot] += 1
     
     for g in nmots.keys():
-        mots = [ [mot,count] for mot,count in sorted(nmots[g].items(),key=lambda x:x[1],reverse=True) ][:200]
-        som = sum([m[1] for m in mots])
-        mx = mots[0][1]
-        mn = mots[-1][1]-1
-        coef = 10000*float(mx)/som
-        mots = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
-        mdb.mots.update({'acteur_id':g},{'$set':{'mots':mots}},upsert=True)
+        _mots = {}
+        for lex in nmots[g].keys():
+            mots = [ [mot,count] for mot,count in sorted(nmots[g][lex].items(),key=lambda x:x[1],reverse=True) ][:200]
+            som = sum([m[1] for m in mots])
+            mx = mots[0][1]
+            mn = mots[-1][1]-1
+            coef = 10000*float(mx)/som
+            _mots[lex] = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
+        mdb.mots.update({'acteur_id':g},{'$set':{'mots':_mots}},upsert=True)
     import json
-    return json.dumps(test)
+    return "ok"
         
 def index():
     
