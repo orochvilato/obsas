@@ -10,14 +10,13 @@ from scrapy.crawler import CrawlerProcess
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 
-try:
-    with open('/home/www-data/web2py/applications/obsas_dev/private/lexiquenoverbs.json','r') as f:
-        lexiquenoms = json.loads(f.read())
-    with open('/home/www-data/web2py/applications/obsas_dev/private/lexiqueverbs.json','r') as f:
-        lexiqueverbs = json.loads(f.read())
-except:
-    with open('lexique2.json','r') as f:
-        lexique = json.loads(f.read())
+with open('/home/www-data/web2py/applications/obsas_dev/private/lexiques.json','r') as f:
+    lexiques = json.loads(f.read())
+
+lexiquenoms = lexiques['NOM']
+lexiquenoms.update(lexiques['ADV'])
+lexiquenoms.update(lexiques['ADJ'])
+lexiqueverbs = lexiques['VER']
 
 class WordCount:
     def __init__(self):
@@ -27,21 +26,22 @@ class WordCount:
     def addLexique(self,name,lexique):
         self.lexiques[name] = lexique
         self._lex[name] = set(lexique.keys())
-        self.words[name] = {}
     def addWords(self,lex,item,txt):
         txt = txt.replace('\n',' ').replace('.',' ').replace(':',' ').replace(',',' ').replace(';',' ').replace('-',' ').replace('  ',' ').lower().split(' ')
         words = [ self.lexiques[lex][x] for x in txt if x in self._lex[lex] ]
-        if not item in self.words[lex].keys():
-            self.words[lex][item] = {}
+        if not item in self.words.keys():
+            self.words[item] = {}
+        if not lex in self.words[item].keys():
+            self.words[item][lex] = {}
         for w in words:
             if not w.strip():
                 continue
-            if not w in self.words[lex][item].keys():
-                self.words[lex][item][w] = 1
+            if not w in self.words[item][lex].keys():
+                self.words[item][lex][w] = 1
             else:
-                self.words[lex][item][w] += 1
+                self.words[item][lex][w] += 1
     def getWords(self,lex,item):
-        return self.words[lex][item]
+        return self.words[item][lex]
 
 wc = WordCount()
 wc.addLexique('noms',lexiquenoms)

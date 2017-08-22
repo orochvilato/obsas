@@ -169,11 +169,23 @@
       <li>
         <div class="collapsible-header active"><i class="fa fa-comment-o coul{{ =groupe_abrev }}-text"></i> Interventions</div>
         <div class="collapsible-body">
-          {{ if mots: }}
-            <div id="sourrounding_div" style="width:100%;height:500px">
-                <canvas id="wordcanvas"></canvas>
+            {{ if nuages: }}
+            <div class="row">
+                <div class="col s12">
+                  <ul class="tabs">
+                    {{ for lex in nuages.keys(): }}        
+                    <li class="tab col s3"><a class="active" href="#{{ =lex }}">Nuages de {{ ={'noms':'noms','verbs':'verbes'}[lex] }}</a></li>
+                    {{ pass }}
+                  </ul>
+                </div>
+                {{ for lex in nuages.keys(): }}
+                    <div id="{{ = lex }}" class="col s12"><div id="sourrounding_div_{{ =lex }}" style="width:100%;height:400px">
+                    <canvas id="wordcanvas_{{ =lex }}"></canvas>
+                    </div>
+                    </div>
+                {{ pass }}
             </div>
-          {{ pass }}
+            {{ pass }}
             <ul class="collection">
                 {{ for iv in itvs: }}
                 <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div>{{ =XML(iv['contenu']) }}</li>
@@ -321,17 +333,29 @@
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
         {{ import json }}
-        var wordlist = JSON.parse('{{ =XML(json.dumps(nuage)) }}');
-        var div = document.getElementById("sourrounding_div");
-        var canvas = document.getElementById("wordcanvas");
-        canvas.height = div.offsetHeight;
-        canvas.width  = div.offsetWidth;
-        WordCloud(document.getElementById('wordcanvas'), {
-         gridSize: Math.round(16 * document.getElementById('wordcanvas').offsetWidth / 1024),
-          weightFactor: function (size) {
-            return size;
-          },
-          list: wordlist } );
+        var wordlist = {};
+        {{ if nuages: }}
+        {{ for lex in nuages.keys(): }}
+           wordlist['{{=lex}}'] = JSON.parse('{{ =XML(json.dumps(nuages[lex])) }}');
+        {{ pass }}
+        {{ pass }}
+        function showNuage(lex) {
+            var div = document.getElementById("sourrounding_div_"+lex);
+            var canvas = document.getElementById("wordcanvas_"+lex);
+            
+            canvas.height = div.offsetHeight;
+            canvas.width  = div.offsetWidth;
+        
+            WordCloud(document.getElementById('wordcanvas_'+lex), {
+             gridSize: Math.round(16 * document.getElementById('wordcanvas_'+lex).offsetWidth / 1024),
+              weightFactor: function (size) {
+                return 0.6*size;
+              },
+              list: wordlist[lex] } );
+
+        }
+        showNuage('noms');
+        $("ul.tabs").tabs({ onShow: function(tab) { showNuage($(tab).attr('id')); } });
     });
     
    

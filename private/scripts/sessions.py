@@ -10,16 +10,13 @@ from scrapy.crawler import CrawlerProcess
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 
-try:
-    with open('/home/www-data/web2py/applications/obsas_dev/private/lexiquenoverbs.json','r') as f:
-        lexiquenoms = json.loads(f.read())
-    with open('/home/www-data/web2py/applications/obsas_dev/private/lexiqueverbs.json','r') as f:
-        lexiqueverbs = json.loads(f.read())
-except:
-    with open('lexiquenoverbs.json','r') as f:
-        lexiquenoms = json.loads(f.read())
-    with open('lexiqueverbs.json','r') as f:
-        lexiqueverbs = json.loads(f.read())
+with open('/home/www-data/web2py/applications/obsas_dev/private/lexiques.json','r') as f:
+    lexiques = json.loads(f.read())
+
+lexiquenoms = lexiques['NOM']
+#lexiquenoms.update(lexiques['ADV'])
+lexiquenoms.update(lexiques['ADJ'])
+lexiqueverbs = lexiques['VER']
 
 class WordCount:
     def __init__(self):

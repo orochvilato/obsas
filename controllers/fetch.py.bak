@@ -187,18 +187,36 @@ def update_acteurs_stats():
         dep['interventions'] = compteitv.get(dep['uid'],0)
         
         _mots = mdb.mots.find_one({'acteur_id':dep['uid']})
-        if _mots and _mots['mots']:
-            mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
-            som = sum([m[1] for m in mots])
-            mx = mots[0][1]
-            mn = mots[-1][1]-1
-            coef = 50+2000*float(mx)/som
-            if coef>150:
-                coef=150
-            mots = [ [mot,int(coef*float(count)/mx)] for mot,count in mots if not mot in nuages_excl]
-        else:
-            mots = []
-        dep['nuage'] = mots
+        
+        #if _mots and _mots['mots']:
+        #    mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
+        #    som = sum([m[1] for m in mots])
+        #    mx = mots[0][1]
+        #    mn = mots[-1][1]-1
+        #    coef = 50+2000*float(mx)/som
+        #    if coef>150:
+        #        coef=150
+        #    mots = [ [mot,int(coef*float(count)/mx)] for mot,count in mots if not mot in nuages_excl]
+        #else:
+        #    mots = []
+        #dep['nuage'] = mots
+        mts = {}
+        if _mots:
+            for lex in _mots['mots'].keys():
+                if _mots['mots'][lex]:
+                    mots = [ [mot,count] for mot,count in sorted(_mots['mots'][lex].items(),key=lambda x:x[1],reverse=True) if not mot in nuages_excl][:200]
+                    if mots:
+                        
+                        mx = mots[0][1]
+                        mn = mots[-1][1]-1
+                        som = sum([float(m[1]-mn)/(mx-mn) for m in mots])
+                        moy = float(sum([m[1]-mn for m in mots][:10]))/10
+                        coef = (float(150)-(mx-moy)/(mx-mn))*(3000/som)
+                        
+                        mts[lex] = [ [mot,int(coef*float(count-mn)/(mx-mn))] for mot,count in mots]
+        
+        dep['nuages'] = mts
+    
         mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})
         #print dep['nomcomplet'].encode('utf8')
 
@@ -270,7 +288,7 @@ def update_groupes_stats():
             mn = mots[-1][1]-1
             coef = 10000*float(mx)/som
             _mots[lex] = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
-        mdb.mots.update({'acteur_id':g},{'$set':{'nuages':_mots}},upsert=True)
+        mdb.mots.update({'acteur_id':g},{'$set':{'mots':_mots}},upsert=True)
     import json
     return "ok"
         
