@@ -1,6 +1,13 @@
 {{extend 'base.html'}}
 {{ block content }}
-{{ graphes = [{'titre':'Interventions par groupes','item':'nbitv'}] }}
+{{ =test }}
+{{ graphes = [{'titre':'Ratio Interventions/Représentivité par groupe','item':'ratio_itv'},
+              {'titre':'Ratio Mots/Représentivité par groupe','item':'ratio_mots'},
+              {'titre':'Interventions par groupes','item':'nbitv'},
+              {'titre':'Mots par groupes','item':'nbmots'},
+              {'titre':'Interventions/député par groupe','item':'nbitv_dep'},
+              {'titre':'Mots/député par groupe','item':'nbmots_dep'},
+             ] }}
 <div class="row">
     {{ for i,gr in enumerate(graphes): }}
     <div class="col m6 s12">
@@ -36,16 +43,19 @@
     {{ for i,gr in enumerate(graphes): }}
         var data{{ =i }} = JSON.parse('{{ =XML(json.dumps([ g[gr['item']] for g in groupes])) }}');
         var config{{ =i }} = {
-        type: "doughnut",
+        type: "horizontalBar",
         data: {
             datasets: [{
                 data: data{{ =i }},
                 backgroundColor: colors,
-                label: 'Dataset 1'
+                
             }],
             labels: labels
         },
         options: {
+            legend: {
+                display: false
+            },
             responsive: true,
             tooltips: {
                   callbacks: {

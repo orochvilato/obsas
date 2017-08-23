@@ -210,6 +210,14 @@ def nuages():
     return dict(groupes=groupes)
 
 def interventions():
-    groupes = mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]})
+    groupes = list(mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
+    itvs = 0
+    mots = 0
+    for g in groupes:
+        itvs += g['nbitv']
+        mots += g['nbmots']
+    for g in groupes:
+        g['ratio_itv'] = (float(g['nbmots'])/mots)/(float(g['nbmembres'])/577)
+        g['ratio_mots'] = (float(g['nbitv'])/mots)/(float(g['nbmembres'])/577)
 
-    return dict(groupes=groupes,colors=[ colors[g['libelleAbrev']] for g in groupes])
+    return dict(test=[(g['libelle'],g['ratio_itv'],g['ratio_mots']) for g in groupes],groupes=groupes,colors=[ colors[g['libelleAbrev']] for g in groupes])
