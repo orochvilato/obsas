@@ -1,8 +1,7 @@
 {{extend 'base.html'}}
 {{ block content }}
-{{ =test }}
-{{ graphes = [{'titre':'Ratio Interventions/Représentivité par groupe','item':'ratio_itv'},
-              {'titre':'Ratio Mots/Représentivité par groupe','item':'ratio_mots'},
+{{ graphes = [{'titre':'Prorata Interventions/Représentivité par groupe','item':'ratio_itv','step':1},
+              {'titre':'Prorata Mots/Représentivité par groupe','item':'ratio_mots','step':1},
               {'titre':'Interventions par groupes','item':'nbitv'},
               {'titre':'Mots par groupes','item':'nbmots'},
               {'titre':'Interventions/député par groupe','item':'nbitv_dep'},
@@ -27,8 +26,7 @@
 {{ block script }}
 <script>
     {{ import json }}
-    var colors = JSON.parse('{{ =XML(json.dumps(colors)) }}');
-    var labels = JSON.parse('{{ =XML(json.dumps([ g["libelle"] for g in groupes])) }}');
+    
     function getlabel(tooltipItem, data) {
           var allData = data.datasets[tooltipItem.datasetIndex].data;
           var tooltipLabel = data.labels[tooltipItem.index];
@@ -41,7 +39,10 @@
           return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
     }
     {{ for i,gr in enumerate(graphes): }}
-        var data{{ =i }} = JSON.parse('{{ =XML(json.dumps([ g[gr['item']] for g in groupes])) }}');
+        {{ order = sorted([ (g[gr['item']],i) for i,g in enumerate(groupes) ],key=lambda x:x[0],reverse=True) }}
+        var colors = JSON.parse('{{ =XML(json.dumps([colors[o[1]] for o in order])) }}');
+        var labels = JSON.parse('{{ =XML(json.dumps([ groupes[o[1]]["libelle"].split(':')[0].strip() for o in order])) }}');
+        var data{{ =i }} = JSON.parse('{{ =XML(json.dumps([ groupes[o[1]][gr['item']] for o in order])) }}');
         var config{{ =i }} = {
         type: "horizontalBar",
         data: {
@@ -55,7 +56,18 @@
         options: {
             legend: {
                 display: false
-            },
+            },{{ if 'step' in gr.keys(): }}
+            scales: {
+                        xAxes: [
+                            {
+                                ticks: {
+                                    min: 0, // it is for ignoring negative step.
+                                    beginAtZero: true,
+                                    stepSize: {{ =gr['step'] }}  // if i use this it always set it '1', which look very awkward if it have high value  e.g. '100'.
+                                }
+                            }
+                        ]
+            },{{ pass }}
             responsive: true,
             tooltips: {
                   callbacks: {

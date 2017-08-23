@@ -217,7 +217,7 @@ def interventions():
         itvs += g['nbitv']
         mots += g['nbmots']
     for g in groupes:
-        g['ratio_itv'] = (float(g['nbmots'])/mots)/(float(g['nbmembres'])/577)
-        g['ratio_mots'] = (float(g['nbitv'])/itvs)/(float(g['nbmembres'])/577)
+        g['ratio_itv'] = round((float(g['nbmots'])/mots)/(float(g['nbmembres'])/577),1)
+        g['ratio_mots'] = round((float(g['nbitv'])/itvs)/(float(g['nbmembres'])/577),1)
 
     return dict(test=[(g['libelle'],g['ratio_itv'],g['ratio_mots']) for g in groupes],groupes=groupes,colors=[ colors[g['libelleAbrev']] for g in groupes])
