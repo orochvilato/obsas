@@ -179,18 +179,22 @@
                   </ul>
                 </div>
                 {{ for lex in nuages.keys(): }}
-                    <div id="{{ = lex }}" class="col s12"><div id="sourrounding_div_{{ =lex }}" style="width:100%;height:400px">
+                    <div id="{{ = lex }}" class="col s12"><div id="sourrounding_div_{{ =lex }}" style="width:100%;height:500px">
                     <canvas id="wordcanvas_{{ =lex }}"></canvas>
                     </div>
                     </div>
                 {{ pass }}
             </div>
             {{ pass }}
-            <ul class="collection">
-                {{ for iv in itvs: }}
-                <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div>{{ =XML(iv['contenu']) }}</li>
-                {{ pass }}
-            </ul>
+            <div id="itvlist">
+                <input class="searchitv" placeholder="Recherche intervention">
+                <ul class="list collection">
+                    {{ for iv in itvs: }}
+                    <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div><div class="itv">{{ =XML(iv['contenu']) }}</div></li>
+                    {{ pass }}
+                </ul>    
+            </div>
+            
           
 
         </div>
@@ -295,6 +299,7 @@
   <script src="{{=URL('static','js/wordcloud2.js')}}"></script>
   <script>
     var votesList;
+    var itvList;
     var typefilter;
     var posfilter;
     $('#s_typefilter').change(function(){
@@ -332,6 +337,8 @@
         typefilter = $('#s_typefilter').val()
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
+        itvList = new List('itvlist',{ valueNames:['itv']});
+        
         {{ import json }}
         var wordlist = {};
         {{ if nuages: }}

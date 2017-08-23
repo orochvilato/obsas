@@ -186,11 +186,15 @@
                 {{ pass }}
             </div>
             {{ pass }}
-            <ul class="collection">
-                {{ for iv in itvs: }}
-                <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div>{{ =XML(iv['contenu']) }}</li>
-                {{ pass }}
-            </ul>
+            <div id="itvlist">
+                <input class="search" placeholder="Recherche intervention">
+                <ul class="list collection">
+                    {{ for iv in itvs: }}
+                    <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div><div class="s_itv">{{ =XML(iv['contenu']) }}</div></li>
+                    {{ pass }}
+                </ul>    
+            </div>
+            
           
 
         </div>
@@ -295,6 +299,7 @@
   <script src="{{=URL('static','js/wordcloud2.js')}}"></script>
   <script>
     var votesList;
+    var itvList;
     var typefilter;
     var posfilter;
     $('#s_typefilter').change(function(){
@@ -332,6 +337,8 @@
         typefilter = $('#s_typefilter').val()
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
+        itvList = new List('itvlist',{ valueNames:['s_itv']});
+        
         {{ import json }}
         var wordlist = {};
         {{ if nuages: }}
