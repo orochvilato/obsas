@@ -1,0 +1,69 @@
+{{extend 'base.html'}}
+{{ block content }}
+{{ graphes = [{'titre':'Interventions par groupes','item':'nbitv'},
+              {'titre':'Mots par groupes','item':'nbmots'},
+              {'titre':'Interventions/député par groupe','item':'nbitv_dep'},
+              {'titre':'Mots/député par groupe','item':'nbmots_dep'},
+             ] }}
+<div class="row">
+    {{ for i,gr in enumerate(graphes): }}
+    <div class="col m6 s12">
+        <div class="card">
+            <div class="card-content">
+              <span class="card-title">{{ =gr['titre'] }}</span>
+              <canvas id="chart-area-{{ =i }}" />
+            </div>
+        </div>
+    </div>
+    {{ pass }}
+</div>
+    
+</div>
+
+{{ end }}
+{{ block script }}
+<script>
+    {{ import json }}
+    var colors = JSON.parse('{{ =XML(json.dumps(colors)) }}');
+    var labels = JSON.parse('{{ =XML(json.dumps([ g["libelle"] for g in groupes])) }}');
+    function getlabel(tooltipItem, data) {
+          var allData = data.datasets[tooltipItem.datasetIndex].data;
+          var tooltipLabel = data.labels[tooltipItem.index];
+          var tooltipData = allData[tooltipItem.index];
+          var total = 0;
+          for (var i in allData) {
+            total += allData[i];
+          }
+          var tooltipPercentage = Math.round((tooltipData / total) * 100);
+          return tooltipLabel + ': ' + tooltipData + ' (' + tooltipPercentage + '%)';
+    }
+    {{ for i,gr in enumerate(graphes): }}
+        var data{{ =i }} = JSON.parse('{{ =XML(json.dumps([ g[gr['item']] for g in groupes])) }}');
+        var config{{ =i }} = {
+        type: "doughnut",
+        data: {
+            datasets: [{
+                data: data{{ =i }},
+                backgroundColor: colors,
+                label: 'Dataset 1'
+            }],
+            labels: labels
+        },
+        options: {
+            responsive: true,
+            tooltips: {
+                  callbacks: {
+                    label: getlabel,
+                  }
+              }
+        }
+        };
+    {{ pass }}
+    window.onload = function() {
+        {{ for i,gr in enumerate(graphes): }}
+            var ctx = document.getElementById("chart-area-{{ =i}}").getContext("2d");
+            window.myPie = new Chart(ctx, config{{ =i }});
+        {{ pass }}
+    };
+</script>
+{{ end }}

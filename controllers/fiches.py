@@ -208,3 +208,8 @@ def nuages():
         mots = mdb.mots.find_one({'acteur_id':abrev})
         groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots'][lex]}) 
     return dict(groupes=groupes)
+
+def interventions():
+    groupes = list(mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
+
+    return dict(groupes=groupes,colors=[ colors[g['libelleAbrev']] for g in groupes])

@@ -289,9 +289,30 @@ def update_groupes_stats():
             coef = 10000*float(mx)/som
             _mots[lex] = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
         mdb.mots.update({'acteur_id':g},{'$set':{'mots':_mots}},upsert=True)
+    
+    
+    
     import json
     return "ok"
-        
+
+def update_interventions_stats():
+    groupes = dict((g['libelleAbrev'],dict(uid=g['uid'],lib=g['libelle'],abrev=g['libelleAbrev'],nbm=g['nbmembres'],nbitv=0,nbmots=0)) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
+    
+    for acteur in mdb.acteurs.find():
+        g = acteur['groupe_abrev']
+        mots = 0
+        itvs = 0
+        for itv in mdb.interventions.find({'acteur':acteur['uid']}):
+            itvs += 1
+            mots += itv['nbmots']
+        groupes[g]['nbitv'] += itvs
+        groupes[g]['nbmots'] += mots
+        mdb.acteurs.update({'uid':acteur['uid']},{'$set':{'nbitv':itvs,'nbmots':mots}})
+        #groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots'][lex]}) 
+    for g in groupes:
+        groupes[g]['nbitv_dep'] = groupes[g]['nbitv'] / groupes[g]['nbm']
+        groupes[g]['nbmots_dep'] = groupes[g]['nbmots'] / groupes[g]['nbm']
+        mdb.organes.update({'uid':groupes[g]['uid']},{'$set':{'nbitv':groupes[g]['nbitv'],'nbitv_dep':groupes[g]['nbitv_dep'],'nbmots':groupes[g]['nbmots'],'nbmots_dep':groupes[g]['nbmots_dep']}})
 def index():
     
     #fetch_acteurs_organes()
@@ -300,5 +321,6 @@ def index():
     update_emfi_compat()
     update_acteurs_stats()
     update_groupes_stats()
+    update_interventions_stats()
     #rebuild_cache()
     return dict()

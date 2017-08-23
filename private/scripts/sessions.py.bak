@@ -14,7 +14,7 @@ with open('/home/www-data/web2py/applications/obsas_dev/private/lexiques.json','
     lexiques = json.loads(f.read())
 
 lexiquenoms = lexiques['NOM']
-lexiquenoms.update(lexiques['ADV'])
+#lexiquenoms.update(lexiques['ADV'])
 lexiquenoms.update(lexiques['ADJ'])
 lexiqueverbs = lexiques['VER']
 
@@ -185,6 +185,7 @@ class SessionsSpider(scrapy.Spider):
                             'contexte':ctx,
                             'ctx_idx':ctx_idx,
                             'acteur':acteur,
+                            'nbmots':len(texte.split(' '))
                             'contenu':re.sub(r'<a name=.*\.  ','',p.extract())
                         })
 

@@ -185,6 +185,7 @@ class SessionsSpider(scrapy.Spider):
                             'contexte':ctx,
                             'ctx_idx':ctx_idx,
                             'acteur':acteur,
+                            'nbmots':len(texte.split(' ')),
                             'contenu':re.sub(r'<a name=.*\.  ','',p.extract())
                         })
 
