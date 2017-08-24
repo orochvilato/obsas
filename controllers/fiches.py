@@ -141,8 +141,18 @@ def depute():
     scrutins = sorted(list(mdb.scrutins.find({'scrutin_id':{'$in':positions.keys()}})),key=lambda x:x['scrutin_num'],reverse=True)
     
     from collections import OrderedDict
+    import datetime
     scrutins_dossiers = OrderedDict()
+    calendrier = {}
     for s in scrutins:
+        # calendrier
+        poss = positions[s['scrutin_id']]
+        cdat = datetime.datetime.strptime(s['scrutin_date'],'%d/%m/%Y').strftime('%Y-%m-%d')
+        if not cdat in calendrier.keys():
+            calendrier[cdat] = {'n':0,'v':0}
+        calendrier[cdat]['n'] += 1 if poss!='nonVotant' else 0
+        calendrier[cdat]['v'] += 1 if not poss in ['absent','nonVotant'] else 0
+        
         diss = ( positions[s['scrutin_id']] != s['vote'][dep['groupe_abrev']]['sort']) and (not positions[s['scrutin_id']] in ['absent','nonVotant'])
         if diss:
             stats['diss'] += 1
@@ -192,13 +202,12 @@ def depute():
             posscr += 'absentnv'
         s['posscr'] = posscr
         s['absent'] =  (positions[s['scrutin_id']] in ['absent','nonVotant'])
-        
-
-        
 
         itvs = sorted(list(mdb.interventions.find({'acteur':a_id})),key=lambda x:(x['date'],-x['n']),reverse=True)
-                          
-    return dict(stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers, itvs=itvs, **dep)
+
+    calendrier = sorted([ dict(date=k,pct=float(v['v'])/v['n']) for k,v in calendrier.iteritems() if v['n']>0],key=lambda x:x['date']) 
+    
+    return dict(calendrier=calendrier,stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers, itvs=itvs, **dep)
 
 
 def nuages():

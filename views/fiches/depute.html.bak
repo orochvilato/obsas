@@ -85,10 +85,41 @@
     li.absent .coulFI-text {
         color:rgba(12,195,214,0.7);
     }
+    
     li.absent .coulREM-text {
         color: rgba(255,192,0,0.7);
     }
     
+    
+</style>
+<style>
+body {
+  
+  shape-rendering: crispEdges;
+}
+
+.day {
+  fill: #fff;
+  stroke: #ccc;
+}
+
+.month {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.RdYlGn .q0-11{fill:rgb(165,0,38)}
+.RdYlGn .q1-11{fill:rgb(215,48,39)}
+.RdYlGn .q2-11{fill:rgb(244,109,67)}
+.RdYlGn .q3-11{fill:rgb(253,174,97)}
+.RdYlGn .q4-11{fill:rgb(254,224,139)}
+.RdYlGn .q5-11{fill:rgb(255,255,191)}
+.RdYlGn .q6-11{fill:rgb(217,239,139)}
+.RdYlGn .q7-11{fill:rgb(166,217,106)}
+.RdYlGn .q8-11{fill:rgb(102,189,99)}
+.RdYlGn .q9-11{fill:rgb(26,152,80)}
+.RdYlGn .q10-11{fill:rgb(0,104,55)}
 </style>
 {{ end }}
 {{ block content }}
@@ -187,10 +218,10 @@
             </div>
             {{ pass }}
             <div id="itvlist">
-                <input class="searchitv" placeholder="Recherche intervention">
+                <input class="search" placeholder="Recherche intervention">
                 <ul class="list collection">
                     {{ for iv in itvs: }}
-                    <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div><div class="itv">{{ =XML(iv['contenu']) }}</div></li>
+                    <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div><div class="s_itv">{{ =XML(iv['contenu']) }}</div></li>
                     {{ pass }}
                 </ul>    
             </div>
@@ -202,7 +233,11 @@
       <li>
         <div class="collapsible-header active"><i class="fa fa-hand-paper-o coul{{ =groupe_abrev }}-text"></i> Votes</div>
         <div class="collapsible-body">
-
+            <h5>Présences aux scrutins</h5>
+            <div id="calendar" style="margin-bottom:30px;">
+                
+            </div>
+            
             <!-- PARTICIPATION -->
             <div class="c100 p{{ =stats['exprimepct'] }} medium participation" title="Participation">
                 <span><i class="demo-icon icon-vote" style="font-size:32px;color:#606060;"></i><span style="font-weight:500;color:#606060;">{{ =stats['exprimepct'] }}%</span></span>
@@ -337,7 +372,7 @@
         typefilter = $('#s_typefilter').val()
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
-        itvList = new List('itvlist',{ valueNames:['itv']});
+        itvList = new List('itvlist',{ valueNames:['s_itv']});
         
         {{ import json }}
         var wordlist = {};
@@ -380,4 +415,79 @@
     });
     
   </script>
+
+  <!-- heat calendar -->
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script>
+    $(document).ready(function() {
+        console.log(document.getElementById('calendar'));
+        var width = document.getElementById('calendar').offsetWidth,
+            yearHeight = width / 7,
+            height = yearHeight,
+            cellSize = yearHeight / 8;
+
+        var percent = d3.format(".1%"),
+            format = d3.timeFormat("%Y-%m-%d");
+
+        var color = d3.scaleQuantize()
+            .domain([.0, 1.0])
+            .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+
+        var svg = d3.select("#calendar").selectAll("svg")
+            .data(d3.range(2017, 2018))
+          .enter().append("svg")
+            .attr("width", width)
+            .attr("height", height)
+            .attr("class", "RdYlGn")
+          .append("g")
+            .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+
+        svg.append("text")
+            .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+            .style("text-anchor", "middle")
+            .text(function(d) { return d; });
+
+        var rect = svg.selectAll(".day")
+            .data(function(d) { return d3.timeDays(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+          .enter().append("rect")
+            .attr("class", "day")
+            .attr("width", cellSize)
+            .attr("height", cellSize)
+            .attr("x", function(d) { return d3.timeMonday.count(d3.timeYear(d), d) * cellSize; })
+            .attr("y", function(d) { return ((d.getDay()+6)%7) * cellSize; })
+            .datum(format);
+
+        rect.append("title")
+            .text(function(d) { return d; });
+
+        svg.selectAll(".month")
+            .data(function(d) { return d3.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+          .enter().append("path")
+            .attr("class", "month")
+            .attr("d", monthPath);
+
+        var csv = JSON.parse('{{ = XML(json.dumps(calendrier)) }}');
+        var data = d3.nest()
+            .key(function(d) { return d.date; })
+            .rollup(function(d) { return d[0].pct; })
+            .map(csv);
+          {{ import json }}
+          rect.filter(function(d) { return data.has(d); })
+              .attr("class", function(d) { return "day " + color(data.get(d)); })
+            .select("title")
+              .text(function(d) { return d + ": " + percent(data.get(d)); });
+
+        function monthPath(t0) {
+          var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+              d0 = ((t0.getDay()+6)%7), w0 = d3.timeMonday.count(d3.timeYear(t0), t0)
+              d1 = ((t1.getDay()+6)%7), w1 = d3.timeMonday.count(d3.timeYear(t1), t1);
+          return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
+              + "H" + w0 * cellSize + "V" + 7 * cellSize
+              + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
+              + "H" + (w1 + 1) * cellSize + "V" + 0
+              + "H" + (w0 + 1) * cellSize + "Z";
+        }
+    });
+</script>
 {{ end }}
