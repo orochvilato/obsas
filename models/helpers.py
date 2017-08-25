@@ -17,4 +17,4 @@ def svggauge(typeg,pct):
         color = "#999999"
         symbol ='vote'
         transp ='0.33'
-    return XML(response.render('svg/gauge.svg',color=color,symbol=XML(response.render('svg/gauge/%s.svg' % symbol)),pct=pct,transp=transp))
+    return XML(response.render('svg/gauge.svg',color=color,symbol=XML(response.render('svg/gauge/%s.svg' % symbol, color=color)),pct=pct,transp=transp))
