@@ -1,4 +1,5 @@
 <svg onload="init(evt)" pct="{{ =pct }}" viewBox="0 0 220 220" preserveAspectRatio= "xMinYMin meet" >
+   
     <script type="text/ecmascript"><![CDATA[
       function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
           var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;

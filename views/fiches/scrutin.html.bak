@@ -112,7 +112,7 @@
                
               <li class="collection-item"><a target="_blank" href="{{ = 'http://www.assemblee-nationale.fr/15/amendements/%s/AN/%s.asp' % (num,scrutin['scrutin_ref']['numAmend']) }}">Texte de l'amendement</a></li>
               <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlTexteRef'] }}">Texte de réference</a></li>
-              <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlCompteRenduRef'] }}">Compte rendu de séance {{ if scrutin['scrutin_ref']['sort']=='Non soutenu': }}(Non soutenu){{ pass}}</a></li>
+              <li class="collection-item"><a target="_blank" href="{{ = scrutin['scrutin_ref']['urlCompteRenduRef'] }}">Compte rendu de séance {{ if scrutin['scrutin_ref']['sort']=='non soutenu': }}(Non soutenu){{ pass}}</a></li>
               {{ elif scrutin['typedetail']=='loi': }}
               <li class="collection-item"><a target="_blank" href="{{ = 'http://www2.assemblee-nationale.fr/documents/notice/15/ta/ta%s/(index)/ta' % scrutin['scrutin_ref'] }}">Texte adopté</a></li>
               {{ pass }}
@@ -129,33 +129,18 @@
     <div class="card">
         <div class="row">
         <div class="card-content">
+        <div class="row">
+                <div class="col s2" title="Participation ({{='%d/%d' % (scrutin['vote']['assemblee']['stats']['exprimepct'][0], scrutin['vote']['assemblee']['stats']['exprimepct'][1])}})">
+                    {{ =svggauge('vote',scrutin['vote']['assemblee']['stats']['exprimepct'][2]) }}
+                </div>
+                <div class="col s2" title="FI Compatibilité ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['votefipct'][0], scrutin['vote']['assemblee']['stats']['votefipct'][1]) }})">
+                    {{ =svggauge('compfi',scrutin['vote']['assemblee']['stats']['votefipct'][2]) }}
+                </div>
+                <div class="col s2" title="EM Compatibilité ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['voteempct'][0], scrutin['vote']['assemblee']['stats']['voteempct'][1]) }})">
+                    {{ =svggauge('compem',scrutin['vote']['assemblee']['stats']['voteempct'][2]) }}
+                </div>
+            </div>
         
-        <!-- PARTICIPATION -->
-        <div class="c100 p{{ =scrutin['vote']['assemblee']['stats']['exprimepct'][2] }} medium participation" title="Participation ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['exprimepct'][0], scrutin['vote']['assemblee']['stats']['exprimepct'][1]) }})">
-            <span><i class="demo-icon icon-vote" style="font-size:32px;color:#606060;"></i><span style="font-weight:500;color:#606060;">{{ =scrutin['vote']['assemblee']['stats']['exprimepct'][2] }}%</span></span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        
-        <!-- VOTE FI -->
-        <div class="c100 p{{ =scrutin['vote']['assemblee']['stats']['votefipct'][2] }} medium fi" title="FI Compatibilité ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['votefipct'][0], scrutin['vote']['assemblee']['stats']['votefipct'][1]) }})">
-            <span><i class="demo-icon icon-logo-fi coulFI-text" style="font-size:32px"></i><span class="coulFI-text" style="font-weight:500;">{{ =scrutin['vote']['assemblee']['stats']['votefipct'][2] }}%</span></span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        <!-- VOTE EM -->
-        <div class="c100 p{{ =scrutin['vote']['assemblee']['stats']['voteempct'][2] }} medium rem" title="EM Compatibilité ({{ ='%d/%d' % (scrutin['vote']['assemblee']['stats']['voteempct'][0], scrutin['vote']['assemblee']['stats']['voteempct'][1]) }})">
-            <span><i class="demo-icon icon-logo-lrem coulREM-text" style="font-size:26px"></i><span class="coulREM-text" style="font-weight:500;">{{ =scrutin['vote']['assemblee']['stats']['voteempct'][2] }}%</span></span>
-            <div class="slice">
-                <div class="bar"></div>
-                <div class="fill"></div>
-            </div>
-        </div>
-        </div>
       </div>
     </div>
   </div>
@@ -172,6 +157,19 @@
                 <div class="card-content">
                     <div style="padding-bottom:10px"><span class="{{ if (scrutin['votefi']==scrutin['vote'][g]['sort']) and (scrutin['voteem']!=scrutin['vote'][g]['sort']): }}coulFI{{ elif scrutin['voteem']==scrutin['vote'][g]['sort']: }}coulREM{{ else: }}voteabst{{ pass }} badgevote valign-wrapper">{{ =scrutin['vote'][g]['sort'] }}</span><span style="font-size:26px; font-weight:500;"> {{ =glib }} ({{ =g }}) </span></div>
                     <div class="row">
+                      <div class="col s1" title="Participation ({{='%d/%d' % (scrutin['vote'][g]['stats']['exprimepct'][0], scrutin['vote'][g]['stats']['exprimepct'][1])}})">
+                    {{ =svggauge('vote',scrutin['vote'][g]['stats']['exprimepct'][2]) }}
+                </div>
+                     <div class="col s1" title="Dissidence ({{='%d/%d' % (scrutin['vote'][g]['stats']['disspct'][0], scrutin['vote'][g]['stats']['disspct'][1])}})">
+                    {{ =svggauge('diss',scrutin['vote'][g]['stats']['disspct'][2]) }}
+                </div>
+                <div class="col s1" title="FI Compatibilité ({{ ='%d/%d' % (scrutin['vote'][g]['stats']['votefipct'][0], scrutin['vote'][g]['stats']['votefipct'][1]) }})">
+                    {{ =svggauge('compfi',scrutin['vote'][g]['stats']['votefipct'][2]) }}
+                </div>
+                <div class="col s1" title="EM Compatibilité ({{ ='%d/%d' % (scrutin['vote'][g]['stats']['voteempct'][0], scrutin['vote'][g]['stats']['voteempct'][1]) }})">
+                    {{ =svggauge('compem',scrutin['vote'][g]['stats']['voteempct'][2]) }}
+                </div>  
+                        
                     <!-- PARTICIPATION -->
                     <div class="c100 p{{ =scrutin['vote'][g]['stats']['exprimepct'][2] }} small participation" title="Participation ({{ ='%d/%d' % (scrutin['vote'][g]['stats']['exprimepct'][0], scrutin['vote'][g]['stats']['exprimepct'][1]) }})">
                         <span><i class="demo-icon icon-vote" style="font-size:18px;color:#606060;"></i><span style="font-weight:500;color:#606060;">{{ =scrutin['vote'][g]['stats']['exprimepct'][2] }}%</span></span>

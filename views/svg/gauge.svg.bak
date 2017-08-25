@@ -1,4 +1,5 @@
 <svg onload="init(evt)" pct="{{ =pct }}" viewBox="0 0 220 220" preserveAspectRatio= "xMinYMin meet" >
+   
     <script type="text/ecmascript"><![CDATA[
       function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
           var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
@@ -30,7 +31,8 @@
           svgDocument.getElementById("arc2").setAttribute("d", describeArc(110, 110, 100, 220, 220+280*(pct/100)));
        }
 ]]></script>
-    <text id="pct" text-anchor="middle" x="115" y="205" font-size="40" font-weight="bold" fill="{{ =color }}" style="font-family: 'Roboto';"></text>
+{{ if title: }}<rect x="0" y="0" width="220" height="220" fill-opacity="0"><title>{{ =title }}</title></rect>{{ pass }}
+    <text id="pct" text-anchor="middle" x="115" y="205" font-size="45" font-weight="bold" fill="{{ =color }}" style="font-family: 'Roboto';"><title>tserfsfs</title></text>
     <path id="arc1" fill="none" stroke="{{ =color }}" stroke-opacity="{{ =transp }}" stroke-width="20" />
     <path id="arc2" fill="none" stroke="{{ =color }}" stroke-width="20" />
     {{ =symbol }}
