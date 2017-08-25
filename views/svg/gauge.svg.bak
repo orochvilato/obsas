@@ -1,0 +1,39 @@
+<svg onload="init(evt)" pct="{{ =pct }}" viewBox="0 0 220 220" preserveAspectRatio= "xMinYMin meet" >
+    <script type="text/ecmascript"><![CDATA[
+      function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+          var angleInRadians = (angleInDegrees-90) * Math.PI / 180.0;
+          return {
+            x: centerX + (radius * Math.cos(angleInRadians)),
+            y: centerY + (radius * Math.sin(angleInRadians))
+          };
+       }
+
+       function describeArc(x, y, radius, startAngle, endAngle){
+          var start = polarToCartesian(x, y, radius, endAngle);
+          var end = polarToCartesian(x, y, radius, startAngle);
+
+          var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+          var d = [
+            "M", start.x, start.y, 
+            "A", radius, radius, 0, largeArcFlag, 0, end.x, end.y
+          ].join(" ");
+
+          return d;
+       }
+       function init(evt) {
+          var svgDocument = evt.target;
+          
+          pct = svgDocument.getAttribute("pct");
+          svgDocument.getElementById("pct").textContent=svgDocument.getAttribute("pct")+"%";
+          svgDocument.getElementById("arc1").setAttribute("d", describeArc(110, 110, 100, 220, 500));
+          svgDocument.getElementById("arc2").setAttribute("d", describeArc(110, 110, 100, 220, 220+280*(pct/100)));
+       }
+]]></script>
+    <text id="pct" text-anchor="middle" x="115" y="205" font-size="40" font-weight="bold" fill="{{ =color }}" style="font-family: 'Roboto';"></text>
+    <path id="arc1" fill="none" stroke="{{ =color }}" stroke-opacity="{{ =transp }}" stroke-width="20" />
+    <path id="arc2" fill="none" stroke="{{ =color }}" stroke-width="20" />
+    {{ =symbol }}
+    
+  </g>
+</svg>

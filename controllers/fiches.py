@@ -2,6 +2,11 @@
 # essayez quelque chose comme
 # TODO : page député les scrutins avec votes identiques FI/EM doivent apparaitre de la couleur du groupe du député si EM/FI
 
+def gauges():
+    return dict()
+def dashlet_template_mouvements(**kwargs):
+    return XML(response.render('dashlets/mouvements.html',kwargs))
+
 def index():
     return dict(message="hello from fiches.py")
 import json

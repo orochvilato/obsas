@@ -95,7 +95,7 @@
 <style>
 body {
   
-  shape-rendering: crispEdges;
+ 
 }
 
 .day {
@@ -237,39 +237,21 @@ body {
             <div id="calendar" style="margin-bottom:50px;">
                 
             </div>
+            <div class="row">
+                <div class="col s2">
+                    {{ =svggauge('vote',stats['exprimepct']) }}
+                </div>
+                <div class="col s2">
+                    {{ =svggauge('diss',stats['disspct']) }}
+                </div>
+                <div class="col s2">
+                    {{ =svggauge('compfi',stats['votefipct']) }}
+                </div>
+                <div class="col s2">
+                    {{ =svggauge('compem',stats['voteempct']) }}
+                </div>
+            </div>
             
-            <!-- PARTICIPATION -->
-            <div class="c100 p{{ =stats['exprimepct'] }} medium participation" title="Participation">
-                <span><i class="demo-icon icon-vote" style="font-size:32px;color:#606060;"></i><span style="font-weight:500;color:#606060;">{{ =stats['exprimepct'] }}%</span></span>
-                <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                </div>
-            </div>
-             <!-- DISSIDENCE -->
-            <div class="c100 p{{ =stats['disspct'] }} medium dissidence" title="Dissidence">
-                 <span><i class="demo-icon icon-fist" style="font-size:32px;color:#b71c1c;"></i><span style="font-weight:500;color:#b71c1c">{{ =stats['disspct'] }}%</span></span>
-                <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                </div>
-            </div>
-            <!-- VOTE FI -->
-            <div class="c100 p{{ =stats['votefipct'] }} medium fi" title="FI Compatibilité">
-                 <span><i class="demo-icon icon-logo-fi coulFI-text" style="font-size:32px"></i><span class="coulFI-text" style="font-weight:500;">{{ =stats['votefipct'] }}%</span></span>
-                <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                </div>
-            </div>
-            <!-- VOTE EM -->
-            <div class="c100 p{{ =stats['voteempct'] }} medium rem" title="EM Compatibilité">
-                 <span><i class="demo-icon icon-logo-lrem coulREM-text" style="font-size:26px"></i><span class="coulREM-text" style="font-weight:500;">{{ =stats['voteempct'] }}%</span></span>
-                <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
-                </div>
-            </div>
           {{ from collections import OrderedDict }}
           {{ typescr = OrderedDict([('loi',{'libelle':'Loi','icon':'book','defaut':True}),('article',{'libelle':'Article','icon':'file-o','defaut':True}),('amendement',{'libelle':'Amendement','icon':'pencil-square-o','defaut':True}),('motion',{'libelle':'Motion','icon':'undo','defaut':False}),('declaration',{'libelle':'Déclaration','icon':'microphone','defaut':False}),('autre',{'libelle':'Autre','icon':'','defaut':False})]) }}
               {{ posscr = OrderedDict([('votefi',{'libelle':'Comme le groupe FI','defaut':True}),('voteem',{'libelle':'Comme le groupe EM','defaut':True}),('dissidence',{'libelle':'Dissident à son groupe','defaut':True}),('abstention',{'libelle':'Abstention','defaut':True}),('absentnv',{'libelle':'Absent ou non votant','defaut':False})]) }}

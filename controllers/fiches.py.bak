@@ -2,6 +2,9 @@
 # essayez quelque chose comme
 # TODO : page député les scrutins avec votes identiques FI/EM doivent apparaitre de la couleur du groupe du député si EM/FI
 
+def gauges():
+    return dict()
+
 def index():
     return dict(message="hello from fiches.py")
 import json
@@ -205,7 +208,7 @@ def depute():
 
         itvs = sorted(list(mdb.interventions.find({'acteur':a_id})),key=lambda x:(x['date'],-x['n']),reverse=True)
 
-    calendrier = sorted([ dict(date=k,pct=float(v['v'])/v['n']) for k,v in calendrier.iteritems() if v['n']>0],key=lambda x:x[0]) 
+    calendrier = sorted([ dict(date=k,pct=float(v['v'])/v['n']) for k,v in calendrier.iteritems() if v['n']>0],key=lambda x:x['date']) 
     
     return dict(calendrier=calendrier,stats=dep['statsvote'],scrutins=scrutins_dossiers,positions=positions,positions_ori=positions_ori,dossiers=dossiers, itvs=itvs, **dep)
 

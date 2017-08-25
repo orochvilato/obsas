@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+      .container {
+    width: 50%;
+    height: 0;
+    padding-top: 48%;
+    position: relative;
+    }
+
+  </style>
+</head>
+<body>
+  <div style="width:50%;display: inline-block; position: relative;">
+      {{ =svggauge('compem',41) }}
+  </div>
+  <div style="width:50%;display: inline-block; position: relative;">
+      {{ =svggauge('compfi',68) }}
+  </div>
+  <div style="width:50%;display: inline-block; position: relative;">
+      {{ =svggauge('diss',38) }}
+  </div>
+
+</body>
+</html>
