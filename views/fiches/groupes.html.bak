@@ -20,17 +20,13 @@
 </style>
 {{ end }}
 {{ block content }}
-{{ _tops = [{'titre':'Participation','icon':'vote','key':'participation','reverse':True},
-            {'titre':'Dissidence','icon':'diss','key':'dissidence','reverse':False},
-            {'titre':'FI-compatibilité','icon':'compfi','key':'votefi','reverse':True},
-            {'titre':'EM-compatibilité','icon':'compem','key':'voteem','reverse':True},
-           ] }}
+
  <div class="row">
    {{ for _top in _tops: }}
    <div class="col s12 m6 l6">
       <div class="card">
          <div class="card-content">
-            <div style="width:50%;margin:auto;">{{ =svggauge(_top['icon'],'') }}</div>
+                <div style="width:50%;margin:auto;">{{ =svggauge(_top['icon'],'',unit="Z") }}</div>
             <span class="card-title">{{ =_top['titre'] }}</span>
              {{ top = sorted(tops[_top['key']],key=lambda x:x[2],reverse=_top['reverse']) }}
              <table>

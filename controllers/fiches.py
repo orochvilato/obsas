@@ -241,10 +241,20 @@ def interventions():
 def groupes():
     import json
     groupes = list(mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
-    tops = {'participation':[],'dissidence':[],'votefi':[],'voteem':[]}
+    tops = {'participation':[],'dissidence':[],'votefi':[],'voteem':[],'mots':[],'interventions':[]}
     for g in groupes:
             tops['participation'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['exprime'])/g['statsvote']['n'],1)))
             tops['dissidence'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['diss'])/g['statsvote']['exprime'],1)))
             tops['voteem'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['voteem'])/g['statsvote']['exprime'],1)))
             tops['votefi'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['votefi'])/g['statsvote']['exprime'],1)))
-    return dict(tops=tops,groupes=groupes)
+            tops['mots'].append((g['libelle'],g['libelleAbrev'],g['nbmots']/g['nbmembres']))
+            tops['interventions'].append((g['libelle'],g['libelleAbrev'],g['nbitv']/g['nbmembres']))
+
+    _tops = [{'titre':'Participation','icon':'vote','key':'participation','reverse':True,'unit':'%'},
+            {'titre':'Dissidence','icon':'diss','key':'dissidence','reverse':True,'unit':'%'},
+            {'titre':'FI-compatibilité','icon':'compfi','key':'votefi','reverse':True,'unit':'%'},
+            {'titre':'EM-compatibilité','icon':'compem','key':'voteem','reverse':True,'unit':'%'},
+            {'titre':'Mots par député','icon':'microphone','key':'mots','reverse':True,'unit':''},
+            {'titre':'Interventions par député','icon':'microphone','key':'interventions','reverse':True,'unit':''},
+           ]
+    return dict(tops=tops,groupes=groupes,_tops=_tops)
