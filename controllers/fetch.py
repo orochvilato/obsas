@@ -254,7 +254,43 @@ def update_sessions():
     for k,v in mots.iteritems():
         mdb.mots.insert_one(dict(acteur_id=k,mots=v))
 
+
 def update_groupes_stats():
+    groupes = dict((g['libelleAbrev'],dict(uid=g['uid'],lib=g['libelle'],abrev=g['libelleAbrev'],nbm=g['nbmembres'],
+                                           nbitv=0,
+                                           nbmots=0,
+                                           statsvote = dict(exprime=0, diss=0, n=0, votefi=0, voteem=0)
+                                          )) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
+    
+    for acteur in mdb.acteurs.find():
+        g = acteur['groupe_abrev']
+        mots = 0
+        itvs = 0
+        for itv in mdb.interventions.find({'acteur':acteur['uid']}):
+            itvs += 1
+            mots += itv['nbmots']
+        groupes[g]['nbitv'] += itvs
+        groupes[g]['nbmots'] += mots
+        for stat in ('exprime','diss','n','votefi','voteem'):
+            groupes[g]['statsvote'][stat] += acteur['statsvote'][stat]
+            
+        mdb.acteurs.update({'uid':acteur['uid']},{'$set':{'nbitv':itvs,'nbmots':mots}})
+        #groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots'][lex]}) 
+    itvs = 0
+    mots = 0
+    for g in groupes:
+        itvs += groupes[g]['nbitv']
+        mots += groupes[g]['nbmots']
+    for g in groupes:
+        groupes[g]['ratio_itv'] = round((float(groupes[g]['nbmots'])/mots)/(float(groupes[g]['nbm'])/577),1)
+        groupes[g]['ratio_mots'] = round((float(groupes[g]['nbitv'])/itvs)/(float(groupes[g]['nbm'])/577),1)
+        groupes[g]['nbitv_dep'] = groupes[g]['nbitv'] / groupes[g]['nbm']
+        groupes[g]['nbmots_dep'] = groupes[g]['nbmots'] / groupes[g]['nbm']
+        
+        mdb.organes.update({'uid':groupes[g]['uid']},{'$set':{'statsvote':groupes[g]['statsvote'],'nbitv':groupes[g]['nbitv'],'nbitv_dep':groupes[g]['nbitv_dep'],'nbmots':groupes[g]['nbmots'],'nbmots_dep':groupes[g]['nbmots_dep'], 'ratio_itv':groupes[g]['ratio_itv'], 'ratio_mots':groupes[g]['ratio_mots']}})
+
+    # interventions
+
     nmots = {'assemblee':{}}
     actgp = dict((a['uid'],a['groupe_abrev']) for a in mdb.acteurs.find())
     _mots = mdb.mots.find()
@@ -278,7 +314,7 @@ def update_groupes_stats():
                     nmots[gp][lex][mot] = 1
                 else:
                     nmots[gp][lex][mot] += 1
-    
+
     for g in nmots.keys():
         _mots = {}
         for lex in nmots[g].keys():
@@ -289,30 +325,11 @@ def update_groupes_stats():
             coef = 10000*float(mx)/som
             _mots[lex] = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
         mdb.mots.update({'acteur_id':g},{'$set':{'mots':_mots}},upsert=True)
+        mdb.organes.update({'libelleAbrev':g},{'$set':{'mots':_mots}})
     
-    
-    
-    import json
     return "ok"
 
-def update_interventions_stats():
-    groupes = dict((g['libelleAbrev'],dict(uid=g['uid'],lib=g['libelle'],abrev=g['libelleAbrev'],nbm=g['nbmembres'],nbitv=0,nbmots=0)) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
-    
-    for acteur in mdb.acteurs.find():
-        g = acteur['groupe_abrev']
-        mots = 0
-        itvs = 0
-        for itv in mdb.interventions.find({'acteur':acteur['uid']}):
-            itvs += 1
-            mots += itv['nbmots']
-        groupes[g]['nbitv'] += itvs
-        groupes[g]['nbmots'] += mots
-        mdb.acteurs.update({'uid':acteur['uid']},{'$set':{'nbitv':itvs,'nbmots':mots}})
-        #groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots'][lex]}) 
-    for g in groupes:
-        groupes[g]['nbitv_dep'] = groupes[g]['nbitv'] / groupes[g]['nbm']
-        groupes[g]['nbmots_dep'] = groupes[g]['nbmots'] / groupes[g]['nbm']
-        mdb.organes.update({'uid':groupes[g]['uid']},{'$set':{'nbitv':groupes[g]['nbitv'],'nbitv_dep':groupes[g]['nbitv_dep'],'nbmots':groupes[g]['nbmots'],'nbmots_dep':groupes[g]['nbmots_dep']}})
+
 def index():
     
     #fetch_acteurs_organes()
@@ -321,6 +338,6 @@ def index():
     update_emfi_compat()
     update_acteurs_stats()
     update_groupes_stats()
-    update_interventions_stats()
+    
     #rebuild_cache()
     return dict()

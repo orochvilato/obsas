@@ -1,0 +1,47 @@
+{{extend 'base.html'}}
+{{ block style }}
+<style>
+    .top td {
+       padding-top:2px;
+       padding-bottom:2px;
+    }
+    .top1 {
+        font-size:140%;
+        font-weight:500;
+    }
+    .top2 {
+        font-size:125%;
+        font-weight:400;
+    }
+    .top3 {
+        font-size:105%;
+        font-weight:400;
+    }
+</style>
+{{ end }}
+{{ block content }}
+{{ _tops = [{'titre':'Participation','icon':'vote','key':'participation','reverse':True},
+            {'titre':'Dissidence','icon':'diss','key':'dissidence','reverse':False},
+            {'titre':'FI-compatibilité','icon':'compfi','key':'votefi','reverse':True},
+            {'titre':'EM-compatibilité','icon':'compem','key':'voteem','reverse':True},
+           ] }}
+ <div class="row">
+   {{ for _top in _tops: }}
+   <div class="col s12 m6 l6">
+      <div class="card">
+         <div class="card-content">
+            <div style="width:50%;margin:auto;">{{ =svggauge(_top['icon'],'') }}</div>
+            <span class="card-title">{{ =_top['titre'] }}</span>
+             {{ top = sorted(tops[_top['key']],key=lambda x:x[2],reverse=_top['reverse']) }}
+             <table>
+             {{ for i,item in enumerate(top): }}
+                <tr class="top top{{ =i+1}}"><td>{{ =i+1 }}</td><td>{{ =item[0].split(':')[0] }}</td><td>{{ = item[2] }}</td></tr>
+             {{ pass }}
+             </table>
+          </div>
+       </div>
+    </div>
+    {{ pass }}
+ </div>
+<h2>Participation</h2>
+{{ end }}

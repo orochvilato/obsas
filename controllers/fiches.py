@@ -237,3 +237,14 @@ def interventions():
         g['ratio_mots'] = round((float(g['nbitv'])/itvs)/(float(g['nbmembres'])/577),1)
 
     return dict(test=[(g['libelle'],g['ratio_itv'],g['ratio_mots']) for g in groupes],groupes=groupes,colors=[ colors[g['libelleAbrev']] for g in groupes])
+
+def groupes():
+    import json
+    groupes = list(mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
+    tops = {'participation':[],'dissidence':[],'votefi':[],'voteem':[]}
+    for g in groupes:
+            tops['participation'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['exprime'])/g['statsvote']['n'],1)))
+            tops['dissidence'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['diss'])/g['statsvote']['exprime'],1)))
+            tops['voteem'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['voteem'])/g['statsvote']['exprime'],1)))
+            tops['votefi'].append((g['libelle'],g['libelleAbrev'],round(100*float(g['statsvote']['votefi'])/g['statsvote']['exprime'],1)))
+    return dict(tops=tops,groupes=groupes)
