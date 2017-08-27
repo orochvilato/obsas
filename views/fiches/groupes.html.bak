@@ -43,5 +43,4 @@
     </div>
     {{ pass }}
  </div>
-<h2>Participation</h2>
 {{ end }}
