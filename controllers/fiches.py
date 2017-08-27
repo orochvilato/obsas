@@ -41,7 +41,7 @@ def scrutin():
             scrutin['vote'][gp]['votes'].append((v['uid'],v['nom'],cat,v['position']))
             
                 
-    if scrutin['scrutin_desc'][:12]=="l'amendement":
+    if 'amendement' in scrutin['scrutin_desc'][:13]:
         scrutin['typedetail'] = 'amendement'
     elif scrutin['scrutin_desc'][:9] =="la motion":
         scrutin['typedetail'] = 'motion'
@@ -55,13 +55,15 @@ def scrutin():
         scrutin['typedetail'] = 'autre'
     scrutin['sort'] = 'adopté' if scrutin['vote']['assemblee']['sort']=='pour' else 'rejeté'
     for g in scrutin['vote'].keys():
-        
-        scrutin['vote'][g]['stats'] = {
+        if scrutin['vote'][g]['total_votants']==0:
+            scrutin['vote'][g]['stats'] = {'exprimepct':(0,0,0),'votefipct':(0,0,0),'voteempct':(0,0,0),'disspct':(0,0,0)}
+        else:
+            scrutin['vote'][g]['stats'] = {
             'exprimepct': (scrutin['vote'][g]['total_votants'],scrutin['vote'][g]['total'],int(100*float(scrutin['vote'][g]['total_votants'])/scrutin['vote'][g]['total'])),
             'votefipct': (scrutin['vote'][g][scrutin['votefi']],scrutin['vote'][g]['total_votants'],int(100*float(scrutin['vote'][g][scrutin['votefi']])/scrutin['vote'][g]['total_votants'])),
             'voteempct': (scrutin['vote'][g][scrutin['voteem']],scrutin['vote'][g]['total_votants'],int(100*float(scrutin['vote'][g][scrutin['voteem']])/scrutin['vote'][g]['total_votants'])),
             'disspct': (scrutin['vote'][g]['total_votants']-scrutin['vote'][g][scrutin['vote'][g]['sort']],scrutin['vote'][g]['total_votants'],int(100*float(scrutin['vote'][g]['total_votants']-scrutin['vote'][g][scrutin['vote'][g]['sort']])/scrutin['vote'][g]['total_votants']))
-        }
+            }
     return dict(scrutin=scrutin, groupes=groupes)
 
 

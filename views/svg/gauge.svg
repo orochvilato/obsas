@@ -22,13 +22,27 @@
 
           return d;
        }
+       
        function init(evt) {
           var svgDocument = evt.target;
           
           pct = svgDocument.getAttribute("pct");
           svgDocument.getElementById("pct").textContent=svgDocument.getAttribute("pct")+"%";
           svgDocument.getElementById("arc1").setAttribute("d", describeArc(110, 110, 100, 220, 500));
-          svgDocument.getElementById("arc2").setAttribute("d", describeArc(110, 110, 100, 220, 220+280*(pct/100)));
+          // svgDocument.getElementById("arc2").setAttribute("d", describeArc(110, 110, 100, 220, 220+280*(pct/100)));
+          var limit = 280*(pct/100);
+          var nextval = 0;
+          anime();
+          function anime() {
+             
+             if (nextval<limit) {
+                 svgDocument.getElementById("arc2").setAttribute("d", describeArc(110, 110, 100, 220, 220+nextval));
+                 nextval = nextval + limit/20;
+                 setTimeout(anime,30);
+             } else {
+                 svgDocument.getElementById("arc2").setAttribute("d", describeArc(110, 110, 100, 220, 220+limit));
+             }
+       }
        }
 ]]></script>
     <text id="pct" text-anchor="middle" x="115" y="205" font-size="45" font-weight="bold" fill="{{ =color }}" style="font-family: 'Roboto';"></text>
