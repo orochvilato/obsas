@@ -1,0 +1,57 @@
+{{extend 'base.html'}}
+{{ block style }}
+<style>
+ .topflop {
+     text-align:center;
+     padding:4px;
+ }
+ .topflop img {
+     width:100%;
+ }
+ .topflop.pos {
+     font-size:24px;
+     font-weight:600;
+ }    
+ .topflop.val {
+     font-size:14px;
+     font-weight:600;
+ }
+</style>
+{{ end }}
+{{ block content }}
+<h2>{{ =libelle }}</h2>
+  <div class="row">
+     {{ for _top in _tops: }}
+     <div class="col s12 m12 l6">
+        <div class="card">
+           <div class="card-content">
+              <div style="width:25%;margin:auto">
+                  {{ =svggauge(_top['icon'],'',unit=_top['unit']) }}
+               </div>
+              <span class="card-title">{{ =_top['titre'] }}</span>
+             <div class="row">
+               {{ for i,t in enumerate(tops[_top['key']][:4]): }}
+                <div class="topflop col s3">
+                    <div><span class="topflop pos">{{ =i+1 }}</span><span class="topflop val">- {{ = t[1] }}{{ =_top['unit']}}</span></div>
+                 <a href="{{ =URL('fiches','depute',vars={'uid':t[0]['uid']}) }}" title="{{ = t[0]['nomcomplet'] }}"><img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ = t[0]['uid'][2:] }}.jpg"/></a>
+                
+               </div>
+               
+               {{ pass }}
+               </div><div class="row">
+               {{ for i,t in enumerate(tops[_top['key']][-4:]): }}
+                <div class="topflop col s3">
+                    <div><span class="topflop pos">{{ =nbmembres-3+i }}</span><span class="topflop val">- {{ = t[1] }}{{ =_top['unit']}}</span></div>
+                 <a href="{{ =URL('fiches','depute',vars={'uid':t[0]['uid']}) }}" title="{{ = t[0]['nomcomplet'] }}"><img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ = t[0]['uid'][2:] }}.jpg"/></a>
+                
+               </div>
+               {{ pass }}
+             </div>
+            </div>
+          </div>
+        </div>
+      {{ pass }}
+      </div>
+
+    
+{{ end }}

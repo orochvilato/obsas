@@ -239,7 +239,7 @@ def interventions():
     return dict(test=[(g['libelle'],g['ratio_itv'],g['ratio_mots']) for g in groupes],groupes=groupes,colors=[ colors[g['libelleAbrev']] for g in groupes])
 
 def groupes():
-    import json
+    
     groupes = list(mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
     tops = {'participation':[],'dissidence':[],'votefi':[],'voteem':[],'mots':[],'interventions':[]}
     for g in groupes:
@@ -254,7 +254,30 @@ def groupes():
             {'titre':'Dissidence','icon':'diss','key':'dissidence','reverse':True,'unit':'%'},
             {'titre':'FI-compatibilité','icon':'compfi','key':'votefi','reverse':True,'unit':'%'},
             {'titre':'EM-compatibilité','icon':'compem','key':'voteem','reverse':True,'unit':'%'},
-            {'titre':'Mots par député','icon':'microphone','key':'mots','reverse':True,'unit':'%'},
-            {'titre':'Interventions par député','icon':'microphone','key':'interventions','reverse':True,'unit':'A'},
+            {'titre':'Mots par député','icon':'microphone','key':'mots','reverse':True,'unit':''},
+            {'titre':'Interventions par député','icon':'microphone','key':'interventions','reverse':True,'unit':''},
            ]
     return dict(tops=tops,groupes=groupes,_tops=_tops)
+
+def groupe():
+    id = request.vars.get('id','welou')
+    groupe = mdb.organes.find_one({'libelleAbrev':id})
+    if not groupe:
+        redirect(URL(c='default',f='notfound'))
+    acteurs = list(mdb.acteurs.find({'uid':{'$in':groupe['membres'].keys()}}))
+    tops = {}
+    tops['participation'] = sorted([ (a,a['statsvote']['exprimepct']) for a in acteurs if a['statsvote']['exprime']>0],key=lambda x:x[1],reverse=True)
+    tops['dissidence'] = sorted([ (a,a['statsvote']['disspct']) for a in acteurs if a['statsvote']['exprime']>10],key=lambda x:x[1],reverse=True)
+    tops['voteem'] = sorted([ (a,a['statsvote']['voteempct']) for a in acteurs if a['statsvote']['exprime']>10],key=lambda x:x[1],reverse=True)
+    tops['votefi'] = sorted([ (a,a['statsvote']['votefipct']) for a in acteurs if a['statsvote']['exprime']>10],key=lambda x:x[1],reverse=True)
+    tops['mots'] = sorted([ (a,a['nbmots']) for a in acteurs ],key=lambda x:x[1],reverse=True)
+    tops['interventions'] = sorted([ (a,a['nbitv']) for a in acteurs ],key=lambda x:x[1],reverse=True)
+    
+    _tops = [{'titre':'Participation','icon':'vote','key':'participation','unit':'%'},
+            {'titre':'Dissidence','icon':'diss','key':'dissidence','unit':'%'},
+            {'titre':'FI-compatibilité','icon':'compfi','key':'votefi','unit':'%'},
+            {'titre':'EM-compatibilité','icon':'compem','key':'voteem','unit':'%'},
+            {'titre':'Mots par député','icon':'microphone','key':'mots','unit':''},
+            {'titre':'Interventions par député','icon':'microphone','key':'interventions','unit':''},
+           ]
+    return dict(acteurs=acteurs,tops=tops,_tops=_tops,**groupe)

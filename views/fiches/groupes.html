@@ -1,6 +1,9 @@
 {{extend 'base.html'}}
 {{ block style }}
 <style>
+    .top a {
+        color: black;
+    }
     .top td {
        padding-top:2px;
        padding-bottom:2px;
@@ -31,7 +34,7 @@
              {{ top = sorted(tops[_top['key']],key=lambda x:x[2],reverse=_top['reverse']) }}
              <table>
              {{ for i,item in enumerate(top): }}
-                <tr class="top top{{ =i+1}}"><td>{{ =i+1 }}</td><td>{{ =item[0].split(':')[0] }}</td><td>{{ = item[2] }}</td></tr>
+                <tr class="top top{{ =i+1}}"><td>{{ =i+1 }}</td><td><a href="{{ =URL('fiches','groupe',vars={'id':item[1]}) }}">{{ =item[0].split(':')[0] }}</a></td><td>{{ = item[2] }}</td></tr>
              {{ pass }}
              </table>
           </div>
