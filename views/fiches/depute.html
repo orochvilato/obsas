@@ -352,6 +352,22 @@ body {
         return fkeep;
     }
     $(document).ready(function() {
+        
+        
+        var mark = function() {
+
+            // Read the keyword
+            var keyword = $('#itvlist .search').val();
+
+            
+            // Remove previous marked elements and mark
+            // the new keyword inside the context
+            $(".list").unmark({
+              done: function() {
+                $(".list").mark(keyword);
+              }
+            });
+          };
         var options = {
             valueNames: [ 's_titre','s_sort', 's_desc','s_type','s_pos' ]
         };
@@ -361,6 +377,9 @@ body {
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
         itvList = new List('itvlist',{ valueNames:['s_itv']});
+        itvList.on('updated',function () {
+            mark();
+        });
 
         {{ import json }}
         var wordlist = {};
@@ -410,6 +429,7 @@ body {
   <!-- heat calendar -->
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"></script>
 <script>
     $(document).ready(function() {
         console.log(document.getElementById('calendar'));

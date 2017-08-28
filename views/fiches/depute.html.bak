@@ -361,6 +361,11 @@ body {
         posfilter = $('#s_posfilter').val()
         votesList.filter(fscrutin);
         itvList = new List('itvlist',{ valueNames:['s_itv']});
+        itvList.on('updated',function () {
+            window.find($('#itvlist .search').val(),true,true);
+            
+            console.log(,itvList.matchingItems);
+        });
 
         {{ import json }}
         var wordlist = {};
@@ -370,6 +375,9 @@ body {
         {{ pass }}
         {{ pass }}
         function showNuage(lex) {
+            if (lex=='verbatim') {
+                return
+            }
             var div = document.getElementById("sourrounding_div_"+lex);
             var canvas = document.getElementById("wordcanvas_"+lex);
 
@@ -407,6 +415,7 @@ body {
   <!-- heat calendar -->
 
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"></script>
 <script>
     $(document).ready(function() {
         console.log(document.getElementById('calendar'));
