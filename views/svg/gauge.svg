@@ -45,7 +45,7 @@
        }
        }
 ]]></script>
-    <text id="pct" text-anchor="middle" x="115" y="205" font-size="45" font-weight="bold" fill="{{ =color }}" style="font-family: 'Roboto';"></text>
+    <text id="pct" text-anchor="middle" x="115" y="205" font-size="38" font-weight="bold" fill="{{ =color }}" style="font-family: 'Monserrat', sans serif;"></text>
     <path id="arc1" fill="none" stroke="{{ =color }}" stroke-opacity="{{ =transp }}" stroke-width="20" />
     <path id="arc2" fill="none" stroke="{{ =color }}" stroke-width="20" />
     {{ =symbol }}

@@ -4,13 +4,13 @@
 
 def gauges():
     return dict()
-def dashlet_template_mouvements(**kwargs):
-    return XML(response.render('dashlets/mouvements.html',kwargs))
+
 
 def index():
     return dict(message="hello from fiches.py")
 import json
-
+def test():
+    return mdb.acteurs.find_one({'$and':[ {'deputywatch':{'$ne':None}},{'hatvp':{'$ne':[]}}]})['uid']
 def scrutin():
     vpositions = ['pour','contre','abstention']
     id = request.vars.get('id','welou')
@@ -123,6 +123,8 @@ def deputes():
 def circo():
     deps = list(mdb.acteurs.find())
     return dict(deputes=deps)
+
+
 
 def depute():
     a_id = request.vars.get('uid','welou')
@@ -281,3 +283,14 @@ def groupe():
             {'titre':'Interventions par député','icon':'microphone','key':'interventions','unit':''},
            ]
     return dict(acteurs=acteurs,tops=tops,_tops=_tops,**groupe)
+
+def organe():
+    id = request.vars.get('id','welou')
+    organe = mdb.organes.find_one({'uid':id})
+    if not organe:
+        redirect(URL(c='default',f='notfound'))
+    if organe['codeType']=='GP':
+        redirect(URL('groupe',vars={'id':organe['libelleAbrev']}))
+    return "TODO"
+def depute2():
+    return depute()

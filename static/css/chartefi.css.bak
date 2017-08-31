@@ -1,0 +1,434 @@
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.clearfix:before,
+.clearfix:after {
+	content: " ";
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+body {
+	font-family: 'Montserrat', sans-serif;
+	background: #fffcf0;
+}
+
+.container {
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+    flex-wrap: wrap;
+}
+.container a {
+    color: #213558;
+    text-decoration: none;
+    outline: none;
+}
+
+.container-section {
+    display: flex;
+    flex-wrap: wrap;
+}
+.titre-section {
+    font-weight: bold;
+    font-size:1.4em;
+    padding-top:5px;
+    padding-bottom:5px;
+}
+.gauge {
+    width: 25%;
+    max-width:200px;
+    padding:5px;
+}
+
+.modal .container-section {
+    justify-content: space-around;
+}
+.checkbox-group {
+   
+}
+/* Fiche Depute */
+.depute-identite {
+    padding: 10px;
+    line-height: 2em;
+}
+.depute-nom {
+    font-weight: bold;
+    font-size: 1.6em;
+}
+.depute-contacts {
+    margin-bottom:10px;
+}
+.depute-contact {
+    font-size: 1.4em;
+}
+.depute-groupe {
+    font-size: 1.4em;
+    color: #000;
+}
+.depute-hemicycle {
+    margin-left: auto;
+}
+#hemicycle {
+    width:100%;
+}
+h1 {
+	color: #ccc;
+	text-align: center;
+}
+
+/* onglets principaux */
+
+.tab_container a {
+  color: #ccc;
+  text-decoration: none;
+  outline: none;
+}
+
+
+.tab_container {
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 70px;
+	position: relative;
+}
+
+.tab_container input, section {
+  clear: both;
+  padding-top: 10px;
+  display: none;
+}
+
+
+.tab_container label {
+  font-weight: 700;
+  font-size: 18px;
+  display: block;
+  float: left;
+  width: 33%;
+  padding: 1.5em;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #82cde2;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3
+{
+  display: block;
+  padding: 10px;
+  background: #fff;
+  color: #213558;
+  border-bottom: 2px solid #f0f0f0;
+}
+/*
+.tab_container .tab-content p,
+.tab_container .tab-content h3 {
+  -webkit-animation: fadeInScale 0.7s ease-in-out;
+  -moz-animation: fadeInScale 0.7s ease-in-out;
+  animation: fadeInScale 0.7s ease-in-out;
+}*/
+.tab_container .tab-content h3  {
+  text-align: center;
+}
+
+.tab_container [id^="tab"]:checked + label {
+  background: #fff;
+  box-shadow: inset 0 3px #0CE;
+  color: #213558;
+}
+
+.tab_container [id^="tab"]:checked + label .fa {
+  color: #0CE;
+}
+
+.tab_container label .fa {
+  font-size: 1.3em;
+  margin: 0 0.4em 0 0;
+}
+
+/* sous onglet */
+
+.subtab_container a {
+  color: #ccc;
+  text-decoration: none;
+  outline: none;
+}
+
+
+.subtab_container {
+	width: 98%;
+	margin: 0 auto;
+	padding-top: 5px;
+	position: relative;
+}
+
+.subtab_container input, section {
+  clear: both;
+  padding-top: 10px;
+  display: none;
+}
+
+
+.subtab_container label {
+  font-weight: 700;
+  font-size: 1em;
+  display: block;
+  float: left;
+  width: 33%;
+  padding: 0.5em;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  background: #213558;
+}
+
+#subtab1:checked ~ #subcontent1,
+#subtab2:checked ~ #subcontent2,
+#subtab3:checked ~ #subcontent3
+{
+  display: block;
+  padding: 5px;
+  background: #fff;
+  color: #213558;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.subtab_container .subtab-content h3  {
+  text-align: center;
+}
+
+.subtab_container [id^="subtab"]:checked + label {
+  background: #fff;
+  box-shadow: inset 0 3px #0CE;
+  color: #213558;
+}
+
+.subtab_container [id^="subtab"]:checked + label .fa {
+  color: #0CE;
+}
+
+.subtab_container label .fa {
+  font-size: 1.3em;
+  margin: 0 0.4em 0 0;
+}
+
+
+
+/*Media query*/
+@media only screen and (max-width: 900px) {
+  .tab_container label span {
+    display: none;
+  }
+  .subtab_container label span {
+    display: block;
+  }
+  
+  .container, .tab_container, subtab_container {
+    width: 98%;
+  }
+}
+
+/*Content Animation*/
+@keyframes fadeInScale {
+  0% {
+  	transform: scale(0.9);
+  	opacity: 0;
+  }
+  
+  100% {
+  	transform: scale(1);
+  	opacity: 1;
+  }
+}
+
+.no_wrap {
+  text-align:center;
+  color: #0ce;
+}
+.link {
+  text-align:center;
+}
+
+/* verbatim */
+#itvlist .search,#votes .search {
+    display: block;
+}
+#itvlist input.search:focus, #votes input.search:focus {
+    border-bottom: 1px solid #26a69a;
+    box-shadow: 0 1px 0 0 #26a69a;
+}
+#itvlist input.search, #votes input.search {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0;
+    outline: none;
+    height: 3rem;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0 0 20px 0;
+    padding: 0;
+    box-shadow: none;
+    box-sizing: content-box;
+    transition: all 0.3s;
+}
+label.btn {
+    border-radius: 35px;
+    color: #fff;
+    background-color: #213558;
+    border: none;
+    max-width:200px;
+    width:33%;
+    padding: 10px;
+}
+.titredossier {
+        font-size:13px;
+        font-weight:300px;
+        text-transform: uppercase;
+       /* border-top: 1px solid grey;*/
+        border-bottom: 1px solid grey;
+        /*background: lightgrey;*/
+        padding-left:0px;
+    }
+.ctx_intervention {
+        color: black;
+        font-size:13px;
+        font-weight:300px;
+        text-transform: uppercase;
+       /* border-top: 1px solid grey;*/
+        border-bottom: 1px solid grey;
+        /*background: lightgrey;*/
+        padding-left:0px;
+    }
+.ctx_intervention a {
+        color: black;
+}
+
+/* onglet presentation */
+.depute-fonctions ul li {
+padding-bottom:10px;
+list-style: none;
+}
+
+/* votes */
+#calendar {
+    width:100%;
+    height:200px;
+}
+.day {
+  fill: #fff;
+  stroke: #ccc;
+}
+
+.month {
+  fill: none;
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+.RdYlGn .q0-11{fill:rgb(165,0,38)}
+.RdYlGn .q1-11{fill:rgb(215,48,39)}
+.RdYlGn .q2-11{fill:rgb(244,109,67)}
+.RdYlGn .q3-11{fill:rgb(253,174,97)}
+.RdYlGn .q4-11{fill:rgb(254,224,139)}
+.RdYlGn .q5-11{fill:rgb(255,255,191)}
+.RdYlGn .q6-11{fill:rgb(217,239,139)}
+.RdYlGn .q7-11{fill:rgb(166,217,106)}
+.RdYlGn .q8-11{fill:rgb(102,189,99)}
+.RdYlGn .q9-11{fill:rgb(26,152,80)}
+.RdYlGn .q10-11{fill:rgb(0,104,55)}
+
+.pastille {
+    height:1.5em;
+    width:1.5em;
+    margin-top:5px;
+
+    border-radius:50%;
+}
+.pastille.palert {
+    height:1em;
+    width:1em;
+    background:red;
+    /*border:4px solid red;*/
+}
+.badgevote {
+    padding: 3px;
+    color:black;
+    border-radius:3px;
+    font-weight:400;
+    font-size:12px;
+    display:inline-block;
+    width:80px;
+    margin: 0 auto;
+    text-align:center;
+    text-transform: uppercase;
+}
+.voteabst {
+    background: #808080;
+}
+.vote {
+    padding-top:20px;
+    border-bottom:1px solid lightgrey;
+    display: flex;
+    flex-wrap: wrap;
+}
+#votes ul li {
+    list-style: none;
+}
+
+.sortvote, {
+    font-weight: 500;
+}
+.loi, span.loi {
+    font-size:26px;
+}
+.motion, span.motion, .amendement, span.amendement, .autre, span.autre {
+    font-size:18px;
+}
+.article, span.article, .declaration, span.declaration {
+    font-size:22px;
+}
+li.vote a {
+    color: black;
+}
+li.vote.absent a, li.vote.absent i.symbole {
+    color: #808080;
+}
+li.absent .coulFI-text {
+    color:rgba(12,195,214,0.7);
+}
+
+li.absent .coulREM-text {
+    color: rgba(255,192,0,0.7);
+}
+
+.coulFI {
+  background-color: rgba(12,195,214,1);
+}
+
+.coulFI-text {
+  color: rgba(12,195,214,1);
+}
+
+.coulREM {
+  background-color: rgba(255,192,0,1);
+}
+
+.coulREM-text {
+  color: rgba(255,192,0,1);
+}

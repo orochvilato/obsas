@@ -1,0 +1,411 @@
+{{ extend 'basefi.html' }}
+{{ block style }}
+<link rel="stylesheet" href="{{=URL('static','css/modal.css')}}">
+{{ end }}
+
+{{ block content }}
+<div class="container">
+   <div class="depute-photo">
+        <img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =uid[2:] }}.jpg"/>
+   </div>
+   <div class="depute-identite">
+        <div class="depute-nom">{{ =nomcomplet }}</div>
+        <div class="depute-contacts">{{ for (k,v) in contacts: }}
+            {{ if (k==u'M\xe8l'): }}
+              <a class="depute-contact" href="mailto:{{ =v }}"><i class="fa fa-envelope-o"></i></a>
+            {{ elif (k=='Twitter'): }}
+              <a class="depute-contact" href="https://twitter.com/{{ =v[1:] }}"><i class="fa fa-twitter"></i></a>
+            {{ elif (k=='Facebook'): }}
+              <a class="depute-contact" href="https://fr-fr.facebook.com/{{ =v }}"><i class="fa fa-facebook-square"></i></a>
+            {{ elif (k=='Site internet'): }}
+              <a class="depute-contact" href="http://{{ =v }}"><i class="fa fa-globe"></i></a>
+
+            {{ pass }}
+          {{ pass }}</div>
+        <div class="depute-groupe {{ =groupe_abrev }}"><i class="fa fa-group"></i> <a href="{{ = URL('fiches','groupe',args=[groupe_abrev]) }}">{{ =groupe_nom }} ( {{ =groupe_abrev }})</a></div>
+        <div class="depute-infos"><span>{{ =profession_libelleCourant }}, né(e) le {{ =etatCivil_infoNaissance_dateNais }} à {{ =etatCivil_infoNaissance_villeNais }}</span></div>
+        {{ mandat = [ m for m in mandats if m['typeOrgane']=='ASSEMBLEE'][0] }}
+       <div class="depute-infos"><span>{{ =mandat['election_lieu_region'] }} / {{ =mandat['election_lieu_departement'] }} / {{ =mandat['election_lieu_numCirco'] }}e circ.</span></div>
+   </div>
+  
+  
+</div>
+
+		<div class="tab_container">
+			<input id="tab1" type="radio" name="tabs" value="presentation" checked>
+			<label for="tab1"><i class="fa fa-id-card-o"></i><span>Présentation</span></label>
+
+			<input id="tab2" type="radio" name="tabs" value="interventions">
+			<label for="tab2"><i class="fa fa-comment-o"></i><span>Interventions</span></label>
+
+			<input id="tab3" type="radio" name="tabs" value="votes">
+			<label for="tab3"><i class="fa fa-hand-paper-o"></i><span>Votes</span></label>
+
+			
+			<section id="content1" class="tab-content"> <!-- Présentation -->
+                 <div class="container-section">
+                     <div class="depute-fonctions">
+                        <div class="titre-section">Fonctions / Mandats</div>
+                        <ul>
+                         {{ for fct in fonctions: }}<li>
+                         <i class="fa fa-play"></i> {{ =fct['qualite'] }} <a href="{{ = URL('fiches','organe',vars={'id':fct['organe']}) }}" style="color:black; font-weight:500;">{{ = fct['organe_libelle'] }}</a> (depuis le {{ =fct['debut'] }})
+                         </li>{{ pass }}
+                       </ul>
+                    </div>
+                     <div class="depute-hemicycle">
+                       <object id="hemicycle" data="{{ =URL('static','images/hemicyclelight.svg') }}" type="image/svg+xml"></object> 
+                     </div>
+                 </div>
+                 {{ if deputywatch: }}
+                 <div class="titre-section">Députy Watch</div>
+                 <a href="{{ =deputywatch['url'] }}" target="_blank" style="color:black;"><img src="{{ =URL('static','images/deputywatch.jpg') }}" alt="" class="circle">
+                      <span class="title" style="font-weight:450">Faits notables ou infraction</span><p>(voir sur le site deputywatch.org)</p></a>
+                 {{ pass }}
+                 {{ if hatvp: }}
+                 <div class="titre-section">HATVP</div>
+                 <ul>{{ for dec in hatvp: }}
+                    <li><a href="{{ =dec['docurl'] }}" target="_blank" style="color:black;"><i class="fa fa-file-text-o"></i>
+                    <span class="title" style="font-weight:450">{{ =dec['typedoc'] }}</span>
+                      <p>{{ =dec['qualite'] }}</p></a>
+                   </li>{{ pass }}
+                </ul>
+                {{ pass }}
+
+            </section>
+
+			<section id="content2" class="tab-content"> <!-- Interventions -->
+                <div class="subtab_container">
+                    <input id="subtab1" type="radio" name="subtabs" value="noms" checked>
+                    <label for="subtab1"><i class="fa fa-cloud"></i><span>Noms</span></label>
+
+                    <input id="subtab2" type="radio" name="subtabs" value="verbs">
+                    <label for="subtab2"><i class="fa fa-cloud"></i><span>Mots</span></label>
+
+                    <input id="subtab3" type="radio" name="subtabs" value="verbatim">
+                    <label for="subtab3"><i class="fa fa-file-text-o"></i><span>Verbatim</span></label>
+
+					<section id="subcontent1" class="subtab-content">
+                        <div id="sourrounding_div_noms" style="width:100%;height:400px">
+                            <canvas id="wordcanvas_noms"></canvas>
+                        </div>
+                    </section>
+                	<section id="subcontent2" class="subtab-content">
+                        <div id="sourrounding_div_verbs" style="width:100%;height:400px">
+                            <canvas id="wordcanvas_verbs"></canvas>
+                        </div>
+                    </section>
+                	<section id="subcontent3" class="subtab-content">
+                        <div id="itvlist">
+                            <input class="search" placeholder="Recherche intervention">
+                            <ul class="list collection">
+                                {{ for iv in itvs: }}
+                                <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div><div class="s_itv">{{ =XML(iv['contenu']) }}</div></li>
+                                {{ pass }}
+                            </ul>
+                        </div>
+                     </section>
+                
+                
+			</section>
+
+			<section id="content3" class="tab-content"> <!-- Votes -->
+				<div class="container-section">
+                    <div class="gauge">{{ =svggauge('vote',stats['exprimepct']) }}</div>
+                    <div class="gauge">{{ =svggauge('diss',stats['disspct']) }}</div>
+                    <div class="gauge">{{ =svggauge('compfi',stats['votefipct']) }}</div>
+                    <div class="gauge">{{ =svggauge('compem',stats['voteempct']) }}</div>
+                </div>
+                <div id="calendar"></div>
+                 {{ from collections import OrderedDict }}
+          {{ typescr = OrderedDict([('loi',{'libelle':'Loi','icon':'book','defaut':True}),('article',{'libelle':'Article','icon':'file-o','defaut':True}),('amendement',{'libelle':'Amendement','icon':'pencil-square-o','defaut':True}),('motion',{'libelle':'Motion','icon':'undo','defaut':False}),('declaration',{'libelle':'Déclaration','icon':'microphone','defaut':False}),('autre',{'libelle':'Autre','icon':'','defaut':False})]) }}
+              {{ posscr = OrderedDict([('votefi',{'libelle':'Comme le groupe FI','defaut':True}),('voteem',{'libelle':'Comme le groupe EM','defaut':True}),('dissidence',{'libelle':'Dissident à son groupe','defaut':True}),('abstention',{'libelle':'Abstention','defaut':True}),('absentnv',{'libelle':'Absent ou non votant','defaut':False})]) }}
+          <div id="votes">
+                
+            <div class="container-section">
+                <input class="search" placeholder="Recherche">
+                <label class="btn" for="modal-filtres-scrutins">Filtrer</label>
+            </div>
+            <ul class="list"> {{ for dos,libdos in scrutins: }}
+
+
+                {{ for s in scrutins[(dos,libdos)]: }}
+                  {{ sicon = typescr[s['typedetail']]['icon'] }}
+                <li class="vote {{ if s['absent']:}}absent{{ pass }}">
+                    <div class="s_pos" style="display:none;">{{ =s['posscr'] }}</div>
+                    <div class="s_type" style="display:none;">{{ =s['typedetail'] }}</div>
+                      <div><span title="{{ =typescr[s['typedetail']]['libelle'] }}" class="{{=s['typedetail']}} fa-stack fa-lg right">
+  <i class="fa fa-circle fa-stack-2x {{ if s['votefi']=='pour':}}coulFI-text{{ elif s['voteem']=='pour':}}coulREM-text{{pass}}"></i>
+  <i class="fa fa-{{ =sicon }} fa-stack-1x symbole"></i>
+                          </span>{{ if s['flag']: }}<div title="à voté contre son groupe" class="pastille palert right"></div>{{ pass }}</div>
+                        <div><div class="titredossier">{{ =libdos }} - {{ =typescr[s['typedetail']]['libelle'] }}</div><a href="{{ =URL('fiches','scrutin',vars={'id':s['scrutin_id']}) }}" class="{{ = s['typedetail'] }} s_titre" style="font-weight:500">Scrutin n°{{ =s['scrutin_num']}} du {{ =s['scrutin_date'] }} <span class="s_sort" style="font-size:16px"> ({{ =s['sort'] }})</span></a>
+                          <a class="s_desc" href="{{ =URL('fiches','scrutin',vars={'id':s['scrutin_id']}) }}">{{ =s['scrutin_desc'] }}</a>
+                      </div>
+                      <div>
+                          <!--<span class="{{ =positions[s['scrutin_id']] }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}</span>-->
+                          <span class="{{ if (s['votefi']==positions[s['scrutin_id']] and s['voteem']!=positions[s['scrutin_id']]): }}coulFI{{ elif (s['votefi']!=positions[s['scrutin_id']] and s['voteem']==positions[s['scrutin_id']]): }}coulREM{{ else: }}voteabst{{ pass }} badgevote valign-wrapper">{{ =positions[s['scrutin_id']] }}{{ if positions_ori[s['scrutin_id']]!=positions[s['scrutin_id']]: }} <i class="fa fa-exclamation-circle" title="Vote corrigé (initialement: {{ =positions_ori[s['scrutin_id']] }})"></i>{{ pass }}</span>
+                      </div>
+                </li>
+                {{ pass }}
+                {{ pass }}
+               </ul>
+			</section>
+			
+		</div>
+</div>
+            
+<!-- Modal -->
+    <input class="modal-state" id="modal-filtres-scrutins" type="checkbox" />
+    <div class="modal">
+      <label class="modal__bg" for="modal-filtres-scrutins"></label>
+      <div class="modal__inner">
+        <label class="modal__close" for="modal-filtres-scrutins"></label>
+        <h2>Filtrer</h2>
+          <div class="container-section">
+              <div class="checkbox-group">
+                  <h3>Type de scrutin</h3>
+                  {{ for it in typescr: }}<p>
+                    <input class="type-scrutin-filter" type="checkbox" value="{{ =it }}" checked />
+                    <label for="type-scrutin-{{ =it }}">{{ =typescr[it]['libelle'] }}</label>
+                  </p>{{ pass }}
+              </div>
+              <div class="checkbox-group">
+                 <h3>Position député</h3>
+              {{ for p in posscr: }}<p>
+                <input class="pos-scrutin-filter" type="checkbox" value="{{ =p }}" checked />
+                <label for="pos-scrutin-{{ =p }}">{{ =posscr[p]['libelle'] }}</label>
+                  </p>{{ pass }}     
+              </div>
+          </div>
+      </div>
+    </div>
+
+{{ end }}
+{{ block script }}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"></script>
+<script src="{{=URL('static','js/wordcloud2.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        
+        // Nuages
+        {{ import json }}
+        var wordlist = {};
+        {{ if nuages: }}
+        {{ for lex in nuages.keys(): }}
+           wordlist['{{=lex}}'] = JSON.parse('{{ =XML(json.dumps(nuages[lex])) }}');
+        {{ pass }}
+        {{ pass }}
+        function showNuage(lex) {
+            if (lex=='verbatim') {
+                return
+            }
+            var div = document.getElementById("sourrounding_div_"+lex);
+            var canvas = document.getElementById("wordcanvas_"+lex);
+
+            canvas.height = div.offsetHeight;
+            canvas.width  = div.offsetWidth;
+
+            WordCloud(document.getElementById('wordcanvas_'+lex), {
+             gridSize: Math.round(16 * document.getElementById('wordcanvas_'+lex).offsetWidth / 1024),
+              weightFactor: function (size) {
+                return 0.6*size;
+              },
+              list: wordlist[lex] } );
+
+        }
+
+        $('input[type=radio][name=subtabs]').change(function() {
+            showNuage($(this).attr('value'));
+        });
+        $('input[type=radio][name=tabs]').change(function() {
+            var val=$(this).attr('value');
+            if (val==='interventions') {
+                showNuage($('input[type=radio][name=subtabs]').attr('value'));
+            }
+            if (val==='votes') {
+                genCalendar();
+            }
+        });
+
+        /* mark */
+        
+        var mark = function(list_sel,keyword_sel) {
+            // Remove previous marked elements and mark
+            // the new keyword inside the context
+            // Read the keyword
+            var keyword = $(keyword_sel).val();
+            if (keyword.length>2) {
+                $(list_sel).unmark({
+                  done: function() {
+                    $(list_sel).mark(keyword);
+                  }
+                });
+            } else {
+                $(list_sel).unmark();
+            }
+          };
+        
+        /* verbatims */
+
+        var itvList;
+        itvList = new List('itvlist',{ valueNames:['s_itv']});
+        itvList.on('updated',function () {
+            mark('.list','#itvlist .search');
+        });
+        
+        /* position hemicycle */
+        var svg = document.getElementById('hemicycle');
+        svg.addEventListener('load', function () {
+          //var svg = document.getElementById('hemicycle');
+          var svgDoc = svg.contentDocument;
+          $.each(svgDoc.getElementsByTagName('a'), function() {
+              $(this).attr('href',"{{ = URL('fiches','depute?uid=') }}"+$(this).attr('href'));
+          });
+          var styleElement = svgDoc.createElementNS("http://www.w3.org/2000/svg", "style");
+          styleElement.textContent = "#p{{ =place }} { fill:  black; stroke-width:3px; stroke: black;}"; // add whatever you need here
+          svgDoc.getElementById('defs').appendChild(styleElement);
+
+        });
+
+        /* scrutins */
+        var options = {
+            valueNames: [ 's_titre','s_sort', 's_desc','s_type','s_pos' ]
+        };
+        var typefilter={};
+        var posfilter={};
+        $('.type-scrutin-filter').each(function() {
+            typefilter[$(this).val()] = this.checked;
+        });
+        $('.type-scrutin-filter').change(function(){
+            var checked = this.checked;
+            var filter = $(this).val()
+            typefilter[filter] = checked;
+            votesList.filter(fscrutin);
+        });
+        $('.pos-scrutin-filter').each(function() {
+            posfilter[$(this).val()] = this.checked;
+        });
+        $('.pos-scrutin-filter').change(function(){
+            var checked = this.checked;
+            var filter = $(this).val()
+            posfilter[filter] = checked;
+            votesList.filter(fscrutin);
+        });
+        
+        function fscrutin(item) {
+            var tkeep = false;
+            var fposlist = Object.keys(posfilter).filter(function(e) { return posfilter[e];});
+            var ftypelist = Object.keys(typefilter).filter(function(e) { return typefilter[e];});
+
+            for (i=0;i<ftypelist.length;i++) {
+                if (item.values().s_type==ftypelist[i]) {
+                    tkeep = true;
+                }
+            }
+            if (tkeep==false) {
+                return false;
+            }
+            var fkeep = false;
+            for (i=0;i<fposlist.length;i++) {
+                if (item.values().s_pos.indexOf(fposlist[i])>=0) {
+                    fkeep = true;
+                }
+            }
+            return fkeep;
+        }
+
+        votesList = new List('votes', options);
+        votesList.filter(fscrutin);
+        votesList.on('updated',function () {
+            mark('.list','#votes .search');
+        });
+        
+        /* Calendrier */
+        function genCalendar() {
+            var width = document.getElementById('calendar').offsetWidth+20,
+                yearHeight = width / 7,
+                height = yearHeight,
+                cellSize = yearHeight / 8;
+
+            var percent = d3.format(".1%"),
+                format = d3.timeFormat("%Y-%m-%d");
+
+            var color = d3.scaleQuantize()
+                .domain([.0, 1.0])
+                .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
+
+            var svgcal = d3.select("#calendar").selectAll("svg")
+                .data(d3.range(2017, 2018))
+              .enter().append("svg")
+                .attr("width", width)
+                .attr("height", height+20)
+                .attr("class", "RdYlGn")
+              .append("g")
+                .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (20+height - cellSize * 7 - 1) + ")");
+
+            svgcal.append("text")
+                .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+                .style("text-anchor", "middle")
+                .text(function(d) { return d; });
+
+            var rect = svgcal.selectAll(".day")
+                .data(function(d) { return d3.timeDays(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+              .enter().append("rect")
+                .attr("class", "day")
+                .attr("width", cellSize)
+                .attr("height", cellSize)
+                .attr("x", function(d) { return d3.timeMonday.count(d3.timeYear(d), d) * cellSize; })
+                .attr("y", function(d) { return ((d.getDay()+6)%7) * cellSize; })
+                .datum(format);
+
+            rect.append("title")
+                .text(function(d) { return d; });
+
+            svgcal.selectAll(".month")
+                .data(function(d) { return d3.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+              .enter().append("text").text(monthLabel).style("font-size:10px;", "middle").attr("transform",monthLabelTransform);
+            function monthLabel(t0) {
+                return Array('JAN','FEV','MAR','AVR','MAI','JUN','JUI','AOU','SEP','OCT','NOV','DEC')[t0.getMonth()];
+            }
+            function monthLabelTransform(t0) {
+              var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+                  d0 = ((t0.getDay()+6)%7), w0 = d3.timeMonday.count(d3.timeYear(t0), t0)
+                  d1 = ((t1.getDay()+6)%7), w1 = d3.timeMonday.count(d3.timeYear(t1), t1);
+              return "translate("+(2+w0)*cellSize+",-5)";
+            }
+
+            svgcal.selectAll(".month")
+                .data(function(d) { return d3.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+              .enter().append("path")
+                .attr("class", "month")
+                .attr("d", monthPath);
+
+
+            var csv = JSON.parse('{{ = XML(json.dumps(calendrier)) }}');
+            var data = d3.nest()
+                .key(function(d) { return d.date; })
+                .rollup(function(d) { return d[0].pct; })
+                .map(csv);
+              {{ import json }}
+              rect.filter(function(d) { return data.has(d); })
+                  .attr("class", function(d) { return "day " + color(data.get(d)); })
+                .select("title")
+                  .text(function(d) { return d + ": " + percent(data.get(d)); });
+
+            function monthPath(t0) {
+              var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+                  d0 = ((t0.getDay()+6)%7), w0 = d3.timeMonday.count(d3.timeYear(t0), t0)
+                  d1 = ((t1.getDay()+6)%7), w1 = d3.timeMonday.count(d3.timeYear(t1), t1);
+              return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
+                  + "H" + w0 * cellSize + "V" + 7 * cellSize
+                  + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
+                  + "H" + (w1 + 1) * cellSize + "V" + 0
+                  + "H" + (w0 + 1) * cellSize + "Z";
+            }
+        };
+    });
+</script>
+            
+{{ end }}

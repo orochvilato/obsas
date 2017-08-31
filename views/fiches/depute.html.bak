@@ -352,6 +352,22 @@ body {
         return fkeep;
     }
     $(document).ready(function() {
+        
+        
+        var mark = function() {
+
+            // Read the keyword
+            var keyword = $('#itvlist .search').val();
+
+            
+            // Remove previous marked elements and mark
+            // the new keyword inside the context
+            $(".list").unmark({
+              done: function() {
+                $(".list").mark(keyword);
+              }
+            });
+          };
         var options = {
             valueNames: [ 's_titre','s_sort', 's_desc','s_type','s_pos' ]
         };
@@ -362,9 +378,7 @@ body {
         votesList.filter(fscrutin);
         itvList = new List('itvlist',{ valueNames:['s_itv']});
         itvList.on('updated',function () {
-            window.find($('#itvlist .search').val(),true,true);
-            
-            console.log(,itvList.matchingItems);
+            mark();
         });
 
         {{ import json }}

@@ -1,0 +1,171 @@
+{{ extend 'basefi.html' }}
+{{ block content }}
+<div class="container">
+   <div class="depute-photo">
+        <img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =uid[2:] }}.jpg"/>
+   </div>
+   <div class="depute-identite">
+        <div class="depute-nom">{{ =nomcomplet }}</div>
+        <div class="depute-contacts">{{ for (k,v) in contacts: }}
+            {{ if (k==u'M\xe8l'): }}
+              <a class="depute-contact" href="mailto:{{ =v }}"><i class="fa fa-envelope-o"></i></a>
+            {{ elif (k=='Twitter'): }}
+              <a class="depute-contact" href="https://twitter.com/{{ =v[1:] }}"><i class="fa fa-twitter"></i></a>
+            {{ elif (k=='Facebook'): }}
+              <a class="depute-contact" href="https://fr-fr.facebook.com/{{ =v }}"><i class="fa fa-facebook-square"></i></a>
+            {{ elif (k=='Site internet'): }}
+              <a class="depute-contact" href="http://{{ =v }}"><i class="fa fa-globe"></i></a>
+
+            {{ pass }}
+          {{ pass }}</div>
+        <div class="depute-groupe {{ =groupe_abrev }}"><i class="fa fa-group"></i> <a href="{{ = URL('fiches','groupe',args=[groupe_abrev]) }}">{{ =groupe_nom }} ( {{ =groupe_abrev }})</a></div>
+        <div class="depute-infos"><span>{{ =profession_libelleCourant }}, né(e) le {{ =etatCivil_infoNaissance_dateNais }} à {{ =etatCivil_infoNaissance_villeNais }}</span></div>
+   </div>
+  
+  
+</div>
+
+		<div class="tab_container">
+			<input id="tab1" type="radio" name="tabs" checked>
+			<label for="tab1"><i class="fa fa-id-card-o"></i><span>Présentation</span></label>
+
+			<input id="tab2" type="radio" name="tabs">
+			<label for="tab2"><i class="fa fa-comment-o"></i><span>Interventions</span></label>
+
+			<input id="tab3" type="radio" name="tabs">
+			<label for="tab3"><i class="fa fa-hand-paper-o"></i><span>Votes</span></label>
+
+			
+			<section id="content1" class="tab-content">
+				<h3>Headline 1</h3>
+		      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		      	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		      	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		      	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		      	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		      	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		      	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		      	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		      	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		      	cillum dolore eu fugiat nulla pariatur.</p>
+			</section>
+
+			<section id="content2" class="tab-content">
+                <div class="subtab_container">
+                    <input id="subtab1" type="radio" name="subtabs" value="noms" checked>
+                    <label for="subtab1"><i class="fa fa-cloud"></i><span>Noms</span></label>
+
+                    <input id="subtab2" type="radio" name="subtabs" value="verbs">
+                    <label for="subtab2"><i class="fa fa-cloud"></i><span>Mots</span></label>
+
+                    <input id="subtab3" type="radio" name="subtabs" value="verbatim">
+                    <label for="subtab3"><i class="fa fa-hand-paper-o"></i><span>Verbatim</span></label>
+
+					<section id="subcontent1" class="subtab-content">
+                        <div id="sourrounding_div_noms" style="width:100%;height:300px">
+                            <canvas id="wordcanvas_noms"></canvas>
+                        </div>
+                    </section>
+                	<section id="subcontent2" class="subtab-content">
+                        <div id="sourrounding_div_verbs" style="width:100%;height:300px">
+                            <canvas id="wordcanvas_verbs"></canvas>
+                        </div>
+                    </section>
+                	<section id="subcontent3" class="subtab-content">
+                        <div id="itvlist">
+                            <input class="search" placeholder="Recherche intervention">
+                            <ul class="list collection">
+                                {{ for iv in itvs: }}
+                                <li class="collection-item"><div class="ctx_intervention"><a href="{{ =iv['url']}}" target="_blank">{{ =' / '.join(iv['contexte']) }}</a></div><div class="s_itv">{{ =XML(iv['contenu']) }}</div></li>
+                                {{ pass }}
+                            </ul>
+                        </div>
+                     </section>
+                
+                <h3>Headline 2</h3>
+		      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		      	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		      	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo.</p>
+		      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		      	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		      	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		      	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		      	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		      	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</section>
+
+			<section id="content3" class="tab-content">
+				<h3>Headline 3</h3>
+		      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		      	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		      	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		      	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		      	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		      	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		      	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+		      	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+		      	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+		      	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+		      	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+		      	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</section>
+			
+		</div>
+
+<p class="no_wrap">
+  And Of-course this paragrapgh with not wrap Tab
+</p>
+
+<p class="link">
+  Just in case you want to go through the tutorial follow this link: <a href="http://www.sevensignature.com/blog/code/responsive-pure-css-tabs/">Responsive Pure CSS Tabs</a>
+</p>
+
+
+{{ end }}
+{{ block script }}
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdn.jsdelivr.net/mark.js/8.6.0/jquery.mark.min.js"></script>
+<script src="{{=URL('static','js/wordcloud2.js')}}"></script>
+<script>
+    $(document).ready(function() {
+        {{ import json }}
+        var wordlist = {};
+        {{ if nuages: }}
+        {{ for lex in nuages.keys(): }}
+           wordlist['{{=lex}}'] = JSON.parse('{{ =XML(json.dumps(nuages[lex])) }}');
+        {{ pass }}
+        {{ pass }}
+        function showNuage(lex) {
+            console.log('show',lex);
+            if (lex=='verbatim') {
+                return
+            }
+            var div = document.getElementById("sourrounding_div_"+lex);
+            var canvas = document.getElementById("wordcanvas_"+lex);
+
+            canvas.height = div.offsetHeight;
+            canvas.width  = div.offsetWidth;
+
+            WordCloud(document.getElementById('wordcanvas_'+lex), {
+             gridSize: Math.round(16 * document.getElementById('wordcanvas_'+lex).offsetWidth / 1024),
+              weightFactor: function (size) {
+                return 0.6*size;
+              },
+              list: wordlist[lex] } );
+
+        }
+        console.log('test');
+        $('input[type=radio][name=subtabs]').change(function() {
+            console.log($(this).attr('value'));
+            showNuage($(this).attr('value'));
+        });
+        //owNuage('noms');
+        
+        //"ul.tabs").tabs({ onShow: function(tab) { showNuage($(tab).attr('id')); } });
+    });
+</script>
+            
+{{ end }}
