@@ -151,7 +151,8 @@ def update_acteurs_stats():
             compteitv[itv['acteur']] = 1
         else:
             compteitv[itv['acteur']] += 1
-            
+    rankings = {'exprimepct':[],'disspct':[],'votefipct':[],'voteempct':[]}
+    
     for dep in deputes:
         
         dep['iddepartement'] = departements[dep['departement']]
@@ -180,26 +181,18 @@ def update_acteurs_stats():
                     stats[p] += 1
 
             s['flag'] = diss
-            stats['disspct'] =  int(100*float(stats['diss'])/stats['exprime']) if stats['exprime']>0 else '-'
-            stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime']) if stats['exprime']>0 else '-'
-            stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
+        
+        stats['disspct'] =  int(100*float(stats['diss'])/stats['exprime']) if stats['exprime']>0 else '-'
+        stats['votefipct'] =  int(100*float(stats['votefi'])/stats['exprime']) if stats['exprime']>0 else '-'
+        stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
+        for stat in ['exprimepct','votefipct','voteempct','disspct']:
+            rankings[stat].append((dep['uid'],stats[stat]))
         dep['statsvote'] = stats
         dep['interventions'] = compteitv.get(dep['uid'],0)
         
         _mots = mdb.mots.find_one({'acteur_id':dep['uid']})
         
-        #if _mots and _mots['mots']:
-        #    mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
-        #    som = sum([m[1] for m in mots])
-        #    mx = mots[0][1]
-        #    mn = mots[-1][1]-1
-        #    coef = 50+2000*float(mx)/som
-        #    if coef>150:
-        #        coef=150
-        #    mots = [ [mot,int(coef*float(count)/mx)] for mot,count in mots if not mot in nuages_excl]
-        #else:
-        #    mots = []
-        #dep['nuage'] = mots
+       
         mts = {}
         if _mots:
             for lex in _mots['mots'].keys():
@@ -209,16 +202,27 @@ def update_acteurs_stats():
                         
                         mx = mots[0][1]
                         mn = mots[-1][1]-1
-                        som = sum([100*float(m[1]-mn)/(mx-mn) for m in mots])
-                        moy = float(sum([m[1]-mn for m in mots][:10]))/10
-                        coef = (float(150)-(mx-moy)/(mx-mn))*(3000/som)
-                        
+                        #som = sum([100*float(m[1]-mn)/(mx-mn) for m in mots])
+                        #moy = float(sum([m[1]-mn for m in mots][:10]))/10
+                        #coef = (float(150)-(mx-moy)/(mx-mn))*(3000/som)
+                        coef = 12000/sum([len(mot)*(float(count-mn)/(mx-mn))**2 for mot,count in mots])
+
                         mts[lex] = [ [mot,int(coef*float(count-mn)/(mx-mn))] for mot,count in mots]
         
         dep['nuages'] = mts
     
         mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})
-        #print dep['nomcomplet'].encode('utf8')
+    
+    # classements
+    for stat in ['exprimepct','votefipct','voteempct','disspct']:
+        rankings[stat] = dict((p[0],i) for i,p in enumerate(sorted(rankings[stat],key=lambda x:x[1], reverse=True)))
+    
+    for dep in mdb.acteurs.find():
+        ranks = {}
+        for stat in ['exprimepct','votefipct','voteempct','disspct']:
+            ranks[stat] = rankings[stat][dep['uid']]
+        mdb.acteurs.update({'uid':dep['uid']},{'$set':{'rankings':ranks}})
+    #print dep['nomcomplet'].encode('utf8')
 
 def update_sessions():
     import os
@@ -281,6 +285,7 @@ def update_groupes_stats():
     for g in groupes:
         itvs += groupes[g]['nbitv']
         mots += groupes[g]['nbmots']
+    for g in groupes:
         groupes[g]['ratio_itv'] = round((float(groupes[g]['nbmots'])/mots)/(float(groupes[g]['nbm'])/577),1)
         groupes[g]['ratio_mots'] = round((float(groupes[g]['nbitv'])/itvs)/(float(groupes[g]['nbm'])/577),1)
         groupes[g]['nbitv_dep'] = groupes[g]['nbitv'] / groupes[g]['nbm']
@@ -321,7 +326,7 @@ def update_groupes_stats():
             som = sum([m[1] for m in mots])
             mx = mots[0][1]
             mn = mots[-1][1]-1
-            coef = 10000*float(mx)/som
+            coef = 12000/sum([len(mot)*(float(count-mn)/(mx-mn))**2 for mot,count in mots])
             _mots[lex] = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
         mdb.mots.update({'acteur_id':g},{'$set':{'mots':_mots}},upsert=True)
         mdb.organes.update({'libelleAbrev':g},{'$set':{'mots':_mots}})

@@ -9,8 +9,10 @@ def gauges():
 def index():
     return dict(message="hello from fiches.py")
 import json
+
 def test():
-    return mdb.acteurs.find_one({'$and':[ {'deputywatch':{'$ne':None}},{'hatvp':{'$ne':[]}}]})['uid']
+    return json.dumps(mdb.acteurs.find_one({'uid':'PA2150'})['rankings'])
+    return json.dumps(mdb.acteurs.find_one({'$and':[ {'deputywatch':{'$ne':None}},{'hatvp':{'$ne':[]}}]})['rankings'])
 def scrutin():
     vpositions = ['pour','contre','abstention']
     id = request.vars.get('id','welou')

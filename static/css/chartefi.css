@@ -28,6 +28,7 @@ body {
 	margin: 0 auto;
 	display: flex;
     flex-wrap: wrap;
+    
 }
 .container a {
     color: #213558;
@@ -71,6 +72,10 @@ body {
 }
 .depute-contact {
     font-size: 1.4em;
+}
+.depute-top {
+    
+    width:150px;
 }
 .depute-groupe {
     font-size: 1.4em;

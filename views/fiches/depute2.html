@@ -26,9 +26,18 @@
         <div class="depute-infos"><span>{{ =profession_libelleCourant }}, né(e) le {{ =etatCivil_infoNaissance_dateNais }} à {{ =etatCivil_infoNaissance_villeNais }}</span></div>
         {{ mandat = [ m for m in mandats if m['typeOrgane']=='ASSEMBLEE'][0] }}
        <div class="depute-infos"><span>{{ =mandat['election_lieu_region'] }} / {{ =mandat['election_lieu_departement'] }} / {{ =mandat['election_lieu_numCirco'] }}e circ.</span></div>
+       <div class="depute-infos"><span>participation : {{ =rankings['exprimepct'] }}/577</span>&nbsp;<span>dissidence : {{ =rankings['disspct'] }}/577</span></div>
+       
    </div>
-  
-  
+   <div class="depute-top">
+       {{ if rankings['exprimepct']<=10: }}
+           {{ =svgtop('top10') }}
+       {{ elif rankings['exprimepct']<=20: }}
+           {{ =svgtop('top20') }}
+       {{ elif rankings['exprimepct']<=50: }}
+           {{ =svgtop('top50') }}
+       {{ pass }}
+    </div>
 </div>
 
 		<div class="tab_container">

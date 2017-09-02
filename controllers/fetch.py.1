@@ -185,6 +185,39 @@ def update_acteurs_stats():
             stats['voteempct'] =  int(100*float(stats['voteem'])/stats['exprime']) if stats['exprime']>0 else '-'
         dep['statsvote'] = stats
         dep['interventions'] = compteitv.get(dep['uid'],0)
+        
+        _mots = mdb.mots.find_one({'acteur_id':dep['uid']})
+        
+        #if _mots and _mots['mots']:
+        #    mots = [ [mot,count] for mot,count in sorted(_mots['mots'],key=lambda x:x[1],reverse=True) ][:200]
+        #    som = sum([m[1] for m in mots])
+        #    mx = mots[0][1]
+        #    mn = mots[-1][1]-1
+        #    coef = 50+2000*float(mx)/som
+        #    if coef>150:
+        #        coef=150
+        #    mots = [ [mot,int(coef*float(count)/mx)] for mot,count in mots if not mot in nuages_excl]
+        #else:
+        #    mots = []
+        #dep['nuage'] = mots
+        mts = {}
+        if _mots:
+            for lex in _mots['mots'].keys():
+                if _mots['mots'][lex]:
+                    mots = [ [mot,count] for mot,count in sorted(_mots['mots'][lex].items(),key=lambda x:x[1],reverse=True) if not mot in nuages_excl][:200]
+                    if mots:
+                        
+                        mx = mots[0][1]
+                        mn = mots[-1][1]-1
+                        #som = sum([100*float(m[1]-mn)/(mx-mn) for m in mots])
+                        #moy = float(sum([m[1]-mn for m in mots][:10]))/10
+                        #coef = (float(150)-(mx-moy)/(mx-mn))*(3000/som)
+                        coef = 1500000/sum([len(mot)*(100*float(count-mn)/(mx-mn))^2 for mot,count in mots])
+
+                        mts[lex] = [ [mot,int(coef*float(count-mn)/(mx-mn))] for mot,count in mots]
+        
+        dep['nuages'] = mts
+    
         mdb.acteurs.update({'uid':dep['uid']},{'$set':dep})
         #print dep['nomcomplet'].encode('utf8')
 
@@ -220,10 +253,45 @@ def update_sessions():
     mots = json.loads(open('/tmp/mots.json','r').read())
     mdb.mots.create_index([('acteur_id', pymongo.ASCENDING)], unique = True)
     for k,v in mots.iteritems():
-        mdb.mots.insert_one(dict(acteur_id=k,mots=v.items()))
+        mdb.mots.insert_one(dict(acteur_id=k,mots=v))
+
 
 def update_groupes_stats():
-   
+    groupes = dict((g['libelleAbrev'],dict(uid=g['uid'],lib=g['libelle'],abrev=g['libelleAbrev'],nbm=g['nbmembres'],
+                                           nbitv=0,
+                                           nbmots=0,
+                                           statsvote = dict(exprime=0, diss=0, n=0, votefi=0, voteem=0)
+                                          )) for g in mdb.organes.find({'$and':[{'codeType':'GP'},{'viMoDe_dateFin':None}]}))
+    
+    for acteur in mdb.acteurs.find():
+        g = acteur['groupe_abrev']
+        mots = 0
+        itvs = 0
+        for itv in mdb.interventions.find({'acteur':acteur['uid']}):
+            itvs += 1
+            mots += itv['nbmots']
+        groupes[g]['nbitv'] += itvs
+        groupes[g]['nbmots'] += mots
+        for stat in ('exprime','diss','n','votefi','voteem'):
+            groupes[g]['statsvote'][stat] += acteur['statsvote'][stat]
+            
+        mdb.acteurs.update({'uid':acteur['uid']},{'$set':{'nbitv':itvs,'nbmots':mots}})
+        #groupes.append({'code':abrev,'libelle':lib,'nbmembres':nbm,'mots':mots['mots'][lex]}) 
+    itvs = 0
+    mots = 0
+    for g in groupes:
+        itvs += groupes[g]['nbitv']
+        mots += groupes[g]['nbmots']
+    for g in groupes:
+        groupes[g]['ratio_itv'] = round((float(groupes[g]['nbmots'])/mots)/(float(groupes[g]['nbm'])/577),1)
+        groupes[g]['ratio_mots'] = round((float(groupes[g]['nbitv'])/itvs)/(float(groupes[g]['nbm'])/577),1)
+        groupes[g]['nbitv_dep'] = groupes[g]['nbitv'] / groupes[g]['nbm']
+        groupes[g]['nbmots_dep'] = groupes[g]['nbmots'] / groupes[g]['nbm']
+        
+        mdb.organes.update({'uid':groupes[g]['uid']},{'$set':{'statsvote':groupes[g]['statsvote'],'nbitv':groupes[g]['nbitv'],'nbitv_dep':groupes[g]['nbitv_dep'],'nbmots':groupes[g]['nbmots'],'nbmots_dep':groupes[g]['nbmots_dep'], 'ratio_itv':groupes[g]['ratio_itv'], 'ratio_mots':groupes[g]['ratio_mots']}})
+
+    # interventions
+
     nmots = {'assemblee':{}}
     actgp = dict((a['uid'],a['groupe_abrev']) for a in mdb.acteurs.find())
     _mots = mdb.mots.find()
@@ -233,23 +301,36 @@ def update_groupes_stats():
             continue
         if not gp in nmots.keys():
             nmots[gp] = {}
-        for mot,n in m['mots']:
-            if not mot in nmots['assemblee'].keys():
-                nmots['assemblee'][mot] = 1
-            else:
-                nmots['assemblee'][mot] += 1
-            if not mot in nmots[gp].keys():
-                nmots[gp][mot] = 1
-            else:
-                nmots[gp][mot] += 1
+        for lex in m['mots'].keys():
+            if not lex in nmots['assemblee'].keys():
+                nmots['assemblee'][lex] = {}
+            if not lex in nmots[gp].keys():
+                nmots[gp][lex] = {}
+            for mot,n in m['mots'][lex].iteritems():
+                if not mot in nmots['assemblee'][lex].keys():
+                    nmots['assemblee'][lex][mot] = 1
+                else:
+                    nmots['assemblee'][lex][mot] += 1
+                if not mot in nmots[gp][lex].keys():
+                    nmots[gp][lex][mot] = 1
+                else:
+                    nmots[gp][lex][mot] += 1
+
     for g in nmots.keys():
-        mots = [ [mot,count] for mot,count in sorted(nmots[g].items(),key=lambda x:x[1],reverse=True) ][:200]
-        mx = mots[0][1]
-        mn = mots[-1][1]-1
-        mots = [ [mot,int(100*float(count-mn)/(mx-mn))] for mot,count in mots if not mot in nuages_excl]
-        mdb.mots.update({'acteur_id':g},{'$set':{'mots':mots}},upsert=True)
+        _mots = {}
+        for lex in nmots[g].keys():
+            mots = [ [mot,count] for mot,count in sorted(nmots[g][lex].items(),key=lambda x:x[1],reverse=True) ][:200]
+            som = sum([m[1] for m in mots])
+            mx = mots[0][1]
+            mn = mots[-1][1]-1
+            coef = 10000*float(mx)/som
+            _mots[lex] = [ [mot,int(coef*float(count-mn))/(mx-mn)] for mot,count in mots if not mot in nuages_excl]
+        mdb.mots.update({'acteur_id':g},{'$set':{'mots':_mots}},upsert=True)
+        mdb.organes.update({'libelleAbrev':g},{'$set':{'mots':_mots}})
+    
     return "ok"
-        
+
+
 def index():
     
     #fetch_acteurs_organes()
@@ -258,5 +339,6 @@ def index():
     update_emfi_compat()
     update_acteurs_stats()
     update_groupes_stats()
+    
     #rebuild_cache()
     return dict()
