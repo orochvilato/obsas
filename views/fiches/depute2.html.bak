@@ -34,7 +34,7 @@
            {{ =svgtop('top10') }}
        {{ elif rankings['exprimepct']<=20: }}
            {{ =svgtop('top20') }}
-       {{ if rankings['exprimepct']<=50: }}
+       {{ elif rankings['exprimepct']<=50: }}
            {{ =svgtop('top50') }}
        {{ pass }}
     </div>
@@ -83,6 +83,9 @@
             </section>
 
 			<section id="content2" class="tab-content"> <!-- Interventions -->
+                <div class="depute-interventions-recap">
+                    <p>Nombre d'interventions : <span>{{ =nbitv }}</span>, nombre de mots : <span>{{ =nbmots }}</span>
+                </div>
                 <div class="subtab_container">
                     <input id="subtab1" type="radio" name="subtabs" value="noms" checked>
                     <label for="subtab1"><i class="fa fa-cloud"></i><span>Noms</span></label>
