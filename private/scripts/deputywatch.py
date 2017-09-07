@@ -7,6 +7,11 @@ import json
 from scrapy.crawler import CrawlerProcess
 
 import unicodedata
+
+import sys
+
+output_path = sys.argv[1]
+
 def strip_accents(s):
    return ''.join(c for c in unicodedata.normalize('NFD', s)
                   if unicodedata.category(c) != 'Mn')
@@ -17,7 +22,7 @@ def normalize(s):
 deputywatch = {}
 
 class DeputyWatchSpider(scrapy.Spider):
-    name = "candidats"
+    name = "deputywatch"
     base_url = 'https://www.deputywatch.org/'
     def start_requests(self):
         urls = [ self.base_url+'recherches/']
@@ -56,5 +61,7 @@ process = CrawlerProcess({
 process.crawl(DeputyWatchSpider)
 process.start() # the script will block here until the crawling is finished
 
-with open('/tmp/deputywatch.json','w') as f:
+deputywatch =  dict((k,v) for k,v in deputywatch.iteritems() if v.get('flag',False) == True)
+
+with open(output_path+'/deputywatch.json','w') as f:
     f.write(json.dumps(deputywatch))

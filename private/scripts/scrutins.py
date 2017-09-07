@@ -8,7 +8,10 @@ import re
 from fuzzywuzzy import fuzz
 from scrapy.crawler import CrawlerProcess
 
+import sys
 
+output_path = sys.argv[1]
+exclude = json.loads(sys.argv[2])
 
 leg = 15
 scrutins = {}
@@ -163,6 +166,8 @@ class ScrutinsSpider(scrapy.Spider):
                 request.meta['typedetail'] = _typedetail
                 yield request
 
+            if  "%s_%d" % (leg,_num) in exclude:
+                continue
             if _num not in scrutins.keys():
                 scrutins[_num] = {}
 
@@ -245,7 +250,7 @@ class ScrutinsSpider(scrapy.Spider):
                 print "PB COHERENCE"
                 scrutins[num]['ok']=False;
         # non votants
-        for nv in response.xpath('//div[@class="Non-votant" or @class="Non-votants"]/ul[@class="deputes"]').extract():
+        for nv in response.xpath('//div[contains(@class,"Non-votant") or contains(@class,"Non-votants")]/ul[contains(@class,"deputes")]').extract():
             noms = re.sub(r'\xa0|\n|\t|</b>|<b>|<ul[^>]+>|</ul>|\([^\)]+\)',r'',nv).replace(' et ',',').replace(' ','')[:-1].split(',')
             scrutins[num]['votes']['nonVotant'] = scrutins[num]['votes'].get('nonVotant',[]) + [ normalize(n) for n in noms ]
 
@@ -287,5 +292,5 @@ for s in scrutins.values():
         s['reference'] = scrutins_txts[s['num']]
 
 import json
-with open('/tmp/scrutins.json','w') as f:
+with open(output_path+'/scrutins.json','w') as f:
     f.write(json.dumps(scrutins))

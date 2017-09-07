@@ -1,0 +1,67 @@
+#!/home/www-data/web2py/applications/obsas/.pyenv/bin/python
+# -*- coding: utf-8 -*-
+
+import scrapy
+import requests
+import json
+import re
+
+from scrapy.crawler import CrawlerProcess
+
+import unicodedata
+def strip_accents(s):
+   return ''.join(c for c in unicodedata.normalize('NFD', s)
+                  if unicodedata.category(c) != 'Mn')
+def normalize(s):
+    return strip_accents(s).encode('utf8').replace(' ','').replace('-','').replace('\x0a','').replace('\xc5\x93','oe').lower() if s else s
+
+deputes = []
+class DeputesSpider(scrapy.Spider):
+    name = "deputes"
+    base_url = 'http://www2.assemblee-nationale.fr'
+    def start_requests(self):
+        request = scrapy.Request(url=self.base_url+'/deputes/liste/tableau', callback=self.parse_listedeputes)
+        yield request
+
+
+
+    def parse_listedeputes(self, response):
+        for dep in response.xpath('//table[@class="deputes"]/tbody/tr'):
+            depitems = dep.xpath('./td')
+            depurl = depitems[0].xpath('a/@href').extract()[0]
+            depdept = depitems[1].xpath('text()').extract()[0]
+            depcirc = depitems[2].xpath('text()').extract()[0]
+            request = scrapy.Request(url=self.base_url + depurl, callback=self.parse_depute, dont_filter=True)
+            request.meta['dep'] = depdept
+            request.meta['circ'] = depcirc
+            yield request
+
+
+    def parse_depute(self, response):
+        nom = response.xpath('//div[contains(@class,"titre-bandeau-bleu")]/h1/text()').extract()[0]
+        uid = response.url.split('_')[1]
+        departement = response.meta['dep']
+        circo = response.meta['dep']
+        suppleant = response.xpath('//dt[text()[contains(.," Suppl")]]/following-sibling::dd/ul/li/text()')
+        suppleant = suppleant[0].extract() if suppleant else None
+        deputes.append(dict(
+            nom = nom,
+            uid = uid,
+            departement = departement,
+            circo = circo,
+            suppleant = suppleant
+            ))
+
+process = CrawlerProcess({
+    'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)','DOWNLOAD_DELAY':0.25
+})
+
+
+process.crawl(DeputesSpider)
+process.start() # the script will block here until the crawling is finished
+
+print deputes
+exit()
+import json
+with open('/tmp/scrutins.json','w') as f:
+    f.write(json.dumps(scrutins))

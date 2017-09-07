@@ -215,7 +215,7 @@ def update_acteurs_stats():
     
     # classements
     for stat in ['exprimepct','votefipct','voteempct','disspct']:
-        rankings[stat] = dict((p[0],i) for i,p in enumerate(sorted(rankings[stat],key=lambda x:x[1], reverse=True)))
+        rankings[stat] = dict((p[0],1+i) for i,p in enumerate(sorted(rankings[stat],key=lambda x:x[1], reverse=True)))
     
     for dep in mdb.acteurs.find():
         ranks = {}

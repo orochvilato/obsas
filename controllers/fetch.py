@@ -311,13 +311,13 @@ def update_groupes_stats():
                 nmots[gp][lex] = {}
             for mot,n in m['mots'][lex].iteritems():
                 if not mot in nmots['assemblee'][lex].keys():
-                    nmots['assemblee'][lex][mot] = 1
+                    nmots['assemblee'][lex][mot] = n
                 else:
-                    nmots['assemblee'][lex][mot] += 1
+                    nmots['assemblee'][lex][mot] += n
                 if not mot in nmots[gp][lex].keys():
-                    nmots[gp][lex][mot] = 1
+                    nmots[gp][lex][mot] = n
                 else:
-                    nmots[gp][lex][mot] += 1
+                    nmots[gp][lex][mot] += n
 
     for g in nmots.keys():
         _mots = {}

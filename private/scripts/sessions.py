@@ -1,5 +1,9 @@
 #!/home/www-data/web2py/applications/obsas/.pyenv/bin/python
 # -*- coding: utf-8 -*-
+# args :
+# outputpath
+# lexiquespath
+# exclude
 
 import scrapy
 import requests
@@ -10,42 +14,11 @@ from scrapy.crawler import CrawlerProcess
 import locale
 locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
 
-with open('/home/www-data/web2py/applications/obsas_dev/private/lexiques.json','r') as f:
-    lexiques = json.loads(f.read())
+import sys
 
-lexiquenoms = lexiques['NOM']
-#lexiquenoms.update(lexiques['ADV'])
-lexiquenoms.update(lexiques['ADJ'])
-lexiqueverbs = lexiques['VER']
+output_path = sys.argv[1]
+exclude = json.loads(sys.argv[2])
 
-class WordCount:
-    def __init__(self):
-        self.words = {}
-        self.lexiques = {}
-        self._lex = {}
-    def addLexique(self,name,lexique):
-        self.lexiques[name] = lexique
-        self._lex[name] = set(lexique.keys())
-    def addWords(self,lex,item,txt):
-        txt = txt.replace('\n',' ').replace('.',' ').replace(':',' ').replace(',',' ').replace(';',' ').replace('-',' ').replace('  ',' ').lower().split(' ')
-        words = [ self.lexiques[lex][x] for x in txt if x in self._lex[lex] ]
-        if not item in self.words.keys():
-            self.words[item] = {}
-        if not lex in self.words[item].keys():
-            self.words[item][lex] = {}
-        for w in words:
-            if not w.strip():
-                continue
-            if not w in self.words[item][lex].keys():
-                self.words[item][lex][w] = 1
-            else:
-                self.words[item][lex][w] += 1
-    def getWords(self,lex,item):
-        return self.words[item][lex]
-
-wc = WordCount()
-wc.addLexique('noms',lexiquenoms)
-wc.addLexique('verbs',lexiqueverbs)
 
 
 leg = 15
@@ -56,13 +29,15 @@ def strip_accents(s):
     return ''.join(c for c in unicodedata.normalize('NFD', s)
                   if unicodedata.category(c) != 'Mn')
 def normalize(s):
-    return strip_accents(s).encode('utf8').replace(' ','').replace('-','').replace('\x0a','').replace('\xc5\x93','oe').lower() if s else s
+    return strip_accents(s).replace(u'\xa0','').encode('utf8').replace(' ','').replace('-','').replace('\x0a','').replace('\xc5\x93','oe').decode('utf8').lower() if s else s
 
 def clean_ctx(ctx):
     return [e for e in ctx if e!='']
 
 sessions = {}
 interventions = []
+
+
 class SessionsSpider(scrapy.Spider):
     name = "sessions"
     base_url = 'http://www.assemblee-nationale.fr'
@@ -87,9 +62,14 @@ class SessionsSpider(scrapy.Spider):
 
     def parse_periode(self, response):
         for session in response.xpath('//h1[@class="seance"]/a/@href'):
-            url = response.meta['url'] + session.extract()
-
+            session_id = session.extract()
+            if session_id in exclude:
+                continue
+                
+            url = response.meta['url'] + session_id
             request = scrapy.Request(url=url, callback=self.parse_session)
+            
+            request.meta['session_id'] = session_id
             yield request
             #break
     def parse_session(self, response):
@@ -161,7 +141,7 @@ class SessionsSpider(scrapy.Spider):
 
                 if acteur:
                     ancre = p.xpath('a/@id').extract()[0]
-                    nomnorm = normalize(p.xpath('b/a/text()').extract()[0])
+                    nomnorm = normalize(p.xpath('b/a/text()').extract()[0].replace(' et ','|'))
                     url = acteur.extract()[0]
                     if 'tribun' in url:
                         acteur = 'PA'+url.split('/')[-1].split('.')[0]
@@ -173,20 +153,23 @@ class SessionsSpider(scrapy.Spider):
                     if "La parole est" in texte or u"Quel est l’avis d" in texte:
                         pass
                     else:
-                        wc.addWords('noms',acteur,texte)
-                        wc.addWords('verbs',acteur,texte)
+                        #wc.setWords('noms',acteur,texte)
+                        #wc.setWords('verbs',acteur,texte)
                         idx += 1
                         ctx_idx += 1
                         interventions.append({
-                            'n':idx,
-                            'date':sdate,
-                            'url':response.url+'#'+ancre,
-                            'nom':nomnorm,
-                            'contexte':ctx,
-                            'ctx_idx':ctx_idx,
-                            'acteur':acteur,
-                            'nbmots':len(texte.split(' ')),
-                            'contenu':re.sub(r'<a name=.*\.  ','',p.extract())
+                            'itv_n':idx,
+                            'itv_date':sdate,
+                            'itv_url':response.url+'#'+ancre,
+                            'session_id':response.meta['session_id'],
+                            'itv_id':response.meta['session_id']+str(idx),
+                            'depute_id':nomnorm,
+                            'itv_ctx':ctx,
+                            'itv_ctx_n':ctx_idx,
+                            'depute_uid':acteur,
+                            'itv_nbmots':len(texte.split(' ')),
+                            'itv_contenu_texte':texte,
+                            'itv_contenu':re.sub(r'<a name=.*\.  ','',p.extract())
                         })
 
 process = CrawlerProcess({
@@ -199,13 +182,11 @@ process.start() # the script will block here until the crawling is finished
 #print interventions
 
 import json
-with open('/tmp/mots.json','w') as f:
-    f.write(json.dumps(wc.words))
+#with open(output_path+'/mots.json','w') as f:
+#    f.write(json.dumps({'sessions':sessions_id,'mots':wc.words}))
 
-with open('/tmp/interventions.json','w') as f:
+with open(output_path+'/interventions.json','w') as f:
     f.write(json.dumps(interventions))
 
-
-import json
-with open('/tmp/sessions.json','w') as f:
+with open(output_path+'/sessions.json','w') as f:
     f.write(json.dumps(sessions))

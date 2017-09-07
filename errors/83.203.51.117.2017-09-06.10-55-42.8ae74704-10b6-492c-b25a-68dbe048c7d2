@@ -1,0 +1,423 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.KeyError'> 'id'"
+p3
+sS'layer'
+p4
+S'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py'
+p5
+sS'code'
+p6
+S'<code object <module> at 0x7f6e0c5bf4b0, file "/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py", line 4>'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of exceptions.KeyError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of exceptions.KeyError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of exceptions.KeyError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'message'
+p20
+S"'id'"
+p21
+sS'__sizeof__'
+p22
+S'<built-in method __sizeof__ of exceptions.KeyError object>'
+p23
+sS'__init__'
+p24
+S"<method-wrapper '__init__' of exceptions.KeyError object>"
+p25
+sS'__setattr__'
+p26
+S"<method-wrapper '__setattr__' of exceptions.KeyError object>"
+p27
+sS'__reduce_ex__'
+p28
+S'<built-in method __reduce_ex__ of exceptions.KeyError object>'
+p29
+sS'__new__'
+p30
+S'<built-in method __new__ of type object>'
+p31
+sS'__format__'
+p32
+S'<built-in method __format__ of exceptions.KeyError object>'
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.KeyError'>"
+p35
+sS'__doc__'
+p36
+S"'Mapping key not found.'"
+p37
+sS'__getitem__'
+p38
+S"<method-wrapper '__getitem__' of exceptions.KeyError object>"
+p39
+sS'__setstate__'
+p40
+S'<built-in method __setstate__ of exceptions.KeyError object>'
+p41
+sS'__getattribute__'
+p42
+S"<method-wrapper '__getattribute__' of exceptions.KeyError object>"
+p43
+sS'args'
+p44
+S"('id',)"
+p45
+sS'__subclasshook__'
+p46
+S'<built-in method __subclasshook__ of type object>'
+p47
+sS'__unicode__'
+p48
+S'<built-in method __unicode__ of exceptions.KeyError object>'
+p49
+sS'__delattr__'
+p50
+S"<method-wrapper '__delattr__' of exceptions.KeyError object>"
+p51
+sS'__repr__'
+p52
+S"<method-wrapper '__repr__' of exceptions.KeyError object>"
+p53
+sS'__hash__'
+p54
+S"<method-wrapper '__hash__' of exceptions.KeyError object>"
+p55
+ssS'evalue'
+p56
+S"'id'"
+p57
+sS'request'
+p58
+cgluon.html
+XML_unpickle
+p59
+(S'sbq\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>maintenance</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117-ec5ab064-18ca-475d-9ae1-940e39bb68d9<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_obsas_dev</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117-2d654996-7a94-4e7a-917d-3b57a34e0a7a<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">CONTEXT_DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">CONTEXT_PREFIX</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">GATEWAY_INTERFACE</td><td style="vertical-align:top;">:</td><td><div>CGI/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CACHE_CONTROL</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_obsas_dev=83.203.51.117-2d654996-7a94-4e7a-917d-3b57a34e0a7a; session_id_admin=83.203.51.117-ec5ab064-18ca-475d-9ae1-940e39bb68d9</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>https://admin.obsas.orvdev.fr/admin/edit/obsas_dev/models/appinit.py?id=models__appinit__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_TRANSLATED</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>38479</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_SCHEME</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_URI</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_FILENAME</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_ADDR</td><td style="vertical-align:top;">:</td><td><div>151.80.57.169</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_ADMIN</td><td style="vertical-align:top;">:</td><td><div>[no address given]</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SIGNATURE</td><td style="vertical-align:top;">:</td><td><div>&lt;address&gt;Apache/2.4.18 (Ubuntu) Server at admin.obsas.orvdev.fr Port 443&lt;/address&gt;\n</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Apache/2.4.18 (Ubuntu)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SSL_TLS_SNI</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">apache.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>2</div></td></tr><tr><td><div>4</div></td></tr><tr><td><div>18</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">apache_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>2</div></td></tr><tr><td><div>4</div></td></tr><tr><td><div>18</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/www-data/web2py/applications/obsas_dev/&#x27;, &#x27;/home/www-data/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">context_document_root</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">context_prefix</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">document_root</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gateway_interface</td><td style="vertical-align:top;">:</td><td><div>CGI/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cache_control</td><td style="vertical-align:top;">:</td><td><div>max-age=0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_obsas_dev=83.203.51.117-2d654996-7a94-4e7a-917d-3b57a34e0a7a; session_id_admin=83.203.51.117-ec5ab064-18ca-475d-9ae1-940e39bb68d9</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>https://admin.obsas.orvdev.fr/admin/edit/obsas_dev/models/appinit.py?id=models__appinit__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_py2</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>vps433020</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>151.80.57.169</div></td></tr><tr><td><div>vps433020.ovh.net</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.application_group</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.callable_object</td><td style="vertical-align:top;">:</td><td><div>application</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_connects</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_restarts</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_start</td><td style="vertical-align:top;">:</td><td><div>1504688142879873</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.enable_sendfile</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.handler_script</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.input_chunked</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.listener_host</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.listener_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.process_group</td><td style="vertical-align:top;">:</td><td><div>obsasadm</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.queue_start</td><td style="vertical-align:top;">:</td><td><div>1504688142879761</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.request_handler</td><td style="vertical-align:top;">:</td><td><div>wsgi-script</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.request_start</td><td style="vertical-align:top;">:</td><td><div>1504688142878910</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.script_reloading</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.script_start</td><td style="vertical-align:top;">:</td><td><div>1504688142879902</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>4</div></td></tr><tr><td><div>3</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_application_group</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_callable_object</td><td style="vertical-align:top;">:</td><td><div>application</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_connects</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_restarts</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_start</td><td style="vertical-align:top;">:</td><td><div>1504688142879873</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_enable_sendfile</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_handler_script</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_input_chunked</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_listener_host</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_listener_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_process_group</td><td style="vertical-align:top;">:</td><td><div>obsasadm</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_queue_start</td><td style="vertical-align:top;">:</td><td><div>1504688142879761</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_request_handler</td><td style="vertical-align:top;">:</td><td><div>wsgi-script</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_request_start</td><td style="vertical-align:top;">:</td><td><div>1504688142878910</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_script_reloading</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_script_start</td><td style="vertical-align:top;">:</td><td><div>1504688142879902</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>4</div></td></tr><tr><td><div>3</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">nokeepalive</td><td style="vertical-align:top;">:</td><td><div>ssl-unclean-shutdown</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_translated</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>38479</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_filename</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_addr</td><td style="vertical-align:top;">:</td><td><div>151.80.57.169</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_admin</td><td style="vertical-align:top;">:</td><td><div>[no address given]</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_signature</td><td style="vertical-align:top;">:</td><td><div>&lt;address&gt;Apache/2.4.18 (Ubuntu) Server at admin.obsas.orvdev.fr Port 443&lt;/address&gt;\n</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Apache/2.4.18 (Ubuntu)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">ssl_tls_sni</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_original_uri</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.15.1-stable+timestamp.2017.07.10.21.25.06</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Log object at 0x7f6e2a762198&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;type &#x27;mod_wsgi.FileWrapper&#x27;&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Input object at 0x7f6e0fb5e5f0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Log object at 0x7f6e2a762198&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;type &#x27;mod_wsgi.FileWrapper&#x27;&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Input object at 0x7f6e0fb5e5f0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/applications/obsas_dev/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/www-data/web2py/applications/obsas_dev/&#x27;, &#x27;/home/www-data/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_py2</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>vps433020</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>151.80.57.169</div></td></tr><tr><td><div>vps433020.ovh.net</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.15.1-stable+timestamp.2017.07.10.21.25.06</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2017, 9, 6, 10, 55, 42, 880100)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateSessions</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2017, 9, 6, 8, 55, 42, 880120)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7f6e0fb36e90&gt;</div></td></tr></table></div>'
+tRp60
+sS'frames'
+p61
+(lp62
+(dp63
+S'file'
+p64
+S'/home/www-data/web2py/gluon/restricted.py'
+p65
+sS'dump'
+p66
+(dp67
+S'environment'
+p68
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppCache': <class __restricted__.AppCache>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, ...}"
+p69
+sS'ccode'
+p70
+S'<code object <module> at 0x7f6e0c5bf4b0, file "/...ns/obsas_dev/controllers/maintenance.py", line 4>'
+p71
+ssS'lnum'
+p72
+I219
+sS'lines'
+p73
+(dp74
+I214
+S'    if environment is None:'
+p75
+sI215
+S'        environment = {}'
+p76
+sI216
+S"    environment['__file__'] = layer"
+p77
+sI217
+S"    environment['__name__'] = '__restricted__'"
+p78
+sI218
+S'    try:'
+p79
+sI219
+S'        exec(ccode, environment)'
+p80
+sI220
+S'    except HTTP:'
+p81
+sI221
+S'        raise'
+p82
+sI222
+S'    except RestrictedError:'
+p83
+sI223
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p84
+ssS'call'
+p85
+S'(ccode=<code object <module> at 0x7f6e0c5bf4b0, file "/...ns/obsas_dev/controllers/maintenance.py", line 4>, environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'AppCache\': <class __restricted__.AppCache>, \'AppConfig\': <function AppConfig>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, ...}, layer=\'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py\')'
+p86
+sS'func'
+p87
+S'restricted'
+p88
+sa(dp89
+g64
+S'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py'
+p90
+sg66
+(dp91
+sg72
+I275
+sg73
+(dp92
+I264
+S'    # stockage des votes et des scrutins dans la base'
+p93
+sI265
+S'    if votes:'
+p94
+sI266
+S"        mdb.votes.create_index([('vote_id', pymongo.ASCENDING)], unique = True)"
+p95
+sI267
+S'        #mdb.votes.insert_many(votes)'
+p96
+sI268
+S'        for v in votes:'
+p97
+sI269
+S'            mdb.votes.insert(v)'
+p98
+sI270
+S''
+sI271
+S'    if scrutins:'
+p99
+sI272
+S"        mdb.scrutins.create_index([('scrutin_id', pymongo.ASCENDING)], unique = True)"
+p100
+sI273
+S'        mdb.scrutins.insert_many(scrutins)'
+p101
+ssg85
+S'()'
+p102
+sg87
+S'<module>'
+p103
+sa(dp104
+g64
+S'/home/www-data/web2py/gluon/globals.py'
+p105
+sg66
+(dp106
+S'self'
+p107
+S'undefined'
+p108
+sS'f'
+S'<function updateSessions>'
+p109
+ssg72
+I409
+sg73
+(dp110
+I404
+S"        self.flash = ''            # used by the default view layout"
+p111
+sI405
+S'        self.meta = Storage()      # used by web2py_ajax.html'
+p112
+sI406
+S'        self.menu = []             # used by the default view layout'
+p113
+sI407
+S'        self.files = []            # used by web2py_ajax.html'
+p114
+sI408
+S'        self._vars = None'
+p115
+sI409
+S'        self._caller = lambda f: f()'
+p116
+sI410
+S'        self._view_environment = None'
+p117
+sI411
+S'        self._custom_commit = None'
+p118
+sI412
+S'        self._custom_rollback = None'
+p119
+sI413
+S"        self.generic_patterns = ['*']"
+p120
+ssg85
+S'(f=<function updateSessions>)'
+p121
+sg87
+S'<lambda>'
+p122
+sa(dp123
+g64
+S'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py'
+p124
+sg66
+(dp125
+S'mdb.interventions'
+p126
+S"Collection(Database(MongoClient(host=['localhost...lse, connect=True), u'obsass'), u'interventions')"
+p127
+sS'builtinTrue'
+p128
+S'True'
+p129
+sS'global mdb'
+p130
+S"Database(MongoClient(host=['localhost:27017'], d...s=dict, tz_aware=False, connect=True), u'obsass')"
+p131
+sS'mdb.interventions.update_one'
+p132
+S"<bound method Collection.update_one of Collectio...se, connect=True), u'obsass'), u'interventions')>"
+p133
+sS'itv'
+p134
+S"{u'depute_id': u'm.geralddarmanin', u'depute_uid': u'PA607846', u'its_contenu_texte': u',  .  Monsieur le pr\\xe9sident, monsieur le pr...ire remontrance ou de donner un   aux ministres.', u'itv_contenu': u'<p>Monsieur le pr\\xe9sident, monsieur le pr\\xe...e donner un <i>satisfecit</i> aux ministres.</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Pr\\xe9sentation'], u'itv_ctx_n': 1, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp1', u'itv_n': 1, u'itv_nbmots': 917, ...}"
+p135
+sS'upsert'
+p136
+g108
+ssg72
+I149
+sg73
+(dp137
+I144
+S"    interventions = getJson('interventions')"
+p138
+sI145
+S'    for itv in interventions:'
+p139
+sI146
+S"        nid = deputes.get(itv['depute_id'],None)"
+p140
+sI147
+S"        if nid and nid != itv['depute_uid']:"
+p141
+sI148
+S"            itv['depute_uid'] = nid"
+p142
+sI149
+S"        mdb.interventions.update_one({'id':itv['id']},{'$set':itv}, upsert=True)"
+p143
+sI150
+S''
+sI151
+S''
+sI152
+S'    return'
+p144
+sI153
+S'    #mdb.mots.remove()'
+p145
+ssg85
+S'()'
+p146
+sg87
+S'updateSessions'
+p147
+sasS'pyver'
+p148
+S'Python 2.7.12: /home/www-data/web2py/applications/obsas_dev/.pyenv/bin/python (prefix: /home/www-data/web2py/applications/obsas_dev/.pyenv)'
+p149
+sS'session'
+p150
+g59
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp151
+sS'etype'
+p152
+S"<type 'exceptions.KeyError'>"
+p153
+sS'date'
+p154
+S'Wed Sep  6 10:56:01 2017'
+p155
+sS'response'
+p156
+g59
+(S'so>\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7f6e0c71db20&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_obsas_dev</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117-3e6b7816-ed96-48bc-b3b8-ca5362c2af86<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>bootstrap3_inline</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="navbar-brand" href="http://www.web2py.com/" id="web2py-logo"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Accueil</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/obsas_dev</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mes sites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Cette Appli</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Design</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/design/obsas_dev</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Contr\xc3\xb4leur</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/controllers/maintenance.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/views/maintenance/updateSessions.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mod\xc3\xa8le BD</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Menu mod\xc3\xa8le</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Config.ini</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/private/appconfig.ini</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mise en page</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Feuille de style</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/static/css/web2py-bootstrap3.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>base de donn\xc3\xa9es</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/obsas_dev/appadmin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Erreurs</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/errors/obsas_dev</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>\xc3\x80 propos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/about/obsas_dev</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>T\xc3\xa9l\xc3\xa9chargement</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/download</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Soutien</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/support</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>D\xc3\xa9mo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/demo_admin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Exemples Rapides</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/examples/default/examples</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>FAQ</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/AlterEgo</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Vid\xc3\xa9os</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/videos/</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Applications gratuites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/appliances</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Plugiciels</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/plugins</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2pyslices.com/</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Documentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Online book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9face</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/00</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/01</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Python</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/02</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/03</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Le noyau</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/04</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Les Vues</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/05</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>base de donn\xc3\xa9es</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/06</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Formulaires et Validateurs</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/07</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Courriel et texto</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/08</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Contr\xc3\xb4le d\'acc\xc3\xa8s</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/09</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Services</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/10</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes Ajax</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/11</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Composants et Plugiciels</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/12</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes de d\xc3\xa9ploiement</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/13</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Autres recettes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/14</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Aider web2py</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/15</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Buy web2py\'s book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://stores.lulu.com/web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Communaut\xc3\xa9</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Groupes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/usergroups</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Twitter</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://twitter.com/web2py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Clavardage en direct</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://webchat.freenode.net/?channels=web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">description</td><td style="vertical-align:top;">:</td><td><div>a cool new app</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>web2py</div></td></tr><tr><td><div>python</div></td></tr><tr><td><div>framework</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^maintenance/\\w+\\.py$</div></td></tr><tr><td><div>^maintenance/updateSessions/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/applications/obsas_dev/sessions/83.203.51.117-3e6b7816-ed96-48bc-b3b8-ca5362c2af86</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>c0762cbf4baf7f9af97c051e7fcb8083</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>83.203.51.117-3e6b7816-ed96-48bc-b3b8-ca5362c2af86</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Obsas Dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>maintenance/updateSessions.html</div></td></tr></table></div>'
+tRp157
+sS'locals'
+p158
+(dp159
+S'deputes'
+p160
+S"{u'm.adrienmorenas': u'PA721876', u'm.adrienquatennens': u'PA720422', u'm.adrientaquet': u'PA722086', u'm.alainbruneel': u'PA720546', u'm.alaindavid': u'PA1008', u'm.alainperea': u'PA718802', u'm.alainramadier': u'PA721286', u'm.alaintourret': u'PA2828', u'm.alexandrefreschi': u'PA720030', u'm.alexandreholroyd': u'PA721150', ...}"
+p161
+sS'scrutins'
+p162
+S'[{u\'_id\': ObjectId(\'59af34028e5c9b10fc706579\'), u\'scrutin_date\': u\'12/07/2017\', u\'scrutin_desc\': u"l\'article 3 du projet de loi d\'habilitation \\x...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 30 du 12/07/2017 : l\'article 3 d...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_30\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/30\', u\'scrutin_num\': 30, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70657a\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 148 de M. Lachaud et l\'amen...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 37 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_37\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/37\', u\'scrutin_num\': 37, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70657f\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 385 de M. Dharr\\xe9ville ap...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 47 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_47\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/47\', u\'scrutin_num\': 47, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706567\'), u\'scrutin_date\': u\'26/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 241 de M. Gosselin et l\'ame...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 72 du 26/07/2017 : l\'amendement ...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_72\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/72\', u\'scrutin_num\': 72, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706568\'), u\'scrutin_date\': u\'26/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 169 de M. Bernalicis et l\'a...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 71 du 26/07/2017 : l\'amendement ...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_71\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/71\', u\'scrutin_num\': 71, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706569\'), u\'scrutin_date\': u\'26/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 166 de M. Bernalicis et l\'a...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 70 du 26/07/2017 : l\'amendement ...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_70\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/70\', u\'scrutin_num\': 70, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70656a\'), u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 377 de M. Vigier apr\\xe8s l...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 102 du 28/07/2017 : l\'amendement...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_102\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/102\', u\'scrutin_num\': 102, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70656c\'), u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 223 de M. Aviragnet \\xe0 l\'...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 100 du 28/07/2017 : l\'amendement...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_100\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/100\', u\'scrutin_num\': 100, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70656d\'), u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 259 de Mme Untermaier et le...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 101 du 28/07/2017 : l\'amendement...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_101\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/101\', u\'scrutin_num\': 101, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706572\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 234 de M. Quatennens et les...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 39 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_39\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/39\', u\'scrutin_num\': 39, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706574\'), u\'scrutin_date\': u\'27/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 34 de M. Reitzer \\xe0 l\'art...ublique            (premi\\xe8re lecture).       ", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 79 du 27/07/2017 : l\'amendement ...ublique            (premi\\xe8re lecture).       ", u\'scrutin_id\': u\'15_79\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/79\', u\'scrutin_num\': 79, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706575\'), u\'scrutin_date\': u\'11/07/2017\', u\'scrutin_desc\': u"l\'article premier du projet de loi d\'habilitat...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 14 du 11/07/2017 : l\'article pre...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_14\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/14\', u\'scrutin_num\': 14, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706576\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0215 de M. Quatennens apr\\xe8...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 33 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_33\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/33\', u\'scrutin_num\': 33, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706577\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0327 de M. Dharr\\xe9ville apr...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 32 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_32\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/32\', u\'scrutin_num\': 32, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc706578\'), u\'scrutin_date\': u\'12/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 318 de M. Dharr\\xe9ville ap...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 31 du 12/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_31\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/31\', u\'scrutin_num\': 31, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70657b\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 475 de M. Vallaud apr\\xe8s ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 36 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_36\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/36\', u\'scrutin_num\': 36, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70657c\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 330 de M. Dharr\\xe9ville ap...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 35 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_35\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/35\', u\'scrutin_num\': 35, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70657d\'), u\'scrutin_date\': u\'13/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0335 de M. Dharr\\xe9ville apr...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 34 du 13/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_34\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/34\', u\'scrutin_num\': 34, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70657e\'), u\'scrutin_date\': u\'26/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 601 de M. Furst apr\\xe8s l\'...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 74 du 26/07/2017 : l\'amendement ...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_74\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/74\', u\'scrutin_num\': 74, ...}, {u\'_id\': ObjectId(\'59af34028e5c9b10fc70651c\'), u\'scrutin_date\': u\'12/07/2017\', u\'scrutin_desc\': u"l\'amendement n\\xb0 160 de M. Prud\'homme et les...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLhabilitation_ordonnances_dialogue_social\', u\'scrutin_dossierLibelle\': u\'Travail : mesures pour le renforcement du dialogue social\\n\', u\'scrutin_fulldesc\': u"Scrutin n\\xb0 28 du 12/07/2017 : l\'amendement ...ment du dialogue social (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_28\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/habilitation_ordonnances_dialogue_social.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/28\', u\'scrutin_num\': 28, ...}, ...]'
+p163
+sS'sessions'
+p164
+S"{u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171001.asp': {}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171002.asp': {}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171003.asp': {u'13': u'P983160', u'14': u'P983274', u'15': u'P983301', u'16': u'P983307', u'21': u'P983314', u'24': u'P983320', u'25': u'P983290'}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171004.asp': {u'10': u'P983245', u'11': u'P983399', u'12': u'P983263', u'19': u'P983085', u'2': u'P983184', u'20': u'P983045', u'23': u'P983440', u'3': u'P983069', u'4': u'P983067', u'5': u'P983409', ...}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171005.asp': {}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171006.asp': {u'113': u'P984712', u'120': u'P985152', u'121': u'P985082', u'122': u'P985065', u'123': u'P984513', u'124': u'P984971', u'125': u'P984942', u'126': u'P984963', u'13': u'P984883', u'130': u'P985100', ...}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171007.asp': {u'1': u'P985872', u'109': u'P987075', u'116': u'P986081', u'117': u'P985794', u'118': u'P985880', u'119': u'P985761', u'12': u'P987066', u'128': u'P986167', u'15': u'P986519', u'168': u'P985683', ...}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171008.asp': {u'112': u'P987427', u'114': u'P987411', u'115': u'P987288', u'162': u'P987466', u'163': u'P987134', u'179': u'P987363', u'192': u'P986938', u'240': u'P987685', u'241': u'P987516', u'242': u'P987643', ...}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171009.asp': {u'101': u'P989201', u'102': u'P989400', u'108': u'P989133', u'110': u'P988775', u'147': u'P988211', u'150': u'P988644', u'151': u'P988677', u'153': u'P988783', u'154': u'P989377', u'155': u'P988709', ...}, u'http://www.assemblee-nationale.fr/15/cri/2016-2017-extra/20171010.asp': {u'107': u'P988891', u'127': u'P990088', u'135': u'P990112', u'142': u'P989424', u'146': u'P990048', u'152': u'P989077', u'156': u'P989483', u'158': u'P989436', u'159': u'P989062', u'160': u'P988988', ...}, ...}"
+p165
+sS'interventions'
+p166
+S"[{u'depute_id': u'm.geralddarmanin', u'depute_uid': u'PA607846', u'its_contenu_texte': u',  .  Monsieur le pr\\xe9sident, monsieur le pr...ire remontrance ou de donner un   aux ministres.', u'itv_contenu': u'<p>Monsieur le pr\\xe9sident, monsieur le pr\\xe...e donner un <i>satisfecit</i> aux ministres.</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Pr\\xe9sentation'], u'itv_ctx_n': 1, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp1', u'itv_n': 1, u'itv_nbmots': 917, ...}, {u'depute_id': u'mmecendramotin', u'depute_uid': u'PA719850', u'its_contenu_texte': u'.  Tr\\xe8s bien\\xa0!', u'itv_contenu': u'<p>Tr\\xe8s bien\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Pr\\xe9sentation'], u'itv_ctx_n': 2, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp2', u'itv_n': 2, u'itv_nbmots': 4, ...}, {u'depute_id': u'm.geralddarmanin', u'depute_uid': u'PA607846', u'its_contenu_texte': u',  .  Ainsi sortirons-nous de la conception du...\\xeame des engagements pris en loi de finances. ', u'itv_contenu': u'<p>Ainsi sortirons-nous de la conception du d\\...ur plusieurs bancs du groupe LC</i><i>.)</i></p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Pr\\xe9sentation'], u'itv_ctx_n': 3, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp3', u'itv_n': 3, u'itv_nbmots': 236, ...}, {u'depute_id': u'm.joelgiraud', u'depute_uid': u'PA267336', u'its_contenu_texte': u',  .  Monsieur le pr\\xe9sident, monsieur le mi...anger l\\u2019avenir, difficilement le pass\\xe9. ', u'itv_contenu': u'<p>Monsieur le pr\\xe9sident, monsieur le minis...des groupes REM</i><i> et</i><i> MODEM.)</i></p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Pr\\xe9sentation'], u'itv_ctx_n': 1, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp4', u'itv_n': 4, u'itv_nbmots': 1405, ...}, {u'depute_id': u'm.ericwoerth', u'depute_uid': u'PA2960', u'its_contenu_texte': u',  .  Monsieur le pr\\xe9sident, monsieur le mi...iscussion budg\\xe9taire sinc\\xe8re et efficace. ', u'itv_contenu': u'<p>Monsieur le pr\\xe9sident, monsieur le minis...ues bancs des groupes LC, REM et MODEM.)</i></p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Pr\\xe9sentation'], u'itv_ctx_n': 1, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp5', u'itv_n': 5, u'itv_nbmots': 1445, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  Monsieur le pr\\xe9sident, monsieur le minis...\\xe9n\\xe9ral, qui sera je pense excellent,\\u2026', u'itv_contenu': u'<p>Monsieur le pr\\xe9sident, monsieur le minis...n\\xe9ral, qui sera je pense excellent,\\u2026</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 1, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp6', u'itv_n': 6, u'itv_nbmots': 289, ...}, {u'depute_id': u'mmevalerierabault', u'depute_uid': u'PA609590', u'its_contenu_texte': u'.  Comme tous les rapports de la commission des finances\\xa0!', u'itv_contenu': u'<p>Comme tous les rapports de la commission des finances\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 2, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp7', u'itv_n': 7, u'itv_nbmots': 11, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  \\u2026nous ayons un v\\xe9ritable d\\xe9bat s...ement avait \\xe9t\\xe9 oblig\\xe9 de nous suivre. ', u'itv_contenu': u'<p>\\u2026nous ayons un v\\xe9ritable d\\xe9bat s...r </i><i>les </i><i>bancs du groupe LR.)</i></p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 3, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp8', u'itv_n': 8, u'itv_nbmots': 141, ...}, {u'depute_id': u'mmemariechristinedalloz', u'depute_uid': u'PA332523', u'its_contenu_texte': u'.  \\xc7a, c\\u2019\\xe9tait avant\\xa0!', u'itv_contenu': u'<p>\\xc7a, c\\u2019\\xe9tait avant\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 4, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp9', u'itv_n': 9, u'itv_nbmots': 5, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  Comme vous le voyez, chers coll\\xe8gues qui...s\\xa0! Ce d\\xe9crochage a une explication,\\u2026', u'itv_contenu': u'<p>Comme vous le voyez, chers coll\\xe8gues qui...0! Ce d\\xe9crochage a une explication,\\u2026</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 5, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp10', u'itv_n': 10, u'itv_nbmots': 210, ...}, {u'depute_id': u'm.julienaubert', u'depute_uid': u'PA609726', u'its_contenu_texte': u'.  Hollande\\xa0!', u'itv_contenu': u'<p>Hollande\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 6, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp11', u'itv_n': 11, u'itv_nbmots': 3, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  \\u2026qui figure dans l\\u2019excellent rapp...\\xe9e par la pr\\xe9c\\xe9dente majorit\\xe9,\\u2026', u'itv_contenu': u'<p>\\u2026qui figure dans l\\u2019excellent rapp...e par la pr\\xe9c\\xe9dente majorit\\xe9,\\u2026</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 7, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp12', u'itv_n': 12, u'itv_nbmots': 84, ...}, {u'depute_id': u'mmevalerierabault', u'depute_uid': u'PA609590', u'its_contenu_texte': u'.  Avec un amendement sur les PME\\xa0!', u'itv_contenu': u'<p>Avec un amendement sur les PME\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 8, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp13', u'itv_n': 13, u'itv_nbmots': 8, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  \\u2026est insuffisant pour r\\xe9gler le pro...0 des secteurs prot\\xe9g\\xe9s de la concurrence.', u'itv_contenu': u'<p>\\u2026est insuffisant pour r\\xe9gler le pro...s secteurs prot\\xe9g\\xe9s de la concurrence.</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 9, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp14', u'itv_n': 14, u'itv_nbmots': 77, ...}, {u'depute_id': u'mmemariechristinedalloz', u'depute_uid': u'PA332523', u'its_contenu_texte': u'.  Exactement\\xa0!', u'itv_contenu': u'<p>Exactement\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 10, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp15', u'itv_n': 15, u'itv_nbmots': 3, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  Tout simplement parce que, dans l\\u2019auto...qui nous permettront de redresser la situation. ', u'itv_contenu': u'<p>Tout simplement parce que, dans l\\u2019auto.../i><i>bancs </i><i>du</i><i> groupe LR.)</i></p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 11, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp16', u'itv_n': 16, u'itv_nbmots': 153, ...}, {u'depute_id': u'm.thibaultbazin', u'depute_uid': u'PA642847', u'its_contenu_texte': u'.  C\\u2019est clair\\xa0!', u'itv_contenu': u'<p>C\\u2019est clair\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 12, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp17', u'itv_n': 17, u'itv_nbmots': 4, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  On a un probl\\xe8me de charges et de comp\\x... pr\\xe9vision. C\\u2019est tr\\xe8s inqui\\xe9tant.', u'itv_contenu': u'<p>On a un probl\\xe8me de charges et de comp\\x...xe9vision. C\\u2019est tr\\xe8s inqui\\xe9tant.</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 13, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp18', u'itv_n': 18, u'itv_nbmots': 212, ...}, {u'depute_id': u'mmemariechristinedalloz', u'depute_uid': u'PA332523', u'its_contenu_texte': u'.  Regardez l\\u2019imp\\xf4t sur les soci\\xe9t\\xe9s\\xa0!', u'itv_contenu': u'<p>Regardez l\\u2019imp\\xf4t sur les soci\\xe9t\\xe9s\\xa0!</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 14, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp19', u'itv_n': 19, u'itv_nbmots': 7, ...}, {u'depute_id': u'm.gillescarrez', u'depute_uid': u'PA746', u'its_contenu_texte': u'.  Vous avez raison, madame Dalloz, de pointer...bl\\xe8me du niveau de marges de nos entreprises.', u'itv_contenu': u'<p>Vous avez raison, madame Dalloz, de pointer...e8me du niveau de marges de nos entreprises.</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Motion de renvoi en commission'], u'itv_ctx_n': 15, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp20', u'itv_n': 20, u'itv_nbmots': 41, ...}, ...]"
+p167
+sS'cptrd'
+p168
+S"u'http://www.assemblee-nationale.fr/15/cri/2016-2017/20170127.asp'"
+p169
+sS'nid'
+p170
+S'None'
+p171
+sS's'
+S'{u\'_id\': ObjectId(\'59af34028e5c9b10fc70652b\'), u\'scrutin_date\': u\'28/07/2017\', u\'scrutin_desc\': u"l\'article 9 du projet de loi organique pour la...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_dossier\': u\'S-LEGANR5L15DLretablissement_confiance_action_publique\', u\'scrutin_dossierLibelle\': u"Pouvoirs publics : confiance dans l\'action publique\\n", u\'scrutin_fulldesc\': u"Scrutin n\\xb0 94 du 28/07/2017 : l\'article 9 d...ce dans la vie publique (premi\\xe8re lecture). [", u\'scrutin_id\': u\'15_94\', u\'scrutin_liendossier\': u\'http://www.assemblee-nationale.fr/15/dossiers/retablissement_confiance_action_publique.asp\', u\'scrutin_lienscrutin\': u\'/scrutins/detail/(legislature)/15/(num)/94\', u\'scrutin_num\': 94, ...}'
+p172
+sS'lexique_path'
+p173
+S"'/home/www-data/web2py/applications/obsas_dev/private/lexiques.json'"
+p174
+sS'itv'
+p175
+S"{u'depute_id': u'm.geralddarmanin', u'depute_uid': u'PA607846', u'its_contenu_texte': u',  .  Monsieur le pr\\xe9sident, monsieur le pr...ire remontrance ou de donner un   aux ministres.', u'itv_contenu': u'<p>Monsieur le pr\\xe9sident, monsieur le pr\\xe...e donner un <i>satisfecit</i> aux ministres.</p>', u'itv_ctx': [u'Premi\\xe8re s\\xe9ance du mardi 18 juillet 2017', u'1. R\\xe8glement du budget et approbation des comptes de l\\u2019ann\\xe9e 2016', u'Pr\\xe9sentation'], u'itv_ctx_n': 1, u'itv_date': u'2017-07-18', u'itv_id': u'20171013.asp1', u'itv_n': 1, u'itv_nbmots': 917, ...}"
+p176
+sS'exclude'
+p177
+S'[]'
+p178
+sS'bal'
+p179
+S"u'P988709'"
+p180
+sS'balises'
+p181
+S"{u'101': u'P989201', u'102': u'P989400', u'108': u'P989133', u'110': u'P988775', u'147': u'P988211', u'150': u'P988644', u'151': u'P988677', u'153': u'P988783', u'154': u'P989377', u'155': u'P988709', ...}"
+p182
+sssS'traceback'
+p183
+S'Traceback (most recent call last):\n  File "/home/www-data/web2py/gluon/restricted.py", line 219, in restricted\n    exec(ccode, environment)\n  File "/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py", line 275, in <module>\n  File "/home/www-data/web2py/gluon/globals.py", line 409, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py", line 149, in updateSessions\n    mdb.interventions.update_one({\'id\':itv[\'id\']},{\'$set\':itv}, upsert=True)\nKeyError: \'id\'\n'
+p184
+s.

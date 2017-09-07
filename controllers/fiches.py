@@ -2,6 +2,7 @@
 # essayez quelque chose comme
 # TODO : page député les scrutins avec votes identiques FI/EM doivent apparaitre de la couleur du groupe du député si EM/FI
 
+
 def gauges():
     return dict()
 
@@ -11,7 +12,11 @@ def index():
 import json
 
 def test():
-    return json.dumps(mdb.acteurs.find_one({'uid':'PA2150'})['rankings'])
+  
+   
+    act = mdb.acteurs.find_one({'uid':'PA2150'})
+    del act['_id']
+    return json.dumps(act,sort_keys=True, indent=4, separators=(',', ': '))
     return json.dumps(mdb.acteurs.find_one({'$and':[ {'deputywatch':{'$ne':None}},{'hatvp':{'$ne':[]}}]})['rankings'])
 def scrutin():
     vpositions = ['pour','contre','abstention']

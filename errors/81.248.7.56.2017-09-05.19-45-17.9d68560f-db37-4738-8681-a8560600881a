@@ -1,0 +1,620 @@
+(dp1
+S'output'
+p2
+S"<class 'pymongo.errors.BulkWriteError'> batch op errors occurred"
+p3
+sS'layer'
+p4
+S'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py'
+p5
+sS'code'
+p6
+S'<code object <module> at 0x7f6e0f221f30, file "/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py", line 4>'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__module__'
+p12
+S"'pymongo.errors'"
+p13
+sg6
+S'65'
+p14
+sS'__getslice__'
+p15
+S"<method-wrapper '__getslice__' of BulkWriteError object>"
+p16
+sS'__str__'
+p17
+S"<method-wrapper '__str__' of BulkWriteError object>"
+p18
+sS'__reduce__'
+p19
+S'<built-in method __reduce__ of BulkWriteError object>'
+p20
+sS'__dict__'
+p21
+S'{\'_OperationFailure__code\': 65, \'_OperationFailure__details\': {\'nInserted\': 0, \'nMatched\': 0, \'nModified\': 0, \'nRemoved\': 0, \'nUpserted\': 0, \'upserted\': [], \'writeConcernErrors\': [], \'writeErrors\': [{u\'code\': 11000, u\'errmsg\': u\'insertDocument :: caused by :: 11000 E11000 du...tes.$vote_id_1  dup key: { : "34_mmemaudpetit" }\', u\'index\': 0, u\'op\': {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4383\'), \'depute_age\': 45, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Val-de-Marne\', \'depute_nom\': u\'Mme Maud Petit\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721234\', ...}}]}}'
+p22
+sS'__sizeof__'
+p23
+S'<built-in method __sizeof__ of BulkWriteError object>'
+p24
+sS'__weakref__'
+p25
+S'None'
+p26
+sS'message'
+p27
+S"'batch op errors occurred'"
+p28
+sS'__init__'
+p29
+S"<bound method BulkWriteError.__init__ of BulkWriteError('batch op errors occurred',)>"
+p30
+sS'__setattr__'
+p31
+S"<method-wrapper '__setattr__' of BulkWriteError object>"
+p32
+sS'__reduce_ex__'
+p33
+S'<built-in method __reduce_ex__ of BulkWriteError object>'
+p34
+sS'__new__'
+p35
+S'<built-in method __new__ of type object>'
+p36
+sS'__format__'
+p37
+S'<built-in method __format__ of BulkWriteError object>'
+p38
+sS'__class__'
+p39
+S"<class 'pymongo.errors.BulkWriteError'>"
+p40
+sS'details'
+p41
+S'{\'nInserted\': 0, \'nMatched\': 0, \'nModified\': 0, \'nRemoved\': 0, \'nUpserted\': 0, \'upserted\': [], \'writeConcernErrors\': [], \'writeErrors\': [{u\'code\': 11000, u\'errmsg\': u\'insertDocument :: caused by :: 11000 E11000 du...tes.$vote_id_1  dup key: { : "34_mmemaudpetit" }\', u\'index\': 0, u\'op\': {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4383\'), \'depute_age\': 45, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Val-de-Marne\', \'depute_nom\': u\'Mme Maud Petit\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721234\', ...}}]}'
+p42
+sS'__doc__'
+p43
+S"'Exception class for bulk write errors.\\n\\n    .. versionadded:: 2.7\\n    '"
+p44
+sS'__getitem__'
+p45
+S"<method-wrapper '__getitem__' of BulkWriteError object>"
+p46
+sS'__setstate__'
+p47
+S'<built-in method __setstate__ of BulkWriteError object>'
+p48
+sS'__getattribute__'
+p49
+S"<method-wrapper '__getattribute__' of BulkWriteError object>"
+p50
+sS'args'
+p51
+S"('batch op errors occurred',)"
+p52
+sS'_OperationFailure__details'
+p53
+S'{\'nInserted\': 0, \'nMatched\': 0, \'nModified\': 0, \'nRemoved\': 0, \'nUpserted\': 0, \'upserted\': [], \'writeConcernErrors\': [], \'writeErrors\': [{u\'code\': 11000, u\'errmsg\': u\'insertDocument :: caused by :: 11000 E11000 du...tes.$vote_id_1  dup key: { : "34_mmemaudpetit" }\', u\'index\': 0, u\'op\': {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4383\'), \'depute_age\': 45, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Val-de-Marne\', \'depute_nom\': u\'Mme Maud Petit\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721234\', ...}}]}'
+p54
+sS'__subclasshook__'
+p55
+S'<built-in method __subclasshook__ of type object>'
+p56
+sS'_OperationFailure__code'
+p57
+S'65'
+p58
+sS'__unicode__'
+p59
+S'<built-in method __unicode__ of BulkWriteError object>'
+p60
+sS'__delattr__'
+p61
+S"<method-wrapper '__delattr__' of BulkWriteError object>"
+p62
+sS'__repr__'
+p63
+S"<method-wrapper '__repr__' of BulkWriteError object>"
+p64
+sS'__hash__'
+p65
+S"<method-wrapper '__hash__' of BulkWriteError object>"
+p66
+ssS'evalue'
+p67
+S'batch op errors occurred'
+p68
+sS'request'
+p69
+cgluon.html
+XML_unpickle
+p70
+(S's\x1bp\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>maintenance</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56-6d85d832-97ae-4c34-8b6b-97bfefba9401<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_obsas_dev</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56-32f8fc3e-3c8f-4e8c-80fc-2de41e2bbb0a<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">CONTEXT_DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">CONTEXT_PREFIX</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">GATEWAY_INTERFACE</td><td style="vertical-align:top;">:</td><td><div>CGI/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=81.248.7.56-6d85d832-97ae-4c34-8b6b-97bfefba9401; session_id_obsas_dev=81.248.7.56-32f8fc3e-3c8f-4e8c-80fc-2de41e2bbb0a</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>https://admin.obsas.orvdev.fr/admin/edit/obsas_dev/controllers/maintenance.py?id=controllers__maintenance__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/58.0.3029.110 Chrome/58.0.3029.110 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_TRANSLATED</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>11767</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_SCHEME</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_URI</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_FILENAME</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_ADDR</td><td style="vertical-align:top;">:</td><td><div>151.80.57.169</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_ADMIN</td><td style="vertical-align:top;">:</td><td><div>[no address given]</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SIGNATURE</td><td style="vertical-align:top;">:</td><td><div>&lt;address&gt;Apache/2.4.18 (Ubuntu) Server at admin.obsas.orvdev.fr Port 443&lt;/address&gt;\n</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_SOFTWARE</td><td style="vertical-align:top;">:</td><td><div>Apache/2.4.18 (Ubuntu)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SSL_TLS_SNI</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">apache.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>2</div></td></tr><tr><td><div>4</div></td></tr><tr><td><div>18</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">apache_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>2</div></td></tr><tr><td><div>4</div></td></tr><tr><td><div>18</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/www-data/web2py/applications/obsas_dev/&#x27;, &#x27;/home/www-data/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">context_document_root</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">context_prefix</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">document_root</td><td style="vertical-align:top;">:</td><td><div>/var/www/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gateway_interface</td><td style="vertical-align:top;">:</td><td><div>CGI/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>fr-FR,fr;q=0.8,en-US;q=0.6,en;q=0.4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>session_id_admin=81.248.7.56-6d85d832-97ae-4c34-8b6b-97bfefba9401; session_id_obsas_dev=81.248.7.56-32f8fc3e-3c8f-4e8c-80fc-2de41e2bbb0a</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>https://admin.obsas.orvdev.fr/admin/edit/obsas_dev/controllers/maintenance.py?id=controllers__maintenance__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/58.0.3029.110 Chrome/58.0.3029.110 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_py2</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>vps433020</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>151.80.57.169</div></td></tr><tr><td><div>vps433020.ovh.net</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.application_group</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.callable_object</td><td style="vertical-align:top;">:</td><td><div>application</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_connects</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_restarts</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.daemon_start</td><td style="vertical-align:top;">:</td><td><div>1504633517963799</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.enable_sendfile</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.handler_script</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.input_chunked</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.listener_host</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.listener_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.process_group</td><td style="vertical-align:top;">:</td><td><div>obsasadm</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.queue_start</td><td style="vertical-align:top;">:</td><td><div>1504633517963651</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.request_handler</td><td style="vertical-align:top;">:</td><td><div>wsgi-script</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.request_start</td><td style="vertical-align:top;">:</td><td><div>1504633517962933</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.script_reloading</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.script_start</td><td style="vertical-align:top;">:</td><td><div>1504633517963841</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>4</div></td></tr><tr><td><div>3</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_application_group</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_callable_object</td><td style="vertical-align:top;">:</td><td><div>application</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_connects</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_restarts</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_daemon_start</td><td style="vertical-align:top;">:</td><td><div>1504633517963799</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_enable_sendfile</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_handler_script</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_input_chunked</td><td style="vertical-align:top;">:</td><td><div>0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_listener_host</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_listener_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_process_group</td><td style="vertical-align:top;">:</td><td><div>obsasadm</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_queue_start</td><td style="vertical-align:top;">:</td><td><div>1504633517963651</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_request_handler</td><td style="vertical-align:top;">:</td><td><div>wsgi-script</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_request_start</td><td style="vertical-align:top;">:</td><td><div>1504633517962933</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_script_reloading</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_script_start</td><td style="vertical-align:top;">:</td><td><div>1504633517963841</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">mod_wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>4</div></td></tr><tr><td><div>3</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">nokeepalive</td><td style="vertical-align:top;">:</td><td><div>ssl-unclean-shutdown</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_translated</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>11767</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_filename</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/wsgihandler.py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_addr</td><td style="vertical-align:top;">:</td><td><div>151.80.57.169</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_admin</td><td style="vertical-align:top;">:</td><td><div>[no address given]</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_signature</td><td style="vertical-align:top;">:</td><td><div>&lt;address&gt;Apache/2.4.18 (Ubuntu) Server at admin.obsas.orvdev.fr Port 443&lt;/address&gt;\n</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_software</td><td style="vertical-align:top;">:</td><td><div>Apache/2.4.18 (Ubuntu)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">ssl_tls_sni</td><td style="vertical-align:top;">:</td><td><div>admin.obsas.orvdev.fr</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_original_uri</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.15.1-stable+timestamp.2017.07.10.21.25.06</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Log object at 0x7f6e0c1fc348&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;type &#x27;mod_wsgi.FileWrapper&#x27;&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Input object at 0x7f6e04d052f0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Log object at 0x7f6e0c1fc348&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;type &#x27;mod_wsgi.FileWrapper&#x27;&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;mod_wsgi.Input object at 0x7f6e04d052f0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/applications/obsas_dev/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/www-data/web2py/applications/obsas_dev/&#x27;, &#x27;/home/www-data/web2py/applications/admin/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_py2</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>vps433020</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>151.80.57.169</div></td></tr><tr><td><div>vps433020.ovh.net</div></td></tr><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.15.1-stable+timestamp.2017.07.10.21.25.06</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2017, 9, 5, 19, 45, 17, 964052)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/obsas_dev/maintenance/updateScrutins</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2017, 9, 5, 17, 45, 17, 964072)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7f6e0d10e950&gt;</div></td></tr></table></div>'
+tRp71
+sS'frames'
+p72
+(lp73
+(dp74
+S'file'
+p75
+S'/home/www-data/web2py/gluon/restricted.py'
+p76
+sS'dump'
+p77
+(dp78
+S'environment'
+p79
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'AppCache': <class __restricted__.AppCache>, 'AppConfig': <function AppConfig>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, ...}"
+p80
+sS'ccode'
+p81
+S'<code object <module> at 0x7f6e0f221f30, file "/...ns/obsas_dev/controllers/maintenance.py", line 4>'
+p82
+ssS'lnum'
+p83
+I219
+sS'lines'
+p84
+(dp85
+I214
+S'    if environment is None:'
+p86
+sI215
+S'        environment = {}'
+p87
+sI216
+S"    environment['__file__'] = layer"
+p88
+sI217
+S"    environment['__name__'] = '__restricted__'"
+p89
+sI218
+S'    try:'
+p90
+sI219
+S'        exec(ccode, environment)'
+p91
+sI220
+S'    except HTTP:'
+p92
+sI221
+S'        raise'
+p93
+sI222
+S'    except RestrictedError:'
+p94
+sI223
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p95
+ssS'call'
+p96
+S'(ccode=<code object <module> at 0x7f6e0f221f30, file "/...ns/obsas_dev/controllers/maintenance.py", line 4>, environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'AppCache\': <class __restricted__.AppCache>, \'AppConfig\': <function AppConfig>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, ...}, layer=\'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py\')'
+p97
+sS'func'
+p98
+S'restricted'
+p99
+sa(dp100
+g75
+S'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py'
+p101
+sg77
+(dp102
+sg83
+I207
+sg84
+(dp103
+I196
+S'    # stockage des votes et des scrutins dans la base'
+p104
+sI197
+S'    if votes:'
+p105
+sI198
+S"        mdb.votes.create_index([('vote_id', pymongo.ASCENDING)], unique = True)"
+p106
+sI199
+S'        mdb.votes.insert_many(votes)'
+p107
+sI200
+S'        #for v in votes:'
+p108
+sI201
+S'        #    mdb.votes.insert(v)'
+p109
+sI202
+S''
+sI203
+S'    if scrutins:'
+p110
+sI204
+S"        mdb.scrutins.create_index([('scrutin_id', pymongo.ASCENDING)], unique = True)"
+p111
+sI205
+S'        mdb.scrutins.insert_many(scrutins)'
+p112
+ssg96
+S'()'
+p113
+sg98
+S'<module>'
+p114
+sa(dp115
+g75
+S'/home/www-data/web2py/gluon/globals.py'
+p116
+sg77
+(dp117
+S'self'
+p118
+S'undefined'
+p119
+sS'f'
+S'<function updateScrutins>'
+p120
+ssg83
+I409
+sg84
+(dp121
+I404
+S"        self.flash = ''            # used by the default view layout"
+p122
+sI405
+S'        self.meta = Storage()      # used by web2py_ajax.html'
+p123
+sI406
+S'        self.menu = []             # used by the default view layout'
+p124
+sI407
+S'        self.files = []            # used by web2py_ajax.html'
+p125
+sI408
+S'        self._vars = None'
+p126
+sI409
+S'        self._caller = lambda f: f()'
+p127
+sI410
+S'        self._view_environment = None'
+p128
+sI411
+S'        self._custom_commit = None'
+p129
+sI412
+S'        self._custom_rollback = None'
+p130
+sI413
+S"        self.generic_patterns = ['*']"
+p131
+ssg96
+S'(f=<function updateScrutins>)'
+p132
+sg98
+S'<lambda>'
+p133
+sa(dp134
+g75
+S'/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py'
+p135
+sg77
+(dp136
+S'mdb.votes.insert_many'
+p137
+S"<bound method Collection.insert_many of Collecti...ware=False, connect=True), u'obsass'), u'votes')>"
+p138
+sS'global mdb'
+p139
+S"Database(MongoClient(host=['localhost:27017'], d...s=dict, tz_aware=False, connect=True), u'obsass')"
+p140
+sS'votes'
+p141
+S'[{\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4383\'), \'depute_age\': 45, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Val-de-Marne\', \'depute_nom\': u\'Mme Maud Petit\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721234\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4384\'), \'depute_age\': 53, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Agriculteurs exploitants\', \'depute_departement\': u\'Charente-Maritime\', \'depute_nom\': u\'M. Jean-Philippe Ardouin\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719100\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4385\'), \'depute_age\': 28, \'depute_classeage\': u\'20-30 ans\', \'depute_csp\': u\'Retrait\\xe9s\', \'depute_departement\': u\'Hauts-de-Seine\', \'depute_nom\': u\'M. Gabriel Attal\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722190\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4386\'), \'depute_age\': 47, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Alpes-de-Haute-Provence\', \'depute_nom\': u\'Mme Delphine Bagarry\', \'depute_region\': u"Provence-Alpes-C\\xf4te d\'Azur", \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA718744\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4387\'), \'depute_age\': 40, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Seine-Maritime\', \'depute_nom\': u\'M. Xavier Batut\', \'depute_region\': u\'Normandie\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721522\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4388\'), \'depute_age\': 58, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Pas-de-Calais\', \'depute_nom\': u\'Mme Brigitte Bourguignon\', \'depute_region\': u\'Hauts-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA608083\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4389\'), \'depute_age\': 51, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Autres (y compris inconnu et sans profession d\\xe9clar\\xe9e)\', \'depute_departement\': u\'Hautes-Alpes\', \'depute_nom\': u\'Mme Pascale Boyer\', \'depute_region\': u"Provence-Alpes-C\\xf4te d\'Azur", \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA718710\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438a\'), \'depute_age\': 43, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Vend\\xe9e\', \'depute_nom\': u\'M. St\\xe9phane Buchou\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722000\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438b\'), \'depute_age\': 59, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u"Artisans, commer\\xe7ants et chefs d\'entreprise", \'depute_departement\': u\'Haute-Garonne\', \'depute_nom\': u\'M. Pierre Cabar\\xe9\', \'depute_region\': u\'Occitanie\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719496\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438c\'), \'depute_age\': 38, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u"Artisans, commer\\xe7ants et chefs d\'entreprise", \'depute_departement\': u\'Hauts-de-Seine\', \'depute_nom\': u\'Mme C\\xe9line Calvez\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721750\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438d\'), \'depute_age\': 56, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Seine-Saint-Denis\', \'depute_nom\': u\'Mme Sylvie Charri\\xe8re\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721218\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438e\'), \'depute_age\': 32, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u\'Employ\\xe9s\', \'depute_departement\': u\'Doubs\', \'depute_nom\': u\'Mme Fannette Charvier\', \'depute_region\': u\'Bourgogne-Franche-Comt\\xe9\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719170\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438f\'), \'depute_age\': 31, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Deux-S\\xe8vres\', \'depute_nom\': u\'M. Guillaume Chiche\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722126\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4390\'), \'depute_age\': 53, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Dr\\xf4me\', \'depute_nom\': u\'Mme Mireille Clapot\', \'depute_region\': u\'Auvergne-Rh\\xf4ne-Alpes\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719294\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4391\'), \'depute_age\': 54, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Gironde\', \'depute_nom\': u\'Mme Dominique David\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719710\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4392\'), \'depute_age\': 38, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u"Artisans, commer\\xe7ants et chefs d\'entreprise", \'depute_departement\': u\'Sa\\xf4ne-et-Loire\', \'depute_nom\': u\'M. Benjamin Dirx\', \'depute_region\': u\'Bourgogne-Franche-Comt\\xe9\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722382\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4393\'), \'depute_age\': 60, \'depute_classeage\': u\'60-70 ans\', \'depute_csp\': u\'Retrait\\xe9s\', \'depute_departement\': u\'Dordogne\', \'depute_nom\': u\'Mme Jacqueline Dubois\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719162\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4394\'), \'depute_age\': 65, \'depute_classeage\': u\'60-70 ans\', \'depute_csp\': u\'Retrait\\xe9s\', \'depute_departement\': u\'Maine-et-Loire\', \'depute_nom\': u\'Mme Nicole Dubre-Chirat\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA720154\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4395\'), \'depute_age\': 37, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Loire-Atlantique\', \'depute_nom\': u\'Mme Audrey Dufeu Schubert\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA720046\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4396\'), \'depute_age\': 43, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Maine-et-Loire\', \'depute_nom\': u\'Mme Stella Dupont\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA643175\', ...}, ...]'
+p142
+sS'mdb.votes'
+p143
+S"Collection(Database(MongoClient(host=['localhost...aware=False, connect=True), u'obsass'), u'votes')"
+p144
+ssg83
+I199
+sg84
+(dp145
+I194
+S"    mdb.scrutins.remove({'scrutin_id':{'$in':scrutins_incomplets}})"
+p146
+sI195
+S''
+sI196
+S'    # stockage des votes et des scrutins dans la base'
+p147
+sI197
+S'    if votes:'
+p148
+sI198
+S"        mdb.votes.create_index([('vote_id', pymongo.ASCENDING)], unique = True)"
+p149
+sI199
+S'        mdb.votes.insert_many(votes)'
+p150
+sI200
+S'        #for v in votes:'
+p151
+sI201
+S'        #    mdb.votes.insert(v)'
+p152
+sI202
+S''
+sI203
+S'    if scrutins:'
+p153
+ssg96
+S'()'
+p154
+sg98
+S'updateScrutins'
+p155
+sa(dp156
+g75
+S'/home/www-data/web2py/applications/obsas_dev/.pyenv/local/lib/python2.7/site-packages/pymongo/collection.py'
+p157
+sg77
+(dp158
+S'blk.execute'
+p159
+S'<bound method _Bulk.execute of <pymongo.bulk._Bulk object>>'
+p160
+sS'self'
+p161
+S"Collection(Database(MongoClient(host=['localhost...aware=False, connect=True), u'obsass'), u'votes')"
+p162
+sS'self.write_concern.document'
+p163
+S'{}'
+p164
+sS'self.write_concern'
+p165
+S'WriteConcern()'
+p166
+sS'blk'
+p167
+S'<pymongo.bulk._Bulk object>'
+p168
+ssg83
+I711
+sg84
+(dp169
+I706
+S'                    inserted_ids.append(document["_id"])'
+p170
+sI707
+S'                yield (message._INSERT, document)'
+p171
+sI708
+S''
+sI709
+S'        blk = _Bulk(self, ordered, bypass_document_validation)'
+p172
+sI710
+S'        blk.ops = [doc for doc in gen()]'
+p173
+sI711
+S'        blk.execute(self.write_concern.document)'
+p174
+sI712
+S'        return InsertManyResult(inserted_ids, self.write_concern.acknowledged)'
+p175
+sI713
+S''
+sI714
+S'    def _update(self, sock_info, criteria, document, upsert=False,'
+p176
+sI715
+S'                check_keys=True, multi=False, manipulate=False,'
+p177
+ssg96
+S'(self=Collection(Database(MongoClient(host=[\'localhost...aware=False, connect=True), u\'obsass\'), u\'votes\'), documents=[{\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4383\'), \'depute_age\': 45, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Val-de-Marne\', \'depute_nom\': u\'Mme Maud Petit\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721234\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4384\'), \'depute_age\': 53, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Agriculteurs exploitants\', \'depute_departement\': u\'Charente-Maritime\', \'depute_nom\': u\'M. Jean-Philippe Ardouin\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719100\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4385\'), \'depute_age\': 28, \'depute_classeage\': u\'20-30 ans\', \'depute_csp\': u\'Retrait\\xe9s\', \'depute_departement\': u\'Hauts-de-Seine\', \'depute_nom\': u\'M. Gabriel Attal\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722190\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4386\'), \'depute_age\': 47, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Alpes-de-Haute-Provence\', \'depute_nom\': u\'Mme Delphine Bagarry\', \'depute_region\': u"Provence-Alpes-C\\xf4te d\'Azur", \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA718744\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4387\'), \'depute_age\': 40, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Seine-Maritime\', \'depute_nom\': u\'M. Xavier Batut\', \'depute_region\': u\'Normandie\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721522\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4388\'), \'depute_age\': 58, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Pas-de-Calais\', \'depute_nom\': u\'Mme Brigitte Bourguignon\', \'depute_region\': u\'Hauts-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA608083\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4389\'), \'depute_age\': 51, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Autres (y compris inconnu et sans profession d\\xe9clar\\xe9e)\', \'depute_departement\': u\'Hautes-Alpes\', \'depute_nom\': u\'Mme Pascale Boyer\', \'depute_region\': u"Provence-Alpes-C\\xf4te d\'Azur", \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA718710\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438a\'), \'depute_age\': 43, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Vend\\xe9e\', \'depute_nom\': u\'M. St\\xe9phane Buchou\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722000\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438b\'), \'depute_age\': 59, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u"Artisans, commer\\xe7ants et chefs d\'entreprise", \'depute_departement\': u\'Haute-Garonne\', \'depute_nom\': u\'M. Pierre Cabar\\xe9\', \'depute_region\': u\'Occitanie\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719496\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438c\'), \'depute_age\': 38, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u"Artisans, commer\\xe7ants et chefs d\'entreprise", \'depute_departement\': u\'Hauts-de-Seine\', \'depute_nom\': u\'Mme C\\xe9line Calvez\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721750\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438d\'), \'depute_age\': 56, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Seine-Saint-Denis\', \'depute_nom\': u\'Mme Sylvie Charri\\xe8re\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721218\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438e\'), \'depute_age\': 32, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u\'Employ\\xe9s\', \'depute_departement\': u\'Doubs\', \'depute_nom\': u\'Mme Fannette Charvier\', \'depute_region\': u\'Bourgogne-Franche-Comt\\xe9\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719170\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e438f\'), \'depute_age\': 31, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Deux-S\\xe8vres\', \'depute_nom\': u\'M. Guillaume Chiche\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722126\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4390\'), \'depute_age\': 53, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Dr\\xf4me\', \'depute_nom\': u\'Mme Mireille Clapot\', \'depute_region\': u\'Auvergne-Rh\\xf4ne-Alpes\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719294\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4391\'), \'depute_age\': 54, \'depute_classeage\': u\'50-60 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Gironde\', \'depute_nom\': u\'Mme Dominique David\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719710\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4392\'), \'depute_age\': 38, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u"Artisans, commer\\xe7ants et chefs d\'entreprise", \'depute_departement\': u\'Sa\\xf4ne-et-Loire\', \'depute_nom\': u\'M. Benjamin Dirx\', \'depute_region\': u\'Bourgogne-Franche-Comt\\xe9\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA722382\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4393\'), \'depute_age\': 60, \'depute_classeage\': u\'60-70 ans\', \'depute_csp\': u\'Retrait\\xe9s\', \'depute_departement\': u\'Dordogne\', \'depute_nom\': u\'Mme Jacqueline Dubois\', \'depute_region\': u\'Nouvelle-Aquitaine\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA719162\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4394\'), \'depute_age\': 65, \'depute_classeage\': u\'60-70 ans\', \'depute_csp\': u\'Retrait\\xe9s\', \'depute_departement\': u\'Maine-et-Loire\', \'depute_nom\': u\'Mme Nicole Dubre-Chirat\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA720154\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4395\'), \'depute_age\': 37, \'depute_classeage\': u\'30-40 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Loire-Atlantique\', \'depute_nom\': u\'Mme Audrey Dufeu Schubert\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA720046\', ...}, {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4396\'), \'depute_age\': 43, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Cadres et professions intellectuelles sup\\xe9rieures\', \'depute_departement\': u\'Maine-et-Loire\', \'depute_nom\': u\'Mme Stella Dupont\', \'depute_region\': u\'Pays de la Loire\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA643175\', ...}, ...], ordered=True, bypass_document_validation=False)'
+p178
+sg98
+S'insert_many'
+p179
+sa(dp180
+g75
+S'/home/www-data/web2py/applications/obsas_dev/.pyenv/local/lib/python2.7/site-packages/pymongo/bulk.py'
+p181
+sg77
+(dp182
+S'self'
+p183
+S'<pymongo.bulk._Bulk object>'
+p184
+sS'self.execute_command'
+p185
+S'<bound method _Bulk.execute_command of <pymongo.bulk._Bulk object>>'
+p186
+sS'generator'
+p187
+S'<generator object gen_ordered>'
+p188
+sS'sock_info'
+p189
+S'SocketInfo(<socket._socketobject object at 0x7f6e0fdfade0>) at 140111250342224'
+p190
+sS'write_concern'
+p191
+S'WriteConcern()'
+p192
+ssg83
+I493
+sg84
+(dp193
+I488
+S'                if self.uses_collation:'
+p194
+sI489
+S'                    raise ConfigurationError('
+p195
+sI490
+S"                        'Collation is unsupported for unacknowledged writes.')"
+p196
+sI491
+S'                self.execute_no_results(sock_info, generator)'
+p197
+sI492
+S'            elif sock_info.max_wire_version > 1:'
+p198
+sI493
+S'                return self.execute_command(sock_info, generator, write_concern)'
+p199
+sI494
+S'            else:'
+p200
+sI495
+S'                return self.execute_legacy(sock_info, generator, write_concern)'
+p201
+sI496
+S''
+sI497
+S''
+ssg96
+S'(self=<pymongo.bulk._Bulk object>, write_concern=WriteConcern())'
+p202
+sg98
+S'execute'
+p203
+sa(dp204
+g75
+S'/home/www-data/web2py/applications/obsas_dev/.pyenv/local/lib/python2.7/site-packages/pymongo/bulk.py'
+p205
+sg77
+(dp206
+S'global BulkWriteError'
+p207
+S"<class 'pymongo.errors.BulkWriteError'>"
+p208
+sS'full_result'
+p209
+S'{\'nInserted\': 0, \'nMatched\': 0, \'nModified\': 0, \'nRemoved\': 0, \'nUpserted\': 0, \'upserted\': [], \'writeConcernErrors\': [], \'writeErrors\': [{u\'code\': 11000, u\'errmsg\': u\'insertDocument :: caused by :: 11000 E11000 du...tes.$vote_id_1  dup key: { : "34_mmemaudpetit" }\', u\'index\': 0, u\'op\': {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4383\'), \'depute_age\': 45, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Val-de-Marne\', \'depute_nom\': u\'Mme Maud Petit\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721234\', ...}}]}'
+p210
+ssg83
+I331
+sg84
+(dp211
+I326
+S''
+sI327
+S'        if full_result["writeErrors"] or full_result["writeConcernErrors"]:'
+p212
+sI328
+S"            if full_result['writeErrors']:"
+p213
+sI329
+S"                full_result['writeErrors'].sort("
+p214
+sI330
+S"                    key=lambda error: error['index'])"
+p215
+sI331
+S'            raise BulkWriteError(full_result)'
+p216
+sI332
+S'        return full_result'
+p217
+sI333
+S''
+sI334
+S'    def execute_no_results(self, sock_info, generator):'
+p218
+sI335
+S'        """Execute all operations, returning no results (w=0).'
+p219
+ssg96
+S'(self=<pymongo.bulk._Bulk object>, sock_info=SocketInfo(<socket._socketobject object at 0x7f6e0fdfade0>) at 140111250342224, generator=<generator object gen_ordered>, write_concern=WriteConcern())'
+p220
+sg98
+S'execute_command'
+p221
+sasS'pyver'
+p222
+S'Python 2.7.12: /home/www-data/web2py/applications/obsas_dev/.pyenv/bin/python (prefix: /home/www-data/web2py/applications/obsas_dev/.pyenv)'
+p223
+sS'session'
+p224
+g70
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp225
+sS'etype'
+p226
+S"<class 'pymongo.errors.BulkWriteError'>"
+p227
+sS'date'
+p228
+S'Tue Sep  5 19:45:25 2017'
+p229
+sS'response'
+p230
+g70
+(S'sg>\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7f6e280ddd88&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_obsas_dev</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56-04acb502-7f59-453e-8714-6ef9279c524c<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>bootstrap3_inline</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">google_analytics_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">logo</td><td style="vertical-align:top;">:</td><td><div><a class="navbar-brand" href="http://www.web2py.com/" id="web2py-logo"><b>web<span>2</span>py</b>&trade;&nbsp;</a></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div><table><tr><td><div>Accueil</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/obsas_dev</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mes sites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/site</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Cette Appli</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Design</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/design/obsas_dev</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Contr\xc3\xb4leur</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/controllers/maintenance.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/views/maintenance/updateScrutins.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mod\xc3\xa8le BD</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Menu mod\xc3\xa8le</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Config.ini</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/private/appconfig.ini</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Mise en page</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Feuille de style</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/edit/obsas_dev/static/css/web2py-bootstrap3.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>base de donn\xc3\xa9es</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/obsas_dev/appadmin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Erreurs</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/errors/obsas_dev</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>\xc3\x80 propos</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/about/obsas_dev</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>web2py.com</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>T\xc3\xa9l\xc3\xa9chargement</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/download</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Soutien</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/support</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>D\xc3\xa9mo</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/demo_admin</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Exemples Rapides</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/examples/default/examples</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>FAQ</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/AlterEgo</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Vid\xc3\xa9os</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/videos/</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Applications gratuites</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/appliances</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Plugiciels</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2py.com/plugins</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://web2pyslices.com/</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Documentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>#</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Online book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book</div></td></tr></table></div></td></tr><tr><td><div><li class="divider"></li></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9face</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/00</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/01</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Python</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/02</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Pr\xc3\xa9sentation</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/03</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Le noyau</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/04</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Les Vues</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/05</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>base de donn\xc3\xa9es</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/06</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Formulaires et Validateurs</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/07</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Courriel et texto</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/08</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Contr\xc3\xb4le d\'acc\xc3\xa8s</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/09</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Services</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/10</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes Ajax</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/11</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Composants et Plugiciels</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/12</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Recettes de d\xc3\xa9ploiement</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/13</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Autres recettes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/14</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Aider web2py</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/book/default/chapter/15</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Buy web2py\'s book</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://stores.lulu.com/web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Communaut\xc3\xa9</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>None</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Groupes</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://www.web2py.com/examples/default/usergroups</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Twitter</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://twitter.com/web2py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Clavardage en direct</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>http://webchat.freenode.net/?channels=web2py</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">author</td><td style="vertical-align:top;">:</td><td><div>Your Name &lt;you@example.com&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">description</td><td style="vertical-align:top;">:</td><td><div>a cool new app</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generator</td><td style="vertical-align:top;">:</td><td><div>Web2py Web Framework</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">keywords</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>web2py</div></td></tr><tr><td><div>python</div></td></tr><tr><td><div>framework</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^maintenance/\\w+\\.py$</div></td></tr><tr><td><div>^maintenance/updateScrutins/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/home/www-data/web2py/applications/obsas_dev/sessions/81.248.7.56-04acb502-7f59-453e-8714-6ef9279c524c</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>c0762cbf4baf7f9af97c051e7fcb8083</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>81.248.7.56-04acb502-7f59-453e-8714-6ef9279c524c</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>obsas_dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">subtitle</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">title</td><td style="vertical-align:top;">:</td><td><div>Obsas Dev</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>maintenance/updateScrutins.html</div></td></tr></table></div>'
+tRp231
+sS'locals'
+p232
+(dp233
+S'run'
+p234
+S'<pymongo.bulk._Run object>'
+p235
+sS'full_result'
+p236
+S'{\'nInserted\': 0, \'nMatched\': 0, \'nModified\': 0, \'nRemoved\': 0, \'nUpserted\': 0, \'upserted\': [], \'writeConcernErrors\': [], \'writeErrors\': [{u\'code\': 11000, u\'errmsg\': u\'insertDocument :: caused by :: 11000 E11000 du...tes.$vote_id_1  dup key: { : "34_mmemaudpetit" }\', u\'index\': 0, u\'op\': {\'_id\': ObjectId(\'59aee2b58e5c9b10fc6e4383\'), \'depute_age\': 45, \'depute_classeage\': u\'40-50 ans\', \'depute_csp\': u\'Professions Interm\\xe9diaires\', \'depute_departement\': u\'Val-de-Marne\', \'depute_nom\': u\'Mme Maud Petit\', \'depute_region\': u\'Ile-de-France\', \'depute_sexe\': u\'Femme\', \'depute_typeregion\': u\'M\\xe9tropolitain\', \'depute_uid\': u\'PA721234\', ...}}]}'
+p237
+sS'generator'
+p238
+S'<generator object gen_ordered>'
+p239
+sS'self'
+p240
+S'<pymongo.bulk._Bulk object>'
+p241
+sS'cmd'
+p242
+S"SON([('insert', u'votes'), ('ordered', True)])"
+p243
+sS'results'
+p244
+S'[(0, {u\'n\': 0, u\'ok\': 1, u\'writeErrors\': [{u\'code\': 11000, u\'errmsg\': u\'insertDocument :: caused by :: 11000 E11000 du...tes.$vote_id_1  dup key: { : "34_mmemaudpetit" }\', u\'index\': 0}]})]'
+p245
+sS'listeners'
+p246
+S'<pymongo.monitoring._EventListeners object>'
+p247
+sS'db_name'
+p248
+S"u'obsass'"
+p249
+sS'op_id'
+p250
+S'-938225054'
+p251
+sS'write_concern'
+p252
+S'WriteConcern()'
+p253
+sS'bwc'
+p254
+S'<pymongo.message._BulkWriteContext object>'
+p255
+sS'sock_info'
+p256
+S'SocketInfo(<socket._socketobject object at 0x7f6e0fdfade0>) at 140111250342224'
+p257
+sssS'traceback'
+p258
+S'Traceback (most recent call last):\n  File "/home/www-data/web2py/gluon/restricted.py", line 219, in restricted\n    exec(ccode, environment)\n  File "/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py", line 207, in <module>\n  File "/home/www-data/web2py/gluon/globals.py", line 409, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/www-data/web2py/applications/obsas_dev/controllers/maintenance.py", line 199, in updateScrutins\n    mdb.votes.insert_many(votes)\n  File "/home/www-data/web2py/applications/obsas_dev/.pyenv/local/lib/python2.7/site-packages/pymongo/collection.py", line 711, in insert_many\n    blk.execute(self.write_concern.document)\n  File "/home/www-data/web2py/applications/obsas_dev/.pyenv/local/lib/python2.7/site-packages/pymongo/bulk.py", line 493, in execute\n    return self.execute_command(sock_info, generator, write_concern)\n  File "/home/www-data/web2py/applications/obsas_dev/.pyenv/local/lib/python2.7/site-packages/pymongo/bulk.py", line 331, in execute_command\n    raise BulkWriteError(full_result)\nBulkWriteError: batch op errors occurred\n'
+p259
+s.
