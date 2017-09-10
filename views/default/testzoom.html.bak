@@ -1,0 +1,39 @@
+<html>
+<head>
+</head>
+<body>
+  <h2>Circonscription</h2>
+ <object id="svgcirco" data="{{ =URL('static','circonscriptions_france.svg') }}" width='100%' type="image/svg+xml"></object>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.4/TweenMax.min.js"></script>
+<script>
+var map = document.getElementById("svgcirco");
+function zoomIn(circo) {
+//zooming in part
+    var svgDoc = map.contentDocument;
+    var currentCirco = svgDoc.getElementById(circo);
+    currentCirco.style.fill ="blue";
+    var s = currentCirco.getBBox();
+    var newView = "" + (s.x-s.width/2) + " " + (s.y-s.height/2) + " " + (s.width*2) + " " + (s.height*2);
+    tl = new TimelineMax();
+
+    tl.add("zIn");
+    tl.fromTo(map, 2, {
+      attr: { viewBox: "0 0 1750 1600"}
+    }, {
+      attr: { viewBox: newView }
+    }, "zIn");
+}
+ map.addEventListener('load', function () {
+      //var svg = document.getElementById('hemicycle');
+      var svgDoc = map.contentDocument;
+        var url_string = window.location;
+        var url = new URL(url_string);
+        var c = url.searchParams.get("circo");
+        console.log(c)
+        zoomIn(c);
+    });
+</script>
+</body>
+</html>

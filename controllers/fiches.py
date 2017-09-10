@@ -2,7 +2,8 @@
 # essayez quelque chose comme
 # TODO : page député les scrutins avec votes identiques FI/EM doivent apparaitre de la couleur du groupe du député si EM/FI
 
-
+def zoomcirco():
+    return dict()
 def gauges():
     return dict()
 

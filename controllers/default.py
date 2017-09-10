@@ -8,6 +8,10 @@
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
 
+
+def testzoom():
+    return {}
+
 def notfound():
     return "notfound"
 

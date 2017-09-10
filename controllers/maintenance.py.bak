@@ -6,6 +6,8 @@ import json
 import datetime
 import csv
 from tools import normalize
+from pymongo import UpdateOne
+from bson.son import SON
 
 mdb = client.obsass
 output_path = os.path.join(request.folder, 'private', 'scrapy')
@@ -14,7 +16,13 @@ output_path = os.path.join(request.folder, 'private', 'scrapy')
 # ---------------------
 # Helpers
 # ---------------------
-
+def formatpct(n,d,prec=1):
+    return round(float(n)/d,prec)
+def test():
+    d = mdb.deputes.find_one({'depute_uid':'PA610667'})
+    del d['_id']
+    
+    return json.dumps(d)
 
 def launchScript(name,params=""):
     fp = os.path.join(request.folder, 'private/scripts', name +'.py '+output_path+' '+params)
@@ -339,55 +347,100 @@ def updateScrutins():
         mdb.scrutins.insert_many(scrutins)
     
     updateScrutinsStats()
+    updateDeputesStats()
         
 def updateDeputesStats():
-    # A FAIRE
-    for uid,votes in votes_deputes.iteritems():
-        votes['exprimes'] = votes['pour'] + votes['contre'] + votes['abstention']
-        votes['total'] = votes['exprimes'] + votes['absent']
-        votes['compat'] = compat_deputes[uid]
-        mdb.deputes.update_one({'depute_uid':uid},{'$set':{'depute_votes':votes}})
+    pgroup = dict((g,{'$sum':'$vote_compat.'+g}) for g in mdb.groupes.distinct('groupe_abrev'))
+    pgroup['_id'] = {'depute':'$depute_uid'}
+    pipeline = [
+        {"$group": pgroup },
+    ]
+    deputes = {}
+    for compat in list(mdb.votes.aggregate(pipeline)):
+        depuid = compat['_id']['depute']
+        del compat['_id']
+        deputes[depuid] = {'depute_compat':compat, 'depute_positions':{} }
+    
+    pipeline = [
+        {"$group":{'_id': {'depute':'$depute_uid','position':'$vote_position'}, 'n':{'$sum':1}}},
+        {"$sort": SON([("_id.depute",1)])}
+    ]
+    
+    for p in list(mdb.votes.aggregate(pipeline)):
+        uid = p['_id']['depute']
+        deputes[uid]['depute_positions'][p['_id']['position']] = p['n']
+    ops = []
+    for uid,dep in deputes.iteritems():
+        dep['depute_positions']['total'] = sum(dep['depute_positions'].values())
+        dep['depute_positions']['exprimes'] = dep['depute_positions']['total'] - dep['depute_positions'].get('absent',0)
+        ops.append(UpdateOne({'depute_uid':uid},{'$set':dep}))
+
+    if ops:
+        mdb.deputes.bulk_write(ops)
+
+    return json.dumps(deputes)
+
 
 def updateScrutinsStats():
     if 'rebuild' in request.args:
-        mdb.scrutins.update_many({},{'$set':{'scrutin_sort':None}})
+        mdb.votes.update_many({},{'$set':{'vote_compat':None}})
+
+    # decomptes positions par scrutin, par groupe, par position
+    pipeline = [
+        {"$match":{'vote_compat':None}},
+        {"$group":{'_id': {'position':'$vote_position','scrutin':'$scrutin_id','groupe':'$groupe_abrev'},'total':{'$sum':1}}}, 
+        {"$sort": SON([("_id.scrutin",1),("_id.groupe",1),("total",-1),("_id.position",1)])},
         
-    votetemplate = dict(votants=0,exprimes=0,pour=0,contre=0,abstention=0, absent=0)
-    scrutins_ids = [ s['scrutin_id'] for s in mdb.scrutins.find({'scrutin_sort':None}) ]
-    groupes = mdb.groupes.distinct('groupe_abrev')+['assemblee']
+    ]
 
-    for sid in scrutins_ids:
-        positions = dict((gabrev,dict(votetemplate)) for gabrev in groupes)
-        vote_compats = {}
+    # Stats scrutins
+    scrutins = {}
 
-        vote_positions = {}
-        for v in mdb.votes.find({'scrutin_id':sid}):
-            vpos = v['vote_position']
-            duid = v['depute_uid']
-       
-            gabrev = v['groupe_abrev']
-            positions[gabrev][vpos] += 1
-            positions['assemblee'][vpos] += 1
-            vote_compats[v['vote_id']] = {}
-            vote_positions[v['vote_id']] = vpos
-
-
-
-        # positions de groupe
-        for g in positions.keys():
-            pos = sorted([(k,v) for k,v in positions[g].iteritems() if k != 'absent'],key=lambda x:x[1], reverse=True)[0][0]
-            positions[g]['position'] = pos
-
-            for voteid in vote_compats.keys():
-                compat = 1 if pos==vote_positions[voteid] else 0
-                vote_compats[voteid][g] = compat
-
-            positions[g]['exprimes'] = positions[g]['pour'] + positions[g]['contre'] + positions[g]['abstention']
-            positions[g]['votants'] = positions[g]['exprimes'] + positions[g]['absent']
-
-        mdb.scrutins.update_one({'scrutin_id':sid},{'$set':{'scrutin_positions':positions,'scrutin_sort':u'adopté' if positions['assemblee']['position']=='pour' else u'rejeté'}})
-        for vid,compat in vote_compats.iteritems():
-            mdb.votes.update_one({'vote_id':vid},{'$set':{'vote_compat':compat}})
-
+    scrutin_id = None
+    for r in list(mdb.votes.aggregate(pipeline)):
+        if r['_id']['scrutin'] != scrutin_id:
+            scrutin_id = r['_id']['scrutin']
+            scrutins[scrutin_id] = {}
+            scrutins[scrutin_id]['positions'] = {'assemblee':{'pour':0,'contre':0,'abstention':0,'absent':0}}
+            scrutins[scrutin_id]['compats'] = {}
+            groupe = None
+        position = r['_id']['position']
+        if r['_id']['groupe'] != groupe:
+            groupe = r['_id']['groupe']
+            scrutins[scrutin_id]['positions'][groupe] = {'position':''}
+            scrutins[scrutin_id]['compats'][groupe] = ''
+        if position != 'absent' and scrutins[scrutin_id]['positions'][groupe]['position']=='':
+            scrutins[scrutin_id]['positions'][groupe]['position'] = position
+            scrutins[scrutin_id]['compats'][groupe] = position
+        scrutins[scrutin_id]['positions'][groupe][position] = r['total']
+        scrutins[scrutin_id]['positions']['assemblee'][position] += r['total']
+    # Complements stats
+    groupes = mdb.groupes.distinct('groupe_abrev')
+    groupe_init = dict((abr,0) for abr in groupes+['assemblee'])
+    ops = []
+    for sid,scrutin in scrutins.iteritems():
+        tri = sorted([(k,v) for k,v in scrutin['positions']['assemblee'].iteritems() if k!='absent'], key=lambda x:x[1], reverse=True)
+        asspos = tri[0][0] if len(tri)>0 else ''
+        scrutin['positions']['assemblee']['position'] = asspos
+        scrutin['compats']['assemblee'] = asspos
+        
+        compatpos = { 'absent':groupe_init }
+        for pos in ('pour','contre','abstention'):
+            compatpos[pos] = dict((g,1 if scrutin['compats'][g]==pos else 0) for g in groupes+['assemblee'])
+        scrutin['compatpos'] = compatpos
+        for g in groupes+['assemblee']:
+            scrutin['positions'][g]['exprimes'] = scrutin['positions'][g].get('pour',0) + scrutin['positions'][g].get('contre',0) + scrutin['positions'][g].get('abstention',0)
+            scrutin['positions'][g]['total'] = scrutin['positions'][g]['exprimes'] + scrutin['positions'][g].get('absent',0) 
+        scrutin['sort'] = u'adopté' if scrutin['positions']['assemblee']['position']=='pour' else u'rejeté'
+        ops.append(UpdateOne({'scrutin_id':sid},{'$set':{'scrutin_positions':scrutin['positions'], 'scrutin_compats':scrutin['compats'], 'scrutin_sort':scrutin['sort']}}))
+    
+    if ops:
+        mdb.scrutins.bulk_write(ops)
+    ops = []
+    for v in mdb.votes.find({'scrutin_id':{'$in':scrutins.keys()}}):
+        ops.append(UpdateOne({'vote_id':v['vote_id']},{'$set':{'vote_compat':scrutins[v['scrutin_id']]['compatpos'][v['vote_position']]}}))
+    if ops:
+        mdb.votes.bulk_write(ops)        
+        
 
     return "OK"
