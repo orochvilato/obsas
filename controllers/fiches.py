@@ -4,6 +4,8 @@
 
 def zoomcirco():
     return dict()
+def zoomcircoworld():
+    return dict()
 def gauges():
     return dict()
 

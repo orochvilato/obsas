@@ -3760,3 +3760,5 @@
 [2017-09-10 13:59:35] EDIT obsas_dev/controllers/fiches.py: 2
 [2017-09-11 01:44:59] DELETE obsas_dev/views/default/testzoom.html: -38
 [2017-09-11 01:45:52] EDIT obsas_dev/views/fiches/zoomcirco.html: 53
+[2017-09-11 22:28:10] EDIT obsas_dev/controllers/fiches.py: 2
+[2017-09-11 22:28:27] CREATE fiches/zoomcircoworld.html: 0
