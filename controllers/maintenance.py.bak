@@ -38,7 +38,7 @@ def test():
     circos = list(mdb.circonscriptions.find(filtre))
     
         
-    return dict(circo=circosel,circos=circos)
+    return dict(dep=dep,circo=circosel,circos=circos)
 
 def launchScript(name,params=""):
     fp = os.path.join(request.folder, 'private/scripts', name +'.py '+output_path+' '+params)

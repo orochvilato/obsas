@@ -28,17 +28,11 @@ def updateCircos():
         mdb.circonscriptions.update({'id':c['@id']},{'$set':circo},upsert=True)
     return "ok"
 def test():
-    circo = request.args(0)
-    dep = circo.split('-')[0]
-    circosel = mdb.circonscriptions.find_one({'id':circo})
-    if circosel['paris']:
-        filtre = {'paris':True}
-    else:
-        filtre = {'dep':dep}
-    circos = list(mdb.circonscriptions.find(filtre))
+    
+    circos = list(mdb.circonscriptions.find())
     
         
-    return dict(dep=dep,circo=circosel,circos=circos)
+    return dict(circos=circos)
 
 def launchScript(name,params=""):
     fp = os.path.join(request.folder, 'private/scripts', name +'.py '+output_path+' '+params)
