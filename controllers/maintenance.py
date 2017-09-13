@@ -8,7 +8,7 @@ import csv
 from tools import normalize
 from pymongo import UpdateOne
 from bson.son import SON
-
+import xmltodict
 mdb = client.obsass
 output_path = os.path.join(request.folder, 'private', 'scrapy')
 
@@ -18,11 +18,27 @@ output_path = os.path.join(request.folder, 'private', 'scrapy')
 # ---------------------
 def formatpct(n,d,prec=1):
     return round(float(n)/d,prec)
+def updateCircos():
+    paris = ['077-01','077-02','077-03','077-04','077-05','077-06','077-07','077-08','077-09','077-10','077-11','078-01','078-02','078-03','078-04','078-05','078-06','078-07','078-08','078-09','078-10','078-11','078-12','091-01','091-02','091-03','091-04','091-05','091-06','091-07','091-08','091-09','091-10','095-01','095-02','095-03','095-04','095-05','095-06','095-07','095-08','095-09','095-10','092-01','092-02','092-03','092-04','092-05','092-06','092-07','092-08','092-09','092-10','092-11','092-12','092-13','093-01','093-02','093-03','093-04','093-05','093-06','093-07','093-08','093-09','093-10','093-11','093-12','094-01','094-02','094-03','094-04','094-05','094-06','094-07','094-08','094-09','094-10','094-11','075-01','075-02','075-03','075-04','075-05','075-06','075-07','075-08','075-09','075-10','075-11','075-12','075-13','075-14','075-15','075-16','075-17','075-18']
+    villes = ['075-01','075-02','075-03','075-04','075-05','075-06','075-07','075-08','075-09','075-10','075-11','075-12','075-13','075-14','075-15','075-16','075-17','075-18','069-01','069-02','069-03','069-04','069-06','069-07','069-12','069-14','013-01','013-02','013-03','013-04','013-05','013-06','013-07','044-01','044-02','033-01','033-02','033-03','031-01','031-04','006-01','006-03','067-01','067-02','067-03','059-01','059-02','059-04','059-07','059-08','059-09','059-10']
+    circopath = os.path.join(request.folder, 'private','circonscriptions_france2.svg')
+    svg = xmltodict.parse(open(circopath,'r'))
+    for c in svg['svg']['path']:
+        circo = dict(ville=(c['@id'] in villes),paris=(c['@id'] in paris),carte='france',d=c['@d'],id=c['@id'],dep=c['@id'].split('-')[0],title=c['title']['#text'],desc=c['desc']['#text'])
+        mdb.circonscriptions.update({'id':c['@id']},{'$set':circo},upsert=True)
+    return "ok"
 def test():
-    d = mdb.deputes.find_one({'depute_uid':'PA610667'})
-    del d['_id']
+    circo = request.args(0)
+    dep = circo.split('-')[0]
+    circosel = mdb.circonscriptions.find_one({'id':circo})
+    if circosel['paris']:
+        filtre = {'paris':True}
+    else:
+        filtre = {'dep':dep}
+    circos = list(mdb.circonscriptions.find(filtre))
     
-    return json.dumps(d)
+        
+    return dict(dep=dep,circo=circosel,circos=circos)
 
 def launchScript(name,params=""):
     fp = os.path.join(request.folder, 'private/scripts', name +'.py '+output_path+' '+params)

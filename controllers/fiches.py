@@ -3,7 +3,21 @@
 # TODO : page député les scrutins avec votes identiques FI/EM doivent apparaitre de la couleur du groupe du député si EM/FI
 
 def zoomcirco():
-    return dict()
+    mdb = client.obsass
+    circolist = [ (c['id'],c['title']) for c in mdb.circonscriptions.find() ]
+    
+    circo = request.args(0)
+    if not circo:
+        circo = '013-01'
+    dep = circo.split('-')[0]
+    circosel = mdb.circonscriptions.find_one({'id':circo})
+    if circosel['paris']:
+        filtre = {'paris':True}
+    else:
+        filtre = {'dep':dep}
+    circos = list(mdb.circonscriptions.find(filtre))
+    return dict(dep=dep,circo=circosel,circos=circos,circolist=sorted(circolist,key=lambda x:x[0]))
+
 def zoomcircoworld():
     return dict()
 def gauges():

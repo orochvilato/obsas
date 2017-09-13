@@ -9,7 +9,7 @@
   </style>
 </head>
 <body>
-    <h2>Circonscription <select id="select">{{ for k,v in circolist: }}<option {{ if k==circo['id']:}}selected {{pass}}value="{{=k}}">{{=k}} - {{=v}}</option>{{ pass }}</select></h2>
+  <h2 id="select">Circonscription </h2>
   <h3 id="titre"></h3>
   <h4 id="description"></h4>
 
@@ -104,7 +104,7 @@ function zoomIn() {
     tl = new TimelineMax({ onComplete:function() { where = '';}});
     tl.add("zIn");
     var timing = 1.5;
-    
+    console.log(zoomVille,zoomCirco,zoomDep);
     tl.fromTo(map, timing, {
       attr: { viewBox: "0 0 1136.4137 1088.9165"}
     }, {
@@ -121,7 +121,6 @@ function zoomIn() {
     }, "zIn+="+timing);
 }
 function selectCirco(c) {
-  console.log(c);
   if (circo!=undefined) {
     document.getElementById(circo).style.fill = '';
   }
@@ -133,9 +132,6 @@ function selectCirco(c) {
   }
 
 }
-   var sel = document.getElementById("select");
-   sel.addEventListener("change", function() { selectCirco(this.value);});
-   
    selectCirco("{{=circo['id']}}");
 </script>
 </body>
