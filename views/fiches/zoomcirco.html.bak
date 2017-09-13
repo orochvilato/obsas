@@ -103,7 +103,7 @@ function zoomIn() {
 
   
     var s = currentCirco.getBBox();
-    var zoomCirco = "" + (s.x-s.width/4) + " " + (s.y-s.height/4) + " " + (s.width+s.width/2) + " " + (s.height+s.height/2);
+    var zoomCirco = "" + (s.x-s.width/6) + " " + (s.y-s.height/6) + " " + (s.width+s.width/3) + " " + (s.height+s.height/3);
     tl = new TimelineMax({ onComplete:function() { where = '';}});
     tl.add("zIn");
     var timing = 0;
@@ -120,10 +120,10 @@ function zoomIn() {
           attr: { viewBox: zoomVille }
         }, "zIn+="+timing);
     }
-    //timing += 1.9;
-    //tl.to(map,1,{
-    //   attr: { viewBox: zoomCirco }
-    //}, "zIn+="+timing);
+    timing += 1.9;
+    tl.to(map,1,{
+       attr: { viewBox: zoomCirco }
+    }, "zIn+="+timing);
 }
 function selectCirco(c) {
   console.log(c);
