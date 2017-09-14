@@ -1,20 +1,4 @@
-<html>
-<head>
-  <style>
-  #testbox {
-    border: 2px solid black;
-    height:500px;
-    width:500px;
-  }
-  </style>
-</head>
-<body>
-  <h2 id="select">Circonscription </h2>
-  <h3 id="titre"></h3>
-  <h4 id="description"></h4>
-
-  <div id="testbox">
-    <svg
+<svg
        viewBox="0 0 1136.4137 1088.9165"
        preserveAspectRation="xMaxYMax meet"
        width="100%"
@@ -39,7 +23,7 @@
      
       {{ for c in circos: }}
        <path
-            class="autres"
+            class="circo"
             dep="{{ =c['dep'] }}"
             id="{{ =c['id'] }}"
             d="{{ =c['d'] }}">
@@ -49,7 +33,10 @@
         {{ pass }}
     
 </svg>
-</div>  
-
-</body>
-</html>
+<script>
+    var e = document.getElementsByClassName('circo');
+    for (var i=0;i<e.length;i++) {
+        var c = e[i].getBBox();
+        console.log(e[i].getAttribute('id'),c.width,c.height);
+    }
+</script>

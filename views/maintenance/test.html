@@ -23,7 +23,7 @@
      
       {{ for c in circos: }}
        <path
-            class="autres"
+            class="circo"
             dep="{{ =c['dep'] }}"
             id="{{ =c['id'] }}"
             d="{{ =c['d'] }}">
@@ -33,3 +33,14 @@
         {{ pass }}
     
 </svg>
+<div id="output">
+    
+</div>
+<script>
+    var e = document.getElementsByClassName('circo');
+    var o = document.getElementById('output');
+    for (var i=0;i<e.length;i++) {
+        var c = e[i].getBBox();
+        o.innerHTML = o.innerHTML + e[i].getAttribute('id') +',' + c.width +',' + c.height +'|';
+    }
+</script>

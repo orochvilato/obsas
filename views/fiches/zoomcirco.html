@@ -25,12 +25,10 @@
         <style
            id="style1">
            path {fill-opacity:1;fill-rule:evenodd;stroke-opacity:0;fill:#d9c89e}
-           path.circo { fill-opacity:1;fill-rule:evenodd;stroke-opacity:1; stroke:white;fill:#d3edf9;}
-            path.autres { fill-opacity:1;fill-rule:evenodd;stroke-opacity:1; stroke:white }
-            path.outville { fill:white; stroke:#12678e; stroke-width:0.02;}
+           path.circo { fill-opacity:1;fill-rule:evenodd;stroke-opacity:1; stroke:white;fill:#d3edf9; stroke-width:{{ =float(max(circo['w'],circo['h']))*0.0136 }} }
+            path.autres { fill-opacity:1;fill-rule:evenodd;stroke-opacity:1; stroke:white;stroke-width:{{ =float(max(circo['w'],circo['h']))*0.0136 }}  }
+            path.outville { fill:white; stroke:#12678e; }
             path.inville { fill:#afdff5;}
-            path.strokelight {  stroke-width:0.04  }
-            path.strokenormal {  stroke-width:0.4  }
            
            </style>
       </defs>
@@ -41,11 +39,13 @@
 
       {{ stroke ='light' if circo['paris'] or circo['ville'] else 'normal' }}
       {{ for c in [_c for _c in circos if not _c['ville'] and _c['id'][0:3]!=dep]: }}
+        {{ strokewidth = float(max(c['w'],c['h'])) }}
        <path
             class="autres stroke{{ =stroke }}"
             dep="{{ =c['dep'] }}"
             id="{{ =c['id'] }}"
-            d="{{ =c['d'] }}">
+            d="{{ =c['d'] }}"
+            sw ="{{ =strokewidth }}">
            <title id="t{{ =c['id']}}">{{ =c['title'] }}</title>
            <desc id="d{{ =c['id']}}">{{ =c['desc'] }}</desc>
         </path>
@@ -53,22 +53,28 @@
       <g id="{{=dep}}">
           
           {{ for c in [_c for _c in circos if not _c['ville'] and _c['id'][0:3]==dep]: }}
+       {{ strokewidth = float(max(c['w'],c['h'])) }}
            <path
             class="circo stroke{{ =stroke }}"
             dep="{{ =c['dep'] }}"
             id="{{ =c['id'] }}"
+            sw ="{{ =strokewidth }}"
             d="{{ =c['d'] }}">
+               
            <title id="t{{ =c['id']}}">{{ =c['title'] }}</title>
            <desc id="d{{ =c['id']}}">{{ =c['desc'] }}</desc>
         </path>
         {{ pass }}
           <g id="ville">
           {{ for c in [_c for _c in circos if _c['ville']]: }}
+       {{ strokewidth = float(max(c['w'],c['h'])) }}
+
            <path
             class="circo {{ ='inville' if circo['ville'] else 'outville' }} stroke{{ =stroke }}"
             dep="{{ =c['dep'] }}"
             {{ if circo['ville']: }}ville="1"{{ pass }}
             id="{{ =c['id'] }}"
+            sw ="{{ =strokewidth }}"
             d="{{ =c['d'] }}">
            <title id="t{{ =c['id']}}">{{ =c['title'] }}</title>
            <desc id="d{{ =c['id']}}">{{ =c['desc'] }}</desc>
