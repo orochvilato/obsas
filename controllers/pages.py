@@ -30,7 +30,7 @@ def deputes():
             ('stats.compat.REM','Tri par EM-Compatibilité'),
             ('stats.nbitvs',"Tri par nombre d'interventions"),
             ('stats.nbmots',"Tri par nombre de mots"),
-            ('depute_circo',"Tri par circonscription")]
+            ('depute_circo_id',"Tri par circonscription")]
     tops = [('top10part','Top 10 Participation'),
             ('top10diss','Top 10 Dissidence'),
             ('top10compFI','Top 10 FI-Compatible'),

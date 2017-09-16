@@ -17,9 +17,9 @@ def deputes():
     groupe = request.vars.get('gp','ALL')
     tri = request.vars.get('tr','depute_nom_tri')
     direction = int(request.vars.get('di',1))
-    text = request.vars.get('txt',None)
-    region = request.vars.get('rg',None)
-    top = request.vars.get('top',None)
+    text = request.vars.get('txt',"")
+    region = request.vars.get('rg',"")
+    top = request.vars.get('top',"")
 
     groupes = cache_groupes
     regions = cache_regions
