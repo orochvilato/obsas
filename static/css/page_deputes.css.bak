@@ -13,11 +13,17 @@ body {
   background: #eee;
   display: block;
   padding:20px;
+  
   position: -webkit-sticky;
   position: sticky;
   top: 0px;
 }
-
+.deputes-listheader select, .deputes-listheader input {
+    font-size:1.2rem;
+}
+.deputes-search {
+    margin-top:10px;
+}
 .depute-item {
     width:100%;
     margin-bottom:10px;
