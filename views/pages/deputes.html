@@ -4,12 +4,12 @@
     </head>
     <body>
         <div class="deputes-listeheader">
-            <select id="deputes-groupe-filter"><option value="ALL">Tous les groupes</option>{{ for id,lib in groupes: }}<option value="{{ =id }}">{{ =lib }}</option>{{ pass }}</select>
-            <select id="deputes-region-filter"><option value="ALL">Toutes les régions</option>{{ for r in regions: }}<option value="{{ =r }}">{{ =r }}</option>{{ pass }}</select>
-            <select id="deputes-top-filter"><option value="">Tops / Flops</option>{{ for k,v in tops: }}<option value="{{ =k }}">{{ =v }}</option>{{ pass }}</select>
-            <select id="deputes-sort">{{ for k,v in tris: }}<option value="{{=k}}">{{=v}}</option>{{ pass }}</select>
-            <select id="deputes-sortdir"><option value="1">Tri ascendant</option><option value="-1">Tri descendant</option></select>
-            <div id="deputes-search"><input id="deputes-searchtext" type="text" placeholder="" /><input id="deputes-searchbutton" type="button" value="Rechercher" /></div>
+            <select id="deputes-groupe-filter"><option value="ALL" {{ if groupe=='ALL':}}selected{{pass}}>Tous les groupes</option>{{ for id,lib in groupes: }}<option value="{{ =id }}" {{ if groupe==id:}}selected{{pass}}>{{ =lib }}</option>{{ pass }}</select>
+            <select id="deputes-region-filter"><option value="ALL" {{ if region=='ALL':}}selected{{pass}}>Toutes les régions</option>{{ for r in regions: }}<option value="{{ =r }}" {{ if region==r:}}selected{{pass}}>{{ =r }}</option>{{ pass }}</select>
+            <select id="deputes-top-filter"><option value="" {{ if top=='':}}selected{{pass}}>Tops / Flops</option>{{ for k,v in tops: }}<option value="{{ =k }}" {{ if top==k:}}selected{{pass}}>{{ =v }}</option>{{ pass }}</select>
+            <select id="deputes-sort">{{ for k,v in tris: }}<option value="{{=k}}" {{ if tri==k:}}selected{{pass}}>{{=v}}</option>{{ pass }}</select>
+            <select id="deputes-sortdir"><option value="1" {{ if direction==1:}}selected{{pass}}>Tri ascendant</option><option value="-1" {{ if direction==-1:}}selected{{pass}}>Tri descendant</option></select>
+            <div id="deputes-search"><input id="deputes-searchtext" type="text" placeholder="" value="{{=text}}"/><input id="deputes-searchbutton" type="button" value="Rechercher" /></div>
         </div>
         <div id="depute-liste">
 
@@ -21,6 +21,15 @@
     <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
     <script src="{{=URL('static','js/page_deputes.js')}}"></script>
+    <script>
+        var deputes_groupe = "{{ =groupe }}";
+        var deputes_tri="{{ =tri }}";
+        var deputes_dir="{{ =direction }}";
+        var deputes_searchtext="{{ =text }}";
+        var deputes_region="{{ =region }}";
+        var deputes_top="{{ =top }}";
+        setInfiniteScroll();
+    </script>
     </body>
 
 </html>

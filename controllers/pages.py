@@ -5,13 +5,24 @@ import re
 def index(): return dict(message="hello from pages.py")
 mdb = client.obsass
 
+# cache
+CACHE_EXPIRE = 3600
+cache_groupes = cache.ram('groupes', lambda: [(g['groupe_abrev'],g['groupe_libelle']) for g in mdb.groupes.find()], time_expire=CACHE_EXPIRE)
+cache_regions = cache.ram('regions',lambda: sorted(mdb.deputes.distinct('depute_region'),key=lambda x:x), time_expire=CACHE_EXPIRE)
 # ---------------------------------
 # Page députés
 # ---------------------------------
 
 def deputes():
-    groupes = [(g['groupe_abrev'],g['groupe_libelle']) for g in mdb.groupes.find()]
-    regions = mdb.deputes.distinct('depute_region')
+    groupe = request.vars.get('gp','ALL')
+    tri = request.vars.get('tr','depute_nom_tri')
+    direction = int(request.vars.get('di',1))
+    text = request.vars.get('txt',"")
+    region = request.vars.get('rg',"")
+    top = request.vars.get('top',"")
+
+    groupes = cache_groupes
+    regions = cache_regions
     tris = [('depute_nom_tri','Tri par nom'),
             ('stats.positions.exprimes','Tri par participation'),
             ('stats.positions.dissidence','Tri par dissidence'),
@@ -33,7 +44,7 @@ def deputes():
             ('flop10itvs','Flop 10 Interventions'),
             ('flop10mots','Flop 10 Mots'),
             ]
-    return dict(groupes=groupes,tris=tris,regions=regions, tops=tops)
+    return locals()
 
 def deputes_ajax():
     # ajouter des index (aux differentes collections)
@@ -46,17 +57,17 @@ def deputes_ajax():
     text = request.vars.get('txt',None)
     region = request.vars.get('rg',None)
     top = request.vars.get('top',None)
-    
+
     tops_sorts = {'part':'stats.positions.exprimes',
                   'diss':'stats.positions.dissidence',
                   'itvs':'stats.nbitvs',
                   'mots':'stats.nbmots',
                   'compFI':'stats.compat.FI',
                   'compREM':'stats.compat.REM'}
-    
+
     filter = {'depute_actif':True}
-    
-    
+
+
     if text:
         regx = re.compile(text, re.IGNORECASE)
         filter['depute_nom'] = regx
@@ -64,7 +75,7 @@ def deputes_ajax():
         filter['groupe_abrev'] = groupe
     if region and region!='ALL':
         filter['depute_region'] = region
-    
+
     if top:
         rtop = re.match(r'(top|flop)(\d+)([a-z]{4})([A-Z]*)',top)
         if rtop:
@@ -78,5 +89,5 @@ def deputes_ajax():
                 filter['$and'].append({'groupe_abrev':{'$ne':gp}})
     skip = nb*page
     deputes = list(mdb.deputes.find(filter).sort([(tri,direction)]).skip(skip).limit(nb))
-    
+
     return dict(deputes=deputes, tri = tri, skip = skip, next=((nb == len(deputes)) and not top ))

@@ -128,4 +128,4 @@ filtresitm = {
     }
 filtresitm_order = ['participation','ficompat','emcompat']
 
-nuages_excl =('ministre','monsieur',u'collègue','madame','premier','cher','effet','commission','parlementaire',u'député','deux','amendement','sujet','texte','an','fois','lieu','trois','mois','rapporteur','cinq','quant','quel','dix','nom','quelle',u'deuxième','vingt','point','question','y','ne','pas','dire','plus','fait','bien','dit',u'président')
+nuages_excl =('ministre','monsieur',u'collègue','madame','premier','cher','effet','commission','parlementaire',u'député','deux','amendement','sujet','texte','an','fois','lieu','trois','mois','rapporteur','cinq','quant','quel','dix','nom','quelle',u'deuxième','hui','vingt','point','question','y','ne','pas','dire','plus','fait','bien','dit',u'président')

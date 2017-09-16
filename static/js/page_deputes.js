@@ -1,9 +1,3 @@
-var deputes_groupe = "ALL";
-var deputes_tri="depute_nom_tri";
-var deputes_dir="1";
-var deputes_searchtext="";
-var deputes_region= "ALL";
-var deputes_top="";
 var infScroll;
 var elem = document.getElementById('depute-liste');
 
@@ -12,9 +6,11 @@ function setInfiniteScroll(){
       elem.innerHTML = "";
       infScroll.destroy()
   }
+  var args='gp='+deputes_groupe+'&tr='+deputes_tri+'&di='+deputes_dir+'&txt='+deputes_searchtext+'&rg='+deputes_region+'&top='+deputes_top;
+  window.history.pushState({},"","deputes?"+args);
   infScroll = new InfiniteScroll( elem, {
   // options
-  path: 'deputes_ajax/{{#}}?gp='+deputes_groupe+'&tr='+deputes_tri+'&di='+deputes_dir+'&txt='+deputes_searchtext+'&rg='+deputes_region+'&top='+deputes_top,
+  path: 'deputes_ajax/{{#}}?'+args,
   checkLastPage: '.pagination__next',
   append: '.depute-item',
   history: false,
@@ -43,5 +39,3 @@ searchButton.addEventListener("keypress", function(e) {
           launchSearch();
      }
 });
-
-setInfiniteScroll();

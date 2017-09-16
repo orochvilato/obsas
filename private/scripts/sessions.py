@@ -64,6 +64,7 @@ class SessionsSpider(scrapy.Spider):
         for session in response.xpath('//h1[@class="seance"]/a/@href'):
             session_id = session.extract()
             if session_id in exclude:
+               
                 continue
                 
             url = response.meta['url'] + session_id
@@ -73,6 +74,7 @@ class SessionsSpider(scrapy.Spider):
             yield request
             #break
     def parse_session(self, response):
+        
         if not response.url in sessions.keys():
             sessions[response.url] = {}
         for balise in response.xpath('//p[@class="sommaigre" and contains(.,"Amendement")]/a'):
@@ -149,7 +151,9 @@ class SessionsSpider(scrapy.Spider):
                         acteur = url.split('/')[-1].split('_')[-1]
                     if acteur[0:2]!='PA':
                         print url, response.url, ctx
-                    texte = ' '.join(p.xpath('text()').extract())
+                    texte = u' '.join(p.xpath('text()').extract())
+                    texte = texte.replace('.  ','').replace(u'\xa0','')
+                    print len(interventions),output_path
                     if "La parole est" in texte or u"Quel est l’avis d" in texte:
                         pass
                     else:

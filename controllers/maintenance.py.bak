@@ -135,6 +135,8 @@ def updateAssemblee():
     # initialise les champs stats
     mdb.deputes.update_many({'stats':None},{'$set':{'stats':{'nbmots':0,'nbitvs':0}}})
     mdb.groupes.update_many({'stats':None},{'$set':{'stats':{'nbmots':0,'nbitvs':0}}})
+    mdb.groupes.update_many({'groupe_mots':None},{'$set':{'groupe_mots':{}}})
+    mdb.deputes.update_many({'depute_mots':None},{'$set':{'depute_mots':{}}})
 
     return mdb.deputes.find().count()
 
@@ -176,7 +178,9 @@ def updateSessions():
     if 'rebuild' in request.args:
         mdb.interventions.remove()
         mdb.deputes.update_many({},{'$set':{'depute_mots':{},'depute_nuages':{},'stats.nbmots':0,'stats.nbitvs':0}})
-
+        mdb.groupes.update_many({},{'$set':{'groupe_mots':{},'groupe_nuages':{},'stats.nbmots':0,'stats.nbitvs':0}})
+    
+    
     lexiques_path = os.path.join(request.folder, 'private','lexiques.json')
 
     with open(lexiques_path,'r') as f:
@@ -214,7 +218,7 @@ def updateSessions():
                     w1[k][mot] = w1[k].get(mot,0) + n
 
     exclude = mdb.interventions.distinct('session_id')
-    launchScript('sessions',"'%s'" % (json.dumps(exclude)))
+    #launchScript('sessions',"'%s'" % (json.dumps(exclude)))
     sessions = getJson('sessions')
     scrutins = list(mdb.scrutins.find())
     for s in scrutins:
@@ -227,7 +231,8 @@ def updateSessions():
                 mdb.scrutins.update_one({'scrutin_id': s['scrutin_id']}, {'$set': {'scrutin_ref': s['scrutin_ref']}})
 
 
-    deputes = dict((a['depute_id'],{'uid':a['depute_uid'],'mots':a['depute_mots'],'stats':a['stats']}) for a in mdb.deputes.find())
+    deputes = dict((a['depute_id'],{'gp':a['groupe_abrev'],'uid':a['depute_uid'],'mots':a['depute_mots'],'stats':a['stats']}) for a in mdb.deputes.find())
+    groupes = dict((g['groupe_abrev'], {'mots':g['groupe_mots'], 'stats':g['stats']}) for g in mdb.groupes.find())
     interventions = getJson('interventions')
     for itv in interventions:
         for n,depid in enumerate(itv['depute_id'].split(u'|')):
@@ -240,11 +245,20 @@ def updateSessions():
             new_itv['itv_id'] = "%s%d" % (new_itv['itv_id'],n)
             mdb.interventions.update_one({'itv_id':new_itv['itv_id']},{'$set':new_itv}, upsert=True)
             if new_itv['depute_id'] in deputes.keys():
-                deputes[new_itv['depute_id']]['stats']['nbmots'] += new_itv['itv_nbmots']
-                deputes[new_itv['depute_id']]['stats']['nbitvs'] += 1
-                addWords(deputes[new_itv['depute_id']]['mots'],new_itv['mots'])
+                _dep = deputes[new_itv['depute_id']]
+                _dep['stats']['nbmots'] += new_itv['itv_nbmots']
+                _dep['stats']['nbitvs'] += 1
+                addWords(_dep['mots'],new_itv['mots'])
+                _grp = groupes[_dep['gp']]
+                _grp['stats']['nbmots'] += new_itv['itv_nbmots']
+                _grp['stats']['nbitvs'] += 1
+                addWords(_grp['mots'],new_itv['mots'])
 
-
+    for gid,g in groupes.iteritems():
+        mdb.groupes.update_one({'groupe_abrev':gid},
+                               {'$set':{'groupe_mots':groupes[gid]['mots'],
+                                         'groupe_nuages':genNuages(groupes[gid]['mots']),
+                                         'stats':groupes[gid]['stats']}})
 
     for d in mdb.deputes.find():
         if d['depute_id'] in deputes.keys():
@@ -399,7 +413,7 @@ def updateDeputesStats():
     for uid,dep in deputes.iteritems():
         dep['depute_positions']['total'] = sum(dep['depute_positions'].values())
         dep['depute_positions']['exprimes'] = dep['depute_positions']['total'] - dep['depute_positions'].get('absent',0)
-        dep['depute_positions']['dissidence'] = dep['depute_positions']['exprimes'] - dep['depute_compat'][groupe_depute[dep[uid]]]
+        dep['depute_positions']['dissidence'] = dep['depute_positions']['exprimes'] - dep['depute_compat'][groupe_depute[uid]]
 
         # stats positions
         dep['stats.positions'] = dict((p,0) for p in ('pour','contre','exprimes','absent','abstention','dissidence'))
@@ -483,3 +497,52 @@ def updateScrutinsStats():
 
 
     return "OK"
+
+def updateGroupesStats():
+    pipeline = [
+        {"$group":{'_id': {'groupe':'$groupe_abrev','csp':'$depute_csp'}, 'n':{'$sum':1}}},
+        {"$sort": SON([("n",-1)])}
+    ]
+    return json.dumps(list(mdb.deputes.aggregate(pipeline)))
+    pgroup = dict((g,{'$sum':'$vote_compat.'+g}) for g in mdb.groupes.distinct('groupe_abrev'))
+    pgroup['_id'] = {'groupe':'$groupe_abrev'}
+    pipeline = [
+        {"$group": pgroup },
+    ]
+    groupes = {}
+    for compat in list(mdb.votes.aggregate(pipeline)):
+        groupe = compat['_id']['groupe']
+        del compat['_id']
+        groupes[groupe] = {'groupe_compat':compat, 'groupe_positions':{} }
+    
+    pipeline = [
+        {"$group":{'_id': {'groupe':'$groupe_abrev','position':'$vote_position'}, 'n':{'$sum':1}}},
+        {"$sort": SON([("_id.groupe",1)])}
+    ]
+
+    for p in list(mdb.votes.aggregate(pipeline)):
+        gid = p['_id']['groupe']
+        groupes[gid]['groupe_positions'][p['_id']['position']] = p['n']
+    ops = []
+    for gid,g in groupes.iteritems():
+        g['groupe_positions']['total'] = sum(g['groupe_positions'].values())
+        g['groupe_positions']['exprimes'] = g['groupe_positions']['total'] - g['groupe_positions'].get('absent',0)
+        g['groupe_positions']['dissidence'] = g['groupe_positions']['exprimes'] - g['groupe_compat'][gid]
+
+        # stats positions
+        g['stats.positions'] = dict((p,0) for p in ('pour','contre','exprimes','absent','abstention','dissidence'))
+        for pos in g['stats.positions'].keys():
+            if g['groupe_positions']['exprimes']>0:
+                g['stats.positions'][pos] = round(100*float(g['groupe_positions'].get(pos,0)) / g['groupe_positions']['total'],1)
+        # stats compat
+        g['stats.compat'] = dict((_g,0) for _g in g['groupe_compat'].keys())
+        for _g,_v in g['groupe_compat'].iteritems():
+            if g['groupe_positions']['exprimes']>0:
+                g['stats.compat'][_g] = round(100*float(_v) / g['groupe_positions']['exprimes'],1)
+        g['stats.compat_sort'] = [ dict(g=_g,p=_p) for _g,_p in sorted(g['stats.compat'].items(), key=lambda x:x[1], reverse=True) ]
+        ops.append(UpdateOne({'groupe_abrev':gid},{'$set':g}))
+
+    if ops:
+        mdb.groupes.bulk_write(ops)
+
+    return json.dumps(groupes)
