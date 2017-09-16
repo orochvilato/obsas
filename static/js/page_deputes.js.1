@@ -1,6 +1,9 @@
-var groupe = "ALL";
-var tri="depute_nom_tri";
-var dir="1";
+var deputes_groupe = "ALL";
+var deputes_tri="depute_nom_tri";
+var deputes_dir="1";
+var deputes_searchtext="";
+var deputes_region= "ALL";
+var deputes_top="";
 var infScroll;
 var elem = document.getElementById('depute-liste');
 
@@ -11,25 +14,32 @@ function setInfiniteScroll(){
   }
   infScroll = new InfiniteScroll( elem, {
   // options
-  path: 'deputes_ajax/{{#}}/'+groupe+'/'+tri+'/'+dir,
+  path: 'deputes_ajax/{{#}}?gp='+deputes_groupe+'&tr='+deputes_tri+'&di='+deputes_dir+'&txt='+deputes_searchtext+'&rg='+deputes_region+'&top='+deputes_top,
   checkLastPage: '.pagination__next',
   append: '.depute-item',
   history: false,
   prefill: true
   });
 }
-var groupesel = document.getElementById("groupe-filter");
+var groupesel = document.getElementById("deputes-groupe-filter");
 groupesel.addEventListener("change", function() { groupe = this.value; setInfiniteScroll(); console.log(groupe);});
-var sortsel = document.getElementById("groupe-sort");
+var regionsel = document.getElementById("deputes-region-filter");
+regionsel.addEventListener("change", function() { region = this.value; setInfiniteScroll(); console.log(region);});
+var sortsel = document.getElementById("deputes-sort");
 sortsel.addEventListener("change", function() { tri = this.value; setInfiniteScroll(); console.log(tri);});
-var dirsel = document.getElementById("groupe-dir");
+var dirsel = document.getElementById("deputes-sortdir");
 dirsel.addEventListener("change", function() { dir = this.value; setInfiniteScroll(); console.log(dir);});
-var search = document.getElementById("groupe-search");
-search.addEventListener("change", function() { 
-    text = this.value;
-    if text.length>3 {
-        setInfiniteScroll(); console.log(text);
-    }
+var search = document.getElementById("deputes-searchbutton");
+search.addEventListener("click", function() {
+        searchtext = document.getElementById("deputes-searchtext").value;
+        setInfiniteScroll(); console.log(searchtext);
+});
+var searchButton = document.getElementById("deputes-searchtext");
+searchButton.addEventListener("keypress", function(e) {
+     if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+          searchtext = document.getElementById("deputes-searchtext").value;
+        setInfiniteScroll(); console.log(searchtext);
+     }
 });
 
-setInfiniteScroll()
+setInfiniteScroll();

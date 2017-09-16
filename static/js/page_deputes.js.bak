@@ -1,8 +1,9 @@
-var groupe = "ALL";
-var tri="depute_nom_tri";
-var dir="1";
-var searchtext="";
-var region= "ALL";
+var deputes_groupe = "ALL";
+var deputes_tri="depute_nom_tri";
+var deputes_dir="1";
+var deputes_searchtext="";
+var deputes_region= "ALL";
+var deputes_top="";
 var infScroll;
 var elem = document.getElementById('depute-liste');
 
@@ -13,7 +14,7 @@ function setInfiniteScroll(){
   }
   infScroll = new InfiniteScroll( elem, {
   // options
-  path: 'deputes_ajax/{{#}}/'+groupe+'/'+tri+'/'+dir+'/?search='+searchtext+'&region='+region,
+  path: 'deputes_ajax/{{#}}?gp='+deputes_groupe+'&tr='+deputes_tri+'&di='+deputes_dir+'&txt='+deputes_searchtext+'&rg='+deputes_region+'&top='+deputes_top,
   checkLastPage: '.pagination__next',
   append: '.depute-item',
   history: false,
@@ -21,17 +22,26 @@ function setInfiniteScroll(){
   });
 }
 var groupesel = document.getElementById("deputes-groupe-filter");
-groupesel.addEventListener("change", function() { groupe = this.value; setInfiniteScroll(); console.log(groupe);});
+groupesel.addEventListener("change", function() { deputes_groupe = this.value; setInfiniteScroll(); });
 var regionsel = document.getElementById("deputes-region-filter");
-regionsel.addEventListener("change", function() { region = this.value; setInfiniteScroll(); console.log(region);});
+regionsel.addEventListener("change", function() { deputes_region = this.value; setInfiniteScroll(); });
+var topsel = document.getElementById("deputes-tops-filter");
+topsel.addEventListener("change", function() { deputes_top = this.value; setInfiniteScroll(); });
 var sortsel = document.getElementById("deputes-sort");
-sortsel.addEventListener("change", function() { tri = this.value; setInfiniteScroll(); console.log(tri);});
+sortsel.addEventListener("change", function() { deputes_tri = this.value; setInfiniteScroll(); });
 var dirsel = document.getElementById("deputes-sortdir");
-dirsel.addEventListener("change", function() { dir = this.value; setInfiniteScroll(); console.log(dir);});
+dirsel.addEventListener("change", function() { deputes_dir = this.value; setInfiniteScroll(); });
 var search = document.getElementById("deputes-searchbutton");
-search.addEventListener("click", function() {
-        searchtext = document.getElementById("deputes-searchtext").value;
-        setInfiniteScroll(); console.log(searchtext);
+function launchSearch() {
+        deputes_searchtext = document.getElementById("deputes-searchtext").value;
+        setInfiniteScroll(); 
+}
+search.addEventListener("click", launchSearch );
+var searchButton = document.getElementById("deputes-searchtext");
+searchButton.addEventListener("keypress", function(e) {
+     if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+          launchSearch();
+     }
 });
 
 setInfiniteScroll();

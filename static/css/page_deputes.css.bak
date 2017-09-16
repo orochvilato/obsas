@@ -9,6 +9,9 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	background: #fffcf0;
 }
+.emphasize {
+    font-weight:600
+}
 .deputes-listeheader {
   background: #eee;
   display: block;
@@ -18,7 +21,7 @@ body {
   position: sticky;
   top: 0px;
 }
-.deputes-listheader select, .deputes-listheader input {
+.deputes-listeheader select, .deputes-listeheader input {
     font-size:1.2rem;
 }
 .deputes-search {

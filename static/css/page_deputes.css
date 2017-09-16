@@ -9,6 +9,10 @@ body {
 	font-family: 'Montserrat', sans-serif;
 	background: #fffcf0;
 }
+.emphasize {
+    font-weight:600;
+    font-size:1.3em;
+}
 .deputes-listeheader {
   background: #eee;
   display: block;

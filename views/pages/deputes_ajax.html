@@ -1,20 +1,23 @@
-{{ for d in deputes: }}
+{{ def emphasize(itemtype,value): }}
+{{   return SPAN(value,_class='emphasize' if itemtype==tri else None) }}
+{{ pass }}
+{{ for i,d in enumerate(deputes): }}
 <div class="depute-item">
     <div class="depute-id">
         <img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =d['depute_uid'][2:] }}.jpg" />
     </div>
     <div class="depute-infos">
-        <div class="depute-nom">{{ =d['depute_nom'] }}</div>
+        <div class="depute-nom">{{ = skip+i+1 }}. {{ =d['depute_nom'] }}</div>
         <div class="depute-circo">{{ =d['depute_region'] }} / {{ =d['depute_departement'] }} / {{ =d['depute_circo'] }}</div>
         <div class="depute-profession">{{ =d['depute_profession'] }} / {{ =d['depute_age'] }} ans</div>
         <div class="depute-groupe">{{ =d['groupe_libelle'] }} ({{=d['groupe_abrev']}})</div>
         <div class="depute-vote">{{ if 'positions' in d['stats'].keys(): }}
-            <div class="depute-vote-participation">Participation : {{=d['stats']['positions']['exprimes'] }} %</div>
-            <div class="depute-vote-dissidence">Dissidence : {{=d['stats']['positions']['dissidence'] }} %</div>
-            <div class="depute-vote-compat">Vote comme {{ for e in d['stats']['compat_sort']: }}<span>{{=e['g']}} ({{=e['p']}} %), </span>{{ pass }}</div>
+            <div class="depute-vote-participation">Participation : {{=emphasize('stats.positions.exprimes',d['stats']['positions']['exprimes']) }} % ({{ ="%s/%s" % (d['depute_positions']['exprimes'],d['depute_positions']['total']) }})</div>
+            <div class="depute-vote-dissidence">Dissidence : {{=emphasize('stats.positions.dissidence',d['stats']['positions']['dissidence']) }} % ({{ ="%s/%s" % (d['depute_positions']['dissidence'],d['depute_positions']['total']) }})</div>
+            <div class="depute-vote-compat">Vote comme {{ for e in d['stats']['compat_sort']: }}{{=emphasize('stats.compat.'+e['g'],"%s (%.1f %%), " % (e['g'],e['p']))}}{{ pass }}</div>
             {{ else: }}N'a pas voté{{ pass }}
         </div>
-        <div class="depute-interventions"><span>Interventions: {{ =d['stats']['nbitvs'] }}</span><span>, Mots: {{ =d['stats']['nbmots'] }}</span></div>
+        <div class="depute-interventions"><span>Interventions: {{ =emphasize('stats.nbitvs',d['stats']['nbitvs']) }}</span><span>, Mots: {{ =emphasize('stats.nbmots',d['stats']['nbmots']) }}</span></div>
     </div>
 </div>
 {{ pass }}
