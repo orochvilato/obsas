@@ -1,0 +1,34 @@
+.container {
+	width: 90%;
+	margin: 0 auto;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+body {
+	font-family: 'Montserrat', sans-serif;
+	background: #fffcf0;
+}
+.deputes-listeheader {
+  background: #eee;
+  display: block;
+  padding:20px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+}
+
+.depute-item {
+    width:100%;
+    margin-bottom:10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.depute-nom {
+    font-weight:600;
+    font-size:2em;
+}
+.depute-infos {
+    padding-left:10px;
+    
+}

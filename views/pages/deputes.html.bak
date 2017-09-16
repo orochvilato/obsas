@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="{{=URL('static','css/page_deputes.css')}}">
+    </head>
+    <body>
+        <div class="deputes-listeheader">
+            <select id="deputes-groupe-filter"><option value="ALL">Tous les groupes</option>{{ for id,lib in groupes: }}<option value="{{ =id }}">{{ =lib }}</option>{{ pass }}</select>
+            <select id="deputes-region-filter"><option value="ALL">Toutes les régions</option>{{ for r in regions: }}<option value="{{ =r }}">{{ =r }}</option>{{ pass }}</select>
+            <select id="deputes-sort">{{ for k,v in tris: }}<option value="{{=k}}">{{=v}}</option>{{ pass }}</select>
+            <select id="deputes-sortdir"><option value="1">Tri ascendant</option><option value="-1">Tri descendant</option></select>
+            <div><input id="deputes-searchtext" type="text" placeholder="" /><input id="deputes-searchbutton" type="button" value="Rechercher" /></div>
+        </div>
+        <div id="depute-liste">
+
+        </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.10/handlebars.min.js"></script>
+    <script src="{{=URL('static','js/page_deputes.js')}}"></script>
+    </body>
+
+</html>

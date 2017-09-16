@@ -91,6 +91,7 @@ class AssembleeSpider(scrapy.Spider):
 
         for m in response.xpath('//table[@class="instance"]/tbody/tr'):
             lien_dep = m.xpath('td/a/@href').extract()[0]
+            sortname = m.xpath('td/@data-sort').extract()[0]
             dep_uid = lien_dep.split('/')[-1].split('_')[1]
             infos = m.xpath('td/text()').extract()
             qualite = infos[2].strip() or 'membre'
@@ -103,6 +104,7 @@ class AssembleeSpider(scrapy.Spider):
             request.meta['groupe_qualite'] = qualite
             request.meta['dep'] = dep
             request.meta['circ'] = circ
+            request.meta['sort_name'] = sortname.upper()
             yield request
 
 
@@ -181,6 +183,7 @@ class AssembleeSpider(scrapy.Spider):
         deputes[uid] = dict(
             depute_actif = actif,
             depute_nom = nom,
+            depute_nom_tri = response.meta.get('sort_name',nom),
             depute_id = normalize(nom),
             depute_uid = uid,
             groupe_uid = groupe,

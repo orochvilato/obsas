@@ -1,0 +1,23 @@
+{{ for d in deputes: }}
+<div class="depute-item">
+    <div class="depute-id">
+        <img src="http://www2.assemblee-nationale.fr/static/tribun/15/photos/{{ =d['depute_uid'][2:] }}.jpg" />
+    </div>
+    <div class="depute-infos">
+        <div class="depute-nom">{{ =d['depute_nom'] }}</div>
+        <div class="depute-circo">{{ =d['depute_region'] }} / {{ =d['depute_departement'] }} / {{ =d['depute_circo'] }}</div>
+        <div class="depute-profession">{{ =d['depute_profession'] }} / {{ =d['depute_age'] }} ans</div>
+        <div class="depute-groupe">{{ =d['groupe_libelle'] }} ({{=d['groupe_abrev']}})</div>
+        <div class="depute-vote">{{ if 'positions' in d['stats'].keys(): }}
+            <div class="depute-vote-participation">Participation : {{=d['stats']['positions']['exprimes'] }} %</div>
+            <div class="depute-vote-dissidence">Dissidence : {{=d['stats']['positions']['dissidence'] }} %</div>
+            <div class="depute-vote-compat">Vote comme {{ for e in d['stats']['compat_sort']: }}<span>{{=e['g']}} ({{=e['p']}} %), </span>{{ pass }}</div>
+            {{ else: }}N'a pas voté{{ pass }}
+        </div>
+        <div class="depute-interventions"><span>Interventions: {{ =d['stats']['nbitvs'] }}</span><span>, Mots: {{ =d['stats']['nbmots'] }}</span></div>
+    </div>
+</div>
+{{ pass }}
+{{ if next: }}
+    <div class="pagination__next"></div>
+{{ pass }}
