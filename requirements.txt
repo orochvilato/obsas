@@ -31,7 +31,7 @@ service-identity==17.0.0
 short-url==1.2.2
 six==1.10.0
 Twisted==17.5.0
-urllib3==1.21.1
+urllib3==1.26.5
 w3lib==1.17.0
 xmltodict==0.11.0
 zope.interface==4.4.2
